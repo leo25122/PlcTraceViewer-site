@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PlcTraceViewer – Analisi Tracce Siemens</title>
+
+  <!-- Meta base -->
+  <meta name="description"
+        content="PlcTraceViewer: analisi avanzata delle tracce PLC Siemens TIA Portal con grafici multi‑segnale, finestre pop‑out e strumenti di diagnostica.">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #2563eb;
+      --blue-soft: #1d4ed8;
+      --blue-dark: #1e40af;
+      --accent: #22c55e;
+
+      --bg: #020617;
+      --bg-soft: #020617;
+      --glass: rgba(15, 23, 42, 0.82);
+      --border-glass: rgba(148, 163, 184, 0.35);
+
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+
+      --card: #020617;
+      --border: #1e293b;
+      --shadow-soft: 0 20px 60px rgba(15, 23, 42, 0.9);
+      --radius-xl: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top left, #1e293b 0, transparent 55%),
+        radial-gradient(circle at bottom right, #0f172a 0, transparent 55%),
+        linear-gradient(135deg, #020617 0, #020617 45%, #0b1120 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────────────────── */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .max-w {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: linear-gradient(to bottom,
+                  rgba(15, 23, 42, 0.92) 0,
+                  rgba(15, 23, 42, 0.82) 70%,
+                  transparent 100%);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.55);
+    }
+
+    .nav-inner {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 10%, #38bdf8, transparent 55%),
+                  radial-gradient(circle at 80% 90%, #22c55e, transparent 60%),
+                  #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-logo-text span:first-child {
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .nav-logo-text span:last-child {
+      font-size: 0.72rem;
+      color: #64748b;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #cbd5f5;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      padding: 60px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.25), transparent 60%),
+                  rgba(15, 23, 42, 0.85);
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #bae6fd;
+      margin-bottom: 18px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.22);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
+
+    .hero-meta {
+      font-size: 0.86rem;
+      color: #9ca3af;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta code {
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.8);
+      background: radial-gradient(circle at 0 0, #38bdf8 0, transparent 55%),
+                  linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #f9fafb;
+      font-size: 0.96rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.95);
+      transition: transform 0.14s ease, box-shadow 0.18s ease, filter 0.14s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 1);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(96, 165, 250, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      color: #e5e7eb;
+    }
+
+    /* ── HERO CARD (mockup grafico) ─────────────────────────────── */
+    .hero-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-glass);
+      background: linear-gradient(135deg,
+                     rgba(15, 23, 42, 0.9),
+                     rgba(15, 23, 42, 0.96));
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-card-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .hero-card-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+    }
+
+    .hero-card-dots span:nth-child(1) { background: #ef4444; }
+    .hero-card-dots span:nth-child(2) { background: #facc15; }
+    .hero-card-dots span:nth-child(3) { background: #22c55e; }
+
+    .hero-card-title {
+      font-size: 0.78rem;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-card-chip {
+      font-size: 0.7rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.22);
+      border: 1px solid rgba(34, 197, 94, 0.45);
+      color: #bbf7d0;
+    }
+
+    .hero-chart {
+      height: 190px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.08), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(147, 197, 253, 0.1), transparent 60%),
+                  #020617;
+      border: 1px solid rgba(30, 64, 175, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* linee “fake” del grafico */
+    .hero-chart-line {
+      position: absolute;
+      inset: 12px 10px 12px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .hero-chart-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-chart-legend {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      display: flex;
+      gap: 10px;
+      font-size: 0.74rem;
+    }
+
+    .hero-chart-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .hero-chart-legend i {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    .hero-chart-legend i.sig-a { background: #22c55e; }
+    .hero-chart-legend i.sig-b { background: #38bdf8; }
+    .hero-chart-legend i.sig-c { background: #f97316; }
+
+    .hero-card-footer {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    .hero-card-footer strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    /* ── SEZIONI COMUNI ─────────────────────────────────────────── */
+    section {
+      padding: 72px 0 40px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.76rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #60a5fa;
+      margin-bottom: 10px;
+    }
+
+    section > h2 {
+      text-align: center;
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    section > p.sub {
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto 46px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    /* ── FEATURES ───────────────────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: linear-gradient(145deg,
+                     rgba(15, 23, 42, 0.96),
+                     rgba(15, 23, 42, 0.92));
+      border-radius: 18px;
+      border: 1px solid rgba(30, 64, 175, 0.6);
+      padding: 22px 20px 20px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.98);
+      border-color: rgba(96, 165, 250, 0.85);
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(37, 99, 235, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── STEPS / DOWNLOAD ───────────────────────────────────────── */
+    .download-section {
+      padding: 80px 0 90px;
+    }
+
+    .download-shell {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(30, 64, 175, 0.8);
+      background: radial-gradient(circle at top left,
+                    rgba(37, 99, 235, 0.14), transparent 55%),
+                  radial-gradient(circle at bottom right,
+                    rgba(8, 47, 73, 0.6), transparent 55%),
+                  rgba(15, 23, 42, 0.96);
+      box-shadow: var(--shadow-soft);
+      padding: 40px 26px 34px;
+    }
+
+    .steps-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      min-width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #3b82f6, #22c55e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.96rem;
+      color: #f9fafb;
+      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.9);
+      margin-top: 3px;
+    }
+
+    .step h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .download-footer {
+      margin-top: 26px;
+      text-align: center;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .download-footer code {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 2px 9px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      font-size: 0.8rem;
+    }
+
+    /* ── CTA ────────────────────────────────────────────────────── */
+    .cta-wrapper {
+      padding: 0 0 80px;
+    }
+
+    .cta {
+      max-width: 720px;
+      margin: 0 auto;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top,
+                     rgba(56, 189, 248, 0.18), transparent 60%),
+                  linear-gradient(145deg, #020617, #020617);
+      padding: 42px 28px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.95);
+    }
+
+    .cta h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      max-width: 430px;
+      margin: 0 auto 26px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(30, 64, 175, 0.8);
+      background: #020617;
+      padding: 22px 16px 26px;
+      font-size: 0.82rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    footer a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .hero {
+        padding-top: 32px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .download-shell {
+        padding: 30px 18px 28px;
+      }
+
+      .cta {
+        padding: 32px 18px 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- NAVBAR -->
+  <nav>
+    <div class="max-w nav-inner">
+      <div class="nav-left">
+        <div class="nav-logo-mark">⚙️</div>
+        <div class="nav-logo-text">
+          <span>PlcTraceViewer</span>
+          <span>Analisi tracce PLC Siemens</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Funzionalità</a>
+        <a href="#download">Installazione</a>
+        <a href="https://github.com/leo25122/PlcTraceViewer" target="_blank" rel="noreferrer">Repository</a>
+        <span class="nav-cta">v1.0.5</span>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="max-w hero-grid">
+        <div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span>Nuova versione 1.0.5 disponibile</span>
+          </div>
+          <h1>
+            Analisi tracce<br>
+            <span>PLC Siemens</span><br>
+            senza frizione
+          </h1>
+          <p class="hero-lead">
+            Carica le tracce esportate da TIA Portal e analizza più segnali in parallelo
+            con grafici fluido‑scroll, marcatori intelligenti e finestre pop‑out per i
+            dettagli che contano.
+          </p>
+
+          <div class="btn-group">
+            <a class="btn-primary"
+               href="https://github.com/leo25122/PlcTraceViewer/releases/download/v1.0.5/PlcTraceViewer_Setup_v1.0.5.exe"
+               download>
+              <span>⬇️ Scarica per Windows</span>
+            </a>
+            <a class="btn-secondary"
+               href="https://github.com/leo25122/PlcTraceViewer"
+               target="_blank" rel="noreferrer">
+              ★ Vedi il progetto su GitHub
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span>🖥️ Windows 10 / 11 · 64‑bit</span>
+            <span>📦 Nessun runtime .NET richiesto</span>
+            <span>🔒 Licenza hardware‑locked</span>
+          </div>
+        </div>
+
+        <!-- Mockup grafico / finestra applicazione -->
+        <aside class="hero-card" aria-hidden="true">
+          <div class="hero-card-header">
+            <div class="hero-card-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="hero-card-title">Analisi traccia – Mixer.Line1</div>
+            <span class="hero-card-chip">Pop‑out detail</span>
+          </div>
+
+          <div class="hero-chart">
+            <div class="hero-chart-line">
+              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                <polyline fill="none" stroke="#38bdf8" stroke-width="1.2"
+                          points="0,26 10,24 20,20 30,18 40,22 50,16 60,12 70,14 80,10 90,8 100,12"/>
+                <polyline fill="none" stroke="#22c55e" stroke-width="1.2"
+                          points="0,30 10,32 20,28 30,26 40,24 50,22 60,24 70,22 80,18 90,20 100,16"/>
+                <polyline fill="none" stroke="#f97316" stroke-width="1.2"
+                          stroke-dasharray="3 3"
+                          points="0,10 10,12 20,14 30,16 40,18 50,18 60,20 70,22 80,24 90,26 100,28"/>
+              </svg>
+            </div>
+
+            <div class="hero-chart-legend">
+              <span><i class="sig-a"></i> Mixer.Speed</span>
+              <span><i class="sig-b"></i> Valve.Position</span>
+              <span><i class="sig-c"></i> Alarm.Level</span>
+            </div>
+          </div>
+
+          <div class="hero-card-footer">
+            <span>Δt marcatori: <strong>127.4 ms</strong></span>
+            <span>Segnali attivi: <strong>8</strong></span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="max-w">
+        <p class="section-label">Funzionalità</p>
+        <h2>Tutto quello che serve per leggere una traccia</h2>
+        <p class="sub">
+          Progettato per chi lavora tutti i giorni con TIA Portal e ha bisogno di
+          correlare segnali, eventi e allarmi in pochi click.
+        </p>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Grafico multi‑segnale</h3>
+            <p>
+              Visualizza decine di segnali su un unico asse temporale, con zoom e pan
+              fluidi, supporto mouse e scorciatoie da tastiera.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🪟</div>
+            <h3>Finestre pop‑out</h3>
+            <p>
+              Stacca il dettaglio di un gruppo di segnali in una finestra separata,
+              ideale per l’analisi su monitor multipli.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🧮</div>
+            <h3>Statistiche istantanee</h3>
+            <p>
+              Min, max, Δpicco‑picco, media, RMS e deviazione standard per ogni
+              segnale, aggiornate in tempo reale al movimento dei marcatori.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🧭</div>
+            <h3>Marcatori intelligenti</h3>
+            <p>
+              Marcatori verticali e orizzontali con calcolo automatico di Δt, ΔY,
+              frequenza e attraversamenti di livello.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📂</div>
+            <h3>Import diretto da TIA</h3>
+            <p>
+              Supporto per file CSV esportati dalle tracce Siemens, con parsing
+              robusto di timestamp e formati numerici.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Self‑contained</h3>
+            <p>
+              Installer Windows 64‑bit senza dipendenze: non serve installare .NET o
+              runtime aggiuntivi sulla macchina di test.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Licenze hardware‑locked</h3>
+            <p>
+              Sistema di attivazione basato su RSA e binding all’hardware, pensato per
+              ambienti industriali.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🛠️</div>
+            <h3>Strumento per ingegneri</h3>
+            <p>
+              Pensato per chi sviluppa PLC: comandi da tastiera, export CSV
+              dell’analisi, screenshot rapidi del grafico.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section id="download" class="download-section">
+      <div class="max-w">
+        <p class="section-label">Installazione</p>
+        <h2>Pronto in tre passi</h2>
+        <p class="sub">
+          Scarica, installa e analizza la tua prima traccia in meno di due minuti.
+        </p>
+
+        <div class="download-shell">
+          <div class="steps-wrapper">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Scarica l’installer</h3>
+                <p>
+                  Clicca su <code>Scarica per Windows</code>. Il file
+                  <code>PlcTraceViewer_Setup_v1.0.5.exe</code> viene scaricato
+                  direttamente da GitHub Releases, senza passaggi intermedi.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Esegui l’installer</h3>
+                <p>
+                  Avvia il file e segui la procedura guidata. Se Windows SmartScreen
+                  mostra un avviso, seleziona <strong>“Ulteriori informazioni”</strong>
+                  → <strong>“Esegui comunque”</strong>.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Apri una traccia TIA Portal</h3>
+                <p>
+                  Troverai PlcTraceViewer nel menu Start. Apri un file di traccia
+                  esportato da TIA Portal, scegli i segnali da analizzare e inizia a
+                  navigare sul tempo.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p class="download-footer">
+            Compatibile con <code>Windows 10 / 11 · 64‑bit</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-wrapper">
+      <div class="max-w">
+        <div class="cta">
+          <h2>Inizia a leggere meglio le tue tracce</h2>
+          <p>
+            Prova PlcTraceViewer sulla prossima messa in servizio o analisi guasto:
+            più segnali visibili, meno tempo perso a combattere con gli strumenti.
+          </p>
+          <a class="btn-primary"
+             href="https://github.com/leo25122/PlcTraceViewer/releases/download/v1.0.5/PlcTraceViewer_Setup_v1.0.5.exe"
+             download>
+            ⬇️ Download PlcTraceViewer v1.0.5
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    Sviluppato da <strong>Leonardo Dogariu</strong> ·
+    <a href="https://github.com/leo25122/PlcTraceViewer" target="_blank" rel="noreferrer">GitHub</a> ·
+    <a href="https://github.com/leo25122/PlcTraceViewer/issues" target="_blank" rel="noreferrer">Segnala un bug</a>
+  </footer>
+</div>
+</body>
+</html>
