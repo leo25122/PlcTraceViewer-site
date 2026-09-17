@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PlcTraceViewer — pagina non trovata</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6f5f2">
+<link rel="icon" href="/PlcTraceViewer-site/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/PlcTraceViewer-site/assets/css/site.css">
+<style>
+  .lost{min-height:100vh;display:grid;place-items:center;text-align:center;background:var(--panel);color:var(--panel-ink)}
+  .lost canvas{width:min(560px,86vw);height:130px;display:block;margin:0 auto 28px}
+  .lost h1{color:#fff;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:-.04em}
+  .lost p{color:var(--panel-ink-2);margin:14px auto 30px;max-width:46ch}
+  .lost .mono{color:var(--on-dark)}
+</style>
+</head>
+<body data-title-it="PlcTraceViewer — pagina non trovata" data-title-en="PlcTraceViewer — page not found">
+
+<div class="lost">
+  <div class="wrap">
+    <canvas id="flat" aria-hidden="true"></canvas>
+    <p class="mono" style="font-size:.76rem;letter-spacing:.14em;text-transform:uppercase">404 · no signal</p>
+    <h1 data-it>Questo canale non risponde.</h1>
+    <h1 data-en>This channel is not answering.</h1>
+    <p data-it>
+      La pagina che cercavi non esiste (o non esiste più). Nessun valore inventato per coprire il buco:
+      preferiamo dirtelo.
+    </p>
+    <p data-en>
+      The page you were looking for does not exist (or no longer does). No value invented to cover the
+      gap: we would rather tell you.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn" href="/PlcTraceViewer-site/"><span data-it>Torna al sito</span><span data-en>Back to the site</span></a>
+      <a class="btn-2" href="/PlcTraceViewer-site/datasheet.html" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:#fff">Datasheet</a>
+    </div>
+  </div>
+</div>
+
+<script src="/PlcTraceViewer-site/assets/js/site.js"></script>
+<script>
+/* A flat line with a little noise: the honest picture of a channel that is not answering. */
+(function () {
+  var cv = document.getElementById('flat'); if (!cv) return;
+  var ctx = cv.getContext('2d'), reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){ var d=Math.min(2,devicePixelRatio||1), r=cv.getBoundingClientRect();
+    cv.width=r.width*d; cv.height=r.height*d; ctx.setTransform(d,0,0,d,0,0); }
+  function draw(t){
+    var w=cv.clientWidth, h=cv.clientHeight, mid=h/2;
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='#1e2732'; ctx.lineWidth=1;
+    ctx.beginPath(); for(var g=0;g<=w;g+=40){ctx.moveTo(g+.5,0);ctx.lineTo(g+.5,h);} ctx.stroke();
+    ctx.strokeStyle='#ff5a5f'; ctx.lineWidth=1.6; ctx.beginPath();
+    for(var x=0;x<=w;x++){
+      var n=(Math.sin(x*0.7+t/900)+Math.sin(x*2.3))*0.6;
+      var y=mid+n;
+      x?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.stroke();
+    if(!reduced) requestAnimationFrame(draw);
+  }
+  size(); addEventListener('resize',function(){size();draw(0);}); draw(0);
+})();
+</script>
+</body>
+</html>

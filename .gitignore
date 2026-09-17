@@ -1,0 +1,6 @@
+# local leftovers, never published
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+qa-*.html

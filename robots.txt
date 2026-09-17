@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leo25122.github.io/PlcTraceViewer-site/sitemap.xml

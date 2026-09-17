@@ -1,696 +1,635 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PlcTraceViewer — scheda tecnica</title>
-<meta name="description" content="Scheda tecnica di PlcTraceViewer: connessioni supportate, sorgenti dei nomi simbolici, campionamento, formato di registrazione, analisi, motore di calcolo, dashboard, licenza, requisiti e limiti dichiarati.">
-<meta name="theme-color" content="#f7f6f3">
+<meta name="description" content="Scheda tecnica di PlcTraceViewer: connessioni supportate, nomi simbolici, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti dichiarati.">
+<meta name="theme-color" content="#f6f5f2">
+<link rel="canonical" href="https://leo25122.github.io/PlcTraceViewer-site/datasheet.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PlcTraceViewer — datasheet">
+<meta property="og:description" content="Connections, acquisition architecture, sampling, recording, analysis, computed signals, licensing, requirements and declared limitations.">
+<meta property="og:image" content="https://leo25122.github.io/PlcTraceViewer-site/assets/img/app-workspace.webp">
+<meta property="og:url" content="https://leo25122.github.io/PlcTraceViewer-site/datasheet.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#f7f6f3; --paper-2:#fffefb; --ink:#15181c; --ink-2:#3d444c; --muted:#6b7480;
-    --rule:#e0ddd5; --rule-soft:#ebe8e1;
-    --accent:#0d5c52; --accent-ink:#0a463e; --accent-wash:#e6f0ed;
-    --warn:#a2551a; --warn-wash:#f6ede2;
-    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    font-family:'IBM Plex Sans',system-ui,-apple-system,Segoe UI,sans-serif;
-    background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;
-  }
-  .wrap{max-width:940px;margin:0 auto;padding:0 24px}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
-  code{font-family:var(--mono);font-size:0.9em}
-
-  html[lang="it"] [data-en]{display:none !important}
-  html[lang="en"] [data-it]{display:none !important}
-
-  header{border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:20}
-  .hd{display:flex;align-items:center;justify-content:space-between;gap:20px;height:60px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:600;white-space:nowrap}
-  .brand .mark{
-    font-family:var(--mono);font-size:0.74rem;font-weight:500;letter-spacing:.06em;
-    background:var(--accent);color:#fff;padding:4px 7px;border-radius:3px;line-height:1;
-  }
-  .hd-right{display:flex;align-items:center;gap:18px;font-size:0.88rem}
-  .hd-right a{color:var(--ink-2)}
-  .lang{display:flex;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--paper-2)}
-  .lang button{
-    font:inherit;font-size:0.76rem;font-family:var(--mono);padding:5px 9px;border:0;
-    background:transparent;color:var(--muted);cursor:pointer;
-  }
-  .lang button+button{border-left:1px solid var(--rule)}
-  .lang button[aria-pressed="true"]{background:var(--accent);color:#fff}
-
-  .doc-head{padding:52px 0 34px;border-bottom:2px solid var(--ink)}
-  .doc-kind{font-family:var(--mono);font-size:0.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-  .doc-head h1{font-size:clamp(1.9rem,3.6vw,2.5rem);letter-spacing:-0.03em;font-weight:700;line-height:1.12}
-  .doc-head .sub{margin-top:14px;max-width:66ch;color:var(--ink-2);font-size:1.02rem}
-  .doc-meta{
-    display:flex;flex-wrap:wrap;gap:6px 30px;margin-top:24px;
-    font-family:var(--mono);font-size:0.78rem;color:var(--muted);
-  }
-  .doc-meta b{color:var(--ink);font-weight:500}
-
-  .toc{padding:26px 0 6px;border-bottom:1px solid var(--rule-soft)}
-  .toc ol{list-style:none;columns:2;column-gap:40px;font-size:0.9rem}
-  .toc li{margin-bottom:6px;break-inside:avoid}
-  .toc .n{font-family:var(--mono);color:var(--muted);font-size:0.8rem;margin-right:8px}
-  @media(max-width:640px){.toc ol{columns:1}}
-
-  section{padding:40px 0 4px;border-top:1px solid var(--rule-soft)}
-  section:first-of-type{border-top:0}
-  h2{font-size:1.28rem;letter-spacing:-0.02em;font-weight:700;margin-bottom:16px}
-  h2 .n{font-family:var(--mono);font-size:0.85rem;color:var(--accent);margin-right:10px;font-weight:500}
-  h3{font-size:0.98rem;font-weight:600;margin:22px 0 7px}
-  p{max-width:74ch;color:var(--ink-2);margin-bottom:12px;font-size:0.94rem}
-
-  table{width:100%;border-collapse:collapse;font-size:0.87rem;margin:14px 0 6px}
-  .tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--paper-2)}
-  .tbl table{min-width:600px}
-  th{
-    text-align:left;padding:10px 13px;border-bottom:1px solid var(--rule);background:#f2f0ea;
-    font-weight:600;font-size:0.76rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);
-    white-space:nowrap;
-  }
-  td{padding:10px 13px;border-bottom:1px solid var(--rule-soft);vertical-align:top;color:var(--ink-2)}
-  tr:last-child td{border-bottom:0}
-  td:first-child{color:var(--ink);font-weight:600}
-  .yes{color:var(--accent);font-weight:600}
-  .no{color:var(--muted)}
-
-  dl.spec{display:grid;grid-template-columns:minmax(150px,auto) 1fr;border-top:1px solid var(--rule-soft);font-size:0.88rem;margin-top:8px}
-  dl.spec dt{padding:9px 22px 9px 0;color:var(--muted);border-bottom:1px solid var(--rule-soft)}
-  dl.spec dd{padding:9px 0;color:var(--ink-2);border-bottom:1px solid var(--rule-soft)}
-  dl.spec dd code{font-size:0.86rem}
-
-  ul.bul{list-style:none;max-width:74ch;margin:6px 0 12px}
-  ul.bul li{position:relative;padding:0 0 9px 20px;font-size:0.94rem;color:var(--ink-2)}
-  ul.bul li:before{content:"";position:absolute;left:2px;top:11px;width:8px;height:1px;background:var(--muted)}
-  ul.bul b{color:var(--ink);font-weight:600}
-
-  .box{
-    border-left:3px solid var(--accent);background:var(--accent-wash);
-    padding:14px 17px;border-radius:0 4px 4px 0;font-size:0.9rem;color:#0a3d36;margin:16px 0;
-  }
-  .box.warn{border-left-color:var(--warn);background:var(--warn-wash);color:#553218}
-  .box p{color:inherit;margin:0;font-size:0.9rem;max-width:none}
-
-  footer{border-top:1px solid var(--rule);margin-top:44px;padding:26px 0 46px;font-size:0.84rem;color:var(--muted)}
-  .foot{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
-
-  @media print{
-    header,.lang,footer .foot a{display:none}
-    body{background:#fff}
-    .doc-head{padding-top:0}
-    section{break-inside:auto;page-break-inside:auto}
-    h2{break-after:avoid}
-    .tbl{border-color:#bbb}
-  }
-</style>
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body data-title-it="PlcTraceViewer — scheda tecnica" data-title-en="PlcTraceViewer — datasheet"
+      data-desc-it="Scheda tecnica di PlcTraceViewer: connessioni, nomi simbolici, architettura di acquisizione, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti dichiarati."
+      data-desc-en="PlcTraceViewer datasheet: connections, symbolic names, acquisition architecture, sampling, recording, analysis, computed signals, web dashboard, licensing, requirements and declared limitations.">
 
-<header>
-  <div class="wrap hd">
-    <a href="index.html" class="brand" style="color:inherit">
-      <span class="mark">PTV</span><span>PlcTraceViewer</span>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h3l3-9 4 14 3-8h7"/></svg>
+      </span>
+      <span>PlcTraceViewer</span>
     </a>
-    <div class="hd-right">
-      <a href="index.html" data-it>&larr; Torna al sito</a>
-      <a href="index.html" data-en>&larr; Back to the site</a>
-      <div class="lang" role="group" aria-label="Lingua / Language">
-        <button type="button" id="btn-it" aria-pressed="true"  onclick="setLang('it')">IT</button>
-        <button type="button" id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+    <nav>
+      <a href="index.html" data-it>← Torna al sito</a><a href="index.html" data-en>← Back to the site</a>
+      <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="seg" role="group" aria-label="Lingua / Language">
+        <button type="button" data-lang-btn="it" aria-pressed="true">IT</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
       </div>
+      <button class="icon-btn" data-theme-toggle type="button" aria-label="Tema chiaro / scuro">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn no-print" onclick="window.print()" type="button" aria-label="Stampa / PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4v-6h16v6h-2M8 14h8v7H8z"/></svg>
+      </button>
     </div>
   </div>
 </header>
 
-<main class="wrap">
+<main>
 
-<div class="doc-head">
-  <p class="doc-kind" data-it>Scheda tecnica</p>
-  <p class="doc-kind" data-en>Datasheet</p>
-  <h1 data-it>PlcTraceViewer — acquisizione, registrazione e analisi di segnali da PLC Siemens</h1>
-  <h1 data-en>PlcTraceViewer — Siemens PLC signal acquisition, recording and analysis</h1>
-  <p class="sub" data-it>
-    Applicazione Windows per collegarsi a un controllore Siemens, campionarne i segnali in
-    continuo, registrarli su file e analizzarli — sia a registrazione conclusa sia mentre i
-    dati stanno arrivando.
-  </p>
-  <p class="sub" data-en>
-    A Windows application that connects to a Siemens controller, samples its signals
-    continuously, records them to file and analyses them — both after the fact and while the
-    data is still arriving.
-  </p>
-  <div class="doc-meta">
-    <span data-it>Versione <b>2.0</b></span><span data-en>Version <b>2.0</b></span>
-    <span data-it>Piattaforma <b>Windows 10 / 11 · 64 bit</b></span>
-    <span data-en>Platform <b>Windows 10 / 11 · 64-bit</b></span>
-    <span data-it>Documento <b>DS-PTV-20</b></span>
-    <span data-en>Document <b>DS-PTV-20</b></span>
-  </div>
-</div>
+<section style="padding-bottom:30px">
+  <div class="wrap">
+    <p class="kicker"><span data-it>Scheda tecnica</span><span data-en>Datasheet</span></p>
+    <h1 style="font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:26ch" data-it>
+      PlcTraceViewer — acquisizione, registrazione e analisi di segnali da PLC Siemens
+    </h1>
+    <h1 style="font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:26ch" data-en>
+      PlcTraceViewer — Siemens PLC signal acquisition, recording and analysis
+    </h1>
+    <p class="intro" style="margin-top:16px" data-it>
+      Applicazione Windows per collegarsi a un controllore Siemens, campionarne i segnali in continuo,
+      registrarli su file e analizzarli — sia a registrazione conclusa sia mentre i dati stanno arrivando.
+    </p>
+    <p class="intro" style="margin-top:16px" data-en>
+      A Windows application that connects to a Siemens controller, samples its signals continuously,
+      records them to file and analyses them — both after the recording and while the data is arriving.
+    </p>
 
-<div class="toc">
-  <ol data-it>
-    <li><span class="n">1</span><a href="#s1">Panoramica</a></li>
-    <li><span class="n">2</span><a href="#s2">Connessioni supportate</a></li>
-    <li><span class="n">3</span><a href="#s3">Nomi simbolici e struttura dei dati</a></li>
-    <li><span class="n">4</span><a href="#s4">Campionamento</a></li>
-    <li><span class="n">5</span><a href="#s5">Registrazione e gestione dei file</a></li>
-    <li><span class="n">6</span><a href="#s6">Visualizzazione e analisi</a></li>
-    <li><span class="n">7</span><a href="#s7">Motore dei segnali calcolati</a></li>
-    <li><span class="n">8</span><a href="#s8">Dashboard web</a></li>
-    <li><span class="n">9</span><a href="#s9">Licenza ed edizioni</a></li>
-    <li><span class="n">10</span><a href="#s10">Requisiti e installazione</a></li>
-    <li><span class="n">11</span><a href="#s11">Limiti dichiarati</a></li>
-  </ol>
-  <ol data-en>
-    <li><span class="n">1</span><a href="#s1">Overview</a></li>
-    <li><span class="n">2</span><a href="#s2">Supported connections</a></li>
-    <li><span class="n">3</span><a href="#s3">Symbolic names and data structure</a></li>
-    <li><span class="n">4</span><a href="#s4">Sampling</a></li>
-    <li><span class="n">5</span><a href="#s5">Recording and file handling</a></li>
-    <li><span class="n">6</span><a href="#s6">Display and analysis</a></li>
-    <li><span class="n">7</span><a href="#s7">Computed-signal engine</a></li>
-    <li><span class="n">8</span><a href="#s8">Web dashboard</a></li>
-    <li><span class="n">9</span><a href="#s9">Licensing and editions</a></li>
-    <li><span class="n">10</span><a href="#s10">Requirements and installation</a></li>
-    <li><span class="n">11</span><a href="#s11">Declared limitations</a></li>
-  </ol>
-</div>
-
-<!-- ══ 1 ══════════════════════════════════════════════════════════ -->
-<section id="s1">
-  <h2 data-it><span class="n">1</span>Panoramica</h2>
-  <h2 data-en><span class="n">1</span>Overview</h2>
-
-  <p data-it>
-    PlcTraceViewer si collega direttamente a un controllore Siemens sulla rete di impianto e ne
-    legge i segnali in modo ciclico. I campioni sono mostrati in tempo reale e, su comando,
-    scritti su file. Il file prodotto è pensato per essere analizzato a distanza di tempo: ogni
-    campione porta l'istante reale della lettura e i valori non disponibili sono conservati come
-    tali, distinguibili da una misura valida.
-  </p>
-  <p data-en>
-    PlcTraceViewer connects directly to a Siemens controller on the plant network and reads its
-    signals cyclically. Samples are shown in real time and, on command, written to file. The
-    resulting file is meant to be analysed long afterwards: every sample carries the real instant
-    of the read, and unavailable values are preserved as such, distinguishable from a valid
-    measurement.
-  </p>
-
-  <h3 data-it>Casi d'uso previsti</h3><h3 data-en>Intended use</h3>
-  <ul class="bul" data-it>
-    <li><b>Messa in servizio</b> — verifica di tempi ciclo, sequenze, risposte di attuatori.</li>
-    <li><b>Ricerca guasti intermittenti</b> — registrazioni lunghe non presidiate, da rileggere
-      dopo l'evento.</li>
-    <li><b>Collaudo e caratterizzazione</b> — confronto fra segnali, misure di ritardo, analisi
-      in frequenza.</li>
-    <li><b>Documentazione</b> — esportazione dei tratti significativi verso altri strumenti.</li>
-  </ul>
-  <ul class="bul" data-en>
-    <li><b>Commissioning</b> — checking cycle times, sequences and actuator responses.</li>
-    <li><b>Intermittent fault-finding</b> — long unattended recordings, read back after the
-      event.</li>
-    <li><b>Testing and characterisation</b> — comparing signals, measuring delays, frequency
-      analysis.</li>
-    <li><b>Documentation</b> — exporting the relevant spans to other tools.</li>
-  </ul>
-</section>
-
-<!-- ══ 2 ══════════════════════════════════════════════════════════ -->
-<section id="s2">
-  <h2 data-it><span class="n">2</span>Connessioni supportate</h2>
-  <h2 data-en><span class="n">2</span>Supported connections</h2>
-
-  <p data-it>
-    Tre vie di accesso, selezionabili e mantenute distinte. La scelta determina quali blocchi
-    sono leggibili e in quale forma.
-  </p>
-  <p data-en>
-    Three access routes, selectable and kept distinct. The choice determines which blocks can be
-    read and in what form.
-  </p>
-
-  <div class="tbl">
-    <table>
-      <thead>
-        <tr data-it><th>Via</th><th>CPU</th><th>Indirizzamento</th><th>Blocchi ottimizzati</th><th>Prerequisiti sulla CPU</th></tr>
-        <tr data-en><th>Route</th><th>CPU</th><th>Addressing</th><th>Optimised blocks</th><th>CPU prerequisites</th></tr>
-      </thead>
-      <tbody>
-        <tr data-it>
-          <td>PUT/GET</td><td>S7-300 / 400 / 1200 / 1500</td><td>assoluto</td><td class="no">non leggibili</td>
-          <td>accesso PUT/GET consentito</td>
-        </tr>
-        <tr data-en>
-          <td>PUT/GET</td><td>S7-300 / 400 / 1200 / 1500</td><td>absolute</td><td class="no">not readable</td>
-          <td>PUT/GET access permitted</td>
-        </tr>
-        <tr data-it>
-          <td>OPC UA</td><td>S7-1200 / 1500</td><td>simbolico</td><td class="yes">leggibili</td>
-          <td>server OPC UA attivo e licenziato</td>
-        </tr>
-        <tr data-en>
-          <td>OPC UA</td><td>S7-1200 / 1500</td><td>symbolic</td><td class="yes">readable</td>
-          <td>OPC UA server enabled and licensed</td>
-        </tr>
-        <tr data-it>
-          <td>S7comm-Plus</td><td>S7-1500 ≥ V2.9<br>S7-1200 ≥ V4.3</td><td>simbolico</td><td class="yes">leggibili</td>
-          <td>comunicazione PG/PC e HMI sicura abilitata</td>
-        </tr>
-        <tr data-en>
-          <td>S7comm-Plus</td><td>S7-1500 ≥ V2.9<br>S7-1200 ≥ V4.3</td><td>symbolic</td><td class="yes">readable</td>
-          <td>secure PG/PC and HMI communication enabled</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <dl class="spec" data-it>
-    <dt>Trasporto</dt><dd>ISO-on-TCP, porta <code>102</code> (configurabile)</dd>
-    <dt>Parametri</dt><dd>famiglia CPU, rack, slot, porta, timeout di connessione e di operazione, numero di tentativi</dd>
-    <dt>Aree leggibili</dt><dd>blocchi dati, merker, ingressi, uscite</dd>
-    <dt>Tipi supportati</dt><dd>BOOL, BYTE, SINT, USINT, WORD, INT, UINT, DWORD, DINT, UDINT, REAL, LREAL, LINT, ULINT, LWORD, TIME</dd>
-    <dt>Diagnostica</dt><dd>l'errore identifica il livello che ha rifiutato (TCP, ISO/COTP, setup S7); test di raggiungibilità e test approfondito di connessione separati</dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Transport</dt><dd>ISO-on-TCP, port <code>102</code> (configurable)</dd>
-    <dt>Parameters</dt><dd>CPU family, rack, slot, port, connection and operation timeouts, retry count</dd>
-    <dt>Readable areas</dt><dd>data blocks, memory, inputs, outputs</dd>
-    <dt>Supported types</dt><dd>BOOL, BYTE, SINT, USINT, WORD, INT, UINT, DWORD, DINT, UDINT, REAL, LREAL, LINT, ULINT, LWORD, TIME</dd>
-    <dt>Diagnostics</dt><dd>errors identify the layer that refused (TCP, ISO/COTP, S7 setup); reachability test and deep connection test are separate</dd>
-  </dl>
-
-  <div class="box warn" data-it>
-    <p><b>Blocchi ad accesso ottimizzato.</b> Non espongono indirizzi assoluti e non sono quindi
-    raggiungibili via PUT/GET. Il programma li riconosce e li segnala esplicitamente, anziché
-    restituire valori nulli. Per leggerli è necessaria una delle due vie simboliche.</p>
-  </div>
-  <div class="box warn" data-en>
-    <p><b>Optimised-access blocks.</b> They expose no absolute addresses and are therefore not
-    reachable over PUT/GET. The program recognises and reports them explicitly rather than
-    returning null values. Reading them requires one of the two symbolic routes.</p>
+    <div class="g4" style="margin-top:30px;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden">
+      <div style="background:var(--surface);padding:16px 18px">
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Versione</div>
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-en>Version</div>
+        <b>2.0</b>
+      </div>
+      <div style="background:var(--surface);padding:16px 18px">
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Piattaforma</div>
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-en>Platform</div>
+        <b>Windows 10 / 11 · 64 bit</b>
+      </div>
+      <div style="background:var(--surface);padding:16px 18px">
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Controllori</div>
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-en>Controllers</div>
+        <b>S7-300 / 400 / 1200 / 1500</b>
+      </div>
+      <div style="background:var(--surface);padding:16px 18px">
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Documento</div>
+        <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-en>Document</div>
+        <b class="mono" style="font-size:.92rem">DS-PTV-21</b>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ══ 3 ══════════════════════════════════════════════════════════ -->
-<section id="s3">
-  <h2 data-it><span class="n">3</span>Nomi simbolici e struttura dei dati</h2>
-  <h2 data-en><span class="n">3</span>Symbolic names and data structure</h2>
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="doc">
 
-  <p data-it>
-    I canali possono essere nominati a partire da più sorgenti, usate singolarmente o in
-    combinazione. Quando una sorgente è incompleta il programma lo dichiara, invece di dedurre
-    strutture non verificate.
-  </p>
-  <p data-en>
-    Channels can be named from several sources, used singly or together. Where a source is
-    incomplete the program says so, rather than inferring unverified structures.
-  </p>
+      <aside class="toc" data-spy>
+        <h4 data-it>Indice</h4><h4 data-en>Contents</h4>
+        <ol>
+          <li><a href="#panoramica" data-it>Panoramica</a><a href="#panoramica" data-en>Overview</a></li>
+          <li><a href="#connessioni" data-it>Connessioni supportate</a><a href="#connessioni" data-en>Supported connections</a></li>
+          <li><a href="#simbolici" data-it>Nomi simbolici e struttura</a><a href="#simbolici" data-en>Symbolic names and structure</a></li>
+          <li><a href="#acquisizione" data-it>Architettura di acquisizione</a><a href="#acquisizione" data-en>Acquisition architecture</a></li>
+          <li><a href="#campionamento" data-it>Campionamento</a><a href="#campionamento" data-en>Sampling</a></li>
+          <li><a href="#registrazione" data-it>Registrazione e file</a><a href="#registrazione" data-en>Recording and files</a></li>
+          <li><a href="#analisi" data-it>Visualizzazione e analisi</a><a href="#analisi" data-en>Display and analysis</a></li>
+          <li><a href="#calcolati" data-it>Segnali calcolati</a><a href="#calcolati" data-en>Computed signals</a></li>
+          <li><a href="#dashboard" data-it>Dashboard web</a><a href="#dashboard" data-en>Web dashboard</a></li>
+          <li><a href="#licenza" data-it>Licenza ed edizioni</a><a href="#licenza" data-en>Licensing and editions</a></li>
+          <li><a href="#requisiti" data-it>Requisiti e installazione</a><a href="#requisiti" data-en>Requirements and installation</a></li>
+          <li><a href="#limiti" data-it>Limiti dichiarati</a><a href="#limiti" data-en>Declared limitations</a></li>
+        </ol>
+      </aside>
 
-  <div class="tbl">
-    <table>
-      <thead>
-        <tr data-it><th>Sorgente</th><th>Formati</th><th>Cosa fornisce</th></tr>
-        <tr data-en><th>Source</th><th>Formats</th><th>What it provides</th></tr>
-      </thead>
-      <tbody>
-        <tr data-it><td>Progetto TIA</td><td><code>.ap16</code> … <code>.ap21</code></td>
-          <td>nome e numero dei blocchi, struttura e offset dichiarati dal progetto</td></tr>
-        <tr data-en><td>TIA project</td><td><code>.ap16</code> … <code>.ap21</code></td>
-          <td>block names and numbers, structure and offsets as stated by the project</td></tr>
-        <tr data-it><td>Sorgenti di blocco</td><td><code>.db</code> <code>.scl</code> <code>.udt</code></td>
-          <td>variabili dei DB, con struct annidate, UDT e array multidimensionali</td></tr>
-        <tr data-en><td>Block sources</td><td><code>.db</code> <code>.scl</code> <code>.udt</code></td>
-          <td>DB variables, with nested structs, UDTs and multidimensional arrays</td></tr>
-        <tr data-it><td>Tabelle tag</td><td><code>.xlsx</code> <code>.csv</code></td>
-          <td>nome, tipo e commento per merker, ingressi e uscite</td></tr>
-        <tr data-en><td>Tag tables</td><td><code>.xlsx</code> <code>.csv</code></td>
-          <td>name, type and comment for memory, inputs and outputs</td></tr>
-        <tr data-it><td>Direttamente dalla CPU</td><td>—</td>
-          <td>symbol table su S7-300/400; elenco e struttura dei blocchi dati su S7-1200/1500 via
-            OPC UA o S7comm-Plus, senza il progetto</td></tr>
-        <tr data-en><td>Directly from the CPU</td><td>—</td>
-          <td>symbol table on S7-300/400; data-block list and structure on S7-1200/1500 over
-            OPC UA or S7comm-Plus, with no project</td></tr>
-      </tbody>
-    </table>
+      <div>
+
+        <!-- 1 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="panoramica">
+          <h2 data-it>1 · Panoramica</h2><h2 data-en>1 · Overview</h2>
+          <p data-it>
+            PlcTraceViewer si collega direttamente a un controllore Siemens sulla rete di impianto e ne
+            legge i segnali in modo ciclico. I campioni sono mostrati in tempo reale e, su comando,
+            scritti su file. Il file prodotto è pensato per essere analizzato a distanza di tempo: ogni
+            campione porta l'istante reale della lettura e i valori non disponibili sono conservati come
+            tali, distinguibili da una misura valida.
+          </p>
+          <p data-en>
+            PlcTraceViewer connects directly to a Siemens controller on the plant network and reads its
+            signals cyclically. Samples are shown in real time and, on command, written to file. The
+            resulting file is meant to be analysed long afterwards: every sample carries the real instant
+            of the read, and unavailable values are kept as such, distinguishable from a valid measurement.
+          </p>
+          <h3 data-it>Casi d'uso previsti</h3><h3 data-en>Intended use</h3>
+          <ul data-it>
+            <li><b>Messa in servizio</b> — verifica di tempi ciclo, sequenze, risposte di attuatori.</li>
+            <li><b>Ricerca guasti intermittenti</b> — registrazioni lunghe non presidiate, da rileggere dopo l'evento.</li>
+            <li><b>Collaudo e caratterizzazione</b> — confronto fra segnali, misure di ritardo, analisi in frequenza.</li>
+            <li><b>Documentazione</b> — esportazione dei tratti significativi verso altri strumenti.</li>
+          </ul>
+          <ul data-en>
+            <li><b>Commissioning</b> — checking cycle times, sequences, actuator responses.</li>
+            <li><b>Intermittent fault-finding</b> — long unattended recordings, to be read back after the event.</li>
+            <li><b>Testing and characterisation</b> — comparing signals, measuring delays, frequency analysis.</li>
+            <li><b>Documentation</b> — exporting the significant spans to other tools.</li>
+          </ul>
+        </article>
+
+        <!-- 2 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="connessioni">
+          <h2 data-it>2 · Connessioni supportate</h2><h2 data-en>2 · Supported connections</h2>
+          <p data-it>
+            Tre vie di accesso, selezionabili e mantenute distinte. La scelta determina quali blocchi sono
+            leggibili e in quale forma.
+          </p>
+          <p data-en>
+            Three access routes, selectable and kept distinct. The choice determines which blocks are
+            readable and in what form.
+          </p>
+          <div class="tbl" style="margin-bottom:20px">
+            <table>
+              <thead>
+                <tr data-it><th>Via</th><th>CPU</th><th>Indirizzamento</th><th>Blocchi ottimizzati</th><th>Prerequisiti sulla CPU</th></tr>
+                <tr data-en><th>Route</th><th>CPU</th><th>Addressing</th><th>Optimised blocks</th><th>Prerequisites on the CPU</th></tr>
+              </thead>
+              <tbody>
+                <tr data-it><td>PUT/GET</td><td>S7-300 / 400 / 1200 / 1500</td><td>assoluto</td><td class="no">non leggibili</td><td>accesso PUT/GET consentito</td></tr>
+                <tr data-en><td>PUT/GET</td><td>S7-300 / 400 / 1200 / 1500</td><td>absolute</td><td class="no">not readable</td><td>PUT/GET access allowed</td></tr>
+                <tr data-it><td>OPC UA</td><td>S7-1200 / 1500</td><td>simbolico</td><td class="yes">leggibili</td><td>server OPC UA attivo e licenziato</td></tr>
+                <tr data-en><td>OPC UA</td><td>S7-1200 / 1500</td><td>symbolic</td><td class="yes">readable</td><td>OPC UA server enabled and licensed</td></tr>
+                <tr data-it><td>S7comm-Plus</td><td>S7-1500 ≥ V2.9<br>S7-1200 ≥ V4.3</td><td>simbolico</td><td class="yes">leggibili</td><td>comunicazione PG/PC e HMI sicura abilitata</td></tr>
+                <tr data-en><td>S7comm-Plus</td><td>S7-1500 ≥ V2.9<br>S7-1200 ≥ V4.3</td><td>symbolic</td><td class="yes">readable</td><td>secure PG/PC and HMI communication enabled</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <table class="spec">
+            <tr><td data-it>Trasporto</td><td data-en>Transport</td><td>ISO-on-TCP<span data-it>, porta 102 (configurabile)</span><span data-en>, port 102 (configurable)</span></td></tr>
+            <tr>
+              <td data-it>Parametri</td><td data-en>Parameters</td>
+              <td data-it>famiglia CPU, rack, slot, porta, timeout di connessione e di operazione, numero di tentativi</td>
+              <td data-en>CPU family, rack, slot, port, connect and operation timeouts, number of attempts</td>
+            </tr>
+            <tr>
+              <td data-it>Aree leggibili</td><td data-en>Readable areas</td>
+              <td data-it>blocchi dati, merker, ingressi, uscite</td>
+              <td data-en>data blocks, memory, inputs, outputs</td>
+            </tr>
+            <tr>
+              <td data-it>Tipi supportati</td><td data-en>Supported types</td>
+              <td>BOOL, BYTE, SINT, USINT, WORD, INT, UINT, DWORD, DINT, UDINT, REAL, LREAL, LINT, ULINT, LWORD, TIME</td>
+            </tr>
+            <tr>
+              <td data-it>Diagnostica</td><td data-en>Diagnostics</td>
+              <td data-it>l'errore identifica il livello che ha rifiutato (TCP, ISO/COTP, setup S7); test di raggiungibilità e test approfondito di connessione separati</td>
+              <td data-en>the error identifies the layer that refused (TCP, ISO/COTP, S7 setup); separate reachability test and deep connection test</td>
+            </tr>
+          </table>
+          <div class="note" style="margin-top:18px">
+            <b data-it>Blocchi ad accesso ottimizzato.</b><b data-en>Optimised-access blocks.</b>
+            <span data-it> Non espongono indirizzi assoluti e non sono quindi raggiungibili via PUT/GET. Il
+              programma li riconosce e li segnala esplicitamente, anziché restituire valori nulli. Per
+              leggerli è necessaria una delle due vie simboliche.</span>
+            <span data-en> They expose no absolute addresses and are therefore not reachable over PUT/GET.
+              The program recognises them and says so explicitly, rather than returning null values.
+              Reading them requires one of the two symbolic routes.</span>
+          </div>
+        </article>
+
+        <!-- 3 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="simbolici">
+          <h2 data-it>3 · Nomi simbolici e struttura dei dati</h2><h2 data-en>3 · Symbolic names and data structure</h2>
+          <p data-it>
+            I canali possono essere nominati a partire da più sorgenti, usate singolarmente o in
+            combinazione. Quando una sorgente è incompleta il programma lo dichiara, invece di dedurre
+            strutture non verificate.
+          </p>
+          <p data-en>
+            Channels can be named from several sources, used alone or together. When a source is
+            incomplete the program says so, instead of inferring unverified structures.
+          </p>
+          <div class="tbl">
+            <table>
+              <thead>
+                <tr data-it><th>Sorgente</th><th>Formati</th><th>Cosa fornisce</th></tr>
+                <tr data-en><th>Source</th><th>Formats</th><th>What it provides</th></tr>
+              </thead>
+              <tbody>
+                <tr data-it><td>Progetto TIA</td><td class="mono">.ap16 … .ap21</td><td>nome e numero dei blocchi, struttura e offset dichiarati dal progetto</td></tr>
+                <tr data-en><td>TIA project</td><td class="mono">.ap16 … .ap21</td><td>block names and numbers, structure and offsets as declared by the project</td></tr>
+                <tr data-it><td>Sorgenti di blocco</td><td class="mono">.db .scl .udt</td><td>variabili dei DB, con struct annidate, UDT e array multidimensionali</td></tr>
+                <tr data-en><td>Block sources</td><td class="mono">.db .scl .udt</td><td>DB variables, with nested structs, UDTs and multi-dimensional arrays</td></tr>
+                <tr data-it><td>Tabelle tag</td><td class="mono">.xlsx .csv</td><td>nome, tipo e commento per merker, ingressi e uscite</td></tr>
+                <tr data-en><td>Tag tables</td><td class="mono">.xlsx .csv</td><td>name, type and comment for memory, inputs and outputs</td></tr>
+                <tr data-it><td>Direttamente dalla CPU</td><td>—</td><td>symbol table su S7-300/400; elenco e struttura dei blocchi dati su S7-1200/1500 via OPC UA o S7comm-Plus, senza il progetto</td></tr>
+                <tr data-en><td>Straight from the CPU</td><td>—</td><td>symbol table on S7-300/400; data-block list and structure on S7-1200/1500 over OPC UA or S7comm-Plus, without the project</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:16px" data-it>
+            Gli offset assoluti dei blocchi non ottimizzati sono determinati secondo le regole di
+            allineamento S7. Dove una dichiarazione di tipo non è disponibile, i membri interessati non
+            vengono indirizzati: un offset non verificabile produrrebbe letture plausibili ma sbagliate.
+          </p>
+          <p style="margin-top:16px" data-en>
+            Absolute offsets of non-optimised blocks are derived from the S7 alignment rules. Where a type
+            declaration is not available, the members concerned are not addressed at all: an offset that
+            cannot be verified would produce plausible but wrong readings.
+          </p>
+        </article>
+
+        <!-- 4 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="acquisizione">
+          <h2 data-it>4 · Architettura di acquisizione</h2><h2 data-en>4 · Acquisition architecture</h2>
+          <p data-it>
+            L'acquisizione non condivide il processo con l'interfaccia. Legge il controllore un
+            <b>processo dedicato</b>, avviato dall'applicazione e sorvegliato da essa, che non disegna
+            nulla: possiede le connessioni, il proprio orologio e la propria priorità.
+          </p>
+          <p data-en>
+            Acquisition does not share the process with the user interface. The controller is read by a
+            <b>dedicated process</b>, started and supervised by the application, which draws nothing: it
+            owns the connections, its own clock and its own priority.
+          </p>
+          <table class="spec">
+            <tr>
+              <td data-it>Marcatura temporale</td><td data-en>Time stamping</td>
+              <td data-it>eseguita nel processo di acquisizione, nell'istante in cui la risposta del controllore è disponibile; il ritardo con cui la finestra riceve o disegna il campione non modifica il tempo registrato</td>
+              <td data-en>performed in the acquisition process, at the instant the controller's answer is available; any delay in the window receiving or drawing the sample does not change the recorded time</td>
+            </tr>
+            <tr>
+              <td data-it>Isolamento</td><td data-en>Isolation</td>
+              <td data-it>l'interfaccia (scorrimento elenchi, grafici, esportazioni, gestione della memoria) non può ritardare una lettura né spostare un istante di campionamento</td>
+              <td data-en>the user interface (list scrolling, charts, exports, memory management) cannot delay a read nor move a sampling instant</td>
+            </tr>
+            <tr>
+              <td data-it>Continuità</td><td data-en>Continuity</td>
+              <td data-it>se il processo di acquisizione non può essere avviato o termina, la lettura prosegue dentro l'applicazione e l'evento è riportato nel registro</td>
+              <td data-en>if the acquisition process cannot start or terminates, reading continues inside the application and the event is written to the log</td>
+            </tr>
+            <tr>
+              <td data-it>Verifica in fabbrica</td><td data-en>Bench verification</td>
+              <td data-it>100 canali a 1 ms contro controllori simulati, con l'interfaccia volutamente sotto carico: periodo tipico 0,999 ms, 99° percentile 1,06 ms, massimo 1,30 ms</td>
+              <td data-en>100 channels at 1 ms against simulated controllers, with the interface deliberately under load: typical period 0.999 ms, 99th percentile 1.06 ms, maximum 1.30 ms</td>
+            </tr>
+          </table>
+          <div class="note" style="margin-top:18px">
+            <b data-it>Cosa significa e cosa non significa.</b><b data-en>What this does and does not mean.</b>
+            <span data-it> I valori sopra descrivono il comportamento del <em>programma</em>, misurato in
+              laboratorio. Sull'impianto il tempo di risposta del controllore resta il fattore determinante
+              e non è sotto il controllo dell'applicazione: vedere §5.</span>
+            <span data-en> The figures above describe the behaviour of the <em>program</em>, measured on the
+              bench. On a plant the controller's response time remains the determining factor and is not
+              under the application's control: see §5.</span>
+          </div>
+        </article>
+
+        <!-- 5 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="campionamento">
+          <h2 data-it>5 · Campionamento</h2><h2 data-en>5 · Sampling</h2>
+          <table class="spec">
+            <tr>
+              <td data-it>Intervalli selezionabili</td><td data-en>Selectable intervals</td>
+              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 · 100 · 200 · 500 · 1000 · 2000 · 5000 ms</td>
+            </tr>
+            <tr>
+              <td data-it>Intervallo effettivo</td><td data-en>Effective interval</td>
+              <td data-it>misurato e mostrato per ogni canale, distinto da quello impostato</td>
+              <td data-en>measured and shown for every channel, kept distinct from the one set</td>
+            </tr>
+            <tr>
+              <td data-it>Verifica preventiva</td><td data-en>Pre-flight check</td>
+              <td data-it>eseguita prima dell'apertura del primo file di registrazione</td>
+              <td data-en>carried out before the first recording file is opened</td>
+            </tr>
+            <tr>
+              <td data-it>Carico sul controllore</td><td data-en>Load on the controller</td>
+              <td data-it>numero di richieste contemporanee limitato per costruzione; percentuale di occupazione del collegamento riportata all'utente</td>
+              <td data-en>the number of simultaneous requests is limited by design; the share of the connection in use is reported to the user</td>
+            </tr>
+            <tr>
+              <td data-it>Campionamento nel PLC</td><td data-en>Sampling inside the PLC</td>
+              <td data-it>opzionale, tramite blocchi generati dal programma e importati in TIA; il PLC campiona al ritmo del proprio OB e i dati sono prelevati in blocco</td>
+              <td data-en>optional, through blocks generated by the program and imported into TIA; the PLC samples at the pace of its own OB and the data is collected in batches</td>
+            </tr>
+          </table>
+          <div class="note" style="margin-top:18px">
+            <b data-it>L'intervallo sostenibile non è una specifica del prodotto.</b>
+            <b data-en>The sustainable interval is not a product specification.</b>
+            <span data-it> Dipende dal modello di CPU, dal numero e dal tipo di canali selezionati e dal
+              carico della rete. Il programma lo misura sull'impianto e, quando l'intervallo richiesto non
+              è sostenibile, lo segnala prima dell'avvio della registrazione proponendo il valore
+              compatibile.</span>
+            <span data-en> It depends on the CPU model, on the number and type of channels selected and on
+              network load. The program measures it on site and, when the requested interval cannot be
+              sustained, says so before the recording starts and offers the compatible value.</span>
+          </div>
+
+          <figure class="shot" style="margin:18px 0" data-zoom="assets/img/app-live-values.webp">
+            <img src="assets/img/app-live-values.webp" width="1184" height="988" loading="lazy" decoding="async"
+                 alt="Channel table showing, for every channel, the measured period and rate next to the live value.">
+          </figure>
+          <figcaption style="margin:-8px 0 22px">
+            <span data-it>L'intervallo effettivo è mostrato per ogni canale (colonne PERIOD e RATE), distinto da quello impostato.</span>
+            <span data-en>The effective interval is shown for every channel (PERIOD and RATE columns), kept distinct from the one set.</span>
+          </figcaption>
+
+          <h3 data-it>Buffer di campionamento nel PLC (opzionale)</h3>
+          <h3 data-en>In-PLC sampling buffer (optional)</h3>
+          <p data-it>
+            Per i casi in cui la frequenza richiesta non è ottenibile sulla rete, il programma genera i
+            blocchi da importare nel progetto TIA. Il buffer accetta segnali di tipo misto (BOOL, BYTE,
+            INT, DINT, WORD, DWORD, REAL, LREAL); numero di segnali per tipo e profondità sono
+            configurabili, e l'occupazione di memoria risultante nel PLC è mostrata prima della generazione.
+          </p>
+          <p data-en>
+            For cases where the required rate cannot be achieved over the network, the program generates
+            the blocks to import into the TIA project. The buffer accepts mixed types (BOOL, BYTE, INT,
+            DINT, WORD, DWORD, REAL, LREAL); the number of signals per type and the depth are configurable,
+            and the resulting memory use in the PLC is shown before generating.
+          </p>
+          <figure class="shot" style="max-width:520px;margin-top:8px" data-zoom="assets/img/dialog-ring.webp">
+            <img src="assets/img/dialog-ring.webp" width="624" height="743" loading="lazy" decoding="async"
+                 alt="Ring buffer export dialog: signals per data type, buffer depth and resulting PLC memory.">
+          </figure>
+        </article>
+
+        <!-- 6 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="registrazione">
+          <h2 data-it>6 · Registrazione e gestione dei file</h2><h2 data-en>6 · Recording and file handling</h2>
+          <table class="spec">
+            <tr><td data-it>Formato</td><td data-en>Format</td>
+              <td data-it>binario proprietario, estensione <span class="mono">.drug</span></td>
+              <td data-en>proprietary binary, extension <span class="mono">.drug</span></td></tr>
+            <tr><td data-it>Compressione</td><td data-en>Compression</td>
+              <td data-it>automatica sui file chiusi, estensione <span class="mono">.drug.gz</span></td>
+              <td data-en>automatic on closed files, extension <span class="mono">.drug.gz</span></td></tr>
+            <tr><td data-it>Organizzazione</td><td data-en>Organisation</td>
+              <td data-it>una cartella per giorno; suddivisione dei file per dimensione configurabile</td>
+              <td data-en>one folder per day; file splitting by size, configurable</td></tr>
+            <tr><td data-it>Marcatura temporale</td><td data-en>Time stamping</td>
+              <td data-it>per campione, riferita all'istante della risposta del controllore</td>
+              <td data-en>per sample, referred to the instant of the controller's answer</td></tr>
+            <tr><td data-it>Valori non disponibili</td><td data-en>Unavailable values</td>
+              <td data-it>registrati come assenza di valore, non come zero</td>
+              <td data-en>recorded as absence of value, not as zero</td></tr>
+            <tr><td data-it>Sorveglianza</td><td data-en>Supervision</td>
+              <td data-it>controllo continuo dell'avanzamento della scrittura, con segnalazione all'utente</td>
+              <td data-en>continuous check that writing is progressing, reported to the user</td></tr>
+            <tr><td data-it>Gestione spazio</td><td data-en>Space management</td>
+              <td data-it>conservazione a tempo o a dimensione; i file più vecchi sono compressi prima di essere rimossi; la registrazione in corso non è mai coinvolta</td>
+              <td data-en>retention by age or by size; the oldest files are compressed before removal; the recording in progress is never involved</td></tr>
+            <tr><td data-it>Formati letti</td><td data-en>Formats read</td>
+              <td class="mono">.drug · .drug.gz · .csv · .txt</td></tr>
+          </table>
+
+          <h3 data-it>Garanzie sul dato registrato</h3><h3 data-en>Guarantees on recorded data</h3>
+          <ul data-it>
+            <li><b>Tempo reale di lettura</b> — ogni campione è marcato con l'istante in cui il valore è stato effettivamente ottenuto, non con quello pianificato.</li>
+            <li><b>Nessuna sostituzione</b> — un valore non letto non viene rimpiazzato da un valore di comodo, in nessun punto della catena fino al disco.</li>
+            <li><b>Verifica preventiva</b> — la sostenibilità dell'intervallo è accertata prima dell'apertura del primo file.</li>
+            <li><b>Continuità sorvegliata</b> — l'interruzione della scrittura viene rilevata e segnalata durante la registrazione.</li>
+          </ul>
+          <ul data-en>
+            <li><b>Real read time</b> — every sample is stamped with the instant the value was actually obtained, not the planned one.</li>
+            <li><b>No substitution</b> — a value that was not read is never replaced by a convenient one, at any point of the chain down to the disk.</li>
+            <li><b>Pre-flight check</b> — the interval's sustainability is established before the first file is opened.</li>
+            <li><b>Supervised continuity</b> — an interruption of writing is detected and reported during the recording.</li>
+          </ul>
+        </article>
+
+        <!-- 7 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="analisi">
+          <h2 data-it>7 · Visualizzazione e analisi</h2><h2 data-en>7 · Display and analysis</h2>
+          <p data-it>
+            Gli strumenti di analisi operano indifferentemente su una registrazione salvata o su segnali in
+            acquisizione. Ogni canale può essere aperto in una finestra dedicata, e altri canali possono
+            esservi trascinati per la sovrapposizione.
+          </p>
+          <p data-en>
+            The analysis tools work equally on a saved recording and on signals being acquired. Each channel
+            can be opened in its own window, and other channels dragged in to overlay them.
+          </p>
+          <table class="spec">
+            <tr><td data-it>Grafici</td><td data-en>Charts</td>
+              <td data-it>multi-segnale su asse temporale comune, zoom e pan, autoscala che preserva le discontinuità</td>
+              <td data-en>multi-signal on a common time axis, zoom and pan, autoscale that preserves discontinuities</td></tr>
+            <tr><td data-it>Marker</td><td data-en>Markers</td>
+              <td data-it>verticali e orizzontali, con differenza di tempo, differenza di valore e frequenza corrispondente</td>
+              <td data-en>vertical and horizontal, with time difference, value difference and the matching frequency</td></tr>
+            <tr><td data-it>Statistiche</td><td data-en>Statistics</td>
+              <td data-it>sul tratto selezionato e sull'intero segnale</td>
+              <td data-en>over the selected span and over the whole signal</td></tr>
+            <tr><td data-it>Finestre</td><td data-en>Windows</td>
+              <td data-it>staccabili e indipendenti, per uso su più monitor</td>
+              <td data-en>detachable and independent, for use across several monitors</td></tr>
+            <tr><td data-it>Esportazione</td><td data-en>Export</td>
+              <td data-it>dati in <span class="mono">.csv</span>, grafico in <span class="mono">.png</span>, configurazione dei canali in <span class="mono">.sigcfg</span></td>
+              <td data-en>data as <span class="mono">.csv</span>, chart as <span class="mono">.png</span>, channel configuration as <span class="mono">.sigcfg</span></td></tr>
+            <tr><td data-it>Colonne di stato</td><td data-en>Status columns</td>
+              <td data-it>periodo e frequenza effettivi per canale, qualità del valore corrente</td>
+              <td data-en>effective period and rate per channel, quality of the current value</td></tr>
+          </table>
+          <figure class="shot" style="margin-top:18px" data-zoom="assets/img/analysis.webp">
+            <img src="assets/img/analysis.webp" width="1516" height="908" loading="lazy" decoding="async"
+                 alt="Analysis window with statistics, markers and per-signal summary.">
+          </figure>
+        </article>
+
+        <!-- 8 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="calcolati">
+          <h2 data-it>8 · Motore dei segnali calcolati</h2><h2 data-en>8 · Computed-signal engine</h2>
+          <p data-it>
+            Un canale può essere definito da un'espressione anziché da un indirizzo. Le espressioni sono
+            componibili e possono referenziare altri canali, inclusi altri canali calcolati.
+          </p>
+          <p data-en>
+            A channel can be defined by an expression instead of an address. Expressions compose freely and
+            can reference other channels, including other computed channels.
+          </p>
+          <table class="spec">
+            <tr><td data-it>Funzioni</td><td data-en>Functions</td>
+              <td data-it>94, organizzate in dieci famiglie</td><td data-en>94, organised in ten families</td></tr>
+            <tr><td data-it>Famiglie</td><td data-en>Families</td>
+              <td data-it>matematica · trigonometria · logica · derivate e integrali · filtri · statistiche a finestra · statistiche globali · fronti e temporizzazioni · tempo e frequenza · compatibilità</td>
+              <td data-en>maths · trigonometry · logic · derivatives and integrals · filters · windowed statistics · global statistics · edges and timing · time and frequency · compatibility</td></tr>
+            <tr><td data-it>Analisi in frequenza</td><td data-en>Frequency analysis</td>
+              <td data-it>trasformata, distorsione armonica totale, correlazione, traslazione temporale</td>
+              <td data-en>transform, total harmonic distortion, correlation, time shift</td></tr>
+            <tr><td data-it>Unità</td><td data-en>Units</td>
+              <td data-it>derivate e integrali riferiti al secondo; filtri specificati in Hz; finestre specificate in secondi</td>
+              <td data-en>derivatives and integrals referred to the second; filters specified in Hz; windows specified in seconds</td></tr>
+            <tr><td data-it>Segnali eterogenei</td><td data-en>Heterogeneous signals</td>
+              <td data-it>canali con periodi o istanti iniziali diversi sono riportati a una base temporale comune prima della combinazione</td>
+              <td data-en>channels with different periods or start instants are brought to a common time base before being combined</td></tr>
+            <tr><td data-it>Errori</td><td data-en>Errors</td>
+              <td data-it>segnalati con la posizione nell'espressione; non convertiti in valori numerici</td>
+              <td data-en>reported with their position in the expression; never turned into numeric values</td></tr>
+            <tr><td data-it>Editor</td><td data-en>Editor</td>
+              <td data-it>anteprima della curva risultante durante la scrittura dell'espressione</td>
+              <td data-en>preview of the resulting curve while the expression is being written</td></tr>
+          </table>
+          <p style="margin-top:16px">
+            <a href="index.html#calcolati" class="btn-ghost" data-it>Sfoglia tutte le 94 funzioni →</a>
+            <a href="index.html#calcolati" class="btn-ghost" data-en>Browse all 94 functions →</a>
+          </p>
+        </article>
+
+        <!-- 9 ─────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="dashboard">
+          <h2 data-it>9 · Dashboard web</h2><h2 data-en>9 · Web dashboard</h2>
+          <p data-it>
+            Un servizio Windows pubblica i valori correnti su una pagina consultabile dai browser della rete
+            locale. La pagina invia comandi all'applicazione: la registrazione avviata dalla dashboard è la
+            stessa registrazione dell'applicazione, non una seconda.
+          </p>
+          <p data-en>
+            A Windows service publishes the current values on a page any browser on the local network can
+            open. The page sends commands to the application: a recording started from the dashboard is the
+            application's own recording, not a second one.
+          </p>
+          <table class="spec">
+            <tr><td data-it>Servizio</td><td data-en>Service</td>
+              <td data-it>servizio Windows ad avvio automatico, installato insieme al programma</td>
+              <td data-en>Windows service with automatic start, installed with the program</td></tr>
+            <tr><td data-it>Accesso</td><td data-en>Access</td>
+              <td data-it>HTTP sulla porta 8085 (configurabile)</td>
+              <td data-en>HTTP on port 8085 (configurable)</td></tr>
+            <tr><td data-it>Funzioni</td><td data-en>Functions</td>
+              <td data-it>valori in tempo reale, andamento recente, selezione dei segnali, avvio e arresto della registrazione, stato del disco</td>
+              <td data-en>live values, recent trend, signal selection, start and stop of the recording, disk state</td></tr>
+            <tr><td data-it>Autenticazione</td><td data-en>Authentication</td>
+              <td data-it>nessuna: destinata a reti di impianto attendibili</td>
+              <td data-en>none: intended for trusted plant networks</td></tr>
+            <tr><td data-it>Disponibilità</td><td data-en>Availability</td>
+              <td data-it>funzione PRO</td><td data-en>PRO feature</td></tr>
+          </table>
+          <div class="note" style="margin-top:18px">
+            <b data-it>Sicurezza.</b><b data-en>Security.</b>
+            <span data-it> L'interfaccia non prevede autenticazione: chiunque raggiunga la porta può vedere i
+              valori e comandare la registrazione. Va usata su rete di impianto attendibile e non esposta
+              direttamente a internet.</span>
+            <span data-en> The interface has no authentication: anyone who reaches the port can see the
+              values and command the recording. Use it on a trusted plant network and do not expose it
+              directly to the internet.</span>
+          </div>
+        </article>
+
+        <!-- 10 ────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="licenza">
+          <h2 data-it>10 · Licenza ed edizioni</h2><h2 data-en>10 · Licensing and editions</h2>
+          <table class="spec">
+            <tr><td data-it>Edizione base</td><td data-en>Base edition</td>
+              <td data-it>utilizzabile senza attivazione</td><td data-en>usable without activation</td></tr>
+            <tr><td data-it>Edizione PRO</td><td data-en>PRO edition</td>
+              <td data-it>attivata da chiave; include la dashboard web e le funzioni avanzate</td>
+              <td data-en>activated by key; includes the web dashboard and the advanced features</td></tr>
+            <tr><td data-it>Attivazione</td><td data-en>Activation</td>
+              <td data-it>completamente offline: nessuna connessione a internet richiesta, né all'attivazione né successivamente</td>
+              <td data-en>entirely offline: no internet connection required, at activation or afterwards</td></tr>
+            <tr><td data-it>Vincolo</td><td data-en>Binding</td>
+              <td data-it>chiave legata alla singola macchina, firmata crittograficamente</td>
+              <td data-en>key bound to the individual machine, cryptographically signed</td></tr>
+            <tr><td data-it>Durata</td><td data-en>Term</td>
+              <td data-it>a termine o senza scadenza, secondo la chiave emessa</td>
+              <td data-en>time-limited or perpetual, according to the key issued</td></tr>
+            <tr><td data-it>Recupero</td><td data-en>Recovery</td>
+              <td data-it>la chiave è riemettibile in caso di smarrimento</td>
+              <td data-en>the key can be reissued if lost</td></tr>
+          </table>
+        </article>
+
+        <!-- 11 ────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="requisiti">
+          <h2 data-it>11 · Requisiti e installazione</h2><h2 data-en>11 · Requirements and installation</h2>
+          <table class="spec">
+            <tr><td data-it>Sistema operativo</td><td data-en>Operating system</td>
+              <td data-it>Windows 10 o 11, 64 bit</td><td data-en>Windows 10 or 11, 64-bit</td></tr>
+            <tr><td data-it>Runtime</td><td data-en>Runtime</td>
+              <td data-it>incluso nell'installer; nessun componente da installare separatamente</td>
+              <td data-en>included in the installer; nothing to install separately</td></tr>
+            <tr><td data-it>Rete</td><td data-en>Network</td>
+              <td data-it>accesso IP al controllore; porta 102 raggiungibile</td>
+              <td data-en>IP access to the controller; port 102 reachable</td></tr>
+            <tr><td data-it>Spazio su disco</td><td data-en>Disk space</td>
+              <td data-it>dipendente dalla durata delle registrazioni; la gestione automatica dello spazio è configurabile</td>
+              <td data-en>depends on how long the recordings run; automatic space management is configurable</td></tr>
+            <tr><td data-it>Installazione</td><td data-en>Installation</td>
+              <td data-it>procedura guidata; il servizio della dashboard viene registrato e avviato automaticamente</td>
+              <td data-en>guided wizard; the dashboard service is registered and started automatically</td></tr>
+            <tr><td data-it>Aggiornamento</td><td data-en>Update</td>
+              <td data-it>installazione sopra la versione precedente, che va chiusa prima di procedere</td>
+              <td data-en>install over the previous version, which must be closed first</td></tr>
+          </table>
+        </article>
+
+        <!-- 12 ────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="limiti">
+          <h2 data-it>12 · Limiti dichiarati</h2><h2 data-en>12 · Declared limitations</h2>
+          <ul data-it>
+            <li><b>Sola lettura.</b> Il programma non scrive nel controllore: non forza variabili, non modifica il programma utente e non altera lo stato della CPU.</li>
+            <li><b>Frequenza non garantita a priori.</b> L'intervallo sostenibile dipende dall'installazione e viene determinato in campo, non dichiarato in specifica.</li>
+            <li><b>Blocchi ottimizzati.</b> Non indirizzabili in modo assoluto; richiedono OPC UA o S7comm-Plus, con i relativi prerequisiti sulla CPU.</li>
+            <li><b>Non sostituisce l'ambiente di programmazione.</b> Non programma, non compila e non esegue diagnostica hardware.</li>
+            <li><b>Non è un sistema di storicizzazione di processo.</b> È uno strumento di messa in servizio e di analisi guasti.</li>
+            <li><b>Nessun accesso remoto oltre la rete locale.</b> Non sono previsti servizi cloud né sincronizzazione esterna.</li>
+            <li><b>Interfaccia web senza autenticazione.</b> Da impiegare esclusivamente su rete di impianto attendibile.</li>
+          </ul>
+          <ul data-en>
+            <li><b>Read-only.</b> The program does not write to the controller: no forcing of variables, no change to the user program, no change of CPU state.</li>
+            <li><b>Rate not guaranteed in advance.</b> The sustainable interval depends on the installation and is determined on site, not stated in a specification.</li>
+            <li><b>Optimised blocks.</b> Not addressable absolutely; they require OPC UA or S7comm-Plus, with the matching prerequisites on the CPU.</li>
+            <li><b>Not a replacement for the engineering environment.</b> No programming, no compiling, no hardware diagnostics.</li>
+            <li><b>Not a process historian.</b> This is a commissioning and fault-analysis tool.</li>
+            <li><b>No remote access beyond the local network.</b> No cloud services and no external synchronisation.</li>
+            <li><b>Web interface without authentication.</b> To be used exclusively on a trusted plant network.</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
   </div>
-
-  <div class="box" data-it>
-    <p>Gli offset assoluti dei blocchi non ottimizzati sono determinati secondo le regole di
-    allineamento S7. Dove una dichiarazione di tipo non è disponibile, i membri interessati non
-    vengono indirizzati: un offset non verificabile produrrebbe letture plausibili ma
-    sbagliate.</p>
-  </div>
-  <div class="box" data-en>
-    <p>Absolute offsets for non-optimised blocks follow the S7 alignment rules. Where a type
-    declaration is unavailable the affected members are not addressed: an unverifiable offset
-    would produce readings that look plausible and are wrong.</p>
-  </div>
-</section>
-
-<!-- ══ 4 ══════════════════════════════════════════════════════════ -->
-<section id="s4">
-  <h2 data-it><span class="n">4</span>Campionamento</h2>
-  <h2 data-en><span class="n">4</span>Sampling</h2>
-
-  <dl class="spec" data-it>
-    <dt>Intervalli selezionabili</dt><dd>1 · 2 · 5 · 10 · 20 · 50 · 100 · 200 · 500 · 1000 · 2000 · 5000 ms</dd>
-    <dt>Intervallo effettivo</dt><dd>misurato e mostrato per ogni canale, distinto da quello impostato</dd>
-    <dt>Verifica preventiva</dt><dd>eseguita prima dell'apertura del primo file di registrazione</dd>
-    <dt>Carico sul controllore</dt><dd>numero di richieste contemporanee limitato per costruzione; percentuale di occupazione del collegamento riportata all'utente</dd>
-    <dt>Campionamento nel PLC</dt><dd>opzionale, tramite blocchi generati dal programma e importati in TIA; il PLC campiona al ritmo del proprio OB e i dati sono prelevati in blocco</dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Selectable intervals</dt><dd>1 · 2 · 5 · 10 · 20 · 50 · 100 · 200 · 500 · 1000 · 2000 · 5000 ms</dd>
-    <dt>Effective interval</dt><dd>measured and displayed per channel, kept distinct from the requested one</dd>
-    <dt>Pre-flight check</dt><dd>performed before the first recording file is opened</dd>
-    <dt>Load on the controller</dt><dd>outstanding requests bounded by design; link occupancy reported to the user</dd>
-    <dt>Sampling inside the PLC</dt><dd>optional, via blocks generated by the program and imported into TIA; the PLC samples at its own OB rate and data is collected in bulk</dd>
-  </dl>
-
-  <div class="box warn" data-it>
-    <p><b>L'intervallo effettivamente sostenibile non è una specifica del prodotto.</b> Dipende
-    dal modello di CPU, dal numero e dal tipo di canali selezionati e dal carico della rete. Il
-    programma lo misura sull'impianto e, quando l'intervallo richiesto non è sostenibile, lo
-    segnala prima dell'avvio della registrazione proponendo il valore compatibile.</p>
-  </div>
-  <div class="box warn" data-en>
-    <p><b>The interval that can actually be sustained is not a product specification.</b> It
-    depends on the CPU model, on the number and type of selected channels and on network load.
-    The program measures it on site and, when the requested interval cannot be sustained, reports
-    this before recording starts and offers the compatible value.</p>
-  </div>
-
-  <h3 data-it>Buffer di campionamento nel PLC (opzionale)</h3>
-  <h3 data-en>In-PLC sampling buffer (optional)</h3>
-  <p data-it>
-    Per i casi in cui la frequenza richiesta non è ottenibile sulla rete, il programma genera i
-    blocchi da importare nel progetto TIA. Il buffer accetta segnali di tipo misto (BOOL, BYTE,
-    INT, DINT, WORD, DWORD, REAL, LREAL); numero di segnali per tipo e profondità sono
-    configurabili, e l'occupazione di memoria risultante nel PLC è mostrata prima della
-    generazione.
-  </p>
-  <p data-en>
-    Where the required rate is not achievable over the network, the program generates the blocks
-    to import into the TIA project. The buffer accepts mixed signal types (BOOL, BYTE, INT, DINT,
-    WORD, DWORD, REAL, LREAL); the number of signals per type and the depth are configurable, and
-    the resulting PLC memory usage is shown before generation.
-  </p>
-</section>
-
-<!-- ══ 5 ══════════════════════════════════════════════════════════ -->
-<section id="s5">
-  <h2 data-it><span class="n">5</span>Registrazione e gestione dei file</h2>
-  <h2 data-en><span class="n">5</span>Recording and file handling</h2>
-
-  <dl class="spec" data-it>
-    <dt>Formato</dt><dd>binario proprietario, estensione <code>.drug</code></dd>
-    <dt>Compressione</dt><dd>automatica sui file chiusi, estensione <code>.drug.gz</code></dd>
-    <dt>Organizzazione</dt><dd>una cartella per giorno; suddivisione dei file per dimensione configurabile</dd>
-    <dt>Marcatura temporale</dt><dd>per campione, riferita all'istante della risposta del controllore</dd>
-    <dt>Valori non disponibili</dt><dd>registrati come assenza di valore, non come zero</dd>
-    <dt>Sorveglianza</dt><dd>controllo continuo dell'avanzamento della scrittura, con segnalazione all'utente</dd>
-    <dt>Gestione spazio</dt><dd>conservazione a tempo o a dimensione; i file più vecchi sono compressi prima di essere rimossi; la registrazione in corso non è mai coinvolta</dd>
-    <dt>Formati letti</dt><dd><code>.drug</code> · <code>.drug.gz</code> · <code>.csv</code> · <code>.txt</code></dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Format</dt><dd>proprietary binary, <code>.drug</code> extension</dd>
-    <dt>Compression</dt><dd>automatic on closed files, <code>.drug.gz</code> extension</dd>
-    <dt>Layout</dt><dd>one folder per day; file splitting by configurable size</dd>
-    <dt>Time stamping</dt><dd>per sample, referenced to the instant the controller answered</dd>
-    <dt>Unavailable values</dt><dd>recorded as absence of value, not as zero</dd>
-    <dt>Supervision</dt><dd>continuous monitoring that writing is progressing, reported to the user</dd>
-    <dt>Space management</dt><dd>retention by age or by size; older files are compressed before removal; the recording in progress is never involved</dd>
-    <dt>Formats read</dt><dd><code>.drug</code> · <code>.drug.gz</code> · <code>.csv</code> · <code>.txt</code></dd>
-  </dl>
-
-  <h3 data-it>Garanzie sul dato registrato</h3>
-  <h3 data-en>Guarantees on recorded data</h3>
-  <ul class="bul" data-it>
-    <li><b>Tempo reale di lettura</b> — ogni campione è marcato con l'istante in cui il valore è
-      stato effettivamente ottenuto, non con quello pianificato.</li>
-    <li><b>Nessuna sostituzione</b> — un valore non letto non viene rimpiazzato da un valore di
-      comodo, in nessun punto della catena fino al disco.</li>
-    <li><b>Verifica preventiva</b> — la sostenibilità dell'intervallo è accertata prima
-      dell'apertura del primo file.</li>
-    <li><b>Continuità sorvegliata</b> — l'interruzione della scrittura viene rilevata e
-      segnalata durante la registrazione.</li>
-  </ul>
-  <ul class="bul" data-en>
-    <li><b>Real read time</b> — every sample is stamped with the instant the value was actually
-      obtained, not the scheduled one.</li>
-    <li><b>No substitution</b> — a value that was not read is never replaced by a convenient one,
-      at any point of the chain down to the disk.</li>
-    <li><b>Pre-flight verification</b> — interval sustainability is established before the first
-      file is opened.</li>
-    <li><b>Supervised continuity</b> — an interruption in writing is detected and reported while
-      recording.</li>
-  </ul>
-</section>
-
-<!-- ══ 6 ══════════════════════════════════════════════════════════ -->
-<section id="s6">
-  <h2 data-it><span class="n">6</span>Visualizzazione e analisi</h2>
-  <h2 data-en><span class="n">6</span>Display and analysis</h2>
-
-  <p data-it>
-    Gli strumenti di analisi operano indifferentemente su una registrazione salvata o su segnali
-    in acquisizione. Ogni canale può essere aperto in una finestra dedicata, e altri canali
-    possono esservi trascinati per la sovrapposizione.
-  </p>
-  <p data-en>
-    The analysis tools work equally on a saved recording and on signals being acquired. Any
-    channel can be opened in a dedicated window, and further channels dragged into it to be
-    overlaid.
-  </p>
-
-  <dl class="spec" data-it>
-    <dt>Grafici</dt><dd>multi-segnale su asse temporale comune, zoom e pan, autoscala che preserva le discontinuità</dd>
-    <dt>Marker</dt><dd>verticali e orizzontali, con differenza di tempo, differenza di valore e frequenza corrispondente</dd>
-    <dt>Statistiche</dt><dd>sul tratto selezionato e sull'intero segnale</dd>
-    <dt>Finestre</dt><dd>staccabili e indipendenti, per uso su più monitor</dd>
-    <dt>Esportazione</dt><dd>dati in <code>.csv</code>, grafico in <code>.png</code>, configurazione dei canali in <code>.sigcfg</code></dd>
-    <dt>Colonne di stato</dt><dd>periodo e frequenza effettivi per canale, qualità del valore corrente</dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Plots</dt><dd>multi-signal on a common time axis, zoom and pan, autoscale that preserves discontinuities</dd>
-    <dt>Markers</dt><dd>vertical and horizontal, with time difference, value difference and the corresponding frequency</dd>
-    <dt>Statistics</dt><dd>over the selected span and over the whole signal</dd>
-    <dt>Windows</dt><dd>detachable and independent, for multi-monitor use</dd>
-    <dt>Export</dt><dd>data as <code>.csv</code>, plot as <code>.png</code>, channel configuration as <code>.sigcfg</code></dd>
-    <dt>Status columns</dt><dd>effective period and rate per channel, quality of the current value</dd>
-  </dl>
-</section>
-
-<!-- ══ 7 ══════════════════════════════════════════════════════════ -->
-<section id="s7">
-  <h2 data-it><span class="n">7</span>Motore dei segnali calcolati</h2>
-  <h2 data-en><span class="n">7</span>Computed-signal engine</h2>
-
-  <p data-it>
-    Un canale può essere definito da un'espressione anziché da un indirizzo. Le espressioni sono
-    componibili e possono referenziare altri canali, inclusi altri canali calcolati.
-  </p>
-  <p data-en>
-    A channel can be defined by an expression instead of an address. Expressions are composable
-    and may reference other channels, including other computed channels.
-  </p>
-
-  <dl class="spec" data-it>
-    <dt>Funzioni</dt><dd>94, organizzate in nove categorie</dd>
-    <dt>Categorie</dt><dd>aritmetica · filtri · derivate e integrali · statistiche a finestra · statistiche globali · rilevazione fronti · contatori e temporizzazioni · tempo e frequenza · utilità</dd>
-    <dt>Analisi in frequenza</dt><dd>trasformata, distorsione armonica totale, correlazione, traslazione temporale</dd>
-    <dt>Unità</dt><dd>derivate e integrali riferiti al secondo; filtri specificati in Hz; finestre specificate in secondi</dd>
-    <dt>Segnali eterogenei</dt><dd>canali con periodi o istanti iniziali diversi sono riportati a una base temporale comune prima della combinazione</dd>
-    <dt>Errori</dt><dd>segnalati con la posizione nell'espressione; non convertiti in valori numerici</dd>
-    <dt>Editor</dt><dd>anteprima della curva risultante durante la scrittura dell'espressione</dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Functions</dt><dd>94, in nine categories</dd>
-    <dt>Categories</dt><dd>arithmetic · filters · derivatives and integrals · windowed statistics · global statistics · edge detection · counters and timers · time and frequency · utilities</dd>
-    <dt>Frequency analysis</dt><dd>transform, total harmonic distortion, correlation, time shift</dd>
-    <dt>Units</dt><dd>derivatives and integrals per second; filters specified in Hz; windows specified in seconds</dd>
-    <dt>Heterogeneous signals</dt><dd>channels with different periods or start instants are brought to a common time base before being combined</dd>
-    <dt>Errors</dt><dd>reported with their position in the expression; never converted into numeric values</dd>
-    <dt>Editor</dt><dd>preview of the resulting curve while the expression is being written</dd>
-  </dl>
-</section>
-
-<!-- ══ 8 ══════════════════════════════════════════════════════════ -->
-<section id="s8">
-  <h2 data-it><span class="n">8</span>Dashboard web</h2>
-  <h2 data-en><span class="n">8</span>Web dashboard</h2>
-
-  <p data-it>
-    Un servizio Windows pubblica i valori correnti su una pagina consultabile dai browser della
-    rete locale. La pagina invia comandi all'applicazione: la registrazione avviata dalla
-    dashboard è la stessa registrazione dell'applicazione, non una seconda.
-  </p>
-  <p data-en>
-    A Windows service publishes current values on a page reachable from browsers on the local
-    network. The page sends commands to the application: a recording started from the dashboard
-    is the application's own recording, not a second one.
-  </p>
-
-  <dl class="spec" data-it>
-    <dt>Servizio</dt><dd>servizio Windows ad avvio automatico, installato insieme al programma</dd>
-    <dt>Accesso</dt><dd>HTTP sulla porta <code>8085</code> (configurabile)</dd>
-    <dt>Funzioni</dt><dd>valori in tempo reale, andamento recente, selezione dei segnali, avvio e arresto della registrazione, stato del disco</dd>
-    <dt>Autenticazione</dt><dd>nessuna: destinata a reti di impianto attendibili</dd>
-    <dt>Disponibilità</dt><dd>funzione PRO</dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Service</dt><dd>Windows service with automatic start, installed with the program</dd>
-    <dt>Access</dt><dd>HTTP on port <code>8085</code> (configurable)</dd>
-    <dt>Functions</dt><dd>real-time values, recent history, signal selection, start and stop of recording, disk status</dd>
-    <dt>Authentication</dt><dd>none: intended for trusted plant networks</dd>
-    <dt>Availability</dt><dd>PRO feature</dd>
-  </dl>
-
-  <div class="box warn" data-it>
-    <p><b>Sicurezza.</b> L'interfaccia non prevede autenticazione: chiunque raggiunga la porta può
-    vedere i valori e comandare la registrazione. Va usata su rete di impianto attendibile e non
-    esposta direttamente a internet.</p>
-  </div>
-  <div class="box warn" data-en>
-    <p><b>Security.</b> The interface has no authentication: anyone who can reach the port can see
-    values and control recording. It is intended for a trusted plant network and must not be
-    exposed directly to the internet.</p>
-  </div>
-</section>
-
-<!-- ══ 9 ══════════════════════════════════════════════════════════ -->
-<section id="s9">
-  <h2 data-it><span class="n">9</span>Licenza ed edizioni</h2>
-  <h2 data-en><span class="n">9</span>Licensing and editions</h2>
-
-  <dl class="spec" data-it>
-    <dt>Edizione base</dt><dd>utilizzabile senza attivazione</dd>
-    <dt>Edizione PRO</dt><dd>attivata da chiave; include la dashboard web e le funzioni avanzate</dd>
-    <dt>Attivazione</dt><dd>completamente offline: nessuna connessione a internet richiesta, né all'attivazione né successivamente</dd>
-    <dt>Vincolo</dt><dd>chiave legata alla singola macchina, firmata crittograficamente</dd>
-    <dt>Durata</dt><dd>a termine o senza scadenza, secondo la chiave emessa</dd>
-    <dt>Recupero</dt><dd>la chiave è riemettibile in caso di smarrimento</dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Base edition</dt><dd>usable without activation</dd>
-    <dt>PRO edition</dt><dd>unlocked by key; includes the web dashboard and advanced functions</dd>
-    <dt>Activation</dt><dd>entirely offline: no internet connection required, at activation or later</dd>
-    <dt>Binding</dt><dd>key bound to a single machine, cryptographically signed</dd>
-    <dt>Term</dt><dd>time-limited or perpetual, according to the key issued</dd>
-    <dt>Recovery</dt><dd>a lost key can be reissued</dd>
-  </dl>
-</section>
-
-<!-- ══ 10 ═════════════════════════════════════════════════════════ -->
-<section id="s10">
-  <h2 data-it><span class="n">10</span>Requisiti e installazione</h2>
-  <h2 data-en><span class="n">10</span>Requirements and installation</h2>
-
-  <dl class="spec" data-it>
-    <dt>Sistema operativo</dt><dd>Windows 10 o 11, 64 bit</dd>
-    <dt>Runtime</dt><dd>incluso nell'installer; nessun componente da installare separatamente</dd>
-    <dt>Rete</dt><dd>accesso IP al controllore; porta 102 raggiungibile</dd>
-    <dt>Spazio su disco</dt><dd>dipendente dalla durata delle registrazioni; la gestione automatica dello spazio è configurabile</dd>
-    <dt>Installazione</dt><dd>procedura guidata; il servizio della dashboard viene registrato e avviato automaticamente</dd>
-    <dt>Aggiornamento</dt><dd>installazione sopra la versione precedente, che va chiusa prima di procedere</dd>
-  </dl>
-  <dl class="spec" data-en>
-    <dt>Operating system</dt><dd>Windows 10 or 11, 64-bit</dd>
-    <dt>Runtime</dt><dd>included in the installer; nothing to install separately</dd>
-    <dt>Network</dt><dd>IP access to the controller; port 102 reachable</dd>
-    <dt>Disk space</dt><dd>depends on recording duration; automatic space management is configurable</dd>
-    <dt>Installation</dt><dd>guided setup; the dashboard service is registered and started automatically</dd>
-    <dt>Upgrade</dt><dd>install over the previous version, which must be closed first</dd>
-  </dl>
-</section>
-
-<!-- ══ 11 ═════════════════════════════════════════════════════════ -->
-<section id="s11">
-  <h2 data-it><span class="n">11</span>Limiti dichiarati</h2>
-  <h2 data-en><span class="n">11</span>Declared limitations</h2>
-
-  <ul class="bul" data-it>
-    <li><b>Sola lettura.</b> Il programma non scrive nel controllore: non forza variabili, non
-      modifica il programma utente e non altera lo stato della CPU.</li>
-    <li><b>Frequenza non garantita a priori.</b> L'intervallo sostenibile dipende
-      dall'installazione e viene determinato in campo, non dichiarato in specifica.</li>
-    <li><b>Blocchi ottimizzati.</b> Non indirizzabili in modo assoluto; richiedono OPC UA o
-      S7comm-Plus, con i relativi prerequisiti sulla CPU.</li>
-    <li><b>Non sostituisce l'ambiente di programmazione.</b> Non programma, non compila e non
-      esegue diagnostica hardware.</li>
-    <li><b>Non è un sistema di storicizzazione di processo.</b> È uno strumento di messa in
-      servizio e di analisi guasti.</li>
-    <li><b>Nessun accesso remoto oltre la rete locale.</b> Non sono previsti servizi cloud né
-      sincronizzazione esterna.</li>
-    <li><b>Interfaccia web senza autenticazione.</b> Da impiegare esclusivamente su rete di
-      impianto attendibile.</li>
-  </ul>
-  <ul class="bul" data-en>
-    <li><b>Read-only.</b> The program does not write to the controller: it does not force
-      variables, modify the user program or alter the CPU state.</li>
-    <li><b>Rate not guaranteed in advance.</b> The sustainable interval depends on the
-      installation and is established on site, not stated as a specification.</li>
-    <li><b>Optimised blocks.</b> Not absolutely addressable; they require OPC UA or S7comm-Plus,
-      with the corresponding CPU prerequisites.</li>
-    <li><b>Not a replacement for the engineering environment.</b> No programming, no compiling,
-      no hardware diagnostics.</li>
-    <li><b>Not a process historian.</b> It is a commissioning and fault-analysis tool.</li>
-    <li><b>No remote access beyond the local network.</b> No cloud services or external
-      synchronisation are provided.</li>
-    <li><b>Web interface without authentication.</b> To be used only on a trusted plant
-      network.</li>
-  </ul>
 </section>
 
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <span data-it>PlcTraceViewer — scheda tecnica · Leonardo Dogariu</span>
-    <span data-en>PlcTraceViewer — datasheet · Leonardo Dogariu</span>
-    <span>
-      <a href="index.html" data-it>Sito</a><a href="index.html" data-en>Website</a> ·
-      <a href="https://github.com/leo25122/PlcTraceViewer-site">GitHub</a>
-    </span>
+  <div class="wrap">
+    <div class="foot-bot" style="margin-top:0;border-top:0">
+      <span data-it>PlcTraceViewer — scheda tecnica DS-PTV-21 · Leonardo Dogariu</span>
+      <span data-en>PlcTraceViewer — datasheet DS-PTV-21 · Leonardo Dogariu</span>
+      <span>
+        <a href="index.html" data-it>Sito</a><a href="index.html" data-en>Site</a> ·
+        <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a> ·
+        <a href="https://github.com/leo25122/PlcTraceViewer-site">GitHub</a>
+      </span>
+    </div>
   </div>
 </footer>
 
-<script>
-  var TITLES = {
-    it: "PlcTraceViewer — scheda tecnica",
-    en: "PlcTraceViewer — datasheet"
-  };
-  function setLang(l) {
-    if (l !== 'it' && l !== 'en') l = 'it';
-    document.documentElement.lang = l;
-    document.title = TITLES[l];
-    var it = document.getElementById('btn-it'), en = document.getElementById('btn-en');
-    if (it) it.setAttribute('aria-pressed', l === 'it' ? 'true' : 'false');
-    if (en) en.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
-    try { localStorage.setItem('ptv-lang', l); } catch (e) { }
-  }
-  (function () {
-    var saved = null;
-    try { saved = localStorage.getItem('ptv-lang'); } catch (e) { }
-    if (saved !== 'it' && saved !== 'en') {
-      var nav = (navigator.language || 'it').toLowerCase();
-      saved = nav.indexOf('it') === 0 ? 'it' : 'en';
-    }
-    setLang(saved);
-  })();
-</script>
+<dialog class="lb" id="lightbox">
+  <button class="x" type="button" aria-label="Chiudi">ESC ✕</button>
+  <img alt="">
+  <p class="cap mono" style="color:#8d9aa8;font-size:.78rem;margin-top:10px"></p>
+</dialog>
 
+<script src="assets/js/site.js"></script>
 </body>
 </html>
