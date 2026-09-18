@@ -191,7 +191,10 @@
   /// rate, stopped when off-screen or in a hidden tab. Four of these run on the page,
   /// and at full speed on a high-DPI monitor they were the reason scrolling stuttered.
   function liveCanvas(cv, draw, fps) {
-    var ctx = cv.getContext('2d', { alpha: true, desynchronized: true });
+    // NOTE: no 'desynchronized' context here. It buys a little latency and costs the
+    // transparency: the canvas is composited as an opaque surface, which turned the
+    // formula preview into a black rectangle on a white page.
+    var ctx = cv.getContext('2d');
     var w = 0, h = 0, run = false, raf = 0, last = 0;
     var minDelta = 1000 / (fps || 30);
     function size() {

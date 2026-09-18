@@ -366,9 +366,17 @@ html[data-theme="dark"] .step .num{color:#06231f}
 /* ── 9. figures, frames, lightbox ───────────────────────────────────────── */
 figure{margin:0}
 .shot{
-  border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  /* A shade darker than the page on purpose: until a picture has painted, the reader
+     sees a card, not a hole the size of the screen. */
+  background:var(--surface-2);
   box-shadow:var(--shadow-1);position:relative;contain:layout paint;
 }
+/* A full application window is 4:3 and, at full width on a monitor, reserves eight hundred
+   pixels of height — one whole screen of nothing until it is painted, and a long scroll
+   afterwards. Capped, and cropped from the top where the interesting part is. */
+.shot-tall img{height:min(62vh,680px);object-fit:cover;object-position:top center}
+@media(max-width:900px){.shot-tall img{height:auto;object-fit:contain}}
 .shot img{width:100%}
 .shot-lift{box-shadow:var(--shadow-2)}
 figcaption{
@@ -613,7 +621,7 @@ footer a:hover{color:var(--brand-deep)}
 [data-r="wipe"]{opacity:1;clip-path:inset(0 100% 0 0)}
 [data-r].in{
   opacity:1;transform:none;clip-path:inset(0 0 0 0);
-  transition:opacity .75s var(--ease-out),transform .85s var(--ease-out),clip-path 1.05s var(--ease-out);
+  transition:opacity .6s var(--ease-out),transform .7s var(--ease-out),clip-path .7s var(--ease-out);
   transition-delay:var(--d,0ms);
 }
 .stagger>*{opacity:0;transform:translateY(18px)}
