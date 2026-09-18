@@ -19,12 +19,12 @@
   /* ── language ─────────────────────────────────────────────────────────── */
   var META = {
     it: {
-      title: 'PlcTraceViewer — registra i segnali del tuo PLC Siemens, al millisecondo',
+      title: 'PlcTraceViewer — la scatola nera del tuo PLC Siemens',
       desc: 'Registratore e analizzatore di segnali per PLC Siemens S7-300/400/1200/1500. ' +
             'Acquisizione in un processo dedicato, tempo reale di ogni campione, nessun dato inventato.'
     },
     en: {
-      title: 'PlcTraceViewer — record your Siemens PLC signals, to the millisecond',
+      title: "PlcTraceViewer — your Siemens PLC's black box",
       desc: 'Signal recorder and analyser for Siemens S7-300/400/1200/1500 PLCs. ' +
             'Acquisition in a dedicated process, the real time of every sample, nothing invented.'
     }

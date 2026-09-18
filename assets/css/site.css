@@ -215,10 +215,12 @@ html[data-theme="dark"] .btn:hover{color:#06231f}
 
 .hero h1{
   font-size:clamp(2.5rem,5.6vw,4.3rem);letter-spacing:-.04em;line-height:1.02;
-  margin:22px 0 0;color:#fff;max-width:14ch;
+  margin:22px 0 0;color:#fff;max-width:16ch;
 }
-html[lang="en"] .hero h1{max-width:15ch}
+html[lang="en"] .hero h1{max-width:13ch}
 .hero h1 .accent{
+  /* Kept on one line: the headline must never break as "black" / "box." */
+  white-space:nowrap;
   background:linear-gradient(100deg,var(--brand-deep),#7fe8ff 60%,var(--brand-deep));
   -webkit-background-clip:text;background-clip:text;color:transparent;
   background-size:220% 100%;animation:shine 9s linear infinite;
