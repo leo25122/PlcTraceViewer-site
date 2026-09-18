@@ -608,7 +608,7 @@
           span and over the whole signal, with the sample count and the real step.</p>
       </div>
       <div class="card">
-        <h3 data-it>Finestre staccabili</h3><h3 data-en>Detachable windows</h3>
+        <h3 data-it>Finestre staccabili <span class="docnum" style="vertical-align:2px">PRO</span></h3><h3 data-en>Detachable windows <span class="docnum" style="vertical-align:2px">PRO</span></h3>
         <p data-it>Ogni analisi è una finestra indipendente: due monitor, due segnali, due zoom diversi
           sullo stesso istante.</p>
         <p data-en>Each analysis is an independent window: two monitors, two signals, two different zooms
@@ -647,7 +647,7 @@
 <section id="calcolati">
   <div class="wrap">
     <div class="head" data-r="up">
-      <p class="kicker"><span data-it>Segnali calcolati</span><span data-en>Computed signals</span></p>
+      <p class="kicker"><span data-it>Segnali calcolati · PRO</span><span data-en>Computed signals · PRO</span></p>
       <h2 data-it>Un canale può essere una formula.</h2>
       <h2 data-en>A channel can be a formula.</h2>
     </div>
@@ -888,6 +888,8 @@
         registra e analizza segnali.</li>
       <li><b>Non è un sistema di storicizzazione.</b> È uno strumento da messa in servizio e da ricerca
         guasti, non un archivio di processo permanente.</li>
+      <li><b>Non registra senza licenza.</b> La versione base apre e analizza le registrazioni; per
+        collegarsi al PLC, registrare ed esportare serve la chiave PRO.</li>
       <li><b>Non richiede internet — e quindi non lo offre.</b> Nessuna sincronizzazione cloud, nessun
         accesso da fuori della tua rete. Nemmeno per la licenza.</li>
     </ul>
@@ -903,6 +905,8 @@
         diagnostics: it records and analyses signals.</li>
       <li><b>It is not a historian.</b> This is a commissioning and fault-finding tool, not a permanent
         process archive.</li>
+      <li><b>It does not record without a licence.</b> The base version opens and analyses recordings;
+        connecting to the PLC, recording and exporting need the PRO key.</li>
       <li><b>It needs no internet — and offers none.</b> No cloud sync, no access from outside your own
         network. Not even for licensing.</li>
     </ul>
@@ -914,59 +918,82 @@
   <div class="wrap">
     <div class="head" data-r="up">
       <p class="kicker"><span data-it>Edizioni</span><span data-en>Editions</span></p>
-      <h2 data-it>Base subito, PRO con una chiave.</h2>
-      <h2 data-en>Base right away, PRO with a key.</h2>
+      <h2 data-it>La Base analizza. La PRO collega.</h2>
+      <h2 data-en>Base analyses. PRO connects.</h2>
     </div>
     <p class="intro" style="margin-top:14px;margin-bottom:34px" data-r="up" data-it>
-      L'attivazione è <strong>completamente offline</strong>: nessuna connessione a internet, né la prima
-      volta né dopo. In impianto, internet spesso non c'è.
+      La versione <strong>Base apre e analizza le registrazioni</strong>. Collegarsi al PLC, registrare
+      ed esportare sono funzioni <strong>PRO</strong>: si sbloccano con una chiave legata alla tua
+      macchina, firmata e <strong>completamente offline</strong> — nessuna connessione a internet, né la
+      prima volta né dopo. In impianto, internet spesso non c'è.
     </p>
     <p class="intro" style="margin-top:14px;margin-bottom:34px" data-r="up" data-en>
-      Activation is <strong>entirely offline</strong>: no internet connection, the first time or ever
+      The <strong>Base version opens and analyses recordings</strong>. Connecting to the PLC, recording
+      and exporting are <strong>PRO</strong> features: they unlock with a key bound to your machine,
+      signed and <strong>entirely offline</strong> — no internet connection, the first time or ever
       after. On a plant floor there usually isn't any.
     </p>
 
     <div class="plans">
       <div class="plan" data-r="up">
         <span class="tag">BASE</span>
-        <h3 data-it>Si usa subito</h3><h3 data-en>Works straight away</h3>
-        <p data-it>Tutto quello che serve per collegarsi, registrare e analizzare.</p>
-        <p data-en>Everything needed to connect, record and analyse.</p>
+        <h3 data-it>Legge e analizza</h3><h3 data-en>Reads and analyses</h3>
+        <p data-it>Si usa subito, senza attivazione e senza scadenza.</p>
+        <p data-en>Works straight away, with no activation and no expiry.</p>
         <ul data-it>
-          <li>Collegamento S7-300 / 400 / 1200 / 1500</li>
-          <li>Registrazione con tempo reale per campione</li>
-          <li>Analisi, marker, statistiche, segnali calcolati</li>
-          <li>Esportazione CSV e immagine del grafico</li>
-          <li>Lettura di .drug, .drug.gz, .csv, .txt</li>
+          <li>Apre <span class="mono">.drug</span>, <span class="mono">.drug.gz</span>, <span class="mono">.csv</span>, <span class="mono">.txt</span> — un file per volta</li>
+          <li>Grafici multi-segnale sullo stesso asse dei tempi, zoom e pan</li>
+          <li>Marker verticali e orizzontali, ΔT, Δvalore e frequenza</li>
+          <li>Statistiche sul tratto selezionato e sull'intero segnale</li>
+          <li>Nessuna attivazione, nessuna scadenza, nessun account</li>
         </ul>
         <ul data-en>
-          <li>S7-300 / 400 / 1200 / 1500 connection</li>
-          <li>Recording with the real time of every sample</li>
-          <li>Analysis, markers, statistics, computed signals</li>
-          <li>CSV export and chart image</li>
-          <li>Reads .drug, .drug.gz, .csv, .txt</li>
+          <li>Opens <span class="mono">.drug</span>, <span class="mono">.drug.gz</span>, <span class="mono">.csv</span>, <span class="mono">.txt</span> — one file at a time</li>
+          <li>Multi-signal charts on one time axis, zoom and pan</li>
+          <li>Vertical and horizontal markers, ΔT, Δvalue and frequency</li>
+          <li>Statistics over the selected span and the whole signal</li>
+          <li>No activation, no expiry, no account</li>
         </ul>
       </div>
       <div class="plan pro" data-r="up" style="--d:120ms">
         <span class="tag">PRO</span>
-        <h3 data-it>Per chi ci vive dentro</h3><h3 data-en>For those who live in it</h3>
-        <p data-it>La chiave è legata alla macchina, firmata, e si riemette se la perdi.</p>
-        <p data-en>The key is bound to the machine, signed, and can be reissued if you lose it.</p>
+        <h3 data-it>Collega, registra, esporta</h3><h3 data-en>Connects, records, exports</h3>
+        <p data-it>Tutto quello che tocca il PLC e tutto quello che esce dal programma.</p>
+        <p data-en>Everything that touches the PLC, and everything that leaves the program.</p>
         <ul data-it>
-          <li>Tutto quello che c'è nella Base</li>
+          <li><strong>Acquisizione dal vivo e registrazione</strong> — S7-300 / 400 / 1200 / 1500</li>
+          <li>Generazione dei blocchi per il campionamento a 1 ms dentro il PLC</li>
           <li>Dashboard web sulla rete di impianto</li>
-          <li>Generazione dei blocchi per il campionamento a 1 ms nel PLC</li>
-          <li>Funzioni avanzate di analisi e automazione</li>
-          <li>A termine o senza scadenza, secondo la chiave</li>
+          <li>Editor delle espressioni: le 94 funzioni dei segnali calcolati</li>
+          <li>Più registrazioni aperte insieme, con assi dei tempi sincronizzati</li>
+          <li>Finestre staccabili per lavorare su due monitor</li>
+          <li>Esportazione CSV, immagine ad alta risoluzione, copia negli appunti</li>
+          <li>Importazione dei file di ibaAnalyzer</li>
         </ul>
         <ul data-en>
-          <li>Everything in Base</li>
-          <li>Web dashboard on the plant network</li>
+          <li><strong>Live acquisition and recording</strong> — S7-300 / 400 / 1200 / 1500</li>
           <li>Generation of the blocks for 1 ms sampling inside the PLC</li>
-          <li>Advanced analysis and automation features</li>
-          <li>Time-limited or perpetual, depending on the key</li>
+          <li>Web dashboard on the plant network</li>
+          <li>The expression editor: all 94 computed-signal functions</li>
+          <li>Several recordings open at once, with synchronised time axes</li>
+          <li>Detachable windows, to work across two monitors</li>
+          <li>CSV export, high-resolution image, copy to clipboard</li>
+          <li>Import of ibaAnalyzer files</li>
         </ul>
       </div>
+    </div>
+
+    <div class="note note-brand" style="margin-top:26px" data-r="up">
+      <b data-it>Se la licenza finisce mentre stai registrando.</b>
+      <b data-en>If the licence runs out while you are recording.</b>
+      <span data-it> La registrazione in corso <strong>non viene interrotta</strong> e il file resta
+        intero: le funzioni PRO si fermano quando la fermi tu. Una licenza che scade non può costarti
+        i dati. La chiave può essere a termine, senza scadenza o con un monte ore di registrazione, e
+        si riemette se la perdi.</span>
+      <span data-en> The recording in progress is <strong>not interrupted</strong> and the file stays
+        whole: PRO features stop when you stop it. A licence running out must never cost you data. The
+        key can be time-limited, perpetual or carry a pool of recording hours, and it can be reissued
+        if you lose it.</span>
     </div>
   </div>
 </section>
@@ -987,8 +1014,8 @@
   <div class="wrap">
     <div class="dl" data-r="up">
       <p class="kicker">Download</p>
-      <h2 data-it>Installalo e collega il primo PLC.</h2>
-      <h2 data-en>Install it and connect your first PLC.</h2>
+      <h2 data-it>Installalo e aprilo.</h2>
+      <h2 data-en>Install it and open it.</h2>
       <p class="intro" style="margin-top:12px;margin-bottom:30px" data-it>
         L'installer contiene tutto: nessun runtime da procurarsi, nessuna configurazione da preparare.
         Se hai già una versione aperta, chiudila prima di installare.
@@ -1040,6 +1067,18 @@
         <span data-it>· porta 102 verso la CPU</span><span data-en>· port 102 to the CPU</span>
         <span data-it>· nessun account, nessuna registrazione</span><span data-en>· no account, no sign-up</span>
       </p>
+
+      <div class="note" style="margin-top:24px">
+        <b data-it>Cosa fa appena installato.</b><b data-en>What it does as soon as it is installed.</b>
+        <span data-it> Apre e analizza le registrazioni: grafici, marker, statistiche, un file per volta.
+          Per <strong>collegarsi al PLC e registrare</strong> serve la chiave PRO — vedi
+          <a href="#edizioni">le edizioni</a>. L'attivazione è offline e la chiave resta legata alla
+          macchina.</span>
+        <span data-en> It opens and analyses recordings: charts, markers, statistics, one file at a time.
+          <strong>Connecting to the PLC and recording</strong> need the PRO key — see
+          <a href="#edizioni">the editions</a>. Activation is offline and the key stays bound to the
+          machine.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1098,6 +1137,21 @@
           <span data-en>No. It helps with names, but on S7-1200/1500 the block list and structure are read
             straight from the CPU. On S7-300/400 you can use the CPU's symbol table, a tag table or block
             sources.</span>
+        </div>
+      </details>
+      <details>
+        <summary><span data-it>Cosa posso fare senza licenza?</span><span data-en>What can I do without a licence?</span></summary>
+        <div class="a">
+          <span data-it>Aprire e analizzare le registrazioni: un file per volta, con grafici, marker,
+            ΔT, frequenza e statistiche. Restano PRO l'acquisizione dal vivo e la registrazione, i segnali
+            calcolati, le esportazioni (CSV, immagine, appunti), le finestre staccabili, più file aperti
+            insieme e la dashboard web. La chiave si attiva offline, e se scade mentre stai registrando la
+            registrazione non si interrompe: il file resta intero.</span>
+          <span data-en>Open and analyse recordings: one file at a time, with charts, markers, ΔT,
+            frequency and statistics. Live acquisition and recording, computed signals, the exports (CSV,
+            image, clipboard), detached windows, several files at once and the web dashboard stay PRO. The
+            key activates offline, and if it expires while you are recording the recording is not
+            interrupted: the file stays whole.</span>
         </div>
       </details>
       <details>

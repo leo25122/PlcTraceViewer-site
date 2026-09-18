@@ -60,12 +60,14 @@
     <h1 style="font-size:clamp(2rem,4vw,3rem);max-width:20ch" data-it>Dal download al primo file, in cinque minuti.</h1>
     <h1 style="font-size:clamp(2rem,4vw,3rem);max-width:20ch" data-en>From download to your first file, in five minutes.</h1>
     <p class="intro" style="margin-top:16px" data-it>
-      Nove passi, nell'ordine in cui li farai davvero in impianto. Dentro il programma, ogni schermata
-      ha la sua spiegazione: <b>F1</b> apre il manuale al punto in cui sei.
+      Dieci passi, nell'ordine in cui li farai davvero in impianto. Il primo si fa con la versione base;
+      dal secondo in poi serve la chiave PRO, perché collegarsi al PLC e registrare sono funzioni PRO.
+      Dentro il programma ogni schermata ha la sua spiegazione: <b>F1</b> apre il manuale al punto in cui sei.
     </p>
     <p class="intro" style="margin-top:16px" data-en>
-      Nine steps, in the order you will really do them on site. Inside the program every screen explains
-      itself: <b>F1</b> opens the manual at the point you are in.
+      Ten steps, in the order you will really do them on site. The first one works with the base version;
+      from the second on you need the PRO key, because connecting to the PLC and recording are PRO features.
+      Inside the program every screen explains itself: <b>F1</b> opens the manual at the point you are in.
     </p>
   </div>
 </section>
@@ -130,7 +132,14 @@
         </article>
 
         <article class="doc-sec" id="collega">
-          <h2 data-it>2 · Collega la CPU</h2><h2 data-en>2 · Connect the CPU</h2>
+          <h2 data-it>2 · Collega la CPU <span class="docnum">PRO</span></h2>
+          <h2 data-en>2 · Connect the CPU <span class="docnum">PRO</span></h2>
+          <div class="note" style="margin-bottom:16px">
+            <span data-it>Da qui in poi serve la chiave PRO: l'acquisizione dal vivo e la registrazione
+              non sono nella versione base, che apre e analizza le registrazioni già fatte.</span>
+            <span data-en>From here on you need the PRO key: live acquisition and recording are not in the
+              base version, which opens and analyses recordings that already exist.</span>
+          </div>
           <p data-it>
             Apri una finestra Live, scrivi l'indirizzo IP della CPU e scegli il modo di collegamento.
             <b>S7 Native</b> copre PUT/GET e S7comm-Plus sulle CPU nuove; <b>OPC UA</b> è l'alternativa
@@ -358,14 +367,15 @@
           </figcaption>
 
           <p data-it>
-            Da qui esporti in CSV solo i canali e il tratto che ti servono, o l'immagine del grafico. E se un
-            canale deve essere una <em>formula</em> invece che un indirizzo — una derivata, un filtro, un
-            valore efficace — l'editor delle espressioni ti mostra la curva mentre la scrivi.
+            Da qui esporti in CSV solo i canali e il tratto che ti servono, o l'immagine del grafico
+            (entrambe funzioni PRO). E se un canale deve essere una <em>formula</em> invece che un
+            indirizzo — una derivata, un filtro, un valore efficace — l'editor delle espressioni ti mostra
+            la curva mentre la scrivi.
           </p>
           <p data-en>
-            From here you export just the channels and the span you need as CSV, or the chart as an image.
-            And if a channel should be a <em>formula</em> instead of an address — a derivative, a filter, an
-            RMS value — the expression editor shows you the curve as you write it.
+            From here you export just the channels and the span you need as CSV, or the chart as an image
+            (both PRO features). And if a channel should be a <em>formula</em> instead of an address — a
+            derivative, a filter, an RMS value — the expression editor shows you the curve as you write it.
           </p>
         </article>
 

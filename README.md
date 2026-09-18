@@ -41,6 +41,10 @@ repository) into `assets/img`. Two rules are part of the script and must stay:
 python tools/build-assets.py      # needs Pillow
 ```
 
+The `art-*` files are a different thing: art-directed campaign illustrations, used only for the
+full-bleed bands and the social preview. They are not product proof — the real screenshots are —
+and nothing in them should be read as an application output.
+
 `assets/js/functions.js` is generated from the application's own function registry, so the list
 the site shows is the list the expression editor accepts.
 
