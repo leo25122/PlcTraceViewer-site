@@ -187,16 +187,26 @@
   })();
 
   /* ── canvas helper: DPR sizing + run only when visible ─────────────────── */
-  function liveCanvas(cv, draw) {
-    var ctx = cv.getContext('2d'), w = 0, h = 0, run = false, raf = 0;
+  /// A canvas that draws only when it is worth it: capped pixel ratio, capped frame
+  /// rate, stopped when off-screen or in a hidden tab. Four of these run on the page,
+  /// and at full speed on a high-DPI monitor they were the reason scrolling stuttered.
+  function liveCanvas(cv, draw, fps) {
+    var ctx = cv.getContext('2d', { alpha: true, desynchronized: true });
+    var w = 0, h = 0, run = false, raf = 0, last = 0;
+    var minDelta = 1000 / (fps || 30);
     function size() {
-      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      var dpr = Math.min(1.5, window.devicePixelRatio || 1);
       var r = cv.getBoundingClientRect();
       w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
       cv.width = w * dpr; cv.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    function frame(t) { if (!run) return; draw(ctx, w, h, t || 0); raf = requestAnimationFrame(frame); }
+    function frame(t) {
+      if (!run) return;
+      t = t || 0;
+      if (t - last >= minDelta) { last = t; draw(ctx, w, h, t); }
+      raf = requestAnimationFrame(frame);
+    }
     function start() { if (run) return; run = true; raf = requestAnimationFrame(frame); }
     function stop() { run = false; cancelAnimationFrame(raf); }
     size();
@@ -279,7 +289,7 @@
       ctx.fillStyle = g; ctx.fillRect(w - 90, 0, 90, h);
       ctx.strokeStyle = 'rgba(255,255,255,.22)'; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(w - padR + .5, 0); ctx.lineTo(w - padR + .5, h); ctx.stroke();
-    });
+    }, 30);
 
     // the little readout under the scope: a sample counter that advances at 1 kHz
     var cnt = $('#scope-samples');
@@ -331,7 +341,7 @@
           ctx.beginPath(); ctx.moveTo(x, mid - hgt); ctx.lineTo(x, mid + hgt); ctx.stroke();
         });
         ctx.globalAlpha = 1;
-      });
+      }, 24);
     });
   })();
 
@@ -363,6 +373,11 @@
 
     var plot = liveCanvas(cv, function (ctx, w, h, ms) {
       var d = DEMOS[di];
+      // Once the curve is complete there is nothing to animate: redraw once and stop
+      // burning frames behind a static picture.
+      var done = !REDUCED && (ms - t0 - 700) > 1400;
+      if (done && ctx._settled === di) return;
+      ctx._settled = done ? di : -1;
       ctx.clearRect(0, 0, w, h);
       ctx.strokeStyle = cssVar('--line', '#e3e0d9'); ctx.lineWidth = 1;
       ctx.beginPath();
