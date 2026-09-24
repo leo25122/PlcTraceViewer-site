@@ -13,7 +13,9 @@
 <meta property="og:image" content="https://leo25122.github.io/PlcTraceViewer-site/assets/img/app-workspace.webp">
 <meta property="og:url" content="https://leo25122.github.io/PlcTraceViewer-site/datasheet.html">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="assets/favicon-256.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -59,17 +61,17 @@
   <div class="wrap">
     <p class="kicker"><span data-it>Scheda tecnica</span><span data-en>Datasheet</span></p>
     <h1 style="font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:26ch" data-it>
-      PlcTraceViewer — acquisizione, registrazione e analisi di segnali da PLC Siemens
+      PlcTraceViewer — acquisizione, registrazione e analisi di segnali da PLC S7
     </h1>
     <h1 style="font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:26ch" data-en>
-      PlcTraceViewer — Siemens PLC signal acquisition, recording and analysis
+      PlcTraceViewer — S7 PLC signal acquisition, recording and analysis
     </h1>
     <p class="intro" style="margin-top:16px" data-it>
-      Applicazione Windows per collegarsi a un controllore Siemens, campionarne i segnali in continuo,
+      Applicazione Windows per collegarsi a un controllore S7, campionarne i segnali in continuo,
       registrarli su file e analizzarli — sia a registrazione conclusa sia mentre i dati stanno arrivando.
     </p>
     <p class="intro" style="margin-top:16px" data-en>
-      A Windows application that connects to a Siemens controller, samples its signals continuously,
+      A Windows application that connects to an S7 controller, samples its signals continuously,
       records them to file and analyses them — both after the recording and while the data is arriving.
     </p>
 
@@ -126,14 +128,14 @@
         <article class="doc-sec" id="panoramica">
           <h2 data-it>1 · Panoramica</h2><h2 data-en>1 · Overview</h2>
           <p data-it>
-            PlcTraceViewer si collega direttamente a un controllore Siemens sulla rete di impianto e ne
+            PlcTraceViewer si collega direttamente a un controllore S7 sulla rete di impianto e ne
             legge i segnali in modo ciclico. I campioni sono mostrati in tempo reale e, su comando,
             scritti su file. Il file prodotto è pensato per essere analizzato a distanza di tempo: ogni
             campione porta l'istante reale della lettura e i valori non disponibili sono conservati come
             tali, distinguibili da una misura valida.
           </p>
           <p data-en>
-            PlcTraceViewer connects directly to a Siemens controller on the plant network and reads its
+            PlcTraceViewer connects directly to an S7 controller on the plant network and reads its
             signals cyclically. Samples are shown in real time and, on command, written to file. The
             resulting file is meant to be analysed long afterwards: every sample carries the real instant
             of the read, and unavailable values are kept as such, distinguishable from a valid measurement.
