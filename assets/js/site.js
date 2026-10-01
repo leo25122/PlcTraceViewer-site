@@ -437,14 +437,25 @@
     if (!t) return;
     var LINES = t.getAttribute('data-lines');
     if (!LINES) return;
-    var rows = JSON.parse(LINES);
+    // One log per language: the Italian lines stayed on screen in English (owner, 01/10/2026).
+    var LINES_EN = t.getAttribute('data-lines-en');
+    function pick() {
+      var en = (document.documentElement.lang || 'it').indexOf('en') === 0 && LINES_EN;
+      return JSON.parse(en ? LINES_EN : LINES);
+    }
+    var rows = pick();
+    var done = false;
+    window.addEventListener('ptv:lang', function () {
+      rows = pick();
+      if (done) render(rows.length, null);
+    });
     function render(upto, partial) {
       var out = '';
       for (var i = 0; i < upto; i++) out += '<div>' + rows[i] + '</div>';
       if (partial !== null && partial !== undefined) out += '<div>' + partial + '<span class="cur"></span></div>';
       t.innerHTML = out;
     }
-    if (REDUCED || !('IntersectionObserver' in window)) { render(rows.length, null); return; }
+    if (REDUCED || !('IntersectionObserver' in window)) { done = true; render(rows.length, null); return; }
     var started = false;
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -452,7 +463,7 @@
         started = true;
         var i = 0, c = 0;
         (function step() {
-          if (i >= rows.length) { render(rows.length, null); return; }
+          if (i >= rows.length) { done = true; render(rows.length, null); return; }
           var plain = rows[i].replace(/<[^>]*>/g, '');
           if (c <= plain.length) {
             // keep the markup: type the plain text, then swap in the styled row
