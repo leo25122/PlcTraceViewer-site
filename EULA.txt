@@ -1,0 +1,71 @@
+PlcTraceViewer - End-User License Agreement (EULA) / Contratto di Licenza d'Uso
+Copyright (C) 2026 Leonardo Dogariu. All rights reserved / Tutti i diritti riservati.
+
+=============================================================================
+ENGLISH
+=============================================================================
+By installing or using PlcTraceViewer ("the Software"), an original work of
+Leonardo Dogariu ("the Owner"), you ("the Licensee") accept these terms.
+
+1. GRANT. A non-exclusive, non-transferable, revocable licence to use the
+   Software on a SINGLE machine, identified by the machine code in the licence,
+   for the term and limits stated in the licence file.
+2. RESTRICTIONS. You may not copy, distribute, sublicense, rent, decompile,
+   disassemble or reverse-engineer the Software (except as mandatory law or
+   clause 8 allows), remove copyright notices, or circumvent the licensing mechanisms.
+3. OWNERSHIP. The Software, its source code and the name "PlcTraceViewer" remain
+   the exclusive property of the Owner. All rights not granted are reserved.
+4. APPROPRIATE USE / CONFIDENTIAL DATA. The Software can read production and
+   process data. Use it ONLY on plants you own or are authorised in writing to
+   access; always agree its use in advance with the plant owner; never use it to
+   acquire or disclose third-party data. The Licensee is solely responsible for
+   the use of the Software and for compliance with applicable law.
+5. READ-ONLY. The Software only reads and never writes to the PLC.
+6. NO WARRANTY. The Software is provided "as is", without warranty of any kind.
+7. LIABILITY. To the maximum extent permitted by law, the Owner is not liable for
+   indirect or consequential damages, or loss of data, production or profit.
+8. THIRD-PARTY components remain governed by their own licences (THIRD-PARTY-NOTICES
+   and the "licenses" folder). Nothing in this EULA restricts the rights those
+   licences grant. In particular, TKH.S7Plus.Net.dll is licensed under the GNU LGPL
+   version 3: you may replace it with a modified version, and reverse-engineer the
+   Software only as far as needed to debug such modifications. Its source code is
+   available as stated in THIRD-PARTY-NOTICES.
+9. GOVERNING LAW: Italy.
+
+Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an
+independent product and is not affiliated with, sponsored or endorsed by Siemens AG.
+
+=============================================================================
+ITALIANO
+=============================================================================
+Installando o usando PlcTraceViewer ("il Software"), opera di Leonardo Dogariu
+("il Titolare"), l'utente ("il Licenziatario") accetta i presenti termini.
+
+1. CONCESSIONE. Licenza non esclusiva, non trasferibile e revocabile a usare il
+   Software su UNA SOLA macchina, identificata dal codice macchina nella licenza,
+   per la durata e nei limiti indicati nel file di licenza.
+2. RESTRIZIONI. Vietato copiare, distribuire, concedere in sublicenza o noleggio,
+   decompilare, disassemblare o fare reverse-engineering (salvo limiti di legge o
+   quanto consentito dal punto 8), rimuovere gli avvisi di copyright o aggirare i
+   meccanismi di licenza.
+3. PROPRIETA'. Il Software, il codice sorgente e il nome "PlcTraceViewer" restano
+   di proprieta' esclusiva del Titolare. Tutti i diritti non concessi sono riservati.
+4. USO APPROPRIATO / DATI RISERVATI. Il Software puo' leggere dati di produzione e
+   di processo. Usalo SOLO su impianti di cui sei titolare o autorizzato per
+   iscritto; concordane sempre l'utilizzo in anticipo con il titolare dell'impianto;
+   non usarlo mai per acquisire o divulgare dati altrui. Il Licenziatario e' l'unico
+   responsabile dell'uso del Software e del rispetto delle norme applicabili.
+5. SOLA LETTURA. Il Software legge soltanto e non scrive mai sul PLC.
+6. NESSUNA GARANZIA. Il Software e' fornito "cosi' com'e'", senza garanzie.
+7. RESPONSABILITA'. Nei limiti di legge, il Titolare non risponde di danni indiretti
+   o consequenziali, ne' di perdita di dati, produzione o profitto.
+8. COMPONENTI DI TERZI: regolati dalle rispettive licenze (THIRD-PARTY-NOTICES e
+   cartella "licenses"). Nulla in questo contratto limita i diritti che quelle
+   licenze concedono. In particolare TKH.S7Plus.Net.dll e' concessa con licenza
+   GNU LGPL versione 3: e' consentito sostituirla con una versione modificata e fare
+   reverse-engineering del Software solo nella misura necessaria al debug di tali
+   modifiche. Il suo codice sorgente e' disponibile come indicato in THIRD-PARTY-NOTICES.
+9. LEGGE APPLICABILE: italiana.
+
+Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un
+prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG.

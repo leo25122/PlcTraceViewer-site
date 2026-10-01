@@ -18,7 +18,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20260918c">
 </head>
 <body data-title-it="PlcTraceViewer — scheda tecnica" data-title-en="PlcTraceViewer — datasheet"
@@ -38,6 +38,7 @@
     <nav>
       <a href="index.html" data-it>← Torna al sito</a><a href="index.html" data-en>← Back to the site</a>
       <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
+      <a href="faq.html">FAQ</a>
     </nav>
     <div class="nav-tools">
       <div class="seg" role="group" aria-label="Lingua / Language">
@@ -537,17 +538,17 @@
 
         <!-- 10 ────────────────────────────────────────────────────────── -->
         <article class="doc-sec" id="licenza">
-          <h2 data-it>10 · Licenza ed edizioni</h2><h2 data-en>10 · Licensing and editions</h2>
+          <h2 data-it>10 · Licenza e requisiti</h2><h2 data-en>10 · Licensing &amp; requirements</h2>
           <table class="spec">
             <tr><td data-it>Edizione base</td><td data-en>Base edition</td>
               <td data-it>utilizzabile senza attivazione e senza scadenza. Apertura e analisi delle registrazioni (un file per volta): grafici, marker, statistiche</td>
               <td data-en>usable without activation and without expiry. Opening and analysing recordings (one file at a time): charts, markers, statistics</td></tr>
             <tr><td data-it>Edizione PRO</td><td data-en>PRO edition</td>
-              <td data-it>attivata da chiave. Acquisizione dal vivo e registrazione, generazione dei blocchi per il campionamento a 1 ms, dashboard web, editor delle espressioni (segnali calcolati), più file aperti insieme con assi sincronizzati, finestre staccabili, esportazione CSV e immagine, copia negli appunti, importazione da ibaAnalyzer</td>
-              <td data-en>activated by key. Live acquisition and recording, generation of the blocks for 1 ms sampling, web dashboard, expression editor (computed signals), several files open at once with synchronised axes, detachable windows, CSV and image export, copy to clipboard, ibaAnalyzer import</td></tr>
+              <td data-it>attivata da licenza. Acquisizione dal vivo e registrazione, importazione di un progetto TIA, generazione dei blocchi per il campionamento a 1 ms, dashboard web, segnali calcolati, più file aperti insieme con assi sincronizzati, finestre staccabili, esportazione CSV e immagine, copia negli appunti, importazione da ibaAnalyzer</td>
+              <td data-en>activated by licence. Live acquisition and recording, TIA project import, generation of the blocks for 1 ms sampling, web dashboard, computed signals, several files open at once with synchronised axes, detachable windows, CSV and image export, copy to clipboard, ibaAnalyzer import</td></tr>
             <tr><td data-it>Attivazione</td><td data-en>Activation</td>
-              <td data-it>completamente offline: nessuna connessione a internet richiesta, né all'attivazione né successivamente</td>
-              <td data-en>entirely offline: no internet connection required, at activation or afterwards</td></tr>
+              <td data-it>attivazione offline; quando è disponibile una connessione, il controllo dello stato della licenza contatta il portale, senza inviare dati d'impianto</td>
+              <td data-en>offline activation; when a network connection is available, the licence-status check contacts the portal and sends no plant data</td></tr>
             <tr><td data-it>Vincolo</td><td data-en>Binding</td>
               <td data-it>chiave legata alla singola macchina, firmata crittograficamente</td>
               <td data-en>key bound to the individual machine, cryptographically signed</td></tr>
@@ -560,10 +561,14 @@
             <tr><td data-it>Monte ore</td><td data-en>Hour quota</td>
               <td data-it>la chiave può includere un numero massimo di ore di registrazione; l'utente è avvisato mentre si avvicina al limite</td>
               <td data-en>a key may include a maximum number of recording hours; the user is warned as the limit approaches</td></tr>
+            <tr><td data-it>Quota tag Live</td><td data-en>Live-tag quota</td>
+              <td data-it>la licenza può limitare il numero di tag Live; il portale mostra il limite assegnato</td>
+              <td data-en>the licence may limit the number of Live tags; the portal shows the assigned limit</td></tr>
             <tr><td data-it>Esaurimento durante una registrazione</td><td data-en>Expiry during a recording</td>
               <td data-it>la registrazione in corso non viene interrotta e il file resta integro; le funzioni PRO si disattivano al termine della registrazione</td>
               <td data-en>the recording in progress is not interrupted and the file stays intact; PRO features are disabled once the recording is stopped</td></tr>
           </table>
+          <p style="margin-top:16px"><a class="btn-ghost" href="#requisiti" data-it>Requisiti tecnici ↓</a><a class="btn-ghost" href="#requisiti" data-en>Technical requirements ↓</a> · <a class="btn-ghost" href="faq.html#gruppo-b" data-it>Richiesta, tipi e attivazione della licenza → FAQ</a><a class="btn-ghost" href="faq.html#gruppo-b" data-en>Requesting, licence types and activation → FAQ</a></p>
         </article>
 
         <!-- 11 ────────────────────────────────────────────────────────── -->
@@ -582,12 +587,19 @@
               <td data-it>dipendente dalla durata delle registrazioni; la gestione automatica dello spazio è configurabile</td>
               <td data-en>depends on how long the recordings run; automatic space management is configurable</td></tr>
             <tr><td data-it>Installazione</td><td data-en>Installation</td>
-              <td data-it>procedura guidata; il servizio della dashboard viene registrato e avviato automaticamente</td>
-              <td data-en>guided wizard; the dashboard service is registered and started automatically</td></tr>
+              <td data-it>procedura guidata per utente; il servizio della dashboard è facoltativo e richiede il permesso di Windows</td>
+              <td data-en>per-user setup wizard; the dashboard service is optional and requires Windows permission</td></tr>
+            <tr><td data-it>Importazione TIA</td><td data-en>TIA import</td>
+              <td data-it>opzionale; richiede TIA Portal e Openness installati e licenziati dal cliente, utente nel gruppo locale Siemens TIA Openness e .NET Framework 4.8 (già incluso in Windows 10 1903+ e Windows 11)</td>
+              <td data-en>optional; requires TIA Portal and Openness installed and licensed by the customer, the user in the local Siemens TIA Openness group, and .NET Framework 4.8 (included in Windows 10 1903+ and Windows 11)</td></tr>
+            <tr><td data-it>Lettore PDF</td><td data-en>PDF reader</td>
+              <td data-it>necessario solo per aprire manuale ed EULA in formato PDF</td>
+              <td data-en>needed only to open the manual and EULA in PDF format</td></tr>
             <tr><td data-it>Aggiornamento</td><td data-en>Update</td>
               <td data-it>installazione sopra la versione precedente, che va chiusa prima di procedere</td>
               <td data-en>install over the previous version, which must be closed first</td></tr>
           </table>
+          <p style="margin-top:16px"><a class="btn-ghost" href="faq.html#gruppo-a" data-it>Requisiti completi e domande frequenti → FAQ</a><a class="btn-ghost" href="faq.html#gruppo-a" data-en>Full requirements and common questions → FAQ</a></p>
         </article>
 
         <!-- 12 ────────────────────────────────────────────────────────── -->
@@ -871,6 +883,7 @@
       <span>
         <a href="index.html" data-it>Sito</a><a href="index.html" data-en>Site</a> ·
         <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a> ·
+        <a href="faq.html">FAQ</a> ·
         <a href="https://github.com/leo25122/PlcTraceViewer-site">GitHub</a>
       </span>
     </div>

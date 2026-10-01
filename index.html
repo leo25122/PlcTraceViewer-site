@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20260918c">
 <script type="application/ld+json">
 {
@@ -57,6 +57,7 @@
       <a href="#collegamento" data-it>Collegamento</a><a href="#collegamento" data-en>Connection</a>
       <a href="#edizioni" data-it>Edizioni</a><a href="#edizioni" data-en>Editions</a>
       <a href="datasheet.html">Datasheet</a>
+      <a href="faq.html">FAQ</a>
     </nav>
 
     <div class="nav-tools">
@@ -85,7 +86,7 @@
   <a href="#collegamento" data-it>Collegamento</a><a href="#collegamento" data-en>Connection</a>
   <a href="#limiti" data-it>Cosa non fa</a><a href="#limiti" data-en>What it does not do</a>
   <a href="#edizioni" data-it>Edizioni</a><a href="#edizioni" data-en>Editions</a>
-  <a href="#faq">FAQ</a>
+  <a href="faq.html">FAQ</a>
   <a href="datasheet.html" data-it>Scheda tecnica</a><a href="datasheet.html" data-en>Datasheet</a>
   <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
   <a class="btn" href="#download" data-it>Scarica per Windows</a>
@@ -684,7 +685,7 @@
     <div style="margin-top:46px" data-r="up">
       <h3 style="margin-bottom:6px">
         <span data-it>Tutte le <span id="fnwall-count">94</span> funzioni, quelle vere</span>
-        <span data-en>All <span id="fnwall-count">94</span> functions, the real ones</span>
+        <span data-en>All <span>94</span> functions, the real ones</span>
       </h3>
       <p style="color:var(--ink-2);margin-bottom:20px;font-size:.95rem">
         <span data-it>Questo elenco è generato dal registro dell'applicazione: quello che leggi qui è quello che l'editor accetta.</span>
@@ -900,8 +901,8 @@
         guasti, non un archivio di processo permanente.</li>
       <li><b>Non registra senza licenza.</b> La versione base apre e analizza le registrazioni; per
         collegarsi al PLC, registrare ed esportare serve la chiave PRO.</li>
-      <li><b>Non richiede internet — e quindi non lo offre.</b> Nessuna sincronizzazione cloud, nessun
-        accesso da fuori della tua rete. Nemmeno per la licenza.</li>
+      <li><b>Internet non è necessario per l'uso normale o per attivare la licenza.</b> Se è disponibile
+        una connessione, il controllo dello stato della licenza contatta il portale senza inviare dati d'impianto.</li>
     </ul>
 
     <ul class="limits stagger" data-en>
@@ -917,8 +918,8 @@
         process archive.</li>
       <li><b>It does not record without a licence.</b> The base version opens and analyses recordings;
         connecting to the PLC, recording and exporting need the PRO key.</li>
-      <li><b>It needs no internet — and offers none.</b> No cloud sync, no access from outside your own
-        network. Not even for licensing.</li>
+      <li><b>Internet is not required for normal use or licence activation.</b> When a connection is
+        available, the licence-status check contacts the portal without sending plant data.</li>
     </ul>
   </div>
 </section>
@@ -935,14 +936,14 @@
       <p class="intro" data-r="up" data-it>
       La versione <strong>Base apre e analizza le registrazioni</strong>. Collegarsi al PLC, registrare
       ed esportare sono funzioni <strong>PRO</strong>: si sbloccano con una chiave legata alla tua
-      macchina, firmata e <strong>completamente offline</strong> — nessuna connessione a internet, né la
-      prima volta né dopo. In impianto, internet spesso non c'è.
+      macchina. L'attivazione è offline; se è disponibile una connessione, il controllo dello stato
+      della licenza contatta il portale senza inviare dati d'impianto.
     </p>
     <p class="intro" data-r="up" data-en>
       The <strong>Base version opens and analyses recordings</strong>. Connecting to the PLC, recording
       and exporting are <strong>PRO</strong> features: they unlock with a key bound to your machine,
-      signed and <strong>entirely offline</strong> — no internet connection, the first time or ever
-      after. On a plant floor there usually isn't any.
+      Activation is offline; when a connection is available, the licence-status check contacts the
+      portal without sending plant data.
     </p>
     </div>
 <div class="plans">
@@ -1131,7 +1132,7 @@
     </div>
 
     <div class="faq" style="margin-top:30px" data-r="up">
-      <details open>
+      <details id="faq-sola-lettura" open>
         <summary><span data-it>Tocca il PLC in produzione?</span><span data-en>Does it touch a PLC in production?</span></summary>
         <div class="a">
           <span data-it>No. Legge e basta: non scrive variabili, non modifica il programma, non cambia lo
@@ -1177,7 +1178,7 @@
             sources.</span>
         </div>
       </details>
-      <details>
+      <details id="faq-free">
         <summary><span data-it>Cosa posso fare senza licenza?</span><span data-en>What can I do without a licence?</span></summary>
         <div class="a">
           <span data-it>Aprire e analizzare le registrazioni: un file per volta, con grafici, marker,
@@ -1192,15 +1193,15 @@
             interrupted: the file stays whole.</span>
         </div>
       </details>
-      <details>
+      <details id="faq-internet">
         <summary><span data-it>Serve internet?</span><span data-en>Does it need internet?</span></summary>
         <div class="a">
-          <span data-it>Mai. Nemmeno per attivare la licenza PRO: la chiave è firmata e legata alla macchina,
-            l'attivazione avviene senza rete. Di conseguenza non ci sono servizi cloud né accessi da remoto
-            fuori dalla rete di impianto.</span>
-          <span data-en>Never. Not even to activate a PRO licence: the key is signed and bound to the machine,
-            and activation happens with no network at all. By the same token there is no cloud service and no
-            remote access from outside the plant network.</span>
+          <span data-it>Internet non serve per l'uso normale né per attivare la licenza. Se è disponibile
+            una connessione, il controllo dello stato della licenza contatta il portale; non vengono inviati
+            dati d'impianto. Non ci sono servizi cloud né accessi da remoto fuori dalla rete di impianto.</span>
+          <span data-en>Internet is not required for normal use or licence activation. If a connection is
+            available, the licence-status check contacts the portal; no plant data is sent. There are no
+            cloud services or remote access from outside the plant network.</span>
         </div>
       </details>
       <details>
@@ -1235,6 +1236,7 @@
         </div>
       </details>
     </div>
+    <p style="margin-top:24px"><a class="btn-2" href="faq.html"><span data-it>Tutte le domande su licenza e procedure →</span><span data-en>All licensing and procedure questions →</span></a></p>
   </div>
 </section>
 
@@ -1274,7 +1276,7 @@
         <ul>
           <li><a href="datasheet.html" data-it>Scheda tecnica</a><a href="datasheet.html" data-en>Datasheet</a></li>
           <li><a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="#limiti" data-it>Cosa non fa</a><a href="#limiti" data-en>What it does not do</a></li>
         </ul>
       </div>
