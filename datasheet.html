@@ -198,7 +198,7 @@
             </tr>
             <tr>
               <td data-it>Tipi supportati</td><td data-en>Supported types</td>
-              <td>BOOL, BYTE, SINT, USINT, WORD, INT, UINT, DWORD, DINT, UDINT, REAL, LREAL, LINT, ULINT, LWORD, TIME</td>
+              <td>BOOL, BYTE, CHAR, SINT, USINT, WORD, INT, UINT, DWORD, DINT, UDINT, REAL, LREAL, LINT, ULINT, LWORD, TIME, S5TIME, DATE, TIME_OF_DAY, DATE_AND_TIME, DTL</td>
             </tr>
             <tr>
               <td data-it>Diagnostica</td><td data-en>Diagnostics</td>
@@ -311,7 +311,7 @@
           <table class="spec">
             <tr>
               <td data-it>Intervalli selezionabili</td><td data-en>Selectable intervals</td>
-              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 · 100 · 200 · 500 · 1000 · 2000 · 5000 ms</td>
+              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 · 100 · 200 · 500 · 1000 ms <span data-it>(2000 e 5000 ms quando li propone la verifica preventiva)</span><span data-en>(2000 and 5000 ms when the pre-flight check proposes them)</span></td>
             </tr>
             <tr>
               <td data-it>Intervallo effettivo</td><td data-en>Effective interval</td>
@@ -511,8 +511,8 @@
           </p>
           <table class="spec">
             <tr><td data-it>Servizio</td><td data-en>Service</td>
-              <td data-it>servizio Windows ad avvio automatico, installato insieme al programma</td>
-              <td data-en>Windows service with automatic start, installed with the program</td></tr>
+              <td data-it>servizio Windows facoltativo: si sceglie durante l'installazione, poi parte da solo con Windows</td>
+              <td data-en>optional Windows service: chosen during setup, then it starts with Windows</td></tr>
             <tr><td data-it>Accesso</td><td data-en>Access</td>
               <td data-it>HTTP sulla porta 8085 (configurabile)</td>
               <td data-en>HTTP on port 8085 (configurable)</td></tr>
@@ -540,7 +540,7 @@
         <article class="doc-sec" id="licenza">
           <h2 data-it>10 · Licenza e requisiti</h2><h2 data-en>10 · Licensing &amp; requirements</h2>
           <table class="spec">
-            <tr><td data-it>Edizione base</td><td data-en>Base edition</td>
+            <tr><td data-it>Edizione Free</td><td data-en>Free edition</td>
               <td data-it>utilizzabile senza attivazione e senza scadenza. Apertura e analisi delle registrazioni (un file per volta): grafici, marker, statistiche</td>
               <td data-en>usable without activation and without expiry. Opening and analysing recordings (one file at a time): charts, markers, statistics</td></tr>
             <tr><td data-it>Edizione PRO</td><td data-en>PRO edition</td>
@@ -550,17 +550,17 @@
               <td data-it>attivazione offline; quando è disponibile una connessione, il controllo dello stato della licenza contatta il portale, senza inviare dati d'impianto</td>
               <td data-en>offline activation; when a network connection is available, the licence-status check contacts the portal and sends no plant data</td></tr>
             <tr><td data-it>Vincolo</td><td data-en>Binding</td>
-              <td data-it>chiave legata alla singola macchina, firmata crittograficamente</td>
-              <td data-en>key bound to the individual machine, cryptographically signed</td></tr>
+              <td data-it>licenza (file .ptvlic) legata a un singolo PC e firmata digitalmente</td>
+              <td data-en>licence (a .ptvlic file) bound to a single PC and digitally signed</td></tr>
             <tr><td data-it>Durata</td><td data-en>Term</td>
-              <td data-it>a termine o senza scadenza, secondo la chiave emessa</td>
-              <td data-en>time-limited or perpetual, according to the key issued</td></tr>
+              <td data-it>a termine o senza scadenza, come indicato nella licenza</td>
+              <td data-en>time-limited or perpetual, as stated in the licence</td></tr>
             <tr><td data-it>Recupero</td><td data-en>Recovery</td>
-              <td data-it>la chiave è riemettibile in caso di smarrimento</td>
-              <td data-en>the key can be reissued if lost</td></tr>
+              <td data-it>una licenza persa si scarica di nuovo dal portale o viene riemessa</td>
+              <td data-en>a lost licence can be downloaded again from the portal or reissued</td></tr>
             <tr><td data-it>Monte ore</td><td data-en>Hour quota</td>
-              <td data-it>la chiave può includere un numero massimo di ore di registrazione; l'utente è avvisato mentre si avvicina al limite</td>
-              <td data-en>a key may include a maximum number of recording hours; the user is warned as the limit approaches</td></tr>
+              <td data-it>la licenza può prevedere un numero massimo di ore di registrazione; il programma avvisa quando ci si avvicina al limite</td>
+              <td data-en>a licence may include a maximum number of recording hours; the program warns as the limit approaches</td></tr>
             <tr><td data-it>Quota tag Live</td><td data-en>Live-tag quota</td>
               <td data-it>la licenza può limitare il numero di tag Live; il portale mostra il limite assegnato</td>
               <td data-en>the licence may limit the number of Live tags; the portal shows the assigned limit</td></tr>
@@ -672,8 +672,8 @@
             </tr>
             <tr>
               <td data-it>Ora legale</td><td data-en>Daylight saving</td>
-              <td data-it>relabela solo la visualizzazione: la linea temporale UTC memorizzata non ha vuoti né duplicati</td>
-              <td data-en>only relabels the display: the stored UTC timeline has no gaps and no duplicates</td>
+              <td data-it>cambia solo l'ora mostrata a schermo: nel file il tempo è salvato in UTC, senza buchi né doppioni</td>
+              <td data-en>only changes the time shown on screen: the file stores UTC time, with no gaps and no duplicates</td>
             </tr>
             <tr>
               <td data-it>Salute dei canali</td><td data-en>Channel health</td>
@@ -686,7 +686,7 @@
           <table class="spec">
             <tr>
               <td data-it>Intervalli di polling</td><td data-en>Polling intervals</td>
-              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 (predefinito) · 100 · 200 · 500 · 1000 ms</td>
+              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 <span data-it>(predefinito)</span><span data-en>(default)</span> · 100 · 200 · 500 · 1000 ms</td>
             </tr>
             <tr>
               <td data-it>Verifica preventiva</td><td data-en>Pre-flight check</td>
@@ -700,28 +700,28 @@
             </tr>
             <tr>
               <td data-it>Periodo misurato</td><td data-en>Measured period</td>
-              <td data-it>misurato per canale fra due risposte consecutive e mostrato distinto da quello impostato; gli slot saltati sono contati, segnalati dal vivo e ripresi come interruzioni della traccia</td>
-              <td data-en>measured per channel between two consecutive answers and shown distinct from the nominal one; skipped slots are counted, warned about live, and drawn as gaps in the trace</td>
+              <td data-it>misurato per ogni canale tra due risposte consecutive e mostrato accanto a quello impostato; i cicli saltati sono contati, segnalati subito e compaiono come interruzioni della traccia</td>
+              <td data-en>measured for each channel between two consecutive answers and shown next to the set value; skipped cycles are counted, reported at once and drawn as gaps in the trace</td>
             </tr>
             <tr>
               <td data-it>Letture simboliche</td><td data-en>Symbolic reads</td>
-              <td data-it>con canali per indirizzo presenti non scendono sotto un ciclo ogni 5 ms, per non occupare il budget di comunicazione del controllore</td>
-              <td data-en>while by-address channels coexist they do not go below one cycle every 5 ms, so the controller's communication budget is not starved</td>
+              <td data-it>se ci sono anche canali letti per indirizzo, le letture simboliche non scendono sotto un ciclo ogni 5 ms, per non saturare la comunicazione del controllore</td>
+              <td data-en>when by-address channels are also present, symbolic reads do not go below one cycle every 5 ms, so the controller's communication is not saturated</td>
             </tr>
             <tr>
               <td data-it>Buffer nel PLC</td><td data-en>In-PLC buffer</td>
-              <td data-it>la spaziatura dei campioni viene dal controllore (ciclo dell'OB letto dall'intestazione del blocco) e viene ancorata una sola volta all'orologio del PC: istante = ancoraggio + indice × periodo PLC</td>
-              <td data-en>the sample spacing comes from the controller (OB cycle read from the block header) and is anchored once to the PC clock: time = anchor + index × PLC period</td>
+              <td data-it>il passo tra i campioni lo dà il controllore (il ciclo dell'OB, letto dall'intestazione del blocco); l'orologio del PC serve una sola volta, come riferimento iniziale: istante = riferimento + indice × periodo del PLC</td>
+              <td data-en>the spacing between samples comes from the controller (the OB cycle, read from the block header); the PC clock is used once, as the starting reference: time = reference + index × PLC period</td>
             </tr>
             <tr>
               <td data-it>Profondità del buffer</td><td data-en>Buffer depth</td>
-              <td data-it>configurabile, predefinito 512 slot (512 ms a 1 kHz); minimo raccomandato 250 ms; la verifica preventiva richiede ≥ 4× il ciclo di polling (con minimo 50 ms); il DB non ottimizzato non può superare 64 KB</td>
-              <td data-en>configurable, default 512 slots (512 ms at 1 kHz); minimum recommended 250 ms; the pre-flight requires ≥ 4× the poll cycle (with a 50 ms floor); the non-optimised DB cannot exceed 64 KB</td>
+              <td data-it>configurabile, predefinita 512 campioni (512 ms a 1 kHz); consigliati almeno 250 ms; la verifica preventiva chiede almeno 4 volte il ciclo di lettura (e comunque 50 ms); il DB non ottimizzato non può superare 64 KB</td>
+              <td data-en>configurable, default 512 samples (512 ms at 1 kHz); at least 250 ms recommended; the pre-flight check asks for at least 4 times the read cycle (and never less than 50 ms); the non-optimised DB cannot exceed 64 KB</td>
             </tr>
             <tr>
               <td data-it>Scarico del buffer</td><td data-en>Buffer download</td>
-              <td data-it>a blocchi, circa un quarto della profondità per passata; ogni slot porta un marcatore di commit verificato prima e dopo la lettura del dato: uno slot riscritto in volo viene saltato e contato, mai scritto male. I campioni non recuperati in tempo sono contati come perduti</td>
-              <td data-en>in bursts, about a quarter of the depth per pass; each slot carries a commit marker checked before and after the data read: a slot rewritten in flight is skipped and counted, never written wrong. Samples not fetched in time are counted as dropped</td>
+              <td data-it>a blocchi, circa un quarto del buffer per lettura; ogni posizione ha un contrassegno controllato prima e dopo la lettura: una posizione sovrascritta nel frattempo viene scartata e contata, mai registrata sbagliata. I campioni non letti in tempo sono contati come persi</td>
+              <td data-en>in blocks, about a quarter of the buffer per read; each position carries a marker checked before and after the read: a position overwritten in the meantime is discarded and counted, never recorded wrong. Samples not read in time are counted as lost</td>
             </tr>
           </table>
 
@@ -729,8 +729,8 @@
           <table class="spec">
             <tr>
               <td data-it>Precisione</td><td data-en>Precision</td>
-              <td data-it>float32 (IEEE 754, 4 byte) per tutti i canali; il formato DRG3 conserva in float64 i tipi più larghi di float32 (LReal, LInt, ULInt, LWord, Time, DInt, UDInt, DWord)</td>
-              <td data-en>float32 (IEEE 754, 4 bytes) for all channels; the DRG3 format keeps types wider than float32 (LReal, LInt, ULInt, LWord, Time, DInt, UDInt, DWord) at 64-bit precision</td>
+              <td data-it>ogni canale è salvato con la precisione che gli serve: 32 bit per BOOL, BYTE, INT, REAL e simili; 64 bit per DINT, UDINT, DWORD, LINT, ULINT, LWORD, LREAL, TIME e i tipi data/ora. I valori interi restano esatti fino a 2⁵³</td>
+              <td data-en>each channel is stored at the precision it needs: 32 bits for BOOL, BYTE, INT, REAL and the like; 64 bits for DINT, UDINT, DWORD, LINT, ULINT, LWORD, LREAL, TIME and the date/time types. Integer values stay exact up to 2⁵³</td>
             </tr>
             <tr>
               <td data-it>Valore assente</td><td data-en>Missing value</td>
@@ -744,7 +744,7 @@
             </tr>
             <tr>
               <td data-it>Tipi supportati</td><td data-en>Supported types</td>
-              <td class="mono">BOOL · Byte · USInt · SInt · Char · Word · UInt · Int · DWord · UDInt · DInt · Real · LReal · LInt · ULInt · LWord · Time</td>
+              <td class="mono">BOOL · Byte · USInt · SInt · Char · Word · UInt · Int · DWord · UDInt · DInt · Real · LReal · LInt · ULInt · LWord · Time · S5Time · Date · Time_Of_Day · Date_And_Time · DTL</td>
             </tr>
             <tr>
               <td data-it>Tipi non letti</td><td data-en>Types not read</td>
@@ -835,8 +835,8 @@
             </tr>
             <tr>
               <td data-it>Storia dal vivo</td><td data-en>Live history</td>
-              <td data-it>512 MB condivisi fra tutti i canali e al massimo 1 ora di profondità; superato il budget la profondità viene ridotta automaticamente e il programma lo dichiara nel registro</td>
-              <td data-en>512 MB shared across all channels and at most 1 hour of depth; when the budget is exceeded the depth is reduced automatically and the program says so in the log</td>
+              <td data-it>512 MB condivisi fra tutti i canali, al massimo 1 ora; oltre questo limite lo storico si accorcia da solo e il programma lo scrive nel registro</td>
+              <td data-en>512 MB shared across all channels, at most 1 hour; beyond that the history is shortened automatically and the program says so in the log</td>
             </tr>
             <tr>
               <td data-it>Registro a video</td><td data-en>On-screen log</td>
@@ -850,8 +850,8 @@
             </tr>
             <tr>
               <td data-it>File aperti</td><td data-en>Open files</td>
-              <td data-it>l'edizione base apre una registrazione alla volta; l'edizione PRO ne apre più di una insieme</td>
-              <td data-en>the base edition opens one recording at a time; the PRO edition opens several at once</td>
+              <td data-it>l'edizione Free apre una registrazione alla volta; l'edizione PRO ne apre più di una insieme</td>
+              <td data-en>the Free edition opens one recording at a time; the PRO edition opens several at once</td>
             </tr>
           </table>
 
@@ -878,8 +878,8 @@
     <div class="foot-bot" style="margin-top:0;border-top:0">
       <span data-it>PlcTraceViewer — scheda tecnica DS-PTV-21 · Leonardo Dogariu</span>
       <span data-en>PlcTraceViewer — datasheet DS-PTV-21 · Leonardo Dogariu</span>
-      <span data-it>Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG.</span>
-      <span data-en>Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an independent product and is not affiliated with, sponsored or endorsed by Siemens AG.</span>
+      <span data-it>Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG. ibaAnalyzer è un marchio di iba AG.</span>
+      <span data-en>Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an independent product and is not affiliated with, sponsored or endorsed by Siemens AG. ibaAnalyzer is a trademark of iba AG.</span>
       <span>
         <a href="index.html" data-it>Sito</a><a href="index.html" data-en>Site</a> ·
         <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a> ·
