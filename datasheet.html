@@ -79,7 +79,7 @@
       <div style="background:var(--surface);padding:16px 18px">
         <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Versione</div>
         <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-en>Version</div>
-        <b>2.0</b>
+        <b>2.1.0</b>
       </div>
       <div style="background:var(--surface);padding:16px 18px">
         <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Piattaforma</div>
@@ -119,6 +119,7 @@
           <li><a href="#licenza" data-it>Licenza ed edizioni</a><a href="#licenza" data-en>Licensing and editions</a></li>
           <li><a href="#requisiti" data-it>Requisiti e installazione</a><a href="#requisiti" data-en>Requirements and installation</a></li>
           <li><a href="#limiti" data-it>Limiti dichiarati</a><a href="#limiti" data-en>Declared limitations</a></li>
+          <li><a href="#dati-tecnici" data-it>Dati tecnici</a><a href="#dati-tecnici" data-en>Technical data</a></li>
         </ol>
       </aside>
 
@@ -610,6 +611,247 @@
             <li><b>No remote access beyond the local network.</b> No cloud services and no external synchronisation.</li>
             <li><b>Web interface without authentication.</b> To be used exclusively on a trusted plant network.</li>
           </ul>
+        </article>
+
+        <!-- 13 ────────────────────────────────────────────────────────── -->
+        <article class="doc-sec" id="dati-tecnici">
+          <h2 data-it>13 · Dati tecnici</h2><h2 data-en>13 · Technical data</h2>
+          <p data-it>
+            Quadro riepilogativo dei valori effettivamente implementati. Ogni riga descrive il
+            comportamento del programma; le condizioni che dipendono dall'installazione sono indicate
+            come tali e restano determinate in campo.
+          </p>
+          <p data-en>
+            Summary of the values actually implemented. Every row describes the behaviour of the program;
+            the conditions that depend on the installation are stated as such and remain determined on site.
+          </p>
+
+          <h3 data-it>Tempo e marcatura</h3><h3 data-en>Time and stamping</h3>
+          <table class="spec">
+            <tr>
+              <td data-it>Origine del tempo</td><td data-en>Time source</td>
+              <td data-it>l'orologio del PC è letto una sola volta all'avvio; da quel momento il tempo avanza su un contatore monotono, immune a correzioni NTP, ora legale manuale ed errori di RTC</td>
+              <td data-en>the PC clock is read once at start-up; from then on time advances on a monotonic counter, immune to NTP corrections, manual daylight-saving changes and RTC errors</td>
+            </tr>
+            <tr>
+              <td data-it>Deriva lenta</td><td data-en>Slow drift</td>
+              <td data-it>scostamenti fino a ±2 s sono assorbiti gradualmente (un ottavo della differenza ogni 5 s): una registrazione di ore resta vicina al tempo reale senza gradini</td>
+              <td data-en>differences up to ±2 s are absorbed gradually (one eighth of the difference every 5 s): a recording lasting hours stays close to real time without ever stepping</td>
+            </tr>
+            <tr>
+              <td data-it>Salto dell'orologio</td><td data-en>Clock step</td>
+              <td data-it>oltre ±2 s il salto è rilevato e riportato nel registro, ma non seguito: gli istanti proseguono in avanti allo stesso ritmo, quindi nessun ripiegamento può entrare in un file</td>
+              <td data-en>beyond ±2 s the step is detected and reported in the log, but not followed: timestamps keep running forward at the same rate, so no fold can ever enter a file</td>
+            </tr>
+            <tr>
+              <td data-it>Istante sul campione</td><td data-en>Sample instant</td>
+              <td data-it>marcato nell'istante in cui la risposta del controllore è disponibile, dentro il processo di acquisizione isolato e ad alta priorità</td>
+              <td data-en>stamped the instant the controller's answer is available, inside the isolated high-priority acquisition process</td>
+            </tr>
+            <tr>
+              <td data-it>Orologio del PLC</td><td data-en>PLC clock</td>
+              <td data-it>mai letto: nessuna chiamata di lettura RTC è presente. Solo la base temporale monotona del PC è usata</td>
+              <td data-en>never read: no RTC read call exists in the program. Only the PC's monotonic time base is used</td>
+            </tr>
+            <tr>
+              <td data-it>Nel file e a video</td><td data-en>In file and on screen</td>
+              <td data-it>i file conservano sempre tick UTC; schermo ed esportazioni CSV mostrano l'ora locale del PC. Un file condiviso fra fusi orari non sposta i propri dati</td>
+              <td data-en>files always store UTC ticks; screen and CSV exports show the PC's local time. Sharing a file across time zones never shifts its data</td>
+            </tr>
+            <tr>
+              <td data-it>Ora legale</td><td data-en>Daylight saving</td>
+              <td data-it>relabela solo la visualizzazione: la linea temporale UTC memorizzata non ha vuoti né duplicati</td>
+              <td data-en>only relabels the display: the stored UTC timeline has no gaps and no duplicates</td>
+            </tr>
+            <tr>
+              <td data-it>Salute dei canali</td><td data-en>Channel health</td>
+              <td data-it>giudicata su un contatore monotono: un canale è «non in lettura» dopo il maggiore fra 2 s e tre volte il proprio periodo senza un valore valido</td>
+              <td data-en>judged on a monotonic counter: a channel counts as "not reading" after the longer of 2 s or three of its own periods without a good value</td>
+            </tr>
+          </table>
+
+          <h3 data-it>Campionamento</h3><h3 data-en>Sampling</h3>
+          <table class="spec">
+            <tr>
+              <td data-it>Intervalli di polling</td><td data-en>Polling intervals</td>
+              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 (predefinito) · 100 · 200 · 500 · 1000 ms</td>
+            </tr>
+            <tr>
+              <td data-it>Verifica preventiva</td><td data-en>Pre-flight check</td>
+              <td data-it>misura il collegamento vero sulla lista canali reale (mediana e peggiore di sette cicli) prima di scrivere il primo byte; il suggerimento automatico considera anche 2000 e 5000 ms</td>
+              <td data-en>times the real link against the real channel list (median and worst of seven cycles) before a single byte is written; the automatic suggestion also considers 2000 and 5000 ms</td>
+            </tr>
+            <tr>
+              <td data-it>Passo garantito</td><td data-en>Guaranteed step</td>
+              <td data-it>solo il buffer nel PLC garantisce il passo, perché l'OB ciclico vive nel controllore. Il polling è a miglior sforzo: un ciclo in ritardo salta intervalli interi e li dichiara, invece di accodare letture di recupero</td>
+              <td data-en>only the in-PLC buffer guarantees the step, because the cyclic OB lives in the controller. Polled acquisition is best-effort: a late cycle skips whole intervals and says how many, instead of queueing catch-up reads</td>
+            </tr>
+            <tr>
+              <td data-it>Periodo misurato</td><td data-en>Measured period</td>
+              <td data-it>misurato per canale fra due risposte consecutive e mostrato distinto da quello impostato; gli slot saltati sono contati, segnalati dal vivo e ripresi come interruzioni della traccia</td>
+              <td data-en>measured per channel between two consecutive answers and shown distinct from the nominal one; skipped slots are counted, warned about live, and drawn as gaps in the trace</td>
+            </tr>
+            <tr>
+              <td data-it>Letture simboliche</td><td data-en>Symbolic reads</td>
+              <td data-it>con canali per indirizzo presenti non scendono sotto un ciclo ogni 5 ms, per non occupare il budget di comunicazione del controllore</td>
+              <td data-en>while by-address channels coexist they do not go below one cycle every 5 ms, so the controller's communication budget is not starved</td>
+            </tr>
+            <tr>
+              <td data-it>Buffer nel PLC</td><td data-en>In-PLC buffer</td>
+              <td data-it>la spaziatura dei campioni viene dal controllore (ciclo dell'OB letto dall'intestazione del blocco) e viene ancorata una sola volta all'orologio del PC: istante = ancoraggio + indice × periodo PLC</td>
+              <td data-en>the sample spacing comes from the controller (OB cycle read from the block header) and is anchored once to the PC clock: time = anchor + index × PLC period</td>
+            </tr>
+            <tr>
+              <td data-it>Profondità del buffer</td><td data-en>Buffer depth</td>
+              <td data-it>configurabile, predefinito 512 slot (512 ms a 1 kHz); minimo raccomandato 250 ms; la verifica preventiva richiede ≥ 4× il ciclo di polling (con minimo 50 ms); il DB non ottimizzato non può superare 64 KB</td>
+              <td data-en>configurable, default 512 slots (512 ms at 1 kHz); minimum recommended 250 ms; the pre-flight requires ≥ 4× the poll cycle (with a 50 ms floor); the non-optimised DB cannot exceed 64 KB</td>
+            </tr>
+            <tr>
+              <td data-it>Scarico del buffer</td><td data-en>Buffer download</td>
+              <td data-it>a blocchi, circa un quarto della profondità per passata; ogni slot porta un marcatore di commit verificato prima e dopo la lettura del dato: uno slot riscritto in volo viene saltato e contato, mai scritto male. I campioni non recuperati in tempo sono contati come perduti</td>
+              <td data-en>in bursts, about a quarter of the depth per pass; each slot carries a commit marker checked before and after the data read: a slot rewritten in flight is skipped and counted, never written wrong. Samples not fetched in time are counted as dropped</td>
+            </tr>
+          </table>
+
+          <h3 data-it>Valori e scalature</h3><h3 data-en>Values and scaling</h3>
+          <table class="spec">
+            <tr>
+              <td data-it>Precisione</td><td data-en>Precision</td>
+              <td data-it>float32 (IEEE 754, 4 byte) per tutti i canali; il formato DRG3 conserva in float64 i tipi più larghi di float32 (LReal, LInt, ULInt, LWord, Time, DInt, UDInt, DWord)</td>
+              <td data-en>float32 (IEEE 754, 4 bytes) for all channels; the DRG3 format keeps types wider than float32 (LReal, LInt, ULInt, LWord, Time, DInt, UDInt, DWord) at 64-bit precision</td>
+            </tr>
+            <tr>
+              <td data-it>Valore assente</td><td data-en>Missing value</td>
+              <td data-it>NaN significa «nessun valore»: un canale che non ha letto scrive NaN, mai 0 e mai l'ultimo valore. In analisi NaN diventa un buco nella traccia, mai un dato inventato</td>
+              <td data-en>NaN means "no value": a channel that did not read writes NaN, never 0 and never its last value. In analysis NaN becomes a gap in the trace, never invented data</td>
+            </tr>
+            <tr>
+              <td data-it>Scalature</td><td data-en>Scaling</td>
+              <td data-it><span class="mono">y = raw × ScaleFactor + ScaleOffset</span>, applicata a ogni campione in tempo reale, prima della registrazione e della visualizzazione. I valori nel file sono già scalati</td>
+              <td data-en><span class="mono">y = raw × scale + offset</span>, applied to every sample in real time, before recording and display. Values in the file are already scaled</td>
+            </tr>
+            <tr>
+              <td data-it>Tipi supportati</td><td data-en>Supported types</td>
+              <td class="mono">BOOL · Byte · USInt · SInt · Char · Word · UInt · Int · DWord · UDInt · DInt · Real · LReal · LInt · ULInt · LWord · Time</td>
+            </tr>
+            <tr>
+              <td data-it>Tipi non letti</td><td data-en>Types not read</td>
+              <td data-it>i tipi testo (STRING, WSTRING) e i tipi complessi (ARRAY, STRUCT, UDT) non sono letti come valori numerici</td>
+              <td data-en>text types (STRING, WSTRING) and complex types (ARRAY, STRUCT, UDT) are not read as numeric values</td>
+            </tr>
+          </table>
+
+          <h3 data-it>File</h3><h3 data-en>Files</h3>
+          <table class="spec">
+            <tr>
+              <td data-it>Formati</td><td data-en>Formats</td>
+              <td data-it>DRG2 (preesistente, colonne fisse, solo float32) e DRG3 (nuovo, colonne dinamiche, storage tipizzato F32/F64). Le nuove registrazioni usano DRG3; entrambi si aprono senza conversioni</td>
+              <td data-en>DRG2 (legacy, fixed columns, float32 only) and DRG3 (new, dynamic columns, typed F32/F64 storage). New recordings use DRG3; both open without conversion</td>
+            </tr>
+            <tr>
+              <td data-it>Canali durante la registrazione</td><td data-en>Channels during recording</td>
+              <td data-it>DRG3 consente l'aggiunta di canali: il nuovo canale è appeso al file attivo dal momento dell'aggiunta e le righe precedenti restano vuote per lui. La rimozione lascia vuoti, il ri-aggiungere lo stesso indirizzo riutilizza la colonna, la rinomina aggiunge un evento</td>
+              <td data-en>DRG3 allows channels to be added: the new channel is appended to the active file from the add time and earlier rows stay empty for it. Removal leaves blanks, re-adding the same address reuses the column, renaming appends a rename event</td>
+            </tr>
+            <tr>
+              <td data-it>Rotazione</td><td data-en>Rotation</td>
+              <td data-it>per dimensione (100 / 250 / 500 / 1024 MB, predefinito 500) o per durata (1 / 4 / 24 ore). Al raggiungimento del limite il file viene chiuso completamente e aperto un altro, senza interrompere la registrazione</td>
+              <td data-en>by size (100 / 250 / 500 / 1024 MB, default 500) or by duration (1 / 4 / 24 hours). When a file reaches the limit it is closed complete and a new one is opened, without interrupting the recording</td>
+            </tr>
+            <tr>
+              <td data-it>Compressione</td><td data-en>Compression</td>
+              <td data-it>opzionale (predefinito: disattivata); il file completato è compresso in GZIP (<span class="mono">.drug.gz</span>) e l'originale è rimosso solo dopo che la copia compressa esiste. I file compressi si aprono direttamente</td>
+              <td data-en>optional (default: off); the finished file is compressed to GZIP (<span class="mono">.drug.gz</span>) and the original is removed only after the compressed copy exists. Compressed files open directly</td>
+            </tr>
+            <tr>
+              <td data-it>Conservazione</td><td data-en>Retention</td>
+              <td data-it>elimina i file più vecchi quando lo spazio su disco scende sotto soglia (predefinito 5 GB di avviso, 2 GB critico); i file aperti, in scrittura, sono protetti</td>
+              <td data-en>deletes the oldest files when disk space drops below a threshold (default 5 GB warning, 2 GB critical); open files, being written, are protected</td>
+            </tr>
+            <tr>
+              <td data-it>Interruzione di corrente</td><td data-en>Power cut</td>
+              <td data-it>i dati sono scritti su disco circa una volta al secondo: un blackout costa al massimo ~1 s di dati e il file resta valido e apribile</td>
+              <td data-en>data is flushed to disk about once per second: a power cut costs at most ~1 s of data and the file stays valid and openable</td>
+            </tr>
+            <tr>
+              <td data-it>Esportazione CSV</td><td data-en>CSV export</td>
+              <td data-it>separatore configurabile (predefinito <span class="mono">;</span>, anche <span class="mono">,</span>, tabulazione, spazio), separatore decimale configurabile (predefinito automatico), formato UTF-8, orario locale del PC. Se il separatore coincide con il decimale viene forzato <span class="mono">;</span></td>
+              <td data-en>configurable separator (default <span class="mono">;</span>, also <span class="mono">,</span>, tab, space), configurable decimal separator (default automatic), UTF-8 format, PC local time. If the separator matches the decimal one it is forced to <span class="mono">;</span></td>
+            </tr>
+          </table>
+
+          <h3 data-it>Collegamento</h3><h3 data-en>Connection</h3>
+          <table class="spec">
+            <tr>
+              <td data-it>Porte</td><td data-en>Ports</td>
+              <td data-it>S7 Classic (PUT/GET) 102 (predefinita, configurabile) · S7comm-Plus 102 (fissa) · OPC UA 4840 (predefinita, configurabile) · servizio web 8085 (predefinita, configurabile)</td>
+              <td data-en>S7 Classic (PUT/GET) 102 (default, configurable) · S7comm-Plus 102 (fixed) · OPC UA 4840 (default, configurable) · web service 8085 (default, configurable)</td>
+            </tr>
+            <tr>
+              <td data-it>PUT/GET</td><td data-en>PUT/GET</td>
+              <td data-it>necessario per la lettura per indirizzo assoluto su S7-300/400 e S7-1200/1500; senza di esso la connessione riesce ma ogni lettura viene rifiutata. Per i blocchi ottimizzati serve anche l'accesso completo PG/PC &amp; HMI</td>
+              <td data-en>required for by-address reads on S7-300/400 and S7-1200/1500; without it the connection succeeds but every read is refused. Optimised blocks also need full PG/PC &amp; HMI access</td>
+            </tr>
+            <tr>
+              <td data-it>Comportamento</td><td data-en>Behaviour</td>
+              <td data-it>una sola lettura è mai in volo, nessun flood: il ritmo è determinato da ciò che il controllore può dare. In caso di fallimenti ripetuti il programma arretra (20 ms → 2 s) per non affamare la CPU</td>
+              <td data-en>only one read is ever in flight, no flooding: the rate is set by what the controller can give. On repeated failures the program backs off (20 ms → 2 s) so the CPU is not starved</td>
+            </tr>
+            <tr>
+              <td data-it>Disconnessione</td><td data-en>Disconnection</td>
+              <td data-it>i canali per indirizzo passano a NaN e il collegamento è ripristinato automaticamente con attese crescenti (1000 ms → 5 s); la registrazione prosegue</td>
+              <td data-en>by-address channels go to NaN and the link is restored automatically with growing back-off (1000 ms → 5 s); recording continues</td>
+            </tr>
+            <tr>
+              <td data-it>CPU in STOP</td><td data-en>CPU STOP</td>
+              <td data-it>i canali simbolici passano a NaN e il collegamento simbolico viene risolto di nuovo per nome al ritorno; la registrazione prosegue</td>
+              <td data-en>symbolic channels go to NaN and the symbolic link is re-resolved by name on return; recording continues</td>
+            </tr>
+            <tr>
+              <td data-it>Rilettura</td><td data-en>Re-read</td>
+              <td data-it>fuori da registrazione la CPU viene riletta come una nuova connessione (intestazione del buffer, elenco blocchi, tipi e nomi); durante la registrazione aggiorna solo l'elenco blocchi, senza riconnessione</td>
+              <td data-en>outside recording the CPU is read again like a new connection (buffer header, block list, member types, names); during recording only the block list is refreshed, with no reconnection</td>
+            </tr>
+          </table>
+
+          <h3 data-it>Limiti, memoria e registro</h3><h3 data-en>Limits, memory and log</h3>
+          <table class="spec">
+            <tr>
+              <td data-it>Canali per file</td><td data-en>Channels per file</td>
+              <td data-it>65535 colonne per file DRG3 (limite del formato). In acquisizione dal vivo il numero di canali è limitato dall'edizione della licenza; un singolo drag &amp; drop è limitato a 256 variabili</td>
+              <td data-en>65535 columns per DRG3 file (format limit). In live acquisition the channel count is limited by the licence edition; a single drag &amp; drop is limited to 256 variables</td>
+            </tr>
+            <tr>
+              <td data-it>Storia dal vivo</td><td data-en>Live history</td>
+              <td data-it>512 MB condivisi fra tutti i canali e al massimo 1 ora di profondità; superato il budget la profondità viene ridotta automaticamente e il programma lo dichiara nel registro</td>
+              <td data-en>512 MB shared across all channels and at most 1 hour of depth; when the budget is exceeded the depth is reduced automatically and the program says so in the log</td>
+            </tr>
+            <tr>
+              <td data-it>Registro a video</td><td data-en>On-screen log</td>
+              <td data-it>nella finestra Live, con 3000 righe e 200000 caratteri per sessione; il pulsante di salvataggio esporta tutte le righe del modello, comprese quelle ancora in coda</td>
+              <td data-en>in the Live window, with 3000 lines and 200000 characters per session; the save button exports all model lines, including those still queued</td>
+            </tr>
+            <tr>
+              <td data-it>Registro su file</td><td data-en>Log file</td>
+              <td data-it><span class="mono" style="overflow-wrap:anywhere">%LOCALAPPDATA%\PlcTraceViewer\logs\app.log</span>, rotazione 2 MB, 3 file conservati; registro dei crash in <span class="mono">crash.log</span> (max 2 MB, 3 rotazioni)</td>
+              <td data-en><span class="mono" style="overflow-wrap:anywhere">%LOCALAPPDATA%\PlcTraceViewer\logs\app.log</span>, 2 MB rotation, 3 files retained; crash log in <span class="mono">crash.log</span> (max 2 MB, 3 rotations)</td>
+            </tr>
+            <tr>
+              <td data-it>File aperti</td><td data-en>Open files</td>
+              <td data-it>l'edizione base apre una registrazione alla volta; l'edizione PRO ne apre più di una insieme</td>
+              <td data-en>the base edition opens one recording at a time; the PRO edition opens several at once</td>
+            </tr>
+          </table>
+
+          <div class="note" style="margin-top:18px">
+            <b data-it>I valori di questo quadro sono quelli del programma.</b><b data-en>The values in this table are the program's own.</b>
+            <span data-it> Rendimenti sostenibili in campo, durata effettiva di una registrazione e occupazione del
+              collegamento dipendono dall'installazione e vengono misurati sul posto prima della registrazione, non
+              dichiarati in anticipo.</span>
+            <span data-en> Sustainable rates on site, the actual duration of a recording and the load on the
+              connection depend on the installation and are measured in place before recording, not stated in
+              advance.</span>
+          </div>
         </article>
 
       </div>
