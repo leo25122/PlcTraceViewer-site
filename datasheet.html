@@ -80,7 +80,7 @@
       <div style="background:var(--surface);padding:16px 18px">
         <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Versione</div>
         <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-en>Version</div>
-        <b>2.1.1</b>
+        <b>2.1.2</b>
       </div>
       <div style="background:var(--surface);padding:16px 18px">
         <div class="mono" style="font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase" data-it>Piattaforma</div>
@@ -198,7 +198,7 @@
             </tr>
             <tr>
               <td data-it>Tipi supportati</td><td data-en>Supported types</td>
-              <td>BOOL, BYTE, CHAR, SINT, USINT, WORD, INT, UINT, DWORD, DINT, UDINT, REAL, LREAL, LINT, ULINT, LWORD, TIME, S5TIME, DATE, TIME_OF_DAY, DATE_AND_TIME, DTL</td>
+              <td>BOOL, BYTE, CHAR, WCHAR, STRING, WSTRING, SINT, USINT, WORD, INT, UINT, DWORD, DINT, UDINT, REAL, LREAL, LINT, ULINT, LWORD, TIME, S5TIME, DATE, TIME_OF_DAY, DATE_AND_TIME, DTL</td>
             </tr>
             <tr>
               <td data-it>Diagnostica</td><td data-en>Diagnostics</td>
@@ -744,12 +744,17 @@
             </tr>
             <tr>
               <td data-it>Tipi supportati</td><td data-en>Supported types</td>
-              <td class="mono">BOOL · Byte · USInt · SInt · Char · Word · UInt · Int · DWord · UDInt · DInt · Real · LReal · LInt · ULInt · LWord · Time · S5Time · Date · Time_Of_Day · Date_And_Time · DTL</td>
+              <td class="mono">BOOL · Byte · USInt · SInt · Char · WChar · String · WString · Word · UInt · Int · DWord · UDInt · DInt · Real · LReal · LInt · ULInt · LWord · Time · S5Time · Date · Time_Of_Day · Date_And_Time · DTL</td>
             </tr>
             <tr>
               <td data-it>Tipi non letti</td><td data-en>Types not read</td>
-              <td data-it>i tipi testo (STRING, WSTRING) e i tipi complessi (ARRAY, STRUCT, UDT) non sono letti come valori numerici</td>
-              <td data-en>text types (STRING, WSTRING) and complex types (ARRAY, STRUCT, UDT) are not read as numeric values</td>
+              <td data-it>STRING e WSTRING sono acquisiti come testo tipizzato, non come valori numerici. ARRAY, STRUCT e UDT non sono registrati come un unico numero: il browser espone i membri supportati come canali</td>
+              <td data-en>STRING and WSTRING are acquired as typed text, not numeric values. ARRAY, STRUCT and UDT are not recorded as one number; the browser exposes supported members as channels</td>
+            </tr>
+            <tr>
+              <td data-it>Acquisizione testuale</td><td data-en>Text acquisition</td>
+              <td data-it>CHAR, WCHAR, STRING e WSTRING sono acquisiti con lettura tipizzata. STRING/WSTRING usano la lettura ordinaria e non l'anello deterministico a 1 ms</td>
+              <td data-en>CHAR, WCHAR, STRING and WSTRING use typed reads. STRING/WSTRING use ordinary polling, not the deterministic 1 ms ring</td>
             </tr>
           </table>
 
@@ -757,13 +762,13 @@
           <table class="spec">
             <tr>
               <td data-it>Formati</td><td data-en>Formats</td>
-              <td data-it>DRG2 (preesistente, colonne fisse, solo float32) e DRG3 (nuovo, colonne dinamiche, storage tipizzato F32/F64). Le nuove registrazioni usano DRG3; entrambi si aprono senza conversioni</td>
-              <td data-en>DRG2 (legacy, fixed columns, float32 only) and DRG3 (new, dynamic columns, typed F32/F64 storage). New recordings use DRG3; both open without conversion</td>
+              <td data-it>DRG2 (preesistente, colonne fisse, float32) e DRG3 v3/v4/v5. DRG3 v5 conserva storage numerico tipizzato F32/F64 più seed ed eventi testuali; le registrazioni precedenti si aprono senza conversione</td>
+              <td data-en>DRG2 (legacy, fixed columns, float32) and DRG3 v3/v4/v5. DRG3 v5 stores typed F32/F64 numeric data plus text seeds and events; earlier recordings open without conversion</td>
             </tr>
             <tr>
               <td data-it>Canali durante la registrazione</td><td data-en>Channels during recording</td>
-              <td data-it>DRG3 consente l'aggiunta di canali: il nuovo canale è appeso al file attivo dal momento dell'aggiunta e le righe precedenti restano vuote per lui. La rimozione lascia vuoti, il ri-aggiungere lo stesso indirizzo riutilizza la colonna, la rinomina aggiunge un evento</td>
-              <td data-en>DRG3 allows channels to be added: the new channel is appended to the active file from the add time and earlier rows stay empty for it. Removal leaves blanks, re-adding the same address reuses the column, renaming appends a rename event</td>
+              <td data-it>DRG3 consente l'aggiunta di canali: il nuovo canale è appeso dal momento dell'aggiunta e le righe precedenti restano vuote. I cambi di STRING/WSTRING sono registrati come eventi testuali v5; rimozione, ri-aggiunta e rinomina conservano le regole DRG3</td>
+              <td data-en>DRG3 allows channels to be added from the time they are added; earlier rows stay blank. STRING/WSTRING changes are stored as v5 text events; removal, re-addition and renaming follow the DRG3 channel rules</td>
             </tr>
             <tr>
               <td data-it>Rotazione</td><td data-en>Rotation</td>
