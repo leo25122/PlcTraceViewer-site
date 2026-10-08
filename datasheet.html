@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PlcTraceViewer — scheda tecnica</title>
-<meta name="description" content="Scheda tecnica di PlcTraceViewer: connessioni supportate, nomi simbolici, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti dichiarati.">
+<title>PlcTraceViewer · scheda tecnica</title>
+<meta name="description" content="Scheda tecnica di PlcTraceViewer: connessioni supportate, nomi simbolici, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti.">
 <meta name="theme-color" content="#f6f5f2">
 <link rel="canonical" href="https://leo25122.github.io/PlcTraceViewer-site/datasheet.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PlcTraceViewer — datasheet">
-<meta property="og:description" content="Connections, acquisition architecture, sampling, recording, analysis, computed signals, licensing, requirements and declared limitations.">
+<meta property="og:title" content="PlcTraceViewer · datasheet">
+<meta property="og:description" content="Connections, acquisition architecture, sampling, recording, analysis, computed signals, licensing, requirements and limitations.">
 <meta property="og:image" content="https://leo25122.github.io/PlcTraceViewer-site/assets/img/app-workspace.webp">
 <meta property="og:url" content="https://leo25122.github.io/PlcTraceViewer-site/datasheet.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -21,9 +21,9 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20260918c">
 </head>
-<body data-title-it="PlcTraceViewer — scheda tecnica" data-title-en="PlcTraceViewer — datasheet"
-      data-desc-it="Scheda tecnica di PlcTraceViewer: connessioni, nomi simbolici, architettura di acquisizione, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti dichiarati."
-      data-desc-en="PlcTraceViewer datasheet: connections, symbolic names, acquisition architecture, sampling, recording, analysis, computed signals, web dashboard, licensing, requirements and declared limitations.">
+<body data-title-it="PlcTraceViewer · scheda tecnica" data-title-en="PlcTraceViewer · datasheet"
+      data-desc-it="Scheda tecnica di PlcTraceViewer: connessioni, nomi simbolici, architettura di acquisizione, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti."
+      data-desc-en="PlcTraceViewer datasheet: connections, symbolic names, acquisition architecture, sampling, recording, analysis, computed signals, web dashboard, licensing, requirements and limitations.">
 
 <div class="progress" aria-hidden="true"></div>
 
@@ -62,18 +62,16 @@
   <div class="wrap">
     <p class="kicker"><span data-it>Scheda tecnica</span><span data-en>Datasheet</span></p>
     <h1 style="font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:26ch" data-it>
-      PlcTraceViewer — acquisizione, registrazione e analisi di segnali da PLC S7
+      PlcTraceViewer · acquisizione, registrazione e analisi di segnali da PLC S7
     </h1>
     <h1 style="font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:26ch" data-en>
-      PlcTraceViewer — S7 PLC signal acquisition, recording and analysis
+      PlcTraceViewer · signal acquisition, recording and analysis for S7 PLCs
     </h1>
     <p class="intro" style="margin-top:16px" data-it>
-      Applicazione Windows per collegarsi a un controllore S7, campionarne i segnali in continuo,
-      registrarli su file e analizzarli — sia a registrazione conclusa sia mentre i dati stanno arrivando.
+      Applicazione Windows che si collega a un controllore S7, ne campiona i segnali in modo continuo, li registra su file e li analizza, sia a registrazione conclusa sia durante l'acquisizione.
     </p>
     <p class="intro" style="margin-top:16px" data-en>
-      A Windows application that connects to an S7 controller, samples its signals continuously,
-      records them to file and analyses them — both after the recording and while the data is arriving.
+      A Windows application that connects to an S7 controller, samples its signals continuously, records them to file and analyses them, both after the recording and during acquisition.
     </p>
 
     <div class="g4" style="margin-top:30px;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden">
@@ -119,7 +117,7 @@
           <li><a href="#dashboard" data-it>Dashboard web</a><a href="#dashboard" data-en>Web dashboard</a></li>
           <li><a href="#licenza" data-it>Licenza ed edizioni</a><a href="#licenza" data-en>Licensing and editions</a></li>
           <li><a href="#requisiti" data-it>Requisiti e installazione</a><a href="#requisiti" data-en>Requirements and installation</a></li>
-          <li><a href="#limiti" data-it>Limiti dichiarati</a><a href="#limiti" data-en>Declared limitations</a></li>
+          <li><a href="#limiti" data-it>Limiti</a><a href="#limiti" data-en>Limitations</a></li>
           <li><a href="#dati-tecnici" data-it>Dati tecnici</a><a href="#dati-tecnici" data-en>Technical data</a></li>
         </ol>
       </aside>
@@ -130,30 +128,23 @@
         <article class="doc-sec" id="panoramica">
           <h2 data-it>1 · Panoramica</h2><h2 data-en>1 · Overview</h2>
           <p data-it>
-            PlcTraceViewer si collega direttamente a un controllore S7 sulla rete di impianto e ne
-            legge i segnali in modo ciclico. I campioni sono mostrati in tempo reale e, su comando,
-            scritti su file. Il file prodotto è pensato per essere analizzato a distanza di tempo: ogni
-            campione porta l'istante reale della lettura e i valori non disponibili sono conservati come
-            tali, distinguibili da una misura valida.
+            PlcTraceViewer si collega a un controllore S7 sulla rete di impianto e ne legge i segnali in modo ciclico. I campioni vengono mostrati in tempo reale e, su comando, scritti su file. Il file è pensato per essere analizzato anche molto tempo dopo: ogni campione riporta l'istante reale della lettura e i valori non disponibili restano tali, distinguibili da una misura valida.
           </p>
           <p data-en>
-            PlcTraceViewer connects directly to an S7 controller on the plant network and reads its
-            signals cyclically. Samples are shown in real time and, on command, written to file. The
-            resulting file is meant to be analysed long afterwards: every sample carries the real instant
-            of the read, and unavailable values are kept as such, distinguishable from a valid measurement.
+            PlcTraceViewer connects to an S7 controller on the plant network and reads its signals cyclically. Samples are shown in real time and, on command, written to file. The file is meant to be analysed even long afterwards: each sample carries the real time of the read and unavailable values stay unavailable, distinguishable from a valid measurement.
           </p>
-          <h3 data-it>Casi d'uso previsti</h3><h3 data-en>Intended use</h3>
+          <h3 data-it>Utilizzi previsti</h3><h3 data-en>Intended use</h3>
           <ul data-it>
-            <li><b>Messa in servizio</b> — verifica di tempi ciclo, sequenze, risposte di attuatori.</li>
-            <li><b>Ricerca guasti intermittenti</b> — registrazioni lunghe non presidiate, da rileggere dopo l'evento.</li>
-            <li><b>Collaudo e caratterizzazione</b> — confronto fra segnali, misure di ritardo, analisi in frequenza.</li>
-            <li><b>Documentazione</b> — esportazione dei tratti significativi verso altri strumenti.</li>
+            <li><b>Messa in servizio</b>: verifica di tempi ciclo, sequenze e risposte degli attuatori.</li>
+            <li><b>Ricerca di guasti intermittenti</b>: registrazioni lunghe non presidiate, da analizzare dopo l'evento.</li>
+            <li><b>Collaudo e caratterizzazione</b>: confronto tra segnali, misura di ritardi, analisi in frequenza.</li>
+            <li><b>Documentazione</b>: esportazione dei tratti significativi verso altri strumenti.</li>
           </ul>
           <ul data-en>
-            <li><b>Commissioning</b> — checking cycle times, sequences, actuator responses.</li>
-            <li><b>Intermittent fault-finding</b> — long unattended recordings, to be read back after the event.</li>
-            <li><b>Testing and characterisation</b> — comparing signals, measuring delays, frequency analysis.</li>
-            <li><b>Documentation</b> — exporting the significant spans to other tools.</li>
+            <li><b>Commissioning</b>: checking cycle times, sequences and actuator responses.</li>
+            <li><b>Finding intermittent faults</b>: long unattended recordings, analysed after the event.</li>
+            <li><b>Testing and characterisation</b>: comparing signals, measuring delays, frequency analysis.</li>
+            <li><b>Documentation</b>: exporting the significant spans to other tools.</li>
           </ul>
         </article>
 
@@ -161,23 +152,21 @@
         <article class="doc-sec" id="connessioni">
           <h2 data-it>2 · Connessioni supportate</h2><h2 data-en>2 · Supported connections</h2>
           <p data-it>
-            Tre vie di accesso, selezionabili e mantenute distinte. La scelta determina quali blocchi sono
-            leggibili e in quale forma.
+            Tre tipi di collegamento, selezionabili e gestiti separatamente. La scelta determina quali blocchi si possono leggere e in che modo.
           </p>
           <p data-en>
-            Three access routes, selectable and kept distinct. The choice determines which blocks are
-            readable and in what form.
+            Three connection types, selectable and handled separately. The choice determines which blocks can be read and how.
           </p>
           <div class="tbl" style="margin-bottom:20px">
             <table>
               <thead>
-                <tr data-it><th>Via</th><th>CPU</th><th>Indirizzamento</th><th>Blocchi ottimizzati</th><th>Prerequisiti sulla CPU</th></tr>
-                <tr data-en><th>Route</th><th>CPU</th><th>Addressing</th><th>Optimised blocks</th><th>Prerequisites on the CPU</th></tr>
+                <tr data-it><th>Collegamento</th><th>CPU</th><th>Indirizzamento</th><th>Blocchi ottimizzati</th><th>Requisiti sulla CPU</th></tr>
+                <tr data-en><th>Connection</th><th>CPU</th><th>Addressing</th><th>Optimised blocks</th><th>Requirements on the CPU</th></tr>
               </thead>
               <tbody>
                 <tr data-it><td>PUT/GET</td><td>S7-300 / 400 / 1200 / 1500</td><td>assoluto</td><td class="no">non leggibili</td><td>accesso PUT/GET consentito</td></tr>
                 <tr data-en><td>PUT/GET</td><td>S7-300 / 400 / 1200 / 1500</td><td>absolute</td><td class="no">not readable</td><td>PUT/GET access allowed</td></tr>
-                <tr data-it><td>OPC UA</td><td>S7-1200 / 1500</td><td>simbolico</td><td class="yes">leggibili</td><td>server OPC UA attivo e licenziato</td></tr>
+                <tr data-it><td>OPC UA</td><td>S7-1200 / 1500</td><td>simbolico</td><td class="yes">leggibili</td><td>server OPC UA attivo e con licenza</td></tr>
                 <tr data-en><td>OPC UA</td><td>S7-1200 / 1500</td><td>symbolic</td><td class="yes">readable</td><td>OPC UA server enabled and licensed</td></tr>
                 <tr data-it><td>S7comm-Plus</td><td>S7-1500 ≥ V2.9<br>S7-1200 ≥ V4.3</td><td>simbolico</td><td class="yes">leggibili</td><td>comunicazione PG/PC e HMI sicura abilitata</td></tr>
                 <tr data-en><td>S7comm-Plus</td><td>S7-1500 ≥ V2.9<br>S7-1200 ≥ V4.3</td><td>symbolic</td><td class="yes">readable</td><td>secure PG/PC and HMI communication enabled</td></tr>
@@ -202,18 +191,14 @@
             </tr>
             <tr>
               <td data-it>Diagnostica</td><td data-en>Diagnostics</td>
-              <td data-it>l'errore identifica il livello che ha rifiutato (TCP, ISO/COTP, setup S7); test di raggiungibilità e test approfondito di connessione separati</td>
-              <td data-en>the error identifies the layer that refused (TCP, ISO/COTP, S7 setup); separate reachability test and deep connection test</td>
+              <td data-it>il messaggio di errore indica il livello che ha rifiutato la connessione (TCP, ISO/COTP, setup S7); test di raggiungibilità e test approfondito separati</td>
+              <td data-en>the error message names the layer that refused the connection (TCP, ISO/COTP, S7 setup); separate reachability test and deep connection test</td>
             </tr>
           </table>
           <div class="note" style="margin-top:18px">
             <b data-it>Blocchi ad accesso ottimizzato.</b><b data-en>Optimised-access blocks.</b>
-            <span data-it> Non espongono indirizzi assoluti e non sono quindi raggiungibili via PUT/GET. Il
-              programma li riconosce e li segnala esplicitamente, anziché restituire valori nulli. Per
-              leggerli è necessaria una delle due vie simboliche.</span>
-            <span data-en> They expose no absolute addresses and are therefore not reachable over PUT/GET.
-              The program recognises them and says so explicitly, rather than returning null values.
-              Reading them requires one of the two symbolic routes.</span>
+            <span data-it> Non hanno indirizzi assoluti e quindi non si possono leggere con PUT/GET. Il programma li riconosce e lo segnala, invece di restituire valori nulli. Per leggerli serve OPC UA o S7comm-Plus.</span>
+            <span data-en> They have no absolute addresses and therefore cannot be read with PUT/GET. The program detects them and reports it instead of returning null values. Reading them requires OPC UA or S7comm-Plus.</span>
           </div>
         </article>
 
@@ -221,13 +206,10 @@
         <article class="doc-sec" id="simbolici">
           <h2 data-it>3 · Nomi simbolici e struttura dei dati</h2><h2 data-en>3 · Symbolic names and data structure</h2>
           <p data-it>
-            I canali possono essere nominati a partire da più sorgenti, usate singolarmente o in
-            combinazione. Quando una sorgente è incompleta il programma lo dichiara, invece di dedurre
-            strutture non verificate.
+            I nomi dei canali si possono ottenere da più sorgenti, usate da sole o insieme. Quando una sorgente è incompleta il programma lo segnala, invece di ricostruire strutture non verificate.
           </p>
           <p data-en>
-            Channels can be named from several sources, used alone or together. When a source is
-            incomplete the program says so, instead of inferring unverified structures.
+            Channel names can come from several sources, used alone or together. When a source is incomplete the program reports it instead of reconstructing structures that cannot be verified.
           </p>
           <div class="tbl">
             <table>
@@ -236,26 +218,22 @@
                 <tr data-en><th>Source</th><th>Formats</th><th>What it provides</th></tr>
               </thead>
               <tbody>
-                <tr data-it><td>Progetto TIA</td><td class="mono">.ap16 … .ap21</td><td>nome e numero dei blocchi, struttura e offset dichiarati dal progetto</td></tr>
-                <tr data-en><td>TIA project</td><td class="mono">.ap16 … .ap21</td><td>block names and numbers, structure and offsets as declared by the project</td></tr>
-                <tr data-it><td>Sorgenti di blocco</td><td class="mono">.db .scl .udt</td><td>variabili dei DB, con struct annidate, UDT e array multidimensionali</td></tr>
-                <tr data-en><td>Block sources</td><td class="mono">.db .scl .udt</td><td>DB variables, with nested structs, UDTs and multi-dimensional arrays</td></tr>
-                <tr data-it><td>Tabelle tag</td><td class="mono">.xlsx .csv</td><td>nome, tipo e commento per merker, ingressi e uscite</td></tr>
-                <tr data-en><td>Tag tables</td><td class="mono">.xlsx .csv</td><td>name, type and comment for memory, inputs and outputs</td></tr>
-                <tr data-it><td>Direttamente dalla CPU</td><td>—</td><td>symbol table su S7-300/400; elenco e struttura dei blocchi dati su S7-1200/1500 via OPC UA o S7comm-Plus, senza il progetto</td></tr>
-                <tr data-en><td>Straight from the CPU</td><td>—</td><td>symbol table on S7-300/400; data-block list and structure on S7-1200/1500 over OPC UA or S7comm-Plus, without the project</td></tr>
+                <tr data-it><td>Progetto TIA</td><td class="mono">.ap16 … .ap21</td><td>nome e numero dei blocchi, struttura e offset dichiarati nel progetto</td></tr>
+                <tr data-en><td>TIA project</td><td class="mono">.ap16 … .ap21</td><td>block names and numbers, structure and offsets declared in the project</td></tr>
+                <tr data-it><td>Sorgenti dei blocchi</td><td class="mono">.db .scl .udt</td><td>variabili dei DB, con strutture annidate, UDT e array a più dimensioni</td></tr>
+                <tr data-en><td>Block sources</td><td class="mono">.db .scl .udt</td><td>DB variables, with nested structures, UDTs and multi-dimensional arrays</td></tr>
+                <tr data-it><td>Tabelle dei tag</td><td class="mono">.xlsx .csv</td><td>nome, tipo e commento di merker, ingressi e uscite</td></tr>
+                <tr data-en><td>Tag tables</td><td class="mono">.xlsx .csv</td><td>name, type and comment of memory bits, inputs and outputs</td></tr>
+                <tr data-it><td>Dalla CPU</td><td>—</td><td>tabella dei simboli su S7-300/400; elenco e struttura dei blocchi dati su S7-1200/1500 tramite OPC UA o S7comm-Plus, senza il progetto</td></tr>
+                <tr data-en><td>From the CPU</td><td>—</td><td>symbol table on S7-300/400; data-block list and structure on S7-1200/1500 via OPC UA or S7comm-Plus, without the project</td></tr>
               </tbody>
             </table>
           </div>
           <p style="margin-top:16px" data-it>
-            Gli offset assoluti dei blocchi non ottimizzati sono determinati secondo le regole di
-            allineamento S7. Dove una dichiarazione di tipo non è disponibile, i membri interessati non
-            vengono indirizzati: un offset non verificabile produrrebbe letture plausibili ma sbagliate.
+            Gli offset assoluti dei blocchi non ottimizzati vengono calcolati secondo le regole di allineamento S7. Se la dichiarazione di un tipo non è disponibile, i membri interessati non vengono indirizzati, perché un offset non verificabile darebbe letture plausibili ma sbagliate.
           </p>
           <p style="margin-top:16px" data-en>
-            Absolute offsets of non-optimised blocks are derived from the S7 alignment rules. Where a type
-            declaration is not available, the members concerned are not addressed at all: an offset that
-            cannot be verified would produce plausible but wrong readings.
+            Absolute offsets of non-optimised blocks are calculated according to the S7 alignment rules. If a type declaration is not available, the members concerned are not addressed, because an offset that cannot be verified would give plausible but wrong readings.
           </p>
         </article>
 
@@ -263,45 +241,37 @@
         <article class="doc-sec" id="acquisizione">
           <h2 data-it>4 · Architettura di acquisizione</h2><h2 data-en>4 · Acquisition architecture</h2>
           <p data-it>
-            L'acquisizione non condivide il processo con l'interfaccia. Legge il controllore un
-            <b>processo dedicato</b>, avviato dall'applicazione e sorvegliato da essa, che non disegna
-            nulla: possiede le connessioni, il proprio orologio e la propria priorità.
+            L'acquisizione non condivide il processo con l'interfaccia. Il controllore viene letto da un <b>processo dedicato</b>, avviato e controllato dall'applicazione, che non disegna nulla e gestisce le connessioni con un proprio orologio e una propria priorità.
           </p>
           <p data-en>
-            Acquisition does not share the process with the user interface. The controller is read by a
-            <b>dedicated process</b>, started and supervised by the application, which draws nothing: it
-            owns the connections, its own clock and its own priority.
+            Acquisition does not share the process with the user interface. The controller is read by a <b>dedicated process</b>, started and supervised by the application, which draws nothing and handles the connections with its own clock and its own priority.
           </p>
           <table class="spec">
             <tr>
               <td data-it>Marcatura temporale</td><td data-en>Time stamping</td>
-              <td data-it>eseguita nel processo di acquisizione, nell'istante in cui la risposta del controllore è disponibile; il ritardo con cui la finestra riceve o disegna il campione non modifica il tempo registrato</td>
-              <td data-en>performed in the acquisition process, at the instant the controller's answer is available; any delay in the window receiving or drawing the sample does not change the recorded time</td>
+              <td data-it>eseguita nel processo di acquisizione, nell'istante in cui arriva la risposta del controllore; un ritardo della finestra nel ricevere o disegnare il campione non modifica il tempo registrato</td>
+              <td data-en>done in the acquisition process, at the moment the controller's answer arrives; a delay of the window in receiving or drawing the sample does not change the recorded time</td>
             </tr>
             <tr>
               <td data-it>Isolamento</td><td data-en>Isolation</td>
-              <td data-it>l'interfaccia (scorrimento elenchi, grafici, esportazioni, gestione della memoria) non può ritardare una lettura né spostare un istante di campionamento</td>
-              <td data-en>the user interface (list scrolling, charts, exports, memory management) cannot delay a read nor move a sampling instant</td>
+              <td data-it>l'interfaccia (scorrimento degli elenchi, grafici, esportazioni, gestione della memoria) non può ritardare una lettura né spostare un istante di campionamento</td>
+              <td data-en>the user interface (scrolling lists, charts, exports, memory management) cannot delay a read or move a sampling instant</td>
             </tr>
             <tr>
               <td data-it>Continuità</td><td data-en>Continuity</td>
-              <td data-it>se il processo di acquisizione non può essere avviato o termina, la lettura prosegue dentro l'applicazione e l'evento è riportato nel registro</td>
-              <td data-en>if the acquisition process cannot start or terminates, reading continues inside the application and the event is written to the log</td>
+              <td data-it>se il processo di acquisizione non si avvia o si chiude, la lettura continua all'interno dell'applicazione e l'evento viene scritto nel registro</td>
+              <td data-en>if the acquisition process does not start or closes, reading continues inside the application and the event is written to the log</td>
             </tr>
             <tr>
-              <td data-it>Verifica in fabbrica</td><td data-en>Bench verification</td>
-              <td data-it>100 canali a 1 ms contro controllori simulati, con l'interfaccia volutamente sotto carico: periodo tipico 0,999 ms, 99° percentile 1,06 ms, massimo 1,30 ms</td>
-              <td data-en>100 channels at 1 ms against simulated controllers, with the interface deliberately under load: typical period 0.999 ms, 99th percentile 1.06 ms, maximum 1.30 ms</td>
+              <td data-it>Prova di laboratorio</td><td data-en>Lab test</td>
+              <td data-it>100 canali a 1 ms su controllori simulati, con l'interfaccia volutamente sotto carico: periodo tipico 0,999 ms, 99° percentile 1,06 ms, massimo 1,30 ms</td>
+              <td data-en>100 channels at 1 ms on simulated controllers, with the user interface deliberately under load: typical period 0.999 ms, 99th percentile 1.06 ms, maximum 1.30 ms</td>
             </tr>
           </table>
           <div class="note" style="margin-top:18px">
-            <b data-it>Cosa significa e cosa non significa.</b><b data-en>What this does and does not mean.</b>
-            <span data-it> I valori sopra descrivono il comportamento del <em>programma</em>, misurato in
-              laboratorio. Sull'impianto il tempo di risposta del controllore resta il fattore determinante
-              e non è sotto il controllo dell'applicazione: vedere §5.</span>
-            <span data-en> The figures above describe the behaviour of the <em>program</em>, measured on the
-              bench. On a plant the controller's response time remains the determining factor and is not
-              under the application's control: see §5.</span>
+            <b data-it>Come leggere questi valori.</b><b data-en>How to read these figures.</b>
+            <span data-it> Descrivono il comportamento del <em>programma</em>, misurato in laboratorio. In impianto il fattore determinante resta il tempo di risposta del controllore, che non dipende dall'applicazione (vedi §5).</span>
+            <span data-en> They describe the behaviour of the <em>program</em>, measured in the lab. On a plant the deciding factor remains the controller's response time, which does not depend on the application (see §5).</span>
           </div>
         </article>
 
@@ -311,39 +281,34 @@
           <table class="spec">
             <tr>
               <td data-it>Intervalli selezionabili</td><td data-en>Selectable intervals</td>
-              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 · 100 · 200 · 500 · 1000 ms <span data-it>(2000 e 5000 ms quando li propone la verifica preventiva)</span><span data-en>(2000 and 5000 ms when the pre-flight check proposes them)</span></td>
+              <td class="mono">1 · 2 · 5 · 10 · 20 · 50 · 100 · 200 · 500 · 1000 ms <span data-it>(2000 e 5000 ms quando li propone la verifica preliminare)</span><span data-en>(2000 and 5000 ms when suggested by the preliminary check)</span></td>
             </tr>
             <tr>
               <td data-it>Intervallo effettivo</td><td data-en>Effective interval</td>
-              <td data-it>misurato e mostrato per ogni canale, distinto da quello impostato</td>
-              <td data-en>measured and shown for every channel, kept distinct from the one set</td>
+              <td data-it>misurato e mostrato per ogni canale, separato da quello impostato</td>
+              <td data-en>measured and shown for each channel, separately from the one set</td>
             </tr>
             <tr>
-              <td data-it>Verifica preventiva</td><td data-en>Pre-flight check</td>
-              <td data-it>eseguita prima dell'apertura del primo file di registrazione</td>
-              <td data-en>carried out before the first recording file is opened</td>
+              <td data-it>Verifica preliminare</td><td data-en>Preliminary check</td>
+              <td data-it>eseguita prima di aprire il primo file di registrazione</td>
+              <td data-en>done before the first recording file is opened</td>
             </tr>
             <tr>
               <td data-it>Carico sul controllore</td><td data-en>Load on the controller</td>
-              <td data-it>numero di richieste contemporanee limitato per costruzione; percentuale di occupazione del collegamento riportata all'utente</td>
-              <td data-en>the number of simultaneous requests is limited by design; the share of the connection in use is reported to the user</td>
+              <td data-it>numero di richieste contemporanee limitato; la percentuale di utilizzo del collegamento viene mostrata</td>
+              <td data-en>the number of simultaneous requests is limited; the percentage of the connection in use is shown</td>
             </tr>
             <tr>
               <td data-it>Campionamento nel PLC</td><td data-en>Sampling inside the PLC</td>
-              <td data-it>opzionale, tramite blocchi generati dal programma e importati in TIA; il PLC campiona al ritmo del proprio OB e i dati sono prelevati in blocco</td>
-              <td data-en>optional, through blocks generated by the program and imported into TIA; the PLC samples at the pace of its own OB and the data is collected in batches</td>
+              <td data-it>facoltativo, con blocchi generati dal programma e importati in TIA; il PLC campiona al ritmo del proprio OB e i dati vengono letti a blocchi</td>
+              <td data-en>optional, with blocks generated by the program and imported into TIA; the PLC samples at the rate of its own OB and the data is read in batches</td>
             </tr>
           </table>
           <div class="note" style="margin-top:18px">
-            <b data-it>L'intervallo sostenibile non è una specifica del prodotto.</b>
-            <b data-en>The sustainable interval is not a product specification.</b>
-            <span data-it> Dipende dal modello di CPU, dal numero e dal tipo di canali selezionati e dal
-              carico della rete. Il programma lo misura sull'impianto e, quando l'intervallo richiesto non
-              è sostenibile, lo segnala prima dell'avvio della registrazione proponendo il valore
-              compatibile.</span>
-            <span data-en> It depends on the CPU model, on the number and type of channels selected and on
-              network load. The program measures it on site and, when the requested interval cannot be
-              sustained, says so before the recording starts and offers the compatible value.</span>
+            <b data-it>L'intervallo raggiungibile non è un dato di targa del prodotto.</b>
+            <b data-en>The interval that can be reached is not a product rating.</b>
+            <span data-it> Dipende dal modello di CPU, dal numero e dal tipo di canali e dal carico della rete. Il programma lo misura in impianto e, se l'intervallo richiesto non è raggiungibile, lo segnala prima di avviare la registrazione e propone un valore compatibile.</span>
+            <span data-en> It depends on the CPU model, the number and type of channels and the network load. The program measures it on site and, if the requested interval cannot be reached, reports it before the recording starts and suggests a compatible value.</span>
           </div>
 
           <figure class="shot" style="margin:18px 0" data-zoom="assets/img/app-live-values.webp">
@@ -351,23 +316,17 @@
                  alt="Channel table showing, for every channel, the measured period and rate next to the live value.">
           </figure>
           <figcaption style="margin:-8px 0 22px">
-            <span data-it>L'intervallo effettivo è mostrato per ogni canale (colonne PERIOD e RATE), distinto da quello impostato.</span>
-            <span data-en>The effective interval is shown for every channel (PERIOD and RATE columns), kept distinct from the one set.</span>
+            <span data-it>L'intervallo effettivo è mostrato per ogni canale (colonne PERIOD e RATE), separato da quello impostato.</span>
+            <span data-en>The effective interval is shown for each channel (PERIOD and RATE columns), separately from the one set.</span>
           </figcaption>
 
-          <h3 data-it>Buffer di campionamento nel PLC (opzionale)</h3>
-          <h3 data-en>In-PLC sampling buffer (optional)</h3>
+          <h3 data-it>Buffer di campionamento nel PLC (facoltativo)</h3>
+          <h3 data-en>Sampling buffer in the PLC (optional)</h3>
           <p data-it>
-            Per i casi in cui la frequenza richiesta non è ottenibile sulla rete, il programma genera i
-            blocchi da importare nel progetto TIA. Il buffer accetta segnali di tipo misto (BOOL, BYTE,
-            INT, DINT, WORD, DWORD, REAL, LREAL); numero di segnali per tipo e profondità sono
-            configurabili, e l'occupazione di memoria risultante nel PLC è mostrata prima della generazione.
+            Quando la frequenza necessaria non si ottiene in rete, il programma genera i blocchi da importare nel progetto TIA. Il buffer accetta segnali di tipi diversi (BOOL, BYTE, INT, DINT, WORD, DWORD, REAL, LREAL); numero di segnali per tipo e profondità sono configurabili e la memoria occupata nel PLC viene indicata prima della generazione.
           </p>
           <p data-en>
-            For cases where the required rate cannot be achieved over the network, the program generates
-            the blocks to import into the TIA project. The buffer accepts mixed types (BOOL, BYTE, INT,
-            DINT, WORD, DWORD, REAL, LREAL); the number of signals per type and the depth are configurable,
-            and the resulting memory use in the PLC is shown before generating.
+            When the rate you need cannot be reached over the network, the program generates the blocks to import into the TIA project. The buffer accepts signals of different types (BOOL, BYTE, INT, DINT, WORD, DWORD, REAL, LREAL); the number of signals per type and the depth are configurable, and the memory used in the PLC is shown before generating.
           </p>
           <figure class="shot" style="max-width:520px;margin-top:8px" data-zoom="assets/img/dialog-ring.webp">
             <img src="assets/img/dialog-ring.webp" width="624" height="743" loading="lazy" decoding="async"
@@ -386,36 +345,36 @@
               <td data-it>automatica sui file chiusi, estensione <span class="mono">.drug.gz</span></td>
               <td data-en>automatic on closed files, extension <span class="mono">.drug.gz</span></td></tr>
             <tr><td data-it>Organizzazione</td><td data-en>Organisation</td>
-              <td data-it>una cartella per giorno; suddivisione dei file per dimensione configurabile</td>
-              <td data-en>one folder per day; file splitting by size, configurable</td></tr>
+              <td data-it>una cartella per giorno; suddivisione dei file per dimensione, configurabile</td>
+              <td data-en>one folder per day; files split by size, configurable</td></tr>
             <tr><td data-it>Marcatura temporale</td><td data-en>Time stamping</td>
               <td data-it>per campione, riferita all'istante della risposta del controllore</td>
-              <td data-en>per sample, referred to the instant of the controller's answer</td></tr>
+              <td data-en>per sample, referring to the time of the controller's answer</td></tr>
             <tr><td data-it>Valori non disponibili</td><td data-en>Unavailable values</td>
-              <td data-it>registrati come assenza di valore, non come zero</td>
-              <td data-en>recorded as absence of value, not as zero</td></tr>
+              <td data-it>registrati come valore mancante, non come zero</td>
+              <td data-en>recorded as a missing value, not as zero</td></tr>
             <tr><td data-it>Sorveglianza</td><td data-en>Supervision</td>
-              <td data-it>controllo continuo dell'avanzamento della scrittura, con segnalazione all'utente</td>
-              <td data-en>continuous check that writing is progressing, reported to the user</td></tr>
-            <tr><td data-it>Gestione spazio</td><td data-en>Space management</td>
-              <td data-it>conservazione a tempo o a dimensione; i file più vecchi sono compressi prima di essere rimossi; la registrazione in corso non è mai coinvolta</td>
-              <td data-en>retention by age or by size; the oldest files are compressed before removal; the recording in progress is never involved</td></tr>
+              <td data-it>controllo continuo dell'avanzamento della scrittura, con avviso all'utente</td>
+              <td data-en>continuous check that writing is progressing, with a warning to the user</td></tr>
+            <tr><td data-it>Gestione dello spazio</td><td data-en>Space management</td>
+              <td data-it>conservazione per durata o per spazio; i file più vecchi vengono compressi prima di essere eliminati; la registrazione in corso non viene mai toccata</td>
+              <td data-en>retention by age or by space; the oldest files are compressed before being deleted; the recording in progress is never touched</td></tr>
             <tr><td data-it>Formati letti</td><td data-en>Formats read</td>
               <td class="mono">.drug · .drug.gz · .csv · .txt</td></tr>
           </table>
 
           <h3 data-it>Garanzie sul dato registrato</h3><h3 data-en>Guarantees on recorded data</h3>
           <ul data-it>
-            <li><b>Tempo reale di lettura</b> — ogni campione è marcato con l'istante in cui il valore è stato effettivamente ottenuto, non con quello pianificato.</li>
-            <li><b>Nessuna sostituzione</b> — un valore non letto non viene rimpiazzato da un valore di comodo, in nessun punto della catena fino al disco.</li>
-            <li><b>Verifica preventiva</b> — la sostenibilità dell'intervallo è accertata prima dell'apertura del primo file.</li>
-            <li><b>Continuità sorvegliata</b> — l'interruzione della scrittura viene rilevata e segnalata durante la registrazione.</li>
+            <li><b>Tempo reale di lettura</b>: ogni campione riporta l'istante in cui il valore è stato effettivamente letto, non quello previsto.</li>
+            <li><b>Nessuna sostituzione</b>: un valore non letto non viene mai sostituito con un altro valore, in nessun punto fino alla scrittura su disco.</li>
+            <li><b>Verifica preliminare</b>: prima di aprire il primo file viene verificato che l'intervallo sia raggiungibile.</li>
+            <li><b>Scrittura controllata</b>: un'interruzione della scrittura viene rilevata e segnalata durante la registrazione.</li>
           </ul>
           <ul data-en>
-            <li><b>Real read time</b> — every sample is stamped with the instant the value was actually obtained, not the planned one.</li>
-            <li><b>No substitution</b> — a value that was not read is never replaced by a convenient one, at any point of the chain down to the disk.</li>
-            <li><b>Pre-flight check</b> — the interval's sustainability is established before the first file is opened.</li>
-            <li><b>Supervised continuity</b> — an interruption of writing is detected and reported during the recording.</li>
+            <li><b>Real read time</b>: each sample carries the time the value was actually read, not the planned one.</li>
+            <li><b>No substitution</b>: a value that was not read is never replaced with another value, at any point up to writing to disk.</li>
+            <li><b>Preliminary check</b>: before the first file is opened, the program checks that the interval can be reached.</li>
+            <li><b>Monitored writing</b>: an interruption of writing is detected and reported during the recording.</li>
           </ul>
         </article>
 
@@ -423,18 +382,15 @@
         <article class="doc-sec" id="analisi">
           <h2 data-it>7 · Visualizzazione e analisi</h2><h2 data-en>7 · Display and analysis</h2>
           <p data-it>
-            Gli strumenti di analisi operano indifferentemente su una registrazione salvata o su segnali in
-            acquisizione. Ogni canale può essere aperto in una finestra dedicata, e altri canali possono
-            esservi trascinati per la sovrapposizione.
+            Gli strumenti di analisi funzionano allo stesso modo su una registrazione salvata e sui segnali in acquisizione. Ogni canale si può aprire in una finestra dedicata, in cui si trascinano altri canali da sovrapporre.
           </p>
           <p data-en>
-            The analysis tools work equally on a saved recording and on signals being acquired. Each channel
-            can be opened in its own window, and other channels dragged in to overlay them.
+            The analysis tools work the same way on a saved recording and on signals being acquired. Each channel can be opened in its own window, into which other channels can be dragged to overlay them.
           </p>
           <table class="spec">
             <tr><td data-it>Grafici</td><td data-en>Charts</td>
-              <td data-it>multi-segnale su asse temporale comune, zoom e pan, autoscala che preserva le discontinuità</td>
-              <td data-en>multi-signal on a common time axis, zoom and pan, autoscale that preserves discontinuities</td></tr>
+              <td data-it>più segnali su un asse dei tempi comune, zoom e spostamento, scala automatica che mantiene le interruzioni</td>
+              <td data-en>several signals on a common time axis, zoom and pan, automatic scaling that keeps gaps visible</td></tr>
             <tr><td data-it>Marker</td><td data-en>Markers</td>
               <td data-it>verticali e orizzontali, con differenza di tempo, differenza di valore e frequenza corrispondente</td>
               <td data-en>vertical and horizontal, with time difference, value difference and the matching frequency</td></tr>
@@ -442,14 +398,14 @@
               <td data-it>sul tratto selezionato e sull'intero segnale</td>
               <td data-en>over the selected span and over the whole signal</td></tr>
             <tr><td data-it>Finestre</td><td data-en>Windows</td>
-              <td data-it>staccabili e indipendenti, per uso su più monitor</td>
-              <td data-en>detachable and independent, for use across several monitors</td></tr>
+              <td data-it>separate e indipendenti, utilizzabili su più monitor</td>
+              <td data-en>separate and independent, usable across several monitors</td></tr>
             <tr><td data-it>Esportazione</td><td data-en>Export</td>
               <td data-it>dati in <span class="mono">.csv</span>, grafico in <span class="mono">.png</span>, configurazione dei canali in <span class="mono">.sigcfg</span></td>
               <td data-en>data as <span class="mono">.csv</span>, chart as <span class="mono">.png</span>, channel configuration as <span class="mono">.sigcfg</span></td></tr>
             <tr><td data-it>Colonne di stato</td><td data-en>Status columns</td>
-              <td data-it>periodo e frequenza effettivi per canale, qualità del valore corrente</td>
-              <td data-en>effective period and rate per channel, quality of the current value</td></tr>
+              <td data-it>periodo e frequenza effettivi di ogni canale, qualità del valore corrente</td>
+              <td data-en>effective period and rate of each channel, quality of the current value</td></tr>
           </table>
           <figure class="shot" style="margin-top:18px" data-zoom="assets/img/analysis.webp">
             <img src="assets/img/analysis.webp" width="1516" height="908" loading="lazy" decoding="async"
@@ -459,40 +415,38 @@
 
         <!-- 8 ─────────────────────────────────────────────────────────── -->
         <article class="doc-sec" id="calcolati">
-          <h2 data-it>8 · Motore dei segnali calcolati</h2><h2 data-en>8 · Computed-signal engine</h2>
+          <h2 data-it>8 · Segnali calcolati</h2><h2 data-en>8 · Computed signals</h2>
           <p data-it>
-            Un canale può essere definito da un'espressione anziché da un indirizzo. Le espressioni sono
-            componibili e possono referenziare altri canali, inclusi altri canali calcolati.
+            Un canale può essere definito da un'espressione invece che da un indirizzo. Le espressioni si possono combinare e possono usare altri canali, compresi altri canali calcolati.
           </p>
           <p data-en>
-            A channel can be defined by an expression instead of an address. Expressions compose freely and
-            can reference other channels, including other computed channels.
+            A channel can be defined by an expression instead of an address. Expressions can be combined and can use other channels, including other computed channels.
           </p>
           <table class="spec">
             <tr><td data-it>Funzioni</td><td data-en>Functions</td>
-              <td data-it>94, organizzate in dieci famiglie</td><td data-en>94, organised in ten families</td></tr>
+              <td data-it>94, raggruppate in dieci famiglie</td><td data-en>94, grouped in ten families</td></tr>
             <tr><td data-it>Famiglie</td><td data-en>Families</td>
-              <td data-it>matematica · trigonometria · logica · derivate e integrali · filtri · statistiche a finestra · statistiche globali · fronti e temporizzazioni · tempo e frequenza · compatibilità</td>
-              <td data-en>maths · trigonometry · logic · derivatives and integrals · filters · windowed statistics · global statistics · edges and timing · time and frequency · compatibility</td></tr>
+              <td data-it>matematica · trigonometria · logica · derivate e integrali · filtri · statistiche su finestra mobile · statistiche globali · fronti e temporizzazioni · tempo e frequenza · compatibilità</td>
+              <td data-en>maths · trigonometry · logic · derivatives and integrals · filters · moving-window statistics · global statistics · edges and timing · time and frequency · compatibility</td></tr>
             <tr><td data-it>Analisi in frequenza</td><td data-en>Frequency analysis</td>
-              <td data-it>trasformata, distorsione armonica totale, correlazione, traslazione temporale</td>
-              <td data-en>transform, total harmonic distortion, correlation, time shift</td></tr>
+              <td data-it>trasformata di Fourier, distorsione armonica totale, correlazione, traslazione nel tempo</td>
+              <td data-en>Fourier transform, total harmonic distortion, correlation, time shift</td></tr>
             <tr><td data-it>Unità</td><td data-en>Units</td>
-              <td data-it>derivate e integrali riferiti al secondo; filtri specificati in Hz; finestre specificate in secondi</td>
-              <td data-en>derivatives and integrals referred to the second; filters specified in Hz; windows specified in seconds</td></tr>
-            <tr><td data-it>Segnali eterogenei</td><td data-en>Heterogeneous signals</td>
-              <td data-it>canali con periodi o istanti iniziali diversi sono riportati a una base temporale comune prima della combinazione</td>
-              <td data-en>channels with different periods or start instants are brought to a common time base before being combined</td></tr>
+              <td data-it>derivate e integrali riferiti al secondo; filtri in Hz; finestre in secondi</td>
+              <td data-en>derivatives and integrals per second; filters in Hz; windows in seconds</td></tr>
+            <tr><td data-it>Segnali con periodi diversi</td><td data-en>Signals with different periods</td>
+              <td data-it>canali con periodi o istanti iniziali diversi vengono riportati a una base dei tempi comune prima di essere combinati</td>
+              <td data-en>channels with different periods or start times are brought to a common time base before being combined</td></tr>
             <tr><td data-it>Errori</td><td data-en>Errors</td>
-              <td data-it>segnalati con la posizione nell'espressione; non convertiti in valori numerici</td>
-              <td data-en>reported with their position in the expression; never turned into numeric values</td></tr>
+              <td data-it>segnalati con la posizione nell'espressione; non vengono mai convertiti in valori numerici</td>
+              <td data-en>reported with their position in the expression; never converted into numeric values</td></tr>
             <tr><td data-it>Editor</td><td data-en>Editor</td>
-              <td data-it>anteprima della curva risultante durante la scrittura dell'espressione</td>
+              <td data-it>anteprima della curva risultante mentre si scrive l'espressione</td>
               <td data-en>preview of the resulting curve while the expression is being written</td></tr>
           </table>
           <p style="margin-top:16px">
-            <a href="index.html#calcolati" class="btn-ghost" data-it>Sfoglia tutte le 94 funzioni →</a>
-            <a href="index.html#calcolati" class="btn-ghost" data-en>Browse all 94 functions →</a>
+            <a href="index.html#calcolati" class="btn-ghost" data-it>Elenco delle 94 funzioni →</a>
+            <a href="index.html#calcolati" class="btn-ghost" data-en>List of the 94 functions →</a>
           </p>
         </article>
 
@@ -500,75 +454,67 @@
         <article class="doc-sec" id="dashboard">
           <h2 data-it>9 · Dashboard web</h2><h2 data-en>9 · Web dashboard</h2>
           <p data-it>
-            Un servizio Windows pubblica i valori correnti su una pagina consultabile dai browser della rete
-            locale. La pagina invia comandi all'applicazione: la registrazione avviata dalla dashboard è la
-            stessa registrazione dell'applicazione, non una seconda.
+            Un servizio di Windows pubblica i valori correnti su una pagina consultabile dai browser della rete locale. La pagina invia i comandi all'applicazione: la registrazione avviata dalla dashboard è quella dell'applicazione, non una seconda registrazione.
           </p>
           <p data-en>
-            A Windows service publishes the current values on a page any browser on the local network can
-            open. The page sends commands to the application: a recording started from the dashboard is the
-            application's own recording, not a second one.
+            A Windows service publishes the current values on a page that browsers on the local network can open. The page sends the commands to the application: a recording started from the dashboard is the application's own, not a second recording.
           </p>
           <table class="spec">
             <tr><td data-it>Servizio</td><td data-en>Service</td>
-              <td data-it>servizio Windows facoltativo: si sceglie durante l'installazione, poi parte da solo con Windows</td>
-              <td data-en>optional Windows service: chosen during setup, then it starts with Windows</td></tr>
+              <td data-it>servizio Windows facoltativo: si sceglie durante l'installazione e poi si avvia con Windows</td>
+              <td data-en>optional Windows service: selected during installation, then it starts with Windows</td></tr>
             <tr><td data-it>Accesso</td><td data-en>Access</td>
               <td data-it>HTTP sulla porta 8085 (configurabile)</td>
               <td data-en>HTTP on port 8085 (configurable)</td></tr>
             <tr><td data-it>Funzioni</td><td data-en>Functions</td>
               <td data-it>valori in tempo reale, andamento recente, selezione dei segnali, avvio e arresto della registrazione, stato del disco</td>
-              <td data-en>live values, recent trend, signal selection, start and stop of the recording, disk state</td></tr>
+              <td data-en>live values, recent trend, signal selection, start and stop of the recording, disk status</td></tr>
             <tr><td data-it>Autenticazione</td><td data-en>Authentication</td>
-              <td data-it>nessuna: destinata a reti di impianto attendibili</td>
-              <td data-en>none: intended for trusted plant networks</td></tr>
+              <td data-it>nessuna: solo per reti di impianto protette</td>
+              <td data-en>none: for protected plant networks only</td></tr>
             <tr><td data-it>Disponibilità</td><td data-en>Availability</td>
               <td data-it>funzione PRO</td><td data-en>PRO feature</td></tr>
           </table>
           <div class="note" style="margin-top:18px">
             <b data-it>Sicurezza.</b><b data-en>Security.</b>
-            <span data-it> L'interfaccia non prevede autenticazione: chiunque raggiunga la porta può vedere i
-              valori e comandare la registrazione. Va usata su rete di impianto attendibile e non esposta
-              direttamente a internet.</span>
-            <span data-en> The interface has no authentication: anyone who reaches the port can see the
-              values and command the recording. Use it on a trusted plant network and do not expose it
-              directly to the internet.</span>
+            <span data-it> La pagina non ha autenticazione: chiunque raggiunga la porta può vedere i valori e comandare la registrazione. Va usata su una rete di impianto protetta e non va esposta a internet.</span>
+            <span data-en> The page has no authentication: anyone who reaches the port can see the values and control the recording. Use it on a protected plant network and do not expose it to the internet.</span>
           </div>
         </article>
 
         <!-- 10 ────────────────────────────────────────────────────────── -->
         <article class="doc-sec" id="licenza">
-          <h2 data-it>10 · Licenza e requisiti</h2><h2 data-en>10 · Licensing &amp; requirements</h2>
+          <h2 data-it>10 · Licenza e requisiti</h2><h2 data-en>10 · Licence and requirements</h2>
           <table class="spec">
-            <tr><td data-it>Edizione Free</td><td data-en>Free edition</td>
-              <td data-it>utilizzabile senza attivazione e senza scadenza. Apertura e analisi delle registrazioni (un file per volta): grafici, marker, statistiche</td>
+            <tr><td data-it>Versione Free</td><td data-en>Free edition</td>
+              <td data-it>utilizzabile senza attivazione e senza scadenza. Apertura e analisi delle registrazioni (un file alla volta): grafici, marker, statistiche</td>
               <td data-en>usable without activation and without expiry. Opening and analysing recordings (one file at a time): charts, markers, statistics</td></tr>
-            <tr><td data-it>Edizione PRO</td><td data-en>PRO edition</td>
-              <td data-it>attivata da licenza. Acquisizione dal vivo e registrazione, importazione di un progetto TIA, generazione dei blocchi per il campionamento a 1 ms, dashboard web, segnali calcolati, più file aperti insieme con assi sincronizzati, finestre staccabili, esportazione CSV e immagine, copia negli appunti, importazione da ibaAnalyzer</td>
-              <td data-en>activated by licence. Live acquisition and recording, TIA project import, generation of the blocks for 1 ms sampling, web dashboard, computed signals, several files open at once with synchronised axes, detachable windows, CSV and image export, copy to clipboard, ibaAnalyzer import</td></tr>
+            <tr><td data-it>Versione PRO</td><td data-en>PRO edition</td>
+              <td data-it>si attiva con la licenza. Acquisizione e registrazione, lettura di un progetto TIA, generazione dei blocchi per il campionamento a 1 ms, dashboard web, segnali calcolati, più file aperti insieme con assi sincronizzati, finestre di analisi separate, esportazione CSV e immagine, copia negli appunti, importazione da ibaAnalyzer</td>
+              <td data-en>enabled by the licence. Acquisition and recording, reading a TIA project, generation of the blocks for 1 ms sampling, web dashboard, computed signals, several files open at once with synchronised axes, separate analysis windows, CSV and image export, copy to clipboard, ibaAnalyzer import</td></tr>
             <tr><td data-it>Attivazione</td><td data-en>Activation</td>
-              <td data-it>attivazione offline; quando è disponibile una connessione, il controllo dello stato della licenza contatta il portale, senza inviare dati d'impianto</td>
-              <td data-en>offline activation; when a network connection is available, the licence-status check contacts the portal and sends no plant data</td></tr>
-            <tr><td data-it>Vincolo</td><td data-en>Binding</td>
-              <td data-it>licenza (file .ptvlic) legata a un singolo PC e firmata digitalmente</td>
-              <td data-en>licence (a .ptvlic file) bound to a single PC and digitally signed</td></tr>
-            <tr><td data-it>Durata</td><td data-en>Term</td>
-              <td data-it>a termine o senza scadenza, come indicato nella licenza</td>
+              <td data-it>non richiede internet; se una connessione è disponibile, lo stato della licenza viene verificato sul portale senza inviare dati d'impianto</td>
+              <td data-en>does not need internet; if a connection is available, the licence status is checked on the portal without sending plant data</td></tr>
+            <tr><td data-it>Legame con il PC</td><td data-en>Binding to the PC</td>
+              <td data-it>licenza (file .ptvlic) legata a un solo PC e firmata digitalmente</td>
+              <td data-en>licence (.ptvlic file) bound to a single PC and digitally signed</td></tr>
+            <tr><td data-it>Durata</td><td data-en>Duration</td>
+              <td data-it>a tempo o senza scadenza, come indicato nella licenza</td>
               <td data-en>time-limited or perpetual, as stated in the licence</td></tr>
             <tr><td data-it>Recupero</td><td data-en>Recovery</td>
-              <td data-it>una licenza persa si scarica di nuovo dal portale o viene riemessa</td>
+              <td data-it>una licenza persa si scarica di nuovo dal portale o viene emessa di nuovo</td>
               <td data-en>a lost licence can be downloaded again from the portal or reissued</td></tr>
-            <tr><td data-it>Monte ore</td><td data-en>Hour quota</td>
+            <tr><td data-it>Ore di registrazione</td><td data-en>Recording hours</td>
               <td data-it>la licenza può prevedere un numero massimo di ore di registrazione; il programma avvisa quando ci si avvicina al limite</td>
-              <td data-en>a licence may include a maximum number of recording hours; the program warns as the limit approaches</td></tr>
-            <tr><td data-it>Quota tag Live</td><td data-en>Live-tag quota</td>
+              <td data-en>the licence may include a maximum number of recording hours; the program warns when the limit is near</td></tr>
+            <tr><td data-it>Limite tag Live</td><td data-en>Live-tag limit</td>
               <td data-it>la licenza può limitare il numero di tag Live; il portale mostra il limite assegnato</td>
-              <td data-en>the licence may limit the number of Live tags; the portal shows the assigned limit</td></tr>
-            <tr><td data-it>Esaurimento durante una registrazione</td><td data-en>Expiry during a recording</td>
-              <td data-it>la registrazione in corso non viene interrotta e il file resta integro; le funzioni PRO si disattivano al termine della registrazione</td>
-              <td data-en>the recording in progress is not interrupted and the file stays intact; PRO features are disabled once the recording is stopped</td></tr>
+              <td data-en>the licence may limit the number of Live tags; the portal shows the limit assigned</td></tr>
+            <tr><td data-it>Scadenza durante una registrazione</td><td data-en>Expiry during a recording</td>
+              <td data-it>la registrazione in corso non viene interrotta e il file resta completo; le funzioni PRO si disattivano al termine della registrazione</td>
+              <td data-en>the recording in progress is not interrupted and the file stays complete; PRO features are disabled when the recording ends</td></tr>
           </table>
-          <p style="margin-top:16px"><a class="btn-ghost" href="#requisiti" data-it>Requisiti tecnici ↓</a><a class="btn-ghost" href="#requisiti" data-en>Technical requirements ↓</a> · <a class="btn-ghost" href="faq.html#gruppo-b" data-it>Richiesta, tipi e attivazione della licenza → FAQ</a><a class="btn-ghost" href="faq.html#gruppo-b" data-en>Requesting, licence types and activation → FAQ</a></p>
+          <p style="margin-top:16px"><a class="btn-ghost" href="#requisiti" data-it>Requisiti tecnici ↓</a><a class="btn-ghost" href="#requisiti" data-en>Technical requirements ↓</a> · <a class="btn-ghost" href="faq.html#gruppo-b" data-it>Richiesta, tipi e attivazione della licenza → FAQ</a><a class="btn-ghost" href="faq.html#gruppo-b" data-en>Requesting, types and activation of the licence → FAQ</a></p>
         </article>
 
         <!-- 11 ────────────────────────────────────────────────────────── -->
@@ -578,50 +524,50 @@
             <tr><td data-it>Sistema operativo</td><td data-en>Operating system</td>
               <td data-it>Windows 10 o 11, 64 bit</td><td data-en>Windows 10 or 11, 64-bit</td></tr>
             <tr><td data-it>Runtime</td><td data-en>Runtime</td>
-              <td data-it>incluso nell'installer; nessun componente da installare separatamente</td>
+              <td data-it>incluso nell'installazione; nessun componente da installare a parte</td>
               <td data-en>included in the installer; nothing to install separately</td></tr>
             <tr><td data-it>Rete</td><td data-en>Network</td>
               <td data-it>accesso IP al controllore; porta 102 raggiungibile</td>
               <td data-en>IP access to the controller; port 102 reachable</td></tr>
             <tr><td data-it>Spazio su disco</td><td data-en>Disk space</td>
-              <td data-it>dipendente dalla durata delle registrazioni; la gestione automatica dello spazio è configurabile</td>
+              <td data-it>dipende dalla durata delle registrazioni; la gestione automatica dello spazio è configurabile</td>
               <td data-en>depends on how long the recordings run; automatic space management is configurable</td></tr>
             <tr><td data-it>Installazione</td><td data-en>Installation</td>
-              <td data-it>procedura guidata per utente; il servizio della dashboard è facoltativo e richiede il permesso di Windows</td>
-              <td data-en>per-user setup wizard; the dashboard service is optional and requires Windows permission</td></tr>
-            <tr><td data-it>Importazione TIA</td><td data-en>TIA import</td>
-              <td data-it>opzionale; richiede TIA Portal e Openness installati e licenziati dal cliente, utente nel gruppo locale Siemens TIA Openness e .NET Framework 4.8 (già incluso in Windows 10 1903+ e Windows 11)</td>
-              <td data-en>optional; requires TIA Portal and Openness installed and licensed by the customer, the user in the local Siemens TIA Openness group, and .NET Framework 4.8 (included in Windows 10 1903+ and Windows 11)</td></tr>
+              <td data-it>installazione guidata per utente; il servizio della dashboard è facoltativo e richiede l'autorizzazione di Windows</td>
+              <td data-en>guided per-user installation; the dashboard service is optional and requires Windows permission</td></tr>
+            <tr><td data-it>Lettura del progetto TIA</td><td data-en>Reading the TIA project</td>
+              <td data-it>facoltativa; richiede TIA Portal e Openness installati e con licenza del cliente, l'utente nel gruppo locale Siemens TIA Openness e .NET Framework 4.8 (già presente in Windows 10 dalla 1903 e in Windows 11)</td>
+              <td data-en>optional; requires TIA Portal and Openness installed and licensed by the customer, the user in the local Siemens TIA Openness group and .NET Framework 4.8 (already present in Windows 10 from 1903 and in Windows 11)</td></tr>
             <tr><td data-it>Lettore PDF</td><td data-en>PDF reader</td>
-              <td data-it>necessario solo per aprire manuale ed EULA in formato PDF</td>
-              <td data-en>needed only to open the manual and EULA in PDF format</td></tr>
+              <td data-it>necessario solo per aprire manuale ed EULA in PDF</td>
+              <td data-en>needed only to open the manual and the EULA in PDF</td></tr>
             <tr><td data-it>Aggiornamento</td><td data-en>Update</td>
-              <td data-it>installazione sopra la versione precedente, che va chiusa prima di procedere</td>
-              <td data-en>install over the previous version, which must be closed first</td></tr>
+              <td data-it>installazione sopra la versione precedente, da chiudere prima</td>
+              <td data-en>installation over the previous version, which must be closed first</td></tr>
           </table>
           <p style="margin-top:16px"><a class="btn-ghost" href="faq.html#gruppo-a" data-it>Requisiti completi e domande frequenti → FAQ</a><a class="btn-ghost" href="faq.html#gruppo-a" data-en>Full requirements and common questions → FAQ</a></p>
         </article>
 
         <!-- 12 ────────────────────────────────────────────────────────── -->
         <article class="doc-sec" id="limiti">
-          <h2 data-it>12 · Limiti dichiarati</h2><h2 data-en>12 · Declared limitations</h2>
+          <h2 data-it>12 · Limiti</h2><h2 data-en>12 · Limitations</h2>
           <ul data-it>
-            <li><b>Sola lettura.</b> Il programma non scrive nel controllore: non forza variabili, non modifica il programma utente e non altera lo stato della CPU.</li>
-            <li><b>Frequenza non garantita a priori.</b> L'intervallo sostenibile dipende dall'installazione e viene determinato in campo, non dichiarato in specifica.</li>
-            <li><b>Blocchi ottimizzati.</b> Non indirizzabili in modo assoluto; richiedono OPC UA o S7comm-Plus, con i relativi prerequisiti sulla CPU.</li>
-            <li><b>Non sostituisce l'ambiente di programmazione.</b> Non programma, non compila e non esegue diagnostica hardware.</li>
-            <li><b>Non è un sistema di storicizzazione di processo.</b> È uno strumento di messa in servizio e di analisi guasti.</li>
-            <li><b>Nessun accesso remoto oltre la rete locale.</b> Non sono previsti servizi cloud né sincronizzazione esterna.</li>
-            <li><b>Interfaccia web senza autenticazione.</b> Da impiegare esclusivamente su rete di impianto attendibile.</li>
+            <li><b>Sola lettura.</b> Il programma non scrive nel controllore: non forza variabili, non modifica il programma e non cambia lo stato della CPU.</li>
+            <li><b>Intervallo non garantito a priori.</b> L'intervallo raggiungibile dipende dall'impianto e viene misurato sul posto.</li>
+            <li><b>Blocchi ottimizzati.</b> Non si possono indirizzare in modo assoluto; richiedono OPC UA o S7comm-Plus, con i relativi requisiti sulla CPU.</li>
+            <li><b>Non sostituisce l'ambiente di programmazione.</b> Non programma, non compila e non fa diagnostica hardware.</li>
+            <li><b>Non è un sistema di archiviazione storica.</b> È uno strumento per la messa in servizio e l'analisi dei guasti.</li>
+            <li><b>Nessun accesso remoto oltre la rete locale.</b> Nessun servizio cloud e nessuna sincronizzazione esterna.</li>
+            <li><b>Interfaccia web senza autenticazione.</b> Da usare solo su una rete di impianto protetta.</li>
           </ul>
           <ul data-en>
-            <li><b>Read-only.</b> The program does not write to the controller: no forcing of variables, no change to the user program, no change of CPU state.</li>
-            <li><b>Rate not guaranteed in advance.</b> The sustainable interval depends on the installation and is determined on site, not stated in a specification.</li>
-            <li><b>Optimised blocks.</b> Not addressable absolutely; they require OPC UA or S7comm-Plus, with the matching prerequisites on the CPU.</li>
-            <li><b>Not a replacement for the engineering environment.</b> No programming, no compiling, no hardware diagnostics.</li>
-            <li><b>Not a process historian.</b> This is a commissioning and fault-analysis tool.</li>
+            <li><b>Read-only.</b> The program does not write to the controller: it does not force variables, change the program or change the CPU state.</li>
+            <li><b>Interval not guaranteed in advance.</b> The interval that can be reached depends on the plant and is measured on site.</li>
+            <li><b>Optimised blocks.</b> They cannot be addressed absolutely; they require OPC UA or S7comm-Plus, with the related requirements on the CPU.</li>
+            <li><b>Not a replacement for the engineering environment.</b> It does not program, compile or do hardware diagnostics.</li>
+            <li><b>Not a historian.</b> It is a tool for commissioning and fault analysis.</li>
             <li><b>No remote access beyond the local network.</b> No cloud services and no external synchronisation.</li>
-            <li><b>Web interface without authentication.</b> To be used exclusively on a trusted plant network.</li>
+            <li><b>Web interface without authentication.</b> Use it only on a protected plant network.</li>
           </ul>
         </article>
 
@@ -629,132 +575,129 @@
         <article class="doc-sec" id="dati-tecnici">
           <h2 data-it>13 · Dati tecnici</h2><h2 data-en>13 · Technical data</h2>
           <p data-it>
-            Quadro riepilogativo dei valori effettivamente implementati. Ogni riga descrive il
-            comportamento del programma; le condizioni che dipendono dall'installazione sono indicate
-            come tali e restano determinate in campo.
+            Riepilogo dei valori implementati nel programma. I punti che dipendono dall'impianto sono indicati come tali e vengono misurati sul posto.
           </p>
           <p data-en>
-            Summary of the values actually implemented. Every row describes the behaviour of the program;
-            the conditions that depend on the installation are stated as such and remain determined on site.
+            Summary of the values implemented in the program. Points that depend on the plant are marked as such and are measured on site.
           </p>
 
-          <h3 data-it>Tempo e marcatura</h3><h3 data-en>Time and stamping</h3>
+          <h3 data-it>Tempo e marcatura temporale</h3><h3 data-en>Time and timestamps</h3>
           <table class="spec">
             <tr>
               <td data-it>Origine del tempo</td><td data-en>Time source</td>
-              <td data-it>l'orologio del PC è letto una sola volta all'avvio; da quel momento il tempo avanza su un contatore monotono, immune a correzioni NTP, ora legale manuale ed errori di RTC</td>
-              <td data-en>the PC clock is read once at start-up; from then on time advances on a monotonic counter, immune to NTP corrections, manual daylight-saving changes and RTC errors</td>
+              <td data-it>l'orologio del PC viene letto una sola volta all'avvio; poi il tempo avanza su un contatore monotono, che non risente di correzioni NTP, cambi manuali dell'ora legale ed errori dell'orologio hardware</td>
+              <td data-en>the PC clock is read once at start-up; time then advances on a monotonic counter that is not affected by NTP corrections, manual daylight-saving changes or hardware clock errors</td>
             </tr>
             <tr>
               <td data-it>Deriva lenta</td><td data-en>Slow drift</td>
-              <td data-it>scostamenti fino a ±2 s sono assorbiti gradualmente (un ottavo della differenza ogni 5 s): una registrazione di ore resta vicina al tempo reale senza gradini</td>
-              <td data-en>differences up to ±2 s are absorbed gradually (one eighth of the difference every 5 s): a recording lasting hours stays close to real time without ever stepping</td>
+              <td data-it>scostamenti fino a ±2 s vengono recuperati gradualmente (un ottavo della differenza ogni 5 s): una registrazione di ore resta allineata al tempo reale senza salti</td>
+              <td data-en>differences up to ±2 s are recovered gradually (one eighth of the difference every 5 s): a recording lasting hours stays aligned with real time without jumps</td>
             </tr>
             <tr>
               <td data-it>Salto dell'orologio</td><td data-en>Clock step</td>
-              <td data-it>oltre ±2 s il salto è rilevato e riportato nel registro, ma non seguito: gli istanti proseguono in avanti allo stesso ritmo, quindi nessun ripiegamento può entrare in un file</td>
-              <td data-en>beyond ±2 s the step is detected and reported in the log, but not followed: timestamps keep running forward at the same rate, so no fold can ever enter a file</td>
+              <td data-it>oltre ±2 s il salto viene rilevato e scritto nel registro, ma non applicato: gli istanti continuano ad avanzare allo stesso ritmo, quindi nel file il tempo non torna mai indietro</td>
+              <td data-en>beyond ±2 s the jump is detected and written to the log, but not applied: timestamps keep advancing at the same rate, so time never goes backwards in the file</td>
             </tr>
             <tr>
               <td data-it>Istante sul campione</td><td data-en>Sample instant</td>
-              <td data-it>marcato nell'istante in cui la risposta del controllore è disponibile, dentro il processo di acquisizione isolato e ad alta priorità</td>
-              <td data-en>stamped the instant the controller's answer is available, inside the isolated high-priority acquisition process</td>
+              <td data-it>assegnato nell'istante in cui arriva la risposta del controllore, nel processo di acquisizione separato e ad alta priorità</td>
+              <td data-en>assigned when the controller's answer arrives, in the separate high-priority acquisition process</td>
             </tr>
             <tr>
               <td data-it>Orologio del PLC</td><td data-en>PLC clock</td>
-              <td data-it>mai letto: nessuna chiamata di lettura RTC è presente. Solo la base temporale monotona del PC è usata</td>
-              <td data-en>never read: no RTC read call exists in the program. Only the PC's monotonic time base is used</td>
+              <td data-it>non viene mai letto: il programma usa solo la base dei tempi monotona del PC</td>
+              <td data-en>never read: the program uses only the PC's monotonic time base</td>
             </tr>
             <tr>
               <td data-it>Nel file e a video</td><td data-en>In file and on screen</td>
-              <td data-it>i file conservano sempre tick UTC; schermo ed esportazioni CSV mostrano l'ora locale del PC. Un file condiviso fra fusi orari non sposta i propri dati</td>
-              <td data-en>files always store UTC ticks; screen and CSV exports show the PC's local time. Sharing a file across time zones never shifts its data</td>
+              <td data-it>i file salvano sempre il tempo in UTC; schermo ed esportazioni CSV mostrano l'ora locale del PC. Un file aperto in un altro fuso orario non sposta i dati</td>
+              <td data-en>files always store time in UTC; the screen and CSV exports show the PC's local time. A file opened in another time zone does not shift its data</td>
             </tr>
             <tr>
               <td data-it>Ora legale</td><td data-en>Daylight saving</td>
-              <td data-it>cambia solo l'ora mostrata a schermo: nel file il tempo è salvato in UTC, senza buchi né doppioni</td>
-              <td data-en>only changes the time shown on screen: the file stores UTC time, with no gaps and no duplicates</td>
+              <td data-it>cambia solo l'ora mostrata a schermo: nel file il tempo è in UTC, senza buchi né doppioni</td>
+              <td data-en>only changes the time shown on screen: in the file time is stored in UTC, with no gaps or duplicates</td>
             </tr>
             <tr>
-              <td data-it>Salute dei canali</td><td data-en>Channel health</td>
-              <td data-it>giudicata su un contatore monotono: un canale è «non in lettura» dopo il maggiore fra 2 s e tre volte il proprio periodo senza un valore valido</td>
-              <td data-en>judged on a monotonic counter: a channel counts as "not reading" after the longer of 2 s or three of its own periods without a good value</td>
+              <td data-it>Stato dei canali</td><td data-en>Channel status</td>
+              <td data-it>valutato su un contatore monotono: un canale risulta «non in lettura» dopo il maggiore tra 2 s e tre suoi periodi senza un valore valido</td>
+              <td data-en>assessed on a monotonic counter: a channel counts as "not reading" after the longer of 2 s or three of its own periods without a valid value</td>
             </tr>
           </table>
 
           <h3 data-it>Campionamento</h3><h3 data-en>Sampling</h3>
           <table class="spec">
             <tr>
-              <td data-it>Intervalli di polling</td><td data-en>Polling intervals</td>
+              <td data-it>Intervalli di lettura</td><td data-en>Read intervals</td>
               <td class="mono">1 · 2 · 5 · 10 · 20 · 50 <span data-it>(predefinito)</span><span data-en>(default)</span> · 100 · 200 · 500 · 1000 ms</td>
             </tr>
             <tr>
-              <td data-it>Verifica preventiva</td><td data-en>Pre-flight check</td>
-              <td data-it>misura il collegamento vero sulla lista canali reale (mediana e peggiore di sette cicli) prima di scrivere il primo byte; il suggerimento automatico considera anche 2000 e 5000 ms</td>
-              <td data-en>times the real link against the real channel list (median and worst of seven cycles) before a single byte is written; the automatic suggestion also considers 2000 and 5000 ms</td>
+              <td data-it>Verifica preliminare</td><td data-en>Preliminary check</td>
+              <td data-it>misura il collegamento reale con l'elenco reale dei canali (mediana e caso peggiore su sette cicli) prima di scrivere il primo byte; il suggerimento automatico considera anche 2000 e 5000 ms</td>
+              <td data-en>measures the real link with the real channel list (median and worst case over seven cycles) before the first byte is written; the automatic suggestion also considers 2000 and 5000 ms</td>
             </tr>
             <tr>
-              <td data-it>Passo garantito</td><td data-en>Guaranteed step</td>
-              <td data-it>solo il buffer nel PLC garantisce il passo, perché l'OB ciclico vive nel controllore. Il polling è a miglior sforzo: un ciclo in ritardo salta intervalli interi e li dichiara, invece di accodare letture di recupero</td>
-              <td data-en>only the in-PLC buffer guarantees the step, because the cyclic OB lives in the controller. Polled acquisition is best-effort: a late cycle skips whole intervals and says how many, instead of queueing catch-up reads</td>
+              <td data-it>Intervallo garantito</td><td data-en>Guaranteed interval</td>
+              <td data-it>solo il buffer nel PLC garantisce l'intervallo, perché l'OB ciclico gira nel controllore. La lettura via rete non dà garanzie: un ciclo in ritardo salta interi intervalli e lo segnala, invece di accodare letture di recupero</td>
+              <td data-en>only the buffer in the PLC guarantees the interval, because the cyclic OB runs in the controller. Reading over the network gives no guarantee: a late cycle skips whole intervals and reports it, instead of queueing catch-up reads</td>
             </tr>
             <tr>
               <td data-it>Periodo misurato</td><td data-en>Measured period</td>
-              <td data-it>misurato per ogni canale tra due risposte consecutive e mostrato accanto a quello impostato; i cicli saltati sono contati, segnalati subito e compaiono come interruzioni della traccia</td>
-              <td data-en>measured for each channel between two consecutive answers and shown next to the set value; skipped cycles are counted, reported at once and drawn as gaps in the trace</td>
+              <td data-it>misurato per ogni canale tra due risposte consecutive e mostrato accanto a quello impostato; i cicli saltati vengono contati, segnalati subito e compaiono come interruzioni della traccia</td>
+              <td data-en>measured for each channel between two consecutive answers and shown next to the set value; skipped cycles are counted, reported immediately and appear as gaps in the trace</td>
             </tr>
             <tr>
               <td data-it>Letture simboliche</td><td data-en>Symbolic reads</td>
-              <td data-it>se ci sono anche canali letti per indirizzo, le letture simboliche non scendono sotto un ciclo ogni 5 ms, per non saturare la comunicazione del controllore</td>
-              <td data-en>when by-address channels are also present, symbolic reads do not go below one cycle every 5 ms, so the controller's communication is not saturated</td>
+              <td data-it>se sono presenti anche canali letti per indirizzo, le letture per nome non scendono sotto un ciclo ogni 5 ms, per non sovraccaricare la comunicazione del controllore</td>
+              <td data-en>when channels read by address are also present, reads by name do not go below one cycle every 5 ms, so as not to overload the controller's communication</td>
             </tr>
             <tr>
               <td data-it>Buffer nel PLC</td><td data-en>In-PLC buffer</td>
-              <td data-it>il passo tra i campioni lo dà il controllore (il ciclo dell'OB, letto dall'intestazione del blocco); l'orologio del PC serve una sola volta, come riferimento iniziale: istante = riferimento + indice × periodo del PLC</td>
-              <td data-en>the spacing between samples comes from the controller (the OB cycle, read from the block header); the PC clock is used once, as the starting reference: time = reference + index × PLC period</td>
+              <td data-it>l'intervallo tra i campioni lo stabilisce il controllore (il ciclo dell'OB, letto dall'intestazione del blocco); l'orologio del PC serve solo come riferimento iniziale: istante = riferimento + indice × periodo del PLC</td>
+              <td data-en>the spacing between samples is set by the controller (the OB cycle, read from the block header); the PC clock is only the starting reference: time = reference + index × PLC period</td>
             </tr>
             <tr>
               <td data-it>Profondità del buffer</td><td data-en>Buffer depth</td>
-              <td data-it>configurabile, predefinita 512 campioni (512 ms a 1 kHz); consigliati almeno 250 ms; la verifica preventiva chiede almeno 4 volte il ciclo di lettura (e comunque 50 ms); il DB non ottimizzato non può superare 64 KB</td>
-              <td data-en>configurable, default 512 samples (512 ms at 1 kHz); at least 250 ms recommended; the pre-flight check asks for at least 4 times the read cycle (and never less than 50 ms); the non-optimised DB cannot exceed 64 KB</td>
+              <td data-it>configurabile, predefinita 512 campioni (512 ms a 1 kHz); consigliati almeno 250 ms; la verifica preliminare richiede almeno 4 volte il ciclo di lettura (e comunque 50 ms); un DB non ottimizzato non può superare 64 KB</td>
+              <td data-en>configurable, default 512 samples (512 ms at 1 kHz); at least 250 ms recommended; the preliminary check requires at least 4 times the read cycle (and never less than 50 ms); a non-optimised DB cannot exceed 64 KB</td>
             </tr>
             <tr>
-              <td data-it>Scarico del buffer</td><td data-en>Buffer download</td>
-              <td data-it>a blocchi, circa un quarto del buffer per lettura; ogni posizione ha un contrassegno controllato prima e dopo la lettura: una posizione sovrascritta nel frattempo viene scartata e contata, mai registrata sbagliata. I campioni non letti in tempo sono contati come persi</td>
-              <td data-en>in blocks, about a quarter of the buffer per read; each position carries a marker checked before and after the read: a position overwritten in the meantime is discarded and counted, never recorded wrong. Samples not read in time are counted as lost</td>
+              <td data-it>Lettura del buffer</td><td data-en>Reading the buffer</td>
+              <td data-it>a blocchi, circa un quarto del buffer per lettura; ogni posizione ha un contrassegno controllato prima e dopo la lettura: una posizione sovrascritta nel frattempo viene scartata e contata, mai registrata con un valore sbagliato. I campioni non letti in tempo vengono contati come persi</td>
+              <td data-en>in blocks, about a quarter of the buffer per read; each position has a marker checked before and after the read: a position overwritten in the meantime is discarded and counted, never recorded with a wrong value. Samples not read in time are counted as lost</td>
             </tr>
           </table>
 
-          <h3 data-it>Valori e scalature</h3><h3 data-en>Values and scaling</h3>
+          <h3 data-it>Valori e scalatura</h3><h3 data-en>Values and scaling</h3>
           <table class="spec">
             <tr>
               <td data-it>Precisione</td><td data-en>Precision</td>
-              <td data-it>ogni canale è salvato con la precisione che gli serve: 32 bit per BOOL, BYTE, INT, REAL e simili; 64 bit per DINT, UDINT, DWORD, LINT, ULINT, LWORD, LREAL, TIME e i tipi data/ora. I valori interi restano esatti fino a 2⁵³</td>
-              <td data-en>each channel is stored at the precision it needs: 32 bits for BOOL, BYTE, INT, REAL and the like; 64 bits for DINT, UDINT, DWORD, LINT, ULINT, LWORD, LREAL, TIME and the date/time types. Integer values stay exact up to 2⁵³</td>
+              <td data-it>ogni canale viene salvato con la precisione necessaria: 32 bit per BOOL, BYTE, INT, REAL e simili; 64 bit per DINT, UDINT, DWORD, LINT, ULINT, LWORD, LREAL, TIME e i tipi data/ora. I valori interi restano esatti fino a 2⁵³</td>
+              <td data-en>each channel is stored with the precision it needs: 32 bits for BOOL, BYTE, INT, REAL and similar; 64 bits for DINT, UDINT, DWORD, LINT, ULINT, LWORD, LREAL, TIME and the date/time types. Integer values stay exact up to 2⁵³</td>
             </tr>
             <tr>
               <td data-it>Valore assente</td><td data-en>Missing value</td>
-              <td data-it>NaN significa «nessun valore»: un canale che non ha letto scrive NaN, mai 0 e mai l'ultimo valore. In analisi NaN diventa un buco nella traccia, mai un dato inventato</td>
-              <td data-en>NaN means "no value": a channel that did not read writes NaN, never 0 and never its last value. In analysis NaN becomes a gap in the trace, never invented data</td>
+              <td data-it>NaN significa «nessun valore»: un canale che non è stato letto scrive NaN, mai 0 e mai l'ultimo valore. Nell'analisi NaN compare come interruzione della traccia</td>
+              <td data-en>NaN means "no value": a channel that was not read writes NaN, never 0 and never its last value. In the analysis NaN appears as a gap in the trace</td>
             </tr>
             <tr>
-              <td data-it>Scalature</td><td data-en>Scaling</td>
+              <td data-it>Scalatura</td><td data-en>Scaling</td>
               <td data-it><span class="mono">y = raw × ScaleFactor + ScaleOffset</span>, applicata a ogni campione in tempo reale, prima della registrazione e della visualizzazione. I valori nel file sono già scalati</td>
-              <td data-en><span class="mono">y = raw × scale + offset</span>, applied to every sample in real time, before recording and display. Values in the file are already scaled</td>
+              <td data-en><span class="mono">y = raw × ScaleFactor + ScaleOffset</span>, applied to every sample in real time, before recording and display. Values in the file are already scaled</td>
             </tr>
             <tr>
               <td data-it>Tipi supportati</td><td data-en>Supported types</td>
               <td class="mono">BOOL · Byte · USInt · SInt · Char · WChar · String · WString · Word · UInt · Int · DWord · UDInt · DInt · Real · LReal · LInt · ULInt · LWord · Time · S5Time · Date · Time_Of_Day · Date_And_Time · DTL</td>
             </tr>
             <tr>
-              <td data-it>Tipi non letti</td><td data-en>Types not read</td>
-              <td data-it>STRING e WSTRING sono acquisiti come testo tipizzato, non come valori numerici. ARRAY, STRUCT e UDT non sono registrati come un unico numero: il browser espone i membri supportati come canali</td>
-              <td data-en>STRING and WSTRING are acquired as typed text, not numeric values. ARRAY, STRUCT and UDT are not recorded as one number; the browser exposes supported members as channels</td>
+              <td data-it>Tipi composti</td><td data-en>Composite types</td>
+              <td data-it>ARRAY, STRUCT e UDT non vengono registrati come un unico valore: il browser mostra i loro membri supportati come canali separati</td>
+              <td data-en>ARRAY, STRUCT and UDT are not recorded as a single value: the browser shows their supported members as separate channels</td>
             </tr>
             <tr>
-              <td data-it>Acquisizione testuale</td><td data-en>Text acquisition</td>
-              <td data-it>CHAR, WCHAR, STRING e WSTRING sono acquisiti con lettura tipizzata. STRING/WSTRING usano la lettura ordinaria e non l'anello deterministico a 1 ms</td>
-              <td data-en>CHAR, WCHAR, STRING and WSTRING use typed reads. STRING/WSTRING use ordinary polling, not the deterministic 1 ms ring</td>
+              <td data-it>Canali di testo</td><td data-en>Text channels</td>
+              <td data-it>CHAR, WCHAR, STRING e WSTRING vengono letti come testo, con il loro tipo. STRING e WSTRING usano la lettura ciclica normale, non il buffer a 1 ms nel PLC</td>
+              <td data-en>CHAR, WCHAR, STRING and WSTRING are read as text, with their type. STRING and WSTRING use normal cyclic reading, not the 1 ms buffer in the PLC</td>
             </tr>
           </table>
 
@@ -762,38 +705,38 @@
           <table class="spec">
             <tr>
               <td data-it>Formati</td><td data-en>Formats</td>
-              <td data-it>DRG2 (preesistente, colonne fisse, float32) e DRG3 v3/v4/v5. DRG3 v5 conserva storage numerico tipizzato F32/F64 più seed ed eventi testuali; le registrazioni precedenti si aprono senza conversione</td>
-              <td data-en>DRG2 (legacy, fixed columns, float32) and DRG3 v3/v4/v5. DRG3 v5 stores typed F32/F64 numeric data plus text seeds and events; earlier recordings open without conversion</td>
+              <td data-it>DRG2 (formato precedente, colonne fisse, float32) e DRG3 v3/v4/v5. DRG3 v5 salva i valori numerici a 32 o 64 bit secondo il tipo e i testi come valore iniziale più gli eventi di cambio; le registrazioni precedenti si aprono senza conversione</td>
+              <td data-en>DRG2 (earlier format, fixed columns, float32) and DRG3 v3/v4/v5. DRG3 v5 stores numeric values at 32 or 64 bits according to their type and text as an initial value plus change events; earlier recordings open without conversion</td>
             </tr>
             <tr>
               <td data-it>Canali durante la registrazione</td><td data-en>Channels during recording</td>
-              <td data-it>DRG3 consente l'aggiunta di canali: il nuovo canale è appeso dal momento dell'aggiunta e le righe precedenti restano vuote. I cambi di STRING/WSTRING sono registrati come eventi testuali v5; rimozione, ri-aggiunta e rinomina conservano le regole DRG3</td>
-              <td data-en>DRG3 allows channels to be added from the time they are added; earlier rows stay blank. STRING/WSTRING changes are stored as v5 text events; removal, re-addition and renaming follow the DRG3 channel rules</td>
+              <td data-it>con DRG3 si possono aggiungere canali durante la registrazione: il nuovo canale parte dal momento dell'aggiunta e le righe precedenti restano vuote. I cambi di STRING e WSTRING vengono salvati come eventi di testo; rimozione, nuova aggiunta e rinomina seguono le regole di DRG3</td>
+              <td data-en>with DRG3, channels can be added during recording: the new channel starts when it is added and earlier rows stay empty. STRING and WSTRING changes are stored as text events; removal, re-adding and renaming follow the DRG3 rules</td>
             </tr>
             <tr>
               <td data-it>Rotazione</td><td data-en>Rotation</td>
-              <td data-it>per dimensione (100 / 250 / 500 / 1024 MB, predefinito 500) o per durata (1 / 4 / 24 ore). Al raggiungimento del limite il file viene chiuso completamente e aperto un altro, senza interrompere la registrazione</td>
-              <td data-en>by size (100 / 250 / 500 / 1024 MB, default 500) or by duration (1 / 4 / 24 hours). When a file reaches the limit it is closed complete and a new one is opened, without interrupting the recording</td>
+              <td data-it>per dimensione (100 / 250 / 500 / 1024 MB, predefinito 500) o per durata (1 / 4 / 24 ore). Al raggiungimento del limite il file viene chiuso completo e se ne apre uno nuovo, senza interrompere la registrazione</td>
+              <td data-en>by size (100 / 250 / 500 / 1024 MB, default 500) or by duration (1 / 4 / 24 hours). When the limit is reached the file is closed complete and a new one is opened, without interrupting the recording</td>
             </tr>
             <tr>
               <td data-it>Compressione</td><td data-en>Compression</td>
-              <td data-it>opzionale (predefinito: disattivata); il file completato è compresso in GZIP (<span class="mono">.drug.gz</span>) e l'originale è rimosso solo dopo che la copia compressa esiste. I file compressi si aprono direttamente</td>
-              <td data-en>optional (default: off); the finished file is compressed to GZIP (<span class="mono">.drug.gz</span>) and the original is removed only after the compressed copy exists. Compressed files open directly</td>
+              <td data-it>facoltativa (predefinita: disattivata); il file completato viene compresso in GZIP (<span class="mono">.drug.gz</span>) e l'originale viene eliminato solo dopo che la copia compressa esiste. I file compressi si aprono direttamente</td>
+              <td data-en>optional (default: off); the completed file is compressed to GZIP (<span class="mono">.drug.gz</span>) and the original is deleted only after the compressed copy exists. Compressed files open directly</td>
             </tr>
             <tr>
               <td data-it>Conservazione</td><td data-en>Retention</td>
-              <td data-it>elimina i file più vecchi quando lo spazio su disco scende sotto soglia (predefinito 5 GB di avviso, 2 GB critico); i file aperti, in scrittura, sono protetti</td>
-              <td data-en>deletes the oldest files when disk space drops below a threshold (default 5 GB warning, 2 GB critical); open files, being written, are protected</td>
+              <td data-it>elimina i file più vecchi quando lo spazio libero scende sotto una soglia (predefinite: 5 GB avviso, 2 GB critico); il file in scrittura è protetto</td>
+              <td data-en>deletes the oldest files when free space drops below a threshold (defaults: 5 GB warning, 2 GB critical); the file being written is protected</td>
             </tr>
             <tr>
               <td data-it>Interruzione di corrente</td><td data-en>Power cut</td>
-              <td data-it>i dati sono scritti su disco circa una volta al secondo: un blackout costa al massimo ~1 s di dati e il file resta valido e apribile</td>
-              <td data-en>data is flushed to disk about once per second: a power cut costs at most ~1 s of data and the file stays valid and openable</td>
+              <td data-it>i dati vengono scritti su disco circa una volta al secondo: un'interruzione di corrente fa perdere al massimo circa 1 s di dati e il file resta valido e apribile</td>
+              <td data-en>data is written to disk about once per second: a power cut loses at most about 1 s of data and the file stays valid and can be opened</td>
             </tr>
             <tr>
               <td data-it>Esportazione CSV</td><td data-en>CSV export</td>
-              <td data-it>separatore configurabile (predefinito <span class="mono">;</span>, anche <span class="mono">,</span>, tabulazione, spazio), separatore decimale configurabile (predefinito automatico), formato UTF-8, orario locale del PC. Se il separatore coincide con il decimale viene forzato <span class="mono">;</span></td>
-              <td data-en>configurable separator (default <span class="mono">;</span>, also <span class="mono">,</span>, tab, space), configurable decimal separator (default automatic), UTF-8 format, PC local time. If the separator matches the decimal one it is forced to <span class="mono">;</span></td>
+              <td data-it>separatore configurabile (predefinito <span class="mono">;</span>, anche <span class="mono">,</span>, tabulazione, spazio), separatore decimale configurabile (predefinito automatico), codifica UTF-8, ora locale del PC. Se il separatore coincide con quello decimale viene usato <span class="mono">;</span></td>
+              <td data-en>configurable separator (default <span class="mono">;</span>, also <span class="mono">,</span>, tab, space), configurable decimal separator (default automatic), UTF-8 encoding, PC local time. If the separator matches the decimal separator, <span class="mono">;</span> is used</td>
             </tr>
           </table>
 
@@ -806,28 +749,28 @@
             </tr>
             <tr>
               <td data-it>PUT/GET</td><td data-en>PUT/GET</td>
-              <td data-it>necessario per la lettura per indirizzo assoluto su S7-300/400 e S7-1200/1500; senza di esso la connessione riesce ma ogni lettura viene rifiutata. Per i blocchi ottimizzati serve anche l'accesso completo PG/PC &amp; HMI</td>
-              <td data-en>required for by-address reads on S7-300/400 and S7-1200/1500; without it the connection succeeds but every read is refused. Optimised blocks also need full PG/PC &amp; HMI access</td>
+              <td data-it>necessario per la lettura per indirizzo su S7-300/400 e S7-1200/1500; senza, la connessione riesce ma ogni lettura viene rifiutata. Per i blocchi ottimizzati serve anche l'accesso completo PG/PC e HMI</td>
+              <td data-en>required for reading by address on S7-300/400 and S7-1200/1500; without it the connection succeeds but every read is refused. Optimised blocks also need full PG/PC and HMI access</td>
             </tr>
             <tr>
               <td data-it>Comportamento</td><td data-en>Behaviour</td>
-              <td data-it>una sola lettura è mai in volo, nessun flood: il ritmo è determinato da ciò che il controllore può dare. In caso di fallimenti ripetuti il programma arretra (20 ms → 2 s) per non affamare la CPU</td>
-              <td data-en>only one read is ever in flight, no flooding: the rate is set by what the controller can give. On repeated failures the program backs off (20 ms → 2 s) so the CPU is not starved</td>
+              <td data-it>c'è sempre una sola lettura in corso, senza richieste accodate: il ritmo dipende dalla velocità di risposta del controllore. Dopo errori ripetuti il programma rallenta (da 20 ms a 2 s) per non sovraccaricare la CPU</td>
+              <td data-en>there is always only one read in progress, with no queued requests: the rate depends on how fast the controller answers. After repeated errors the program slows down (from 20 ms to 2 s) so as not to overload the CPU</td>
             </tr>
             <tr>
               <td data-it>Disconnessione</td><td data-en>Disconnection</td>
-              <td data-it>i canali per indirizzo passano a NaN e il collegamento è ripristinato automaticamente con attese crescenti (1000 ms → 5 s); la registrazione prosegue</td>
-              <td data-en>by-address channels go to NaN and the link is restored automatically with growing back-off (1000 ms → 5 s); recording continues</td>
+              <td data-it>i canali letti per indirizzo passano a NaN e il collegamento viene ripristinato automaticamente con attese crescenti (da 1000 ms a 5 s); la registrazione continua</td>
+              <td data-en>channels read by address go to NaN and the link is restored automatically with increasing waits (from 1000 ms to 5 s); recording continues</td>
             </tr>
             <tr>
               <td data-it>CPU in STOP</td><td data-en>CPU STOP</td>
-              <td data-it>i canali simbolici passano a NaN e il collegamento simbolico viene risolto di nuovo per nome al ritorno; la registrazione prosegue</td>
-              <td data-en>symbolic channels go to NaN and the symbolic link is re-resolved by name on return; recording continues</td>
+              <td data-it>i canali letti per nome passano a NaN e vengono ricollegati per nome al ritorno in RUN; la registrazione continua</td>
+              <td data-en>channels read by name go to NaN and are bound again by name when the CPU returns to RUN; recording continues</td>
             </tr>
             <tr>
-              <td data-it>Rilettura</td><td data-en>Re-read</td>
-              <td data-it>fuori da registrazione la CPU viene riletta come una nuova connessione (intestazione del buffer, elenco blocchi, tipi e nomi); durante la registrazione aggiorna solo l'elenco blocchi, senza riconnessione</td>
-              <td data-en>outside recording the CPU is read again like a new connection (buffer header, block list, member types, names); during recording only the block list is refreshed, with no reconnection</td>
+              <td data-it>Nuova lettura della CPU</td><td data-en>Reading the CPU again</td>
+              <td data-it>fuori dalla registrazione la CPU viene riletta come in una nuova connessione (intestazione del buffer, elenco dei blocchi, tipi e nomi); durante la registrazione si aggiorna solo l'elenco dei blocchi, senza riconnettersi</td>
+              <td data-en>outside a recording the CPU is read again as in a new connection (buffer header, block list, types and names); during a recording only the block list is updated, without reconnecting</td>
             </tr>
           </table>
 
@@ -835,39 +778,35 @@
           <table class="spec">
             <tr>
               <td data-it>Canali per file</td><td data-en>Channels per file</td>
-              <td data-it>65535 colonne per file DRG3 (limite del formato). In acquisizione dal vivo il numero di canali è limitato dall'edizione della licenza; un singolo drag &amp; drop è limitato a 256 variabili</td>
-              <td data-en>65535 columns per DRG3 file (format limit). In live acquisition the channel count is limited by the licence edition; a single drag &amp; drop is limited to 256 variables</td>
+              <td data-it>65535 colonne per file DRG3 (limite del formato). Nell'acquisizione il numero di canali può essere limitato dalla licenza; un singolo trascinamento aggiunge al massimo 256 variabili</td>
+              <td data-en>65535 columns per DRG3 file (format limit). During acquisition the number of channels may be limited by the licence; a single drag and drop adds at most 256 variables</td>
             </tr>
             <tr>
-              <td data-it>Storia dal vivo</td><td data-en>Live history</td>
-              <td data-it>512 MB condivisi fra tutti i canali, al massimo 1 ora; oltre questo limite lo storico si accorcia da solo e il programma lo scrive nel registro</td>
-              <td data-en>512 MB shared across all channels, at most 1 hour; beyond that the history is shortened automatically and the program says so in the log</td>
+              <td data-it>Storico in acquisizione</td><td data-en>Live history</td>
+              <td data-it>512 MB condivisi tra tutti i canali, al massimo 1 ora; oltre questo limite lo storico si accorcia automaticamente e il programma lo scrive nel registro</td>
+              <td data-en>512 MB shared by all channels, at most 1 hour; beyond that limit the history is shortened automatically and the program writes it in the log</td>
             </tr>
             <tr>
               <td data-it>Registro a video</td><td data-en>On-screen log</td>
-              <td data-it>nella finestra Live, con 3000 righe e 200000 caratteri per sessione; il pulsante di salvataggio esporta tutte le righe del modello, comprese quelle ancora in coda</td>
-              <td data-en>in the Live window, with 3000 lines and 200000 characters per session; the save button exports all model lines, including those still queued</td>
+              <td data-it>nella finestra Live, con 3000 righe e 200000 caratteri per sessione; il pulsante di salvataggio esporta tutte le righe, comprese quelle ancora in coda</td>
+              <td data-en>in the Live window, with 3000 lines and 200000 characters per session; the save button exports all lines, including those still queued</td>
             </tr>
             <tr>
               <td data-it>Registro su file</td><td data-en>Log file</td>
-              <td data-it><span class="mono" style="overflow-wrap:anywhere">%LOCALAPPDATA%\PlcTraceViewer\logs\app.log</span>, rotazione 2 MB, 3 file conservati; registro dei crash in <span class="mono">crash.log</span> (max 2 MB, 3 rotazioni)</td>
-              <td data-en><span class="mono" style="overflow-wrap:anywhere">%LOCALAPPDATA%\PlcTraceViewer\logs\app.log</span>, 2 MB rotation, 3 files retained; crash log in <span class="mono">crash.log</span> (max 2 MB, 3 rotations)</td>
+              <td data-it><span class="mono" style="overflow-wrap:anywhere">%LOCALAPPDATA%\PlcTraceViewer\logs\app.log</span>, rotazione a 2 MB, 3 file conservati; errori gravi in <span class="mono">crash.log</span> (massimo 2 MB, 3 rotazioni)</td>
+              <td data-en><span class="mono" style="overflow-wrap:anywhere">%LOCALAPPDATA%\PlcTraceViewer\logs\app.log</span>, 2 MB rotation, 3 files kept; serious errors in <span class="mono">crash.log</span> (at most 2 MB, 3 rotations)</td>
             </tr>
             <tr>
               <td data-it>File aperti</td><td data-en>Open files</td>
-              <td data-it>l'edizione Free apre una registrazione alla volta; l'edizione PRO ne apre più di una insieme</td>
+              <td data-it>la versione Free apre una registrazione alla volta; la versione PRO ne apre più di una insieme</td>
               <td data-en>the Free edition opens one recording at a time; the PRO edition opens several at once</td>
             </tr>
           </table>
 
           <div class="note" style="margin-top:18px">
-            <b data-it>I valori di questo quadro sono quelli del programma.</b><b data-en>The values in this table are the program's own.</b>
-            <span data-it> Rendimenti sostenibili in campo, durata effettiva di una registrazione e occupazione del
-              collegamento dipendono dall'installazione e vengono misurati sul posto prima della registrazione, non
-              dichiarati in anticipo.</span>
-            <span data-en> Sustainable rates on site, the actual duration of a recording and the load on the
-              connection depend on the installation and are measured in place before recording, not stated in
-              advance.</span>
+            <b data-it>I valori di questa tabella sono quelli del programma.</b><b data-en>The values in this table are the program's own.</b>
+            <span data-it> Gli intervalli raggiungibili in impianto, la durata effettiva di una registrazione e l'occupazione del collegamento dipendono dall'impianto e vengono misurati sul posto prima della registrazione.</span>
+            <span data-en> The intervals that can be reached on site, the actual duration of a recording and the load on the connection depend on the plant and are measured on site before recording.</span>
           </div>
         </article>
 
@@ -881,8 +820,8 @@
 <footer>
   <div class="wrap">
     <div class="foot-bot" style="margin-top:0;border-top:0">
-      <span data-it>PlcTraceViewer — scheda tecnica DS-PTV-21 · Leonardo Dogariu</span>
-      <span data-en>PlcTraceViewer — datasheet DS-PTV-21 · Leonardo Dogariu</span>
+      <span data-it>PlcTraceViewer · scheda tecnica DS-PTV-21 · Leonardo Dogariu</span>
+      <span data-en>PlcTraceViewer · datasheet DS-PTV-21 · Leonardo Dogariu</span>
       <span data-it>Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG. ibaAnalyzer è un marchio di iba AG.</span>
       <span data-en>Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an independent product and is not affiliated with, sponsored or endorsed by Siemens AG. ibaAnalyzer is a trademark of iba AG.</span>
       <span>
@@ -901,6 +840,6 @@
   <p class="cap mono" style="color:#8d9aa8;font-size:.78rem;margin-top:10px"></p>
 </dialog>
 
-<script src="assets/js/site.js?v=20261001n"></script>
+<script src="assets/js/site.js?v=20261008a"></script>
 </body>
 </html>

@@ -15,18 +15,27 @@
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { } }
   };
+  // A number in the reader's convention: 65.466 and 0,999 in Italian, 65,466 and 0.999 in English.
+  var fmt = function (v, dec, l) {
+    var en = (l || document.documentElement.lang || 'it').indexOf('en') === 0;
+    return v.toLocaleString(en ? 'en-GB' : 'it-IT',
+                            { minimumFractionDigits: dec || 0, maximumFractionDigits: dec || 0 });
+  };
+  var fmtBoth = function (v, dec) {
+    return '<span data-it>' + fmt(v, dec, 'it') + '</span><span data-en>' + fmt(v, dec, 'en') + '</span>';
+  };
 
   /* ── language ─────────────────────────────────────────────────────────── */
   var META = {
     it: {
-      title: 'PLC Trace Viewer — la scatola nera del tuo impianto',
-      desc: 'Registratore e analizzatore di segnali per PLC Siemens S7-300/400/1200/1500. ' +
-            'Acquisizione in un processo dedicato, tempo reale di ogni campione, nessun dato inventato.'
+      title: 'PlcTraceViewer · registrazione e analisi di segnali per PLC S7',
+      desc: 'Registratore e analizzatore di segnali per PLC S7-300, 400, 1200 e 1500. Acquisizione in un ' +
+            'processo separato, ora di lettura reale per ogni campione, valori mancanti mai sostituiti con zero.'
     },
     en: {
-      title: 'PLC Trace Viewer — the black box of your plant',
-      desc: 'Signal recorder and analyser for Siemens S7-300/400/1200/1500 PLCs. ' +
-            'Acquisition in a dedicated process, the real time of every sample, nothing invented.'
+      title: 'PlcTraceViewer · signal recording and analysis for S7 PLCs',
+      desc: 'Signal recorder and analyser for S7-300, 400, 1200 and 1500 PLCs. Acquisition in a separate ' +
+            'process, the real read time of every sample, missing values never replaced with zero.'
     }
   };
 
@@ -162,7 +171,10 @@
     var els = $$('[data-count]');
     if (!els.length) return;
     if (REDUCED || !('IntersectionObserver' in window)) {
-      els.forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
+      els.forEach(function (el) {
+        var raw = el.getAttribute('data-count');
+        el.innerHTML = fmtBoth(parseFloat(raw), (raw.split('.')[1] || '').length);
+      });
       return;
     }
     var io = new IntersectionObserver(function (es) {
@@ -177,7 +189,7 @@
           if (!t0) t0 = t;
           var k = Math.min(1, (t - t0) / 1100);
           var v = to * (1 - Math.pow(1 - k, 3));
-          el.textContent = dec ? v.toFixed(dec).replace('.', ',') : Math.round(v).toLocaleString('it-IT');
+          el.innerHTML = fmtBoth(dec ? v : Math.round(v), dec);
           if (k < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
@@ -301,9 +313,9 @@
       setInterval(function () {
         var n = performance.now();
         base += Math.round(n - last); last = n;
-        cnt.textContent = base.toLocaleString('it-IT');
+        cnt.innerHTML = fmtBoth(base, 0);
       }, 120);
-    } else if (cnt) cnt.textContent = '65.466';
+    } else if (cnt) cnt.innerHTML = fmtBoth(65466, 0);
   })();
 
   /* ── the two lanes: window process vs acquisition process ─────────────── */
@@ -520,12 +532,23 @@
     var data = window.PTV_FUNCTIONS, cat = 'all', q = '';
     var cats = [];
     data.forEach(function (f) { if (cats.indexOf(f.c) < 0) cats.push(f.c); });
+    // Family names as the Italian page shows them; the English ones come from the data.
+    var CAT_IT = {
+      'Math': 'Matematica', 'Trigonometry': 'Trigonometria', 'Logic': 'Logica',
+      'Derivatives': 'Derivate e integrali', 'Filters': 'Filtri',
+      'Windowed statistics': 'Statistiche su finestra', 'Global statistics': 'Statistiche globali',
+      'Edges and timing': 'Fronti e temporizzazioni', 'Time and frequency': 'Tempo e frequenza',
+      'Compatibility': 'Compatibilità'
+    };
+    var both = function (it, en) {
+      return it === en ? en : '<span data-it>' + it + '</span><span data-en>' + en + '</span>';
+    };
 
     var tools = $('#fnwall-tools');
     if (tools) {
       var mk = function (label, value) {
         var b = document.createElement('button');
-        b.className = 'chip'; b.textContent = label; b.setAttribute('aria-pressed', value === 'all' ? 'true' : 'false');
+        b.className = 'chip'; b.innerHTML = label; b.setAttribute('aria-pressed', value === 'all' ? 'true' : 'false');
         b.addEventListener('click', function () {
           cat = value;
           $$('.chip', tools).forEach(function (c) { c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
@@ -534,7 +557,7 @@
         return b;
       };
       tools.insertBefore(mk('' + data.length, 'all'), tools.firstChild);
-      cats.forEach(function (c) { tools.insertBefore(mk(c, c), $('#fnwall-search')); });
+      cats.forEach(function (c) { tools.insertBefore(mk(both(CAT_IT[c] || c, c), c), $('#fnwall-search')); });
     }
     var input = $('#fnwall-q');
     if (input) input.addEventListener('input', function () { q = input.value.trim().toUpperCase(); draw(); });
@@ -542,7 +565,8 @@
     function draw() {
       var list = data.filter(function (f) {
         return (cat === 'all' || f.c === cat) &&
-               (!q || f.n.indexOf(q) > -1 || f.d.toUpperCase().indexOf(q) > -1);
+               (!q || f.n.indexOf(q) > -1 || f.d.toUpperCase().indexOf(q) > -1 ||
+                (f.i || '').toUpperCase().indexOf(q) > -1);
       });
       if (!list.length) {
         wall.innerHTML = '<div class="fw-empty"><span data-it>Nessuna funzione con questo nome.</span>' +
@@ -550,7 +574,8 @@
         return;
       }
       wall.innerHTML = list.map(function (f) {
-        return '<div class="fw-i"><b>' + f.s + '</b><span>' + f.d + '</span></div>';
+        return '<div class="fw-i"><b>' + f.s + '</b>' +
+               (f.i ? both(f.i, f.d) : '<span>' + f.d + '</span>') + '</div>';
       }).join('');
     }
     draw();
