@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PlcTraceViewer · scheda tecnica</title>
 <meta name="description" content="Scheda tecnica di PlcTraceViewer: connessioni supportate, nomi simbolici, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#071f3c">
 <link rel="canonical" href="https://leo25122.github.io/PlcTraceViewer-site/datasheet.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PlcTraceViewer · datasheet">
@@ -16,7 +16,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon-256.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20261009a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css?v=20261009b">
 </head>
 <body data-title-it="PlcTraceViewer · scheda tecnica" data-title-en="PlcTraceViewer · datasheet"
       data-desc-it="Scheda tecnica di PlcTraceViewer: connessioni, nomi simbolici, architettura di acquisizione, campionamento, registrazione, analisi, segnali calcolati, dashboard web, licenza, requisiti e limiti."
@@ -24,17 +27,16 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.2</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
-      <a href="datasheet.html" style="color:var(--navy);font-weight:600" data-it>Scheda tecnica</a><a href="datasheet.html" style="color:var(--navy);font-weight:600" data-en>Datasheet</a>
+      <a href="datasheet.html" class="here" data-it>Scheda tecnica</a><a href="datasheet.html" class="here" data-en>Datasheet</a>
       <a href="faq.html">FAQ</a>
     </nav>
     <div class="tools">
       <div class="lang" role="group" aria-label="Lingua / Language">
-        <button type="button" data-lang-btn="it" aria-pressed="true">IT</button>
-        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang-btn="it" aria-pressed="true">IT</button><span>/</span><button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
       </div>
       <a class="btn btn-sm" href="index.html#download"><span data-it>Scarica</span><span data-en>Download</span></a>
       <button class="menu-btn" type="button" data-menu aria-expanded="false">Menu</button>
@@ -53,8 +55,7 @@
 
 <section class="doc-head">
   <div class="wrap">
-    <p class="crumb" data-it>Scheda tecnica DS-PTV-21</p>
-    <p class="crumb" data-en>Datasheet DS-PTV-21</p>
+    <p class="crumb"><a href="index.html">PlcTraceViewer</a> / <b data-it>Scheda tecnica DS-PTV-21</b><b data-en>Datasheet DS-PTV-21</b></p>
     <h1 data-it>PlcTraceViewer: acquisizione, registrazione e analisi di segnali da PLC S7</h1>
     <h1 data-en>PlcTraceViewer: signal acquisition, recording and analysis for S7 PLCs</h1>
     <p class="lead" data-it>
@@ -465,8 +466,8 @@
               <td data-it>utilizzabile senza attivazione e senza scadenza. Apertura e analisi delle registrazioni (un file alla volta): grafici, marker, statistiche</td>
               <td data-en>usable without activation and without expiry. Opening and analysing recordings (one file at a time): charts, markers, statistics</td></tr>
             <tr><td data-it>Versione PRO</td><td data-en>PRO edition</td>
-              <td data-it>si attiva con la licenza. Acquisizione e registrazione, lettura di un progetto TIA, generazione dei blocchi per il campionamento a 1 ms, dashboard web, segnali calcolati, più file aperti insieme con assi sincronizzati, finestre di analisi separate, esportazione CSV e immagine, copia negli appunti, importazione da ibaAnalyzer</td>
-              <td data-en>enabled by the licence. Acquisition and recording, reading a TIA project, generation of the blocks for 1 ms sampling, web dashboard, computed signals, several files open at once with synchronised axes, separate analysis windows, CSV and image export, copy to clipboard, ibaAnalyzer import</td></tr>
+              <td data-it>si attiva con la licenza. Acquisizione e registrazione, lettura di un progetto TIA, generazione dei blocchi per il campionamento a 1 ms, dashboard web, segnali calcolati, più file aperti insieme con assi sincronizzati, finestre di analisi separate, esportazione CSV e immagine, copia negli appunti</td>
+              <td data-en>enabled by the licence. Acquisition and recording, reading a TIA project, generation of the blocks for 1 ms sampling, web dashboard, computed signals, several files open at once with synchronised axes, separate analysis windows, CSV and image export, copy to clipboard</td></tr>
             <tr><td data-it>Attivazione</td><td data-en>Activation</td>
               <td data-it>non richiede internet; se una connessione è disponibile, lo stato della licenza viene verificato sul portale senza inviare dati d'impianto</td>
               <td data-en>does not need internet; if a connection is available, the licence status is checked on the portal without sending plant data</td></tr>
@@ -803,8 +804,8 @@
     </p>
     <div class="legal">
       <p><span data-it>PlcTraceViewer · scheda tecnica DS-PTV-21</span><span data-en>PlcTraceViewer · datasheet DS-PTV-21</span> · © <span data-year>2026</span> Leonardo Dogariu</p>
-      <p data-it>Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG. ibaAnalyzer è un marchio di iba AG.</p>
-      <p data-en>Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an independent product and is not affiliated with, sponsored or endorsed by Siemens AG. ibaAnalyzer is a trademark of iba AG.</p>
+      <p data-it>Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG.</p>
+      <p data-en>Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an independent product and is not affiliated with, sponsored or endorsed by Siemens AG.</p>
     </div>
   </div>
 </footer>
@@ -815,6 +816,6 @@
   <p class="cap"></p>
 </dialog>
 
-<script src="assets/js/site.js?v=20261009a"></script>
+<script src="assets/js/site.js?v=20261009b"></script>
 </body>
 </html>
