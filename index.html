@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="light">
+<html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PlcTraceViewer · registrazione e analisi di segnali per PLC S7</title>
 <meta name="description" content="Registratore e analizzatore di segnali per PLC S7-300, 400, 1200 e 1500. Acquisizione in un processo separato, ora di lettura reale per ogni campione, valori mancanti mai sostituiti con zero.">
-<meta name="theme-color" content="#f6f5f2">
+<meta name="theme-color" content="#ffffff">
 <meta name="author" content="Leonardo Dogariu">
 <link rel="canonical" href="https://leo25122.github.io/PlcTraceViewer-site/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PlcTraceViewer · registrazione e analisi di segnali per PLC S7">
 <meta property="og:description" content="Registra i segnali dei PLC S7 con l'ora esatta di ogni lettura e analizzali con marker, statistiche e canali calcolati.">
-<meta property="og:image" content="https://leo25122.github.io/PlcTraceViewer-site/assets/img/art-plant.webp">
+<meta property="og:image" content="https://leo25122.github.io/PlcTraceViewer-site/assets/img/analysis.webp">
 <meta property="og:url" content="https://leo25122.github.io/PlcTraceViewer-site/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon-256.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=20260918c">
+<link rel="stylesheet" href="assets/css/site.css?v=20261009a">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -37,176 +34,108 @@
 </head>
 <body>
 
-<div class="progress" aria-hidden="true"></div>
-
-<header class="nav">
+<header class="top">
   <div class="wrap">
-    <a class="brand" href="#top">
-      <span class="mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 16h3l3-9 4 14 3-8h7"/>
-        </svg>
-      </span>
-      <span>PlcTraceViewer</span>
-    </a>
-
-    <nav data-spy>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span></a>
+    <nav>
       <a href="#prodotto" data-it>Prodotto</a><a href="#prodotto" data-en>Product</a>
-      <a href="#velocita" data-it>Velocità</a><a href="#velocita" data-en>Speed</a>
       <a href="#analisi" data-it>Analisi</a><a href="#analisi" data-en>Analysis</a>
       <a href="#collegamento" data-it>Collegamento</a><a href="#collegamento" data-en>Connection</a>
       <a href="#edizioni" data-it>Edizioni</a><a href="#edizioni" data-en>Editions</a>
-      <a href="datasheet.html">Datasheet</a>
+      <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
+      <a href="datasheet.html" data-it>Scheda tecnica</a><a href="datasheet.html" data-en>Datasheet</a>
       <a href="faq.html">FAQ</a>
     </nav>
-
-    <div class="nav-tools">
-      <div class="seg" role="group" aria-label="Lingua / Language">
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Lingua / Language">
         <button type="button" data-lang-btn="it" aria-pressed="true">IT</button>
         <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
       </div>
-      <button class="icon-btn" data-theme-toggle type="button" aria-label="Tema chiaro / scuro">
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
-      <a class="btn" href="#download" style="padding:9px 18px;font-size:.88rem" data-it>Scarica</a>
-      <a class="btn" href="#download" style="padding:9px 18px;font-size:.88rem" data-en>Download</a>
-      <button class="icon-btn burger" data-burger type="button" aria-expanded="false" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
+      <a class="btn btn-sm" href="#download"><span data-it>Scarica</span><span data-en>Download</span></a>
+      <button class="menu-btn" type="button" data-menu aria-expanded="false">Menu</button>
     </div>
+  </div>
+  <div class="menu">
+    <a href="#prodotto" data-it>Prodotto</a><a href="#prodotto" data-en>Product</a>
+    <a href="#velocita" data-it>Velocità</a><a href="#velocita" data-en>Speed</a>
+    <a href="#analisi" data-it>Analisi</a><a href="#analisi" data-en>Analysis</a>
+    <a href="#calcolati" data-it>Segnali calcolati</a><a href="#calcolati" data-en>Computed signals</a>
+    <a href="#collegamento" data-it>Collegamento</a><a href="#collegamento" data-en>Connection</a>
+    <a href="#limiti" data-it>Cosa non fa</a><a href="#limiti" data-en>What it does not do</a>
+    <a href="#edizioni" data-it>Edizioni</a><a href="#edizioni" data-en>Editions</a>
+    <a href="#download">Download</a>
+    <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
+    <a href="datasheet.html" data-it>Scheda tecnica</a><a href="datasheet.html" data-en>Datasheet</a>
+    <a href="faq.html">FAQ</a>
   </div>
 </header>
 
-<div class="drawer">
-  <a href="#prodotto" data-it>Prodotto</a><a href="#prodotto" data-en>Product</a>
-  <a href="#velocita" data-it>Velocità</a><a href="#velocita" data-en>Speed</a>
-  <a href="#analisi" data-it>Analisi</a><a href="#analisi" data-en>Analysis</a>
-  <a href="#calcolati" data-it>Segnali calcolati</a><a href="#calcolati" data-en>Computed signals</a>
-  <a href="#collegamento" data-it>Collegamento</a><a href="#collegamento" data-en>Connection</a>
-  <a href="#limiti" data-it>Cosa non fa</a><a href="#limiti" data-en>What it does not do</a>
-  <a href="#edizioni" data-it>Edizioni</a><a href="#edizioni" data-en>Editions</a>
-  <a href="faq.html">FAQ</a>
-  <a href="datasheet.html" data-it>Scheda tecnica</a><a href="datasheet.html" data-en>Datasheet</a>
-  <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
-  <a class="btn" href="#download" data-it>Scarica per Windows</a>
-  <a class="btn" href="#download" data-en>Download for Windows</a>
-</div>
-
 <main id="top">
 
-<!-- ══════════════════ HERO ══════════════════════════════════════════════ -->
-<section class="hero" style="border:0">
+<!-- Presentation -->
+<section class="first">
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow"><span class="dot"></span>
-          <span data-it>Registrazione e analisi di segnali · PLC S7</span>
-          <span data-en>Signal recording and analysis · S7 PLCs</span>
-        </p>
-
-        <h1 data-it>Registra e analizza i segnali dei PLC <span class="accent">S7</span>.</h1>
-        <h1 data-en>Record and analyse signals from <span class="accent">S7</span> PLCs.</h1>
-
+        <h1 data-it>Registra e analizza i segnali dei PLC S7</h1>
+        <h1 data-en>Record and analyse signals from S7 PLCs</h1>
         <p class="lead" data-it>
           PlcTraceViewer si collega alla CPU con la linea in produzione, legge i segnali che scegli e li salva su disco con l'ora esatta di ogni lettura. L'acquisizione gira in un processo separato dall'interfaccia, quindi l'uso della finestra non influisce sui tempi di campionamento.
         </p>
         <p class="lead" data-en>
           PlcTraceViewer connects to the CPU while the line is in production, reads the signals you select and saves them to disk with the exact time of each read. Acquisition runs in a process separate from the user interface, so using the window does not affect sampling times.
         </p>
-
-        <div class="cta">
-          <a class="btn btn-lg" href="#download">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
-            <span data-it>Scarica per Windows</span><span data-en>Download for Windows</span>
-          </a>
-          <a class="btn-2 btn-lg" href="#prodotto">
-            <span data-it>Come funziona</span><span data-en>How it works</span>
-          </a>
+        <div class="actions">
+          <a class="btn" href="#download"><span data-it>Scarica per Windows</span><span data-en>Download for Windows</span></a>
+          <a class="btn-2" href="quickstart.html"><span data-it>Guida rapida</span><span data-en>Quick start</span></a>
         </div>
         <p class="req" data-it>Windows 10 e 11 a 64 bit · nessun runtime da installare · funziona senza internet</p>
         <p class="req" data-en>Windows 10 and 11, 64-bit · no runtime to install · works without internet</p>
       </div>
-
-      <div>
-        <div class="scope" data-r="scale">
-          <div class="scope-bar">
-            <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span>LIVE · 192.168.0.10 · S7-1500</span>
-          </div>
-          <canvas id="scope" aria-hidden="true"></canvas>
-          <div class="scope-foot">
-            <div><b><span data-it>1,0</span><span data-en>1.0</span> ms</b><span data-it>periodo</span><span data-en>period</span></div>
-            <div><b>100</b><span data-it>canali</span><span data-en>channels</span></div>
-            <div><b id="scope-samples">0</b><span data-it>campioni</span><span data-en>samples</span></div>
-            <div><b>0</b><span data-it>persi</span><span data-en>missed</span></div>
-          </div>
+      <figure>
+        <div class="shot" data-zoom="assets/img/analysis.webp">
+          <img src="assets/img/analysis.webp" width="1516" height="908" decoding="async"
+               alt="PlcTraceViewer analysis window: signal list, global statistics, vertical and horizontal markers, marker analysis table and signal summary.">
         </div>
-        <p class="scope-note">
-          <span data-it>Immagine dimostrativa, non dati di un impianto reale.</span>
-          <span data-en>Illustration, not data from a real plant.</span>
-        </p>
-      </div>
+        <figcaption>
+          <span data-it>La finestra di analisi di PlcTraceViewer con tre segnali sullo stesso asse dei tempi.</span>
+          <span data-en>The PlcTraceViewer analysis window with three signals on one time axis.</span>
+        </figcaption>
+      </figure>
     </div>
-  </div>
 
-  <div class="wrap">
-    <div class="hero-stats stagger">
-      <div><b>S7-300 → 1500</b><span data-it>CPU supportate</span><span data-en>Supported CPUs</span></div>
-      <div><b>1 ms</b><span data-it>se la CPU riesce a rispondere</span><span data-en>if the CPU can keep up</span></div>
-      <div><b><span data-count="94">94</span></b><span data-it>funzioni per i segnali calcolati</span><span data-en>functions for computed signals</span></div>
-      <div><b data-it>Offline</b><b data-en>Offline</b><span data-it>attivazione senza internet</span><span data-en>activation without internet</span></div>
-    </div>
+    <table class="facts">
+      <tr><th data-it>CPU</th><th data-en>CPU</th><td>S7-300, S7-400, S7-1200, S7-1500</td></tr>
+      <tr><th data-it>Collegamento</th><th data-en>Connection</th><td>PUT/GET, OPC UA, S7comm-Plus</td></tr>
+      <tr><th data-it>Progetti TIA</th><th data-en>TIA projects</th><td>V16 → V21</td></tr>
+      <tr><th data-it>Intervallo</th><th data-en>Interval</th><td><span data-it>da 1 ms, se la CPU riesce a rispondere</span><span data-en>from 1 ms, if the CPU can keep up</span></td></tr>
+      <tr><th data-it>Segnali calcolati</th><th data-en>Computed signals</th><td><span data-it>94 funzioni</span><span data-en>94 functions</span></td></tr>
+      <tr><th data-it>Licenza</th><th data-en>Licence</th><td><span data-it>attivazione senza internet</span><span data-en>activation without internet</span></td></tr>
+    </table>
   </div>
 </section>
 
-<!-- ══════════════════ TICKER ════════════════════════════════════════════ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>S7-300</span><span>S7-400</span><span>S7-1200</span><span>S7-1500</span>
-    <span>PUT/GET</span><span>OPC UA</span><span>S7comm-Plus</span>
-    <span data-it>Blocchi ottimizzati</span><span data-en>Optimised blocks</span><span>TIA V16 → V21</span><span>Windows 10 / 11</span>
-    <span data-it>Attivazione offline</span><span data-en>Offline activation</span><span>.drug · .csv · .txt</span>
-    <span>S7-300</span><span>S7-400</span><span>S7-1200</span><span>S7-1500</span>
-    <span>PUT/GET</span><span>OPC UA</span><span>S7comm-Plus</span>
-    <span data-it>Blocchi ottimizzati</span><span data-en>Optimised blocks</span><span>TIA V16 → V21</span><span>Windows 10 / 11</span>
-    <span data-it>Attivazione offline</span><span data-en>Offline activation</span><span>.drug · .csv · .txt</span>
-  </div>
-</div>
-
-<!-- ══════════════════ PERCHÉ ════════════════════════════════════════════ -->
+<!-- What it is for -->
 <section id="perche">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>A cosa serve</span><span data-en>What it is for</span></p>
-      <h2 data-it>Per capire un fermo servono i segnali dei secondi precedenti.</h2>
-      <h2 data-en>To understand a stop you need the signals from the seconds before it.</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      Servono i valori di quei secondi, ognuno con il suo tempo. Gli strumenti che di solito si hanno a disposizione non bastano.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      You need the values of those seconds, each with its own time. The tools usually at hand are not enough.
-    </p>
-    </div>
-<div class="g3 stagger" style="margin-top:44px">
-      <div class="card">
-        <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+    <h2 data-it>Per capire un fermo servono i segnali dei secondi precedenti</h2>
+    <h2 data-en>To understand a stop you need the signals from the seconds before it</h2>
+    <p class="sub" data-it>Servono i valori di quei secondi, ognuno con il suo tempo. Gli strumenti che di solito si hanno a disposizione non bastano.</p>
+    <p class="sub" data-en>You need the values of those seconds, each with its own time. The tools usually at hand are not enough.</p>
+    <div class="cols-3">
+      <div>
         <h3 data-it>Il trace della CPU è limitato</h3>
         <h3 data-en>The CPU trace is limited</h3>
         <p data-it>Buffer piccolo, pochi segnali e si ferma quando è pieno. Un guasto che si presenta di rado può non essere catturato.</p>
         <p data-en>A small buffer, few signals, and it stops when it is full. A fault that appears rarely may never be captured.</p>
       </div>
-      <div class="card">
-        <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div>
         <h3 data-it>L'HMI mostra il presente</h3>
         <h3 data-en>The HMI shows the present</h3>
         <p data-it>Serve per condurre l'impianto, non per ricostruire un evento di 40 ms avvenuto ore prima.</p>
         <p data-en>It is made for running the plant, not for reconstructing a 40 ms event that happened hours ago.</p>
       </div>
-      <div class="card">
-        <div class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 3-5 6 8"/><path d="M3 21h18"/></svg></div>
+      <div>
         <h3 data-it>Un export senza tempi non basta</h3>
         <h3 data-en>An export without timestamps is not enough</h3>
         <p data-it>Senza l'istante di ogni lettura non si può misurare un ritardo né confrontare due segnali.</p>
@@ -216,71 +145,48 @@
   </div>
 </section>
 
-
-<!-- band -->
-<section class="band">
-  <img src="assets/img/art-plant.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Illustration: signals from a production cell shown in PlcTraceViewer on a laptop.">
-  <div class="wrap band-in">
-    <p data-r="up">
-      <small><span data-it>Acquisizione live</span><span data-en>Live acquisition</span></small>
-      <span data-it>I valori passano dal PLC al grafico durante l'acquisizione.</span><span data-en>Values go from the PLC to the chart during acquisition.</span>
-    </p>
-  </div>
-</section>
-<!-- ══════════════════ COME FUNZIONA ═════════════════════════════════════ -->
-<section id="prodotto" class="sec-alt">
+<!-- How it works -->
+<section id="prodotto" class="alt">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>In tre passi</span><span data-en>In three steps</span></p>
-      <h2 data-it>Ti colleghi, scegli i canali e registri.</h2>
-      <h2 data-en>Connect, choose the channels and record.</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      Non serve preparare un progetto né caricare blocchi nella CPU: si può registrare pochi minuti dopo l'installazione.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      There is no project to prepare and nothing to load into the CPU: you can record a few minutes after installing.
-    </p>
-    </div>
-<div class="steps">
-      <div class="step" data-r="up">
-        <span class="num">1</span>
+    <h2 data-it>Ti colleghi, scegli i canali e registri</h2>
+    <h2 data-en>Connect, choose the channels and record</h2>
+    <p class="sub" data-it>Non serve preparare un progetto né caricare blocchi nella CPU: si può registrare pochi minuti dopo l'installazione.</p>
+    <p class="sub" data-en>There is no project to prepare and nothing to load into the CPU: you can record a few minutes after installing.</p>
+    <ol class="steps">
+      <li>
         <h3 data-it>Indirizzo e tipo di collegamento</h3>
         <h3 data-en>Address and connection type</h3>
         <p data-it>Inserisci l'indirizzo IP della CPU e scegli il tipo di collegamento. Il test di connessione indica se un problema dipende dalla rete o dalla CPU.</p>
         <p data-en>Enter the CPU's IP address and choose the connection type. The connection test tells you whether a problem lies in the network or in the CPU.</p>
-        <figure class="shot step-thumb" style="margin-top:16px" data-zoom="assets/img/app-toolbar.webp">
+        <figure class="shot thumb" data-zoom="assets/img/app-toolbar.webp">
           <img src="assets/img/app-toolbar.webp" width="1516" height="103" loading="lazy" decoding="async"
                alt="PlcTraceViewer toolbar: PLC IP address, connection mode, connect and record controls.">
         </figure>
-      </div>
-      <div class="step" data-r="up" style="--d:120ms">
-        <span class="num">2</span>
+      </li>
+      <li>
         <h3 data-it>I segnali con i nomi di TIA</h3>
         <h3 data-en>Signals with their TIA names</h3>
         <p data-it>I blocchi si leggono dal progetto TIA, da una tabella dei tag o direttamente dalla CPU. I segnali si aggiungono trascinandoli nell'elenco.</p>
         <p data-en>Blocks are read from the TIA project, from a tag table or directly from the CPU. You add signals by dragging them into the list.</p>
-        <figure class="shot step-thumb" style="margin-top:16px" data-zoom="assets/img/app-tree.webp">
+        <figure class="shot thumb clip" data-zoom="assets/img/app-tree.webp">
           <img src="assets/img/app-tree.webp" width="336" height="1023" loading="lazy" decoding="async"
                alt="The data-block browser of PlcTraceViewer listing the PLC's data blocks read from the CPU.">
         </figure>
-      </div>
-      <div class="step" data-r="up" style="--d:240ms">
-        <span class="num">3</span>
+      </li>
+      <li>
         <h3 data-it>Registrazione</h3>
         <h3 data-en>Recording</h3>
         <p data-it>Prima di aprire il file, il programma verifica che la CPU riesca a rispondere all'intervallo richiesto. Se non ci riesce, lo segnala e propone un intervallo più lungo.</p>
         <p data-en>Before opening the file, the program checks that the CPU can answer at the requested interval. If it cannot, it says so and suggests a longer interval.</p>
-        <figure class="shot step-thumb" style="margin-top:16px" data-zoom="assets/img/app-acquisition.webp">
+        <figure class="shot thumb" data-zoom="assets/img/app-acquisition.webp">
           <img src="assets/img/app-acquisition.webp" width="397" height="218" loading="lazy" decoding="async"
                alt="Acquisition panel: frequency, period, samples, duration, channels and interval.">
         </figure>
-      </div>
-    </div>
+      </li>
+    </ol>
 
-    <figure style="margin-top:48px" data-r="wipe">
-      <div class="shot shot-lift shot-tall" data-zoom="assets/img/app-workspace.webp">
+    <figure class="fig">
+      <div class="shot" data-zoom="assets/img/app-workspace.webp">
         <picture>
           <source srcset="assets/img/app-workspace.webp" type="image/webp">
           <img src="assets/img/app-workspace.png" width="1516" height="1150" loading="lazy" decoding="async"
@@ -295,216 +201,157 @@
   </div>
 </section>
 
-
-<!-- band -->
-<section class="band">
-  <img src="assets/img/art-workflow.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Illustration: live monitoring, analysis and configuration views of PlcTraceViewer.">
-  <div class="wrap band-in">
-    <p data-r="up">
-      <small><span data-it>Dal PLC al file</span><span data-en>From the PLC to the file</span></small>
-      <span data-it>Lettura, registrazione e analisi dello stesso segnale.</span><span data-en>Reading, recording and analysis of the same signal.</span>
-    </p>
-  </div>
-</section>
-<!-- ══════════════════ SHOWCASE ══════════════════════════════════════════ -->
-<section id="posto-di-lavoro">
-  <div class="wrap wrap-wide">
-    <div class="head" data-r="up" style="margin-bottom:40px">
-      <p class="kicker"><span data-it>L'interfaccia</span><span data-en>The interface</span></p>
-      <h2 data-it>Valori, grafici e analisi nella stessa finestra, anche durante la registrazione.</h2>
-      <h2 data-en>Values, charts and analysis in the same window, also while recording.</h2>
-    </div>
-
-    <div class="showcase" data-showcase>
-      <div class="sc-steps">
-        <div class="sc-step">
-          <span class="tag" data-it>Canali attivi</span><span class="tag" data-en>Active channels</span>
-          <h3 data-it>Valore e periodo di lettura</h3>
-          <h3 data-en>Value and read period</h3>
-          <p data-it>Per ogni canale sono indicati il periodo con cui viene <strong>effettivamente</strong> letto e la frequenza corrispondente, misurati durante l'acquisizione.</p>
-          <p data-en>Each channel shows the period at which it is <strong>actually</strong> read and the matching rate, both measured during acquisition.</p>
-        </div>
-        <div class="sc-step">
-          <span class="tag" data-it>Grafici</span><span class="tag" data-en>Charts</span>
-          <h3 data-it>Grafici in tempo reale</h3>
-          <h3 data-en>Live charts</h3>
-          <p data-it>Decine di segnali sullo stesso asse dei tempi, aggiornati mentre il file viene scritto.</p>
-          <p data-en>Dozens of signals on one time axis, updated while the file is being written.</p>
-        </div>
-        <div class="sc-step">
-          <span class="tag" data-it>Ingressi e uscite</span><span class="tag" data-en>Inputs and outputs</span>
-          <h3 data-it>Ingressi, uscite e merker, oltre ai DB</h3>
-          <h3 data-en>Inputs, outputs and memory bits, as well as DBs</h3>
-          <p data-it>Un finecorsa e una pressione analogica si possono confrontare sullo stesso grafico.</p>
-          <p data-en>A limit switch and an analogue pressure can be compared on the same chart.</p>
-        </div>
-        <div class="sc-step">
-          <span class="tag" data-it>Analisi</span><span class="tag" data-en>Analysis</span>
-          <h3 data-it>Analisi durante l'acquisizione</h3>
-          <h3 data-en>Analysis during acquisition</h3>
-          <p data-it>La finestra di analisi usata per le registrazioni salvate si apre anche sui segnali in acquisizione.</p>
-          <p data-en>The analysis window used for saved recordings also opens on signals being acquired.</p>
-        </div>
-        <div class="sc-step">
-          <span class="tag" data-it>Marker</span><span class="tag" data-en>Markers</span>
-          <h3 data-it>Misure con i marker</h3>
-          <h3 data-en>Measuring with markers</h3>
-          <p data-it>Con due marker verticali si leggono ΔT, frequenza e variazione di ogni segnale nell'intervallo. La tabella si può copiare.</p>
-          <p data-en>Two vertical markers give ΔT, frequency and the change of every signal over the interval. The table can be copied.</p>
-        </div>
+<!-- The interface -->
+<section id="interfaccia">
+  <div class="wrap">
+    <h2 data-it>Valori, grafici e analisi nella stessa finestra, anche durante la registrazione</h2>
+    <h2 data-en>Values, charts and analysis in the same window, also while recording</h2>
+    <dl class="feat">
+      <div>
+        <dt data-it>Valore e periodo di lettura</dt><dt data-en>Value and read period</dt>
+        <dd data-it>Per ogni canale sono indicati il periodo con cui viene <strong>effettivamente</strong> letto e la frequenza corrispondente, misurati durante l'acquisizione.</dd>
+        <dd data-en>Each channel shows the period at which it is <strong>actually</strong> read and the matching rate, both measured during acquisition.</dd>
       </div>
-
-      <div class="sc-figure">
-        <div class="frame">
-          <img class="on" src="assets/img/app-grid.webp" width="1184" height="988" loading="lazy" decoding="async"
-               alt="Channel table with signal names, addresses, live values, measured period and rate.">
-          <img src="assets/img/app-charts.webp" width="1184" height="1023" loading="lazy" decoding="async"
-               alt="Live charts of several PLC signals sharing one time axis.">
+      <div>
+        <dt data-it>Grafici in tempo reale</dt><dt data-en>Live charts</dt>
+        <dd data-it>Decine di segnali sullo stesso asse dei tempi, aggiornati mentre il file viene scritto.</dd>
+        <dd data-en>Dozens of signals on one time axis, updated while the file is being written.</dd>
+      </div>
+      <div>
+        <dt data-it>Ingressi, uscite e merker, oltre ai DB</dt><dt data-en>Inputs, outputs and memory bits, as well as DBs</dt>
+        <dd data-it>Un finecorsa e una pressione analogica si possono confrontare sullo stesso grafico.</dd>
+        <dd data-en>A limit switch and an analogue pressure can be compared on the same chart.</dd>
+      </div>
+      <div>
+        <dt data-it>Analisi durante l'acquisizione</dt><dt data-en>Analysis during acquisition</dt>
+        <dd data-it>La finestra di analisi usata per le registrazioni salvate si apre anche sui segnali in acquisizione.</dd>
+        <dd data-en>The analysis window used for saved recordings also opens on signals being acquired.</dd>
+      </div>
+      <div>
+        <dt data-it>Misure con i marker</dt><dt data-en>Measuring with markers</dt>
+        <dd data-it>Con due marker verticali si leggono ΔT, frequenza e variazione di ogni segnale nell'intervallo. La tabella si può copiare.</dd>
+        <dd data-en>Two vertical markers give ΔT, frequency and the change of every signal over the interval. The table can be copied.</dd>
+      </div>
+    </dl>
+    <div class="fig-row">
+      <figure>
+        <div class="shot" data-zoom="assets/img/app-io.webp">
           <img src="assets/img/app-io.webp" width="1022" height="810" loading="lazy" decoding="async"
                alt="Live inputs and outputs of the PLC with their measured period.">
-          <img src="assets/img/analysis.webp" width="1516" height="908" loading="lazy" decoding="async"
-               alt="The analysis window with statistics, markers and the signal summary.">
-          <img src="assets/img/analysis-4.webp" width="1516" height="910" loading="lazy" decoding="async"
-               alt="Marker analysis comparing several signals over a selected interval.">
         </div>
-      </div>
+        <figcaption>
+          <span data-it>Elenco dei canali con valore, periodo e frequenza misurati.</span>
+          <span data-en>Channel list with the measured value, period and rate.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="shot" data-zoom="assets/img/app-charts.webp">
+          <img src="assets/img/app-charts.webp" width="1184" height="1023" loading="lazy" decoding="async"
+               alt="Live charts of several PLC signals sharing one time axis.">
+        </div>
+        <figcaption>
+          <span data-it>Grafico in tempo reale nella finestra Live.</span>
+          <span data-en>Live chart in the Live window.</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ VELOCITÀ (dark) ═══════════════════════════════════ -->
-<section id="velocita" class="sec-dark">
+<!-- Speed -->
+<section id="velocita" class="alt">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>Velocità</span><span data-en>Speed</span></p>
-      <h2 data-it>Acquisizione separata dall'interfaccia.</h2>
-      <h2 data-en>Acquisition kept separate from the user interface.</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      Quando l'acquisizione gira nello stesso processo della finestra, basta scorrere un elenco o ridisegnare un grafico perché una lettura parta in ritardo. In PlcTraceViewer l'acquisizione gira in un processo separato ad alta priorità che non disegna nulla: legge il PLC e assegna a ogni campione l'istante in cui è arrivata la risposta.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      When acquisition runs in the same process as the window, scrolling a list or redrawing a chart is enough to delay a read. In PlcTraceViewer acquisition runs in a separate high-priority process that draws nothing: it reads the PLC and gives each sample the time at which the answer arrived.
-    </p>
-    </div>
-<div class="g2" style="margin-top:44px;gap:22px" data-r="up">
-      <div class="lane">
-        <div class="lane-h">
-          <b data-it>Acquisizione nel processo della finestra</b><b data-en>Acquisition in the window's process</b>
-          <span data-it>campioni in ritardo</span><span data-en>late samples</span>
+    <h2 data-it>Acquisizione separata dall'interfaccia</h2>
+    <h2 data-en>Acquisition kept separate from the user interface</h2>
+    <p class="sub" data-it>Quando l'acquisizione gira nello stesso processo della finestra, basta scorrere un elenco o ridisegnare un grafico perché una lettura parta in ritardo. In PlcTraceViewer l'acquisizione gira in un processo separato ad alta priorità che non disegna nulla: legge il PLC e assegna a ogni campione l'istante in cui è arrivata la risposta.</p>
+    <p class="sub" data-en>When acquisition runs in the same process as the window, scrolling a list or redrawing a chart is enough to delay a read. In PlcTraceViewer acquisition runs in a separate high-priority process that draws nothing: it reads the PLC and gives each sample the time at which the answer arrived.</p>
+    <div class="cols-2">
+      <div>
+        <h3 data-it>Prova di laboratorio</h3><h3 data-en>Lab test</h3>
+        <div class="tbl">
+          <table class="lab">
+            <tr><td data-it>Periodo tipico a 1 ms</td><td data-en>Typical period at 1 ms</td><td><span data-it>0,999 ms</span><span data-en>0.999 ms</span></td></tr>
+            <tr><td data-it>99° percentile</td><td data-en>99th percentile</td><td><span data-it>1,06 ms</span><span data-en>1.06 ms</span></td></tr>
+            <tr><td data-it>Il peggiore</td><td data-en>Worst case</td><td><span data-it>1,30 ms</span><span data-en>1.30 ms</span></td></tr>
+            <tr><td data-it>Campioni oltre 1,5 ms</td><td data-en>Samples beyond 1.5 ms</td><td>0</td></tr>
+          </table>
         </div>
-        <canvas data-lane="window" aria-hidden="true"></canvas>
+        <p class="small" data-it>Prova di laboratorio: 100 canali a 1 ms su CPU simulate, con la finestra volutamente sotto carico.</p>
+        <p class="small" data-en>Lab test: 100 channels at 1 ms on simulated CPUs, with the window deliberately under load.</p>
       </div>
-      <div class="lane">
-        <div class="lane-h">
-          <b data-it>Acquisizione in un processo separato</b><b data-en>Acquisition in a separate process</b>
-          <span data-it>in orario</span><span data-en>on time</span>
+      <div>
+        <div class="note warn" style="margin-top:0">
+          <b data-it>Sull'impianto reale.</b><b data-en>On a real plant.</b>
+          <span data-it> Il limite resta la CPU: il tempo di risposta dipende dal modello, dal numero di canali e dal traffico di rete, quindi non esiste un valore valido per tutti gli impianti. Il programma misura il periodo reale, lo mostra accanto a ogni canale e avvisa prima di registrare se l'intervallo richiesto non è raggiungibile.</span>
+          <span data-en> The limit is the CPU: its response time depends on the model, the number of channels and the network traffic, so there is no single figure for every plant. The program measures the real period, shows it next to each channel and warns before recording if the requested interval cannot be reached.</span>
         </div>
-        <canvas data-lane="engine" aria-hidden="true"></canvas>
+        <figure>
+          <div class="shot" style="max-width:470px">
+            <img src="assets/img/app-rate-warning.webp" width="430" height="22" loading="lazy" decoding="async"
+                 alt="Status bar of PlcTraceViewer reading: 1 ms does not fit — use 10 ms.">
+          </div>
+          <figcaption>
+            <span data-it>Su una CPU reale: l'intervallo richiesto non era raggiungibile e il programma lo ha segnalato.</span>
+            <span data-en>On a real CPU: the requested interval could not be reached and the program reported it.</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
-
-    <div class="metrics" style="margin-top:22px" data-r="up">
-      <div><b><span data-count="0.999"><span data-it>0,999</span><span data-en>0.999</span></span> ms</b><span data-it>periodo tipico a 1 ms</span><span data-en>typical period at 1 ms</span></div>
-      <div><b><span data-it>1,06</span><span data-en>1.06</span> ms</b><span>p99</span></div>
-      <div><b><span data-it>1,30</span><span data-en>1.30</span> ms</b><span data-it>il peggiore</span><span data-en>worst case</span></div>
-      <div><b>0</b><span data-it>campioni oltre 1,5 ms</span><span data-en>samples beyond 1.5 ms</span></div>
-    </div>
-    <p class="scope-note" style="text-align:left;margin-top:12px">
-      <span data-it>Prova di laboratorio: 100 canali a 1 ms su CPU simulate, con la finestra volutamente sotto carico.</span>
-      <span data-en>Lab test: 100 channels at 1 ms on simulated CPUs, with the window deliberately under load.</span>
-    </p>
-
-    <div class="note" style="margin-top:34px" data-r="up">
-      <b data-it>Sull'impianto reale.</b><b data-en>On a real plant.</b>
-      <span data-it> Il limite resta la CPU: il tempo di risposta dipende dal modello, dal numero di canali e dal traffico di rete, quindi non esiste un valore valido per tutti gli impianti. Il programma misura il periodo reale, lo mostra accanto a ogni canale e avvisa prima di registrare se l'intervallo richiesto non è raggiungibile.</span>
-      <span data-en> The limit is the CPU: its response time depends on the model, the number of channels and the network traffic, so there is no single figure for every plant. The program measures the real period, shows it next to each channel and warns before recording if the requested interval cannot be reached.</span>
-    </div>
-
-    <figure style="margin-top:22px" data-r="up">
-      <div class="shot" style="max-width:470px;border-color:var(--panel-line)">
-        <img src="assets/img/app-rate-warning.webp" width="430" height="22" loading="lazy" decoding="async"
-             alt="Status bar of PlcTraceViewer reading: 1 ms does not fit — use 10 ms.">
-      </div>
-      <figcaption>
-        <span data-it>Su una CPU reale: l'intervallo richiesto non era raggiungibile e il programma lo ha segnalato.</span>
-        <span data-en>On a real CPU: the requested interval could not be reached and the program reported it.</span>
-      </figcaption>
-    </figure>
   </div>
 </section>
 
-<!-- ══════════════════ PROMESSE ══════════════════════════════════════════ -->
+<!-- Recording -->
 <section id="registrazione">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>La registrazione</span><span data-en>The recording</span></p>
-      <h2 data-it>Cosa garantisce la registrazione.</h2>
-      <h2 data-en>What the recording guarantees.</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      Spesso una registrazione inutilizzabile si scopre solo quando l'impianto è già ripartito. Per questo il programma controlla il file mentre lo scrive.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      An unusable recording is often discovered only after the plant has restarted. That is why the program checks the file while writing it.
-    </p>
-    </div>
-<div class="g2" style="margin-top:44px;align-items:start;gap:34px">
-      <div class="g2 stagger" style="grid-template-columns:1fr;gap:16px">
-        <div class="card">
-          <h3 data-it>Tempi reali</h3><h3 data-en>Real timestamps</h3>
-          <p data-it>Ogni campione riporta l'istante in cui è stato letto, preso dal processo di acquisizione e non dall'interfaccia.</p>
-          <p data-en>Each sample carries the time it was read, taken by the acquisition process and not by the user interface.</p>
+    <h2 data-it>Cosa garantisce la registrazione</h2>
+    <h2 data-en>What the recording guarantees</h2>
+    <p class="sub" data-it>Spesso una registrazione inutilizzabile si scopre solo quando l'impianto è già ripartito. Per questo il programma controlla il file mentre lo scrive.</p>
+    <p class="sub" data-en>An unusable recording is often discovered only after the plant has restarted. That is why the program checks the file while writing it.</p>
+    <div class="cols-2">
+      <dl class="feat" style="grid-template-columns:1fr">
+        <div>
+          <dt data-it>Tempi reali</dt><dt data-en>Real timestamps</dt>
+          <dd data-it>Ogni campione riporta l'istante in cui è stato letto, preso dal processo di acquisizione e non dall'interfaccia.</dd>
+          <dd data-en>Each sample carries the time it was read, taken by the acquisition process and not by the user interface.</dd>
         </div>
-        <div class="card">
-          <h3 data-it>Nessun valore inventato</h3><h3 data-en>No invented values</h3>
-          <p data-it>Un valore non letto resta un valore mancante e compare come tale nell'analisi. Non viene sostituito con zero, che sembrerebbe una misura vera.</p>
-          <p data-en>A value that was not read stays missing and appears as such in the analysis. It is not replaced with zero, which would look like a real measurement.</p>
+        <div>
+          <dt data-it>Nessun valore inventato</dt><dt data-en>No invented values</dt>
+          <dd data-it>Un valore non letto resta un valore mancante e compare come tale nell'analisi. Non viene sostituito con zero, che sembrerebbe una misura vera.</dd>
+          <dd data-en>A value that was not read stays missing and appears as such in the analysis. It is not replaced with zero, which would look like a real measurement.</dd>
         </div>
-        <div class="card">
-          <h3 data-it>Verifica prima di registrare</h3><h3 data-en>Checked before recording</h3>
-          <p data-it>L'intervallo richiesto viene provato sulla CPU prima di aprire il primo file. Se non è raggiungibile, il programma propone quello che la CPU riesce a mantenere.</p>
-          <p data-en>The requested interval is tested on the CPU before the first file is opened. If it cannot be reached, the program suggests the one the CPU can sustain.</p>
+        <div>
+          <dt data-it>Verifica prima di registrare</dt><dt data-en>Checked before recording</dt>
+          <dd data-it>L'intervallo richiesto viene provato sulla CPU prima di aprire il primo file. Se non è raggiungibile, il programma propone quello che la CPU riesce a mantenere.</dd>
+          <dd data-en>The requested interval is tested on the CPU before the first file is opened. If it cannot be reached, the program suggests the one the CPU can sustain.</dd>
         </div>
-        <div class="card">
-          <h3 data-it>Scrittura controllata</h3><h3 data-en>Monitored writing</h3>
-          <p data-it>La scrittura su disco è controllata per tutta la durata della registrazione e lo spazio su disco è gestito automaticamente. Se la scrittura si interrompe, il programma lo segnala subito.</p>
-          <p data-en>Writing to disk is monitored for the whole recording and disk space is managed automatically. If writing stops, the program reports it immediately.</p>
+        <div>
+          <dt data-it>Scrittura controllata</dt><dt data-en>Monitored writing</dt>
+          <dd data-it>La scrittura su disco è controllata per tutta la durata della registrazione e lo spazio su disco è gestito automaticamente. Se la scrittura si interrompe, il programma lo segnala subito.</dd>
+          <dd data-en>Writing to disk is monitored for the whole recording and disk space is managed automatically. If writing stops, the program reports it immediately.</dd>
         </div>
-      </div>
-
-      <div data-r="up">
-        <div class="term">
-          <div class="term-bar">
-            <span class="dot" style="background:#4ad2a8"></span> LOG
-          </div>
-          <div class="term-body" id="term-body" data-lines='[
-            "<span class=\"dim\">[16:17:05]</span> <span class=\"ok\">[RATE]</span> 216 canali · 1 richiesta · intervallo di 10 ms raggiungibile",
-            "<span class=\"dim\">[16:17:05]</span> <span class=\"ok\">[REC]</span> Avviata in C:\\PLCTrace · 234 canali · 100 Hz",
-            "<span class=\"dim\">[16:22:41]</span> <span class=\"bad\">[LINK]</span> collegamento perso · valori segnati come mancanti",
-            "<span class=\"dim\">[16:22:44]</span> <span class=\"ok\">[LINK]</span> ricollegato · lettura ripresa",
-            "<span class=\"dim\">[16:39:12]</span> <span class=\"warn\">[DISK]</span> rotazione dei file · i più vecchi vengono compressi",
-            "<span class=\"dim\">[17:02:58]</span> <span class=\"ok\">[REC]</span> Fermata · 2,1 GB scritti"
-          ]' data-lines-en='[
-            "<span class=\"dim\">[16:17:05]</span> <span class=\"ok\">[RATE]</span> 216 channels · 1 request · 10 ms interval can be reached",
-            "<span class=\"dim\">[16:17:05]</span> <span class=\"ok\">[REC]</span> Started in C:\\PLCTrace · 234 channels · 100 Hz",
-            "<span class=\"dim\">[16:22:41]</span> <span class=\"bad\">[LINK]</span> connection lost · values marked as missing",
-            "<span class=\"dim\">[16:22:44]</span> <span class=\"ok\">[LINK]</span> reconnected · reading resumed",
-            "<span class=\"dim\">[16:39:12]</span> <span class=\"warn\">[DISK]</span> file rotation · the oldest files are compressed",
-            "<span class=\"dim\">[17:02:58]</span> <span class=\"ok\">[REC]</span> Stopped · 2.1 GB written"
-          ]'></div>
-        </div>
-        <p class="scope-note" style="text-align:left">
+      </dl>
+      <figure>
+<pre class="log" data-it><span class="t">[16:17:05.112]</span>  [RATE] Una lettura richiede 4 ms (peggiore su 7: 6 ms) con un intervallo di 10 ms.
+<span class="t">[16:17:05.113]</span>  [RATE] ✓ 10 ms si mantengono, con 4 ms di margine.
+<span class="t">[16:17:05.431]</span>  [REC] Avviata in C:\PLCTrace
+<span class="t">[16:22:41.006]</span>  [LINK] ⚠ Il collegamento ha rallentato: una lettura richiede 14 ms contro i 4 ms del suo valore migliore. …
+<span class="t">[16:22:47.950]</span>  [LINK] ✓ Il collegamento è tornato alla velocità normale.
+<span class="t">[17:02:58.204]</span>  [REC] Fermata – 00:45:53 – 3 file scritti</pre>
+<pre class="log" data-en><span class="t">[16:17:05.112]</span>  [RATE] One read takes 4 ms (worst of 7: 6 ms) against a 10 ms interval.
+<span class="t">[16:17:05.113]</span>  [RATE] ✓ 10 ms holds, with 4 ms of the slot to spare.
+<span class="t">[16:17:05.431]</span>  [REC] Started in C:\PLCTrace
+<span class="t">[16:22:41.006]</span>  [LINK] ⚠ The link has slowed down: a read is taking 14 ms on the wire against the 4 ms this same link managed at its best. …
+<span class="t">[16:22:47.950]</span>  [LINK] ✓ The link is back to its normal speed.
+<span class="t">[17:02:58.204]</span>  [REC] Stopped – 00:45:53 – 3 file(s) written</pre>
+        <figcaption>
           <span data-it>Estratto del registro dell'applicazione (tradotto per il sito).</span>
-          <span data-en>An extract of the application log (translated for the site).</span>
-        </p>
-      </div>
+          <span data-en>An extract of the application log.</span>
+        </figcaption>
+      </figure>
     </div>
 
-    <figure style="margin-top:42px" data-r="wipe">
-      <div class="shot shot-lift shot-tall" data-zoom="assets/img/app-workspace-2.webp">
+    <figure class="fig">
+      <div class="shot" data-zoom="assets/img/app-workspace-2.webp">
         <img src="assets/img/app-workspace-2.webp" width="1516" height="1150" loading="lazy" decoding="async"
              alt="PlcTraceViewer recording live from an S7-1500: channel list, live values and the measured period of every channel.">
       </div>
@@ -516,37 +363,35 @@
   </div>
 </section>
 
+<!-- Analysis -->
+<section id="analisi" class="alt">
+  <div class="wrap">
+    <h2 data-it>Stessi strumenti per i file registrati e per i dati in acquisizione</h2>
+    <h2 data-en>The same tools for recorded files and for live data</h2>
+    <p class="sub" data-it>La finestra di analisi si apre sia su una registrazione sia su un segnale in acquisizione. Gli altri canali si aggiungono trascinandoli e vengono sovrapposti sullo stesso grafico.</p>
+    <p class="sub" data-en>The analysis window opens both on a recording and on a signal being acquired. Other channels are added by dragging them in and are overlaid on the same chart.</p>
+    <div class="cols-3">
+      <div>
+        <h3 data-it>Marker e misure</h3><h3 data-en>Markers and measurements</h3>
+        <p data-it>Marker verticali e orizzontali con differenza di tempo, differenza di valore e frequenza corrispondente. La tabella dei confronti si può copiare in un rapporto.</p>
+        <p data-en>Vertical and horizontal markers with time difference, value difference and the matching frequency. The comparison table can be copied into a report.</p>
+      </div>
+      <div>
+        <h3 data-it>Statistiche</h3><h3 data-en>Statistics</h3>
+        <p data-it>Minimo, massimo, picco-picco, media, RMS e deviazione standard, sul tratto selezionato e sull'intero segnale, con il numero di campioni e il periodo reale.</p>
+        <p data-en>Minimum, maximum, peak-to-peak, mean, RMS and standard deviation, over the selected span and over the whole signal, with the number of samples and the real period.</p>
+      </div>
+      <div>
+        <h3><span data-it>Finestre di analisi separate</span><span data-en>Separate analysis windows</span><span class="pro">PRO</span></h3>
+        <p data-it>Ogni analisi si apre in una finestra indipendente, ad esempio una per monitor, con zoom diversi sullo stesso istante.</p>
+        <p data-en>Each analysis opens in its own window, for example one per monitor, with different zoom levels on the same instant.</p>
+      </div>
+    </div>
 
-<!-- band -->
-<section class="band">
-  <img src="assets/img/art-analysis.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Illustration: signal traces from the analysis window.">
-  <div class="wrap band-in">
-    <p data-r="up">
-      <small><span data-it>Analisi</span><span data-en>Analysis</span></small>
-      <span data-it>Analisi dei dati durante l'acquisizione.</span><span data-en>Analysing the data during acquisition.</span>
-    </p>
-  </div>
-</section>
-<!-- ══════════════════ ANALISI ═══════════════════════════════════════════ -->
-<section id="analisi" class="sec-alt">
-  <div class="wrap wrap-wide">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>Analisi</span><span data-en>Analysis</span></p>
-      <h2 data-it>Stessi strumenti per i file registrati e per i dati in acquisizione.</h2>
-      <h2 data-en>The same tools for recorded files and for live data.</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      La finestra di analisi si apre sia su una registrazione sia su un segnale in acquisizione. Gli altri canali si aggiungono trascinandoli e vengono sovrapposti sullo stesso grafico.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      The analysis window opens both on a recording and on a signal being acquired. Other channels are added by dragging them in and are overlaid on the same chart.
-    </p>
-    </div>
-<figure style="margin-top:40px" data-r="wipe">
-      <div class="shot shot-lift shot-tall" data-zoom="assets/img/analysis.webp">
-        <img src="assets/img/analysis.webp" width="1516" height="908" loading="lazy" decoding="async"
-             alt="PlcTraceViewer analysis window: signal list, global statistics, vertical and horizontal markers, marker analysis table and signal summary.">
+    <figure class="fig">
+      <div class="shot" data-zoom="assets/img/analysis-4.webp">
+        <img src="assets/img/analysis-4.webp" width="1516" height="910" loading="lazy" decoding="async"
+             alt="Marker analysis comparing several signals over a selected interval.">
       </div>
       <figcaption>
         <span data-it>Statistiche a sinistra, marker sotto e riepilogo per segnale a destra, sullo stesso asse dei tempi.</span>
@@ -554,127 +399,62 @@
       </figcaption>
     </figure>
 
-    <div class="g3 stagger" style="margin-top:44px">
-      <div class="card">
-        <h3 data-it>Marker e misure</h3><h3 data-en>Markers and measurements</h3>
-        <p data-it>Marker verticali e orizzontali con differenza di tempo, differenza di valore e frequenza corrispondente. La tabella dei confronti si può copiare in un rapporto.</p>
-        <p data-en>Vertical and horizontal markers with time difference, value difference and the matching frequency. The comparison table can be copied into a report.</p>
-      </div>
-      <div class="card">
-        <h3 data-it>Statistiche</h3><h3 data-en>Statistics</h3>
-        <p data-it>Minimo, massimo, picco-picco, media, RMS e deviazione standard, sul tratto selezionato e sull'intero segnale, con il numero di campioni e il periodo reale.</p>
-        <p data-en>Minimum, maximum, peak-to-peak, mean, RMS and standard deviation, over the selected span and over the whole signal, with the number of samples and the real period.</p>
-      </div>
-      <div class="card">
-        <h3 data-it>Finestre di analisi separate <span class="docnum" style="vertical-align:2px">PRO</span></h3><h3 data-en>Separate analysis windows <span class="docnum" style="vertical-align:2px">PRO</span></h3>
-        <p data-it>Ogni analisi si apre in una finestra indipendente, ad esempio una per monitor, con zoom diversi sullo stesso istante.</p>
-        <p data-en>Each analysis opens in its own window, for example one per monitor, with different zoom levels on the same instant.</p>
-      </div>
-    </div>
-
-    <div class="g2" style="margin-top:30px;gap:24px;align-items:start">
-      <figure data-r="left">
+    <div class="fig-row">
+      <figure>
         <div class="shot" data-zoom="assets/img/analysis-markers.webp">
           <img src="assets/img/analysis-markers.webp" width="1400" height="176" loading="lazy" decoding="async"
                alt="Marker analysis table: time difference, frequency and per-signal differences between markers.">
         </div>
-        <figcaption><span data-it>ΔT, frequenza e differenze di ogni segnale fra due marker.</span>
-          <span data-en>ΔT, frequency and every signal's difference between two markers.</span></figcaption>
+        <figcaption><span data-it>ΔT, frequenza e differenze di ogni segnale fra due marker.</span><span data-en>ΔT, frequency and every signal's difference between two markers.</span></figcaption>
       </figure>
-      <figure data-r="right">
-        <div class="g2" style="gap:14px">
-          <div class="shot" style="max-height:176px;overflow:hidden" data-zoom="assets/img/analysis-stats.webp">
+      <figure>
+        <div class="fig-row" style="margin-top:0;gap:12px">
+          <div class="shot clip" data-zoom="assets/img/analysis-stats.webp">
             <img src="assets/img/analysis-stats.webp" width="286" height="715" loading="lazy" decoding="async"
                  alt="Global statistics per signal: min, max, peak-to-peak, average, RMS, standard deviation, sample count and sampling step.">
           </div>
-          <div class="shot" style="max-height:176px;overflow:hidden" data-zoom="assets/img/analysis-summary.webp">
+          <div class="shot clip" data-zoom="assets/img/analysis-summary.webp">
             <img src="assets/img/analysis-summary.webp" width="225" height="725" loading="lazy" decoding="async"
                  alt="Per-signal summary with minimum, maximum, peak-to-peak, average, RMS, sample count and sampling step.">
           </div>
         </div>
-        <figcaption><span data-it>Statistiche generali e riepilogo per segnale, con numero di campioni e periodo di campionamento.</span>
-          <span data-en>Overall statistics and the per-signal summary, with the number of samples and the sampling period.</span></figcaption>
+        <figcaption><span data-it>Statistiche generali e riepilogo per segnale, con numero di campioni e periodo di campionamento.</span><span data-en>Overall statistics and the per-signal summary, with the number of samples and the sampling period.</span></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ SEGNALI CALCOLATI ═════════════════════════════════ -->
+<!-- Computed signals -->
 <section id="calcolati">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>Segnali calcolati · PRO</span><span data-en>Computed signals · PRO</span></p>
-      <h2 data-it>Canali calcolati con formule.</h2>
-      <h2 data-en>Channels computed from formulas.</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      Derivate, integrali, filtri in Hz, statistiche su finestra mobile, fronti, temporizzazioni e analisi in frequenza. Le funzioni si possono combinare e applicare anche ad altri canali calcolati; l'editor mostra l'anteprima della curva mentre si scrive.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      Derivatives, integrals, filters in Hz, moving-window statistics, edges, timers and frequency analysis. Functions can be combined and applied to other computed channels too; the editor previews the curve as you type.
-    </p>
-    </div>
-<div class="fx" data-r="up">
-      <div class="fx-editor">
-        <div class="hd"><span data-it>Editor delle espressioni</span><span data-en>Expression editor</span></div>
-        <div class="code" id="fx-code"></div>
-        <div class="foot">
-          <span id="fx-label"></span>
-          <span class="mono" style="color:var(--brand)">✓ ok</span>
-        </div>
-      </div>
-      <div class="fx-plot"><canvas id="fx-plot" aria-hidden="true"></canvas></div>
-    </div>
+    <h2><span data-it>Canali calcolati con formule</span><span data-en>Channels computed from formulas.</span><span class="pro">PRO</span></h2>
+    <p class="sub" data-it>Derivate, integrali, filtri in Hz, statistiche su finestra mobile, fronti, temporizzazioni e analisi in frequenza. Le funzioni si possono combinare e applicare anche ad altri canali calcolati; l'editor mostra l'anteprima della curva mentre si scrive.</p>
+    <p class="sub" data-en>Derivatives, integrals, filters in Hz, moving-window statistics, edges, timers and frequency analysis. Functions can be combined and applied to other computed channels too; the editor previews the curve as you type.</p>
 
-    <div style="margin-top:46px" data-r="up">
-      <h3 style="margin-bottom:6px">
-        <span data-it>Le <span id="fnwall-count">94</span> funzioni disponibili</span>
-        <span data-en>The <span>94</span> available functions</span>
-      </h3>
-      <p style="color:var(--ink-2);margin-bottom:20px;font-size:.95rem">
-        <span data-it>L'elenco è generato dal codice dell'applicazione e corrisponde alle funzioni accettate dall'editor.</span>
-        <span data-en>The list is generated from the application's code and matches the functions the editor accepts.</span>
-      </p>
-      <div class="fw-tools" id="fnwall-tools">
-        <span class="fw-search" id="fnwall-search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input id="fnwall-q" type="search" placeholder="cerca / search" aria-label="Cerca una funzione / Search a function">
-        </span>
-      </div>
-      <div class="fw" id="fnwall"></div>
+    <p class="small" style="margin-bottom:0"><span data-it>Esempio</span><span data-en>Example</span></p>
+    <div class="expr">DIFF(LPF(Pressure, 8))</div>
+    <p class="small"><span data-it>derivata di una pressione filtrata a 8 Hz</span><span data-en>derivative of a pressure filtered at 8 Hz</span></p>
+
+    <h3 style="margin-top:30px"><span data-it>Le 94 funzioni disponibili</span><span data-en>The 94 available functions</span></h3>
+    <p class="small" data-it>L'elenco è generato dal codice dell'applicazione e corrisponde alle funzioni accettate dall'editor.</p>
+    <p class="small" data-en>The list is generated from the application's code and matches the functions the editor accepts.</p>
+    <div class="fw-tools" id="fnwall-tools">
+      <span class="fw-search" id="fnwall-search">
+        <input id="fnwall-q" type="search" placeholder="Cerca / Search" aria-label="Cerca una funzione / Search a function">
+      </span>
     </div>
+    <div class="fw" id="fnwall"></div>
   </div>
 </section>
 
-
-<!-- band -->
-<section class="band">
-  <img src="assets/img/art-portal.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Illustration: PLC wiring connected to the PlcTraceViewer workspace.">
-  <div class="wrap band-in">
-    <p data-r="up">
-      <small><span data-it>Collegamento</span><span data-en>Connection</span></small>
-      <span data-it>Dal PLC ai segnali con il loro nome.</span><span data-en>From the PLC to named signals.</span>
-    </p>
-  </div>
-</section>
-<!-- ══════════════════ COLLEGAMENTO ══════════════════════════════════════ -->
-<section id="collegamento" class="sec-alt">
+<!-- Connection -->
+<section id="collegamento" class="alt">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>Collegamento</span><span data-en>Connection</span></p>
-      <h2 data-it>Tre modi di collegarsi alla CPU.</h2>
-      <h2 data-en>Three ways to connect to the CPU.</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      Si sceglie in base alla CPU e ai blocchi da leggere. Per ogni valore il programma indica da quale collegamento arriva.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      Choose according to the CPU and the blocks to read. For each value the program shows which connection it came from.
-    </p>
-    </div>
-<div class="tbl" data-r="up">
+    <h2 data-it>Tre modi di collegarsi alla CPU</h2>
+    <h2 data-en>Three ways to connect to the CPU</h2>
+    <p class="sub" data-it>Si sceglie in base alla CPU e ai blocchi da leggere. Per ogni valore il programma indica da quale collegamento arriva.</p>
+    <p class="sub" data-en>Choose according to the CPU and the blocks to read. For each value the program shows which connection it came from.</p>
+    <div class="tbl">
       <table>
         <thead>
           <tr data-it><th>Collegamento</th><th>CPU</th><th>Indirizzamento</th><th>Blocchi ottimizzati</th><th>Requisito sulla CPU</th></tr>
@@ -691,23 +471,19 @@
       </table>
     </div>
 
-    <div class="g2" style="margin-top:34px;gap:30px;align-items:center">
-      <div data-r="left">
+    <div class="cols-wide" style="margin-top:30px">
+      <div>
         <h3 data-it>Nomi dei segnali</h3><h3 data-en>Signal names</h3>
-        <p style="color:var(--ink-2);font-size:.96rem;margin-bottom:18px" data-it>
-          I segnali mantengono i nomi del progetto TIA. I nomi si possono prendere dal progetto (.ap16 → .ap21), dalle sorgenti dei blocchi (.db, .scl, .udt), da una tabella dei tag (.xlsx, .csv) oppure leggere direttamente dalla CPU, anche senza il progetto.
-        </p>
-        <p style="color:var(--ink-2);font-size:.96rem;margin-bottom:18px" data-en>
-          Signals keep the names from the TIA project. Names can come from the project (.ap16 → .ap21), from block sources (.db, .scl, .udt), from a tag table (.xlsx, .csv), or be read directly from the CPU, even without the project.
-        </p>
-        <div class="note note-brand">
+        <p data-it>I segnali mantengono i nomi del progetto TIA. I nomi si possono prendere dal progetto (.ap16 → .ap21), dalle sorgenti dei blocchi (.db, .scl, .udt), da una tabella dei tag (.xlsx, .csv) oppure leggere direttamente dalla CPU, anche senza il progetto.</p>
+        <p data-en>Signals keep the names from the TIA project. Names can come from the project (.ap16 → .ap21), from block sources (.db, .scl, .udt), from a tag table (.xlsx, .csv), or be read directly from the CPU, even without the project.</p>
+        <div class="note">
           <b data-it>Blocchi ottimizzati.</b><b data-en>Optimised blocks.</b>
           <span data-it> Non hanno indirizzi assoluti, quindi si leggono solo con OPC UA o S7comm-Plus. Il programma lo riconosce e lo segnala, invece di restituire zeri.</span>
           <span data-en> They have no absolute addresses, so they can only be read with OPC UA or S7comm-Plus. The program detects this and reports it instead of returning zeros.</span>
         </div>
       </div>
-      <figure data-r="right">
-        <div class="shot" data-zoom="assets/img/dialog-s7.webp">
+      <figure>
+        <div class="shot" style="max-width:420px" data-zoom="assets/img/dialog-s7.webp">
           <img src="assets/img/dialog-s7.webp" width="545" height="651" loading="lazy" decoding="async"
                alt="S7 connection settings: TCP port, rack, slot, connect and operation timeouts, attempts, TCP test and deep test.">
         </div>
@@ -720,29 +496,20 @@
   </div>
 </section>
 
-<!-- ══════════════════ RING 1 ms ═════════════════════════════════════════ -->
+<!-- 1 ms in the PLC -->
 <section id="ring">
   <div class="wrap">
-    <div class="g2" style="gap:44px;align-items:center">
-      <div data-r="left">
-        <p class="kicker"><span data-it>Quando la rete non basta</span><span data-en>When the network is not enough</span></p>
-        <h2 style="font-size:clamp(1.5rem,2.6vw,2.1rem)" data-it>Campionamento a 1 ms dentro la CPU.</h2>
-        <h2 style="font-size:clamp(1.5rem,2.6vw,2.1rem)" data-en>1 ms sampling inside the CPU.</h2>
-        <p style="color:var(--ink-2);margin-top:14px" data-it>
-          Se l'intervallo necessario non è raggiungibile in rete, il programma genera i blocchi da importare in TIA: il PLC campiona al ritmo del proprio OB e l'applicazione legge i dati a blocchi. Il periodo dei campioni non dipende più dal traffico di rete.
-        </p>
-        <p style="color:var(--ink-2);margin-top:14px" data-en>
-          If the interval you need cannot be reached over the network, the program generates blocks to import into TIA: the PLC samples at the rate of its own OB and the application reads the data in batches. The sample period no longer depends on network traffic.
-        </p>
-        <p style="color:var(--ink-2);margin-top:14px" data-it>
-          Si sceglie quanti segnali per tipo e la profondità del buffer; la memoria occupata nel PLC viene indicata prima della generazione. I blocchi sono nuovi e quelli esistenti non vengono modificati.
-        </p>
-        <p style="color:var(--ink-2);margin-top:14px" data-en>
-          You choose how many signals of each type and the buffer depth; the memory used in the PLC is shown before generating. The blocks are new and existing ones are not modified.
-        </p>
+    <div class="cols-wide">
+      <div>
+        <h2 data-it>Campionamento a 1 ms dentro la CPU</h2>
+        <h2 data-en>1 ms sampling inside the CPU</h2>
+        <p data-it>Se l'intervallo necessario non è raggiungibile in rete, il programma genera i blocchi da importare in TIA: il PLC campiona al ritmo del proprio OB e l'applicazione legge i dati a blocchi. Il periodo dei campioni non dipende più dal traffico di rete.</p>
+        <p data-en>If the interval you need cannot be reached over the network, the program generates blocks to import into TIA: the PLC samples at the rate of its own OB and the application reads the data in batches. The sample period no longer depends on network traffic.</p>
+        <p data-it>Si sceglie quanti segnali per tipo e la profondità del buffer; la memoria occupata nel PLC viene indicata prima della generazione. I blocchi sono nuovi e quelli esistenti non vengono modificati.</p>
+        <p data-en>You choose how many signals of each type and the buffer depth; the memory used in the PLC is shown before generating. The blocks are new and existing ones are not modified.</p>
       </div>
-      <figure data-r="right">
-        <div class="shot" data-zoom="assets/img/dialog-ring.webp">
+      <figure>
+        <div class="shot" style="max-width:440px" data-zoom="assets/img/dialog-ring.webp">
           <img src="assets/img/dialog-ring.webp" width="624" height="743" loading="lazy" decoding="async"
                alt="Export dialog of the 1 ms ring buffer: signals per data type, buffer depth, resulting PLC memory and the three files to import into TIA.">
         </div>
@@ -755,12 +522,24 @@
   </div>
 </section>
 
-<!-- ══════════════════ DASHBOARD WEB ═════════════════════════════════════ -->
-<section id="web" class="sec-alt">
+<!-- Web dashboard -->
+<section id="web" class="alt">
   <div class="wrap">
-    <div class="g2" style="gap:44px;align-items:center">
-      <figure data-r="left" style="order:2">
-        <div class="shot">
+    <div class="cols-wide">
+      <div>
+        <h2><span data-it>Valori e registrazione dal browser</span><span data-en>Values and recording from a browser.</span><span class="pro">PRO</span></h2>
+        <p data-it>Un servizio di Windows pubblica una pagina accessibile da qualsiasi PC della rete di impianto: valori in tempo reale, andamento recente, stato del disco, avvio e arresto della registrazione.</p>
+        <p data-en>A Windows service publishes a page that any PC on the plant network can open: live values, recent trend, disk status, start and stop of the recording.</p>
+        <p data-it><strong>La registrazione avviata dalla pagina è la stessa dell'applicazione</strong>, non una copia separata: un solo registratore e un solo file.</p>
+        <p data-en><strong>The recording started from the page is the application's own</strong>, not a separate copy: one recorder and one file.</p>
+        <div class="note warn">
+          <b data-it>Solo su una rete di impianto protetta.</b><b data-en>Only on a protected plant network.</b>
+          <span data-it> La pagina non ha autenticazione: chiunque raggiunga la porta vede i valori e può avviare o fermare la registrazione. Non va esposta a internet.</span>
+          <span data-en> The page has no authentication: anyone who can reach the port sees the values and can start or stop the recording. It must not be exposed to the internet.</span>
+        </div>
+      </div>
+      <figure>
+        <div class="shot" style="max-width:440px">
           <img src="assets/img/tip-web.webp" width="440" height="94" loading="lazy" decoding="async"
                alt="In-app hint for the web dashboard button.">
         </div>
@@ -769,50 +548,17 @@
           <span data-en>The page opens from the application; the service starts with Windows.</span>
         </figcaption>
       </figure>
-      <div data-r="right">
-        <p class="kicker">
-          <span data-it>Dashboard web · PRO</span><span data-en>Web dashboard · PRO</span>
-        </p>
-        <h2 style="font-size:clamp(1.5rem,2.6vw,2.1rem)" data-it>Valori e registrazione dal browser.</h2>
-        <h2 style="font-size:clamp(1.5rem,2.6vw,2.1rem)" data-en>Values and recording from a browser.</h2>
-        <p style="color:var(--ink-2);margin-top:14px" data-it>
-          Un servizio di Windows pubblica una pagina accessibile da qualsiasi PC della rete di impianto: valori in tempo reale, andamento recente, stato del disco, avvio e arresto della registrazione.
-        </p>
-        <p style="color:var(--ink-2);margin-top:14px" data-en>
-          A Windows service publishes a page that any PC on the plant network can open: live values, recent trend, disk status, start and stop of the recording.
-        </p>
-        <p style="color:var(--ink-2);margin-top:14px" data-it>
-          <strong>La registrazione avviata dalla pagina è la stessa dell'applicazione</strong>, non una copia separata: un solo registratore e un solo file.
-        </p>
-        <p style="color:var(--ink-2);margin-top:14px" data-en>
-          <strong>The recording started from the page is the application's own</strong>, not a separate copy: one recorder and one file.
-        </p>
-        <div class="note" style="margin-top:20px">
-          <b data-it>Solo su una rete di impianto protetta.</b><b data-en>Only on a protected plant network.</b>
-          <span data-it> La pagina non ha autenticazione: chiunque raggiunga la porta vede i valori e può avviare o fermare la registrazione. Non va esposta a internet.</span>
-          <span data-en> The page has no authentication: anyone who can reach the port sees the values and can start or stop the recording. It must not be exposed to the internet.</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ LIMITI ════════════════════════════════════════════ -->
+<!-- Limitations -->
 <section id="limiti">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>Limiti</span><span data-en>Limitations</span></p>
-      <h2 data-it>Cosa non fa</h2><h2 data-en>What it does not do</h2>
-    </div>
-      <p class="intro" data-r="up" data-it>
-      Meglio saperlo prima di portarlo in impianto.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      Worth knowing before you take it to a plant.
-    </p>
-    </div>
-<ul class="limits stagger" data-it>
+    <h2 data-it>Cosa non fa</h2><h2 data-en>What it does not do</h2>
+    <p class="sub" data-it>Meglio saperlo prima di portarlo in impianto.</p>
+    <p class="sub" data-en>Worth knowing before you take it to a plant.</p>
+    <ul class="plain" data-it>
       <li><b>Non scrive nel PLC.</b> Legge soltanto: non forza variabili, non modifica il programma e non cambia lo stato della CPU.</li>
       <li><b>Non garantisce un intervallo fisso.</b> L'intervallo raggiungibile dipende da CPU, canali e rete: viene misurato in impianto e indicato.</li>
       <li><b>Non legge i blocchi ottimizzati tramite indirizzo.</b> Questi blocchi non hanno indirizzi assoluti; servono OPC UA o S7comm-Plus.</li>
@@ -821,8 +567,7 @@
       <li><b>Senza licenza non registra.</b> La versione Free apre e analizza le registrazioni; collegamento al PLC, registrazione ed esportazioni richiedono la licenza PRO.</li>
       <li><b>Non richiede internet.</b> Né per l'uso né per attivare la licenza. Se una connessione è disponibile, il programma verifica lo stato della licenza sul portale senza inviare dati d'impianto.</li>
     </ul>
-
-    <ul class="limits stagger" data-en>
+    <ul class="plain" data-en>
       <li><b>It does not write to the PLC.</b> It only reads: it does not force variables, change the program or change the CPU state.</li>
       <li><b>It does not guarantee a fixed interval.</b> The interval that can be reached depends on the CPU, the channels and the network: it is measured on site and shown.</li>
       <li><b>It does not read optimised blocks by address.</b> These blocks have no absolute addresses; OPC UA or S7comm-Plus is needed.</li>
@@ -834,72 +579,47 @@
   </div>
 </section>
 
-<!-- ══════════════════ EDIZIONI ══════════════════════════════════════════ -->
-<section id="edizioni" class="sec-alt">
+<!-- Editions -->
+<section id="edizioni" class="alt">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="head" data-r="up">
-      <p class="kicker"><span data-it>Edizioni</span><span data-en>Editions</span></p>
-      <h2 data-it>Free e PRO</h2>
-      <h2 data-en>Free and PRO</h2>
+    <h2 data-it>Free e PRO</h2><h2 data-en>Free and PRO</h2>
+    <p class="sub" data-it>La versione <strong>Free apre e analizza le registrazioni</strong>. Collegamento al PLC, registrazione ed esportazioni sono funzioni <strong>PRO</strong>, che si attivano con un file di licenza (.ptvlic) legato al PC. L'attivazione non richiede internet; se una connessione è disponibile, lo stato della licenza viene verificato sul portale senza inviare dati d'impianto.</p>
+    <p class="sub" data-en>The <strong>Free version opens and analyses recordings</strong>. Connecting to the PLC, recording and exporting are <strong>PRO</strong> features, enabled by a licence file (.ptvlic) bound to the PC. Activation does not need internet; if a connection is available, the licence status is checked on the portal without sending plant data.</p>
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr data-it><th>Funzione</th><th class="c">Free</th><th class="c">PRO</th></tr>
+          <tr data-en><th>Feature</th><th class="c">Free</th><th class="c">PRO</th></tr>
+        </thead>
+        <tbody>
+          <tr data-it><td>Apertura di .drug, .drug.gz, .csv, .txt</td><td class="c">un file alla volta</td><td class="c">più file insieme, con l'asse dei tempi sincronizzato</td></tr>
+          <tr data-en><td>Opening .drug, .drug.gz, .csv, .txt</td><td class="c">one file at a time</td><td class="c">several files at once, with a synchronised time axis</td></tr>
+          <tr data-it><td>Grafici con più segnali sullo stesso asse dei tempi, zoom e spostamento</td><td class="c yes">sì</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Charts with several signals on one time axis, zoom and pan</td><td class="c yes">yes</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Marker verticali e orizzontali, ΔT, Δvalore e frequenza</td><td class="c yes">sì</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Vertical and horizontal markers, ΔT, Δvalue and frequency</td><td class="c yes">yes</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Statistiche sul tratto selezionato e sull'intero segnale</td><td class="c yes">sì</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Statistics over the selected span and over the whole signal</td><td class="c yes">yes</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Acquisizione e registrazione da S7-300, 400, 1200 e 1500</td><td class="c">—</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Acquisition and recording from S7-300, 400, 1200 and 1500</td><td class="c">—</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Generazione dei blocchi per il campionamento a 1 ms nel PLC</td><td class="c">—</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Generation of the blocks for 1 ms sampling in the PLC</td><td class="c">—</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Dashboard web sulla rete di impianto</td><td class="c">—</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Web dashboard on the plant network</td><td class="c">—</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Editor delle espressioni con le 94 funzioni per i segnali calcolati</td><td class="c">—</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Expression editor with the 94 functions for computed signals</td><td class="c">—</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Finestre di analisi separate, ad esempio su due monitor</td><td class="c">—</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Separate analysis windows, for example on two monitors</td><td class="c">—</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Esportazione CSV, immagine ad alta risoluzione e copia negli appunti</td><td class="c">—</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>CSV export, high-resolution image and copy to clipboard</td><td class="c">—</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Importazione dei file di ibaAnalyzer</td><td class="c">—</td><td class="c yes">sì</td></tr>
+          <tr data-en><td>Import of ibaAnalyzer files</td><td class="c">—</td><td class="c yes">yes</td></tr>
+          <tr data-it><td>Attivazione</td><td class="c">nessuna attivazione, nessuna scadenza, nessun account</td><td class="c">file di licenza legato al PC, senza internet</td></tr>
+          <tr data-en><td>Activation</td><td class="c">no activation, no expiry, no account</td><td class="c">licence file bound to the PC, without internet</td></tr>
+        </tbody>
+      </table>
     </div>
-      <p class="intro" data-r="up" data-it>
-      La versione <strong>Free apre e analizza le registrazioni</strong>. Collegamento al PLC, registrazione ed esportazioni sono funzioni <strong>PRO</strong>, che si attivano con un file di licenza (.ptvlic) legato al PC. L'attivazione non richiede internet; se una connessione è disponibile, lo stato della licenza viene verificato sul portale senza inviare dati d'impianto.
-    </p>
-    <p class="intro" data-r="up" data-en>
-      The <strong>Free version opens and analyses recordings</strong>. Connecting to the PLC, recording and exporting are <strong>PRO</strong> features, enabled by a licence file (.ptvlic) bound to the PC. Activation does not need internet; if a connection is available, the licence status is checked on the portal without sending plant data.
-    </p>
-    </div>
-<div class="plans">
-      <div class="plan" data-r="up">
-        <span class="tag">FREE</span>
-        <h3 data-it>Analisi delle registrazioni</h3><h3 data-en>Analysing recordings</h3>
-        <p data-it>Pronta all'uso, senza attivazione e senza scadenza.</p>
-        <p data-en>Ready to use, without activation or expiry.</p>
-        <ul data-it>
-          <li>Apre <span class="mono">.drug</span>, <span class="mono">.drug.gz</span>, <span class="mono">.csv</span>, <span class="mono">.txt</span>, un file alla volta</li>
-          <li>Grafici con più segnali sullo stesso asse dei tempi, zoom e spostamento</li>
-          <li>Marker verticali e orizzontali, ΔT, Δvalore e frequenza</li>
-          <li>Statistiche sul tratto selezionato e sull'intero segnale</li>
-          <li>Nessuna attivazione, nessuna scadenza, nessun account</li>
-        </ul>
-        <ul data-en>
-          <li>Opens <span class="mono">.drug</span>, <span class="mono">.drug.gz</span>, <span class="mono">.csv</span>, <span class="mono">.txt</span>, one file at a time</li>
-          <li>Charts with several signals on one time axis, zoom and pan</li>
-          <li>Vertical and horizontal markers, ΔT, Δvalue and frequency</li>
-          <li>Statistics over the selected span and over the whole signal</li>
-          <li>No activation, no expiry, no account</li>
-        </ul>
-      </div>
-      <div class="plan pro" data-r="up" style="--d:120ms">
-        <span class="tag">PRO</span>
-        <h3 data-it>Acquisizione, registrazione, esportazione</h3><h3 data-en>Acquisition, recording, export</h3>
-        <p data-it>Tutte le funzioni che leggono dal PLC o esportano dati.</p>
-        <p data-en>All functions that read from the PLC or export data.</p>
-        <ul data-it>
-          <li><strong>Acquisizione e registrazione</strong>: S7-300, 400, 1200 e 1500</li>
-          <li>Generazione dei blocchi per il campionamento a 1 ms nel PLC</li>
-          <li>Dashboard web sulla rete di impianto</li>
-          <li>Editor delle espressioni con le 94 funzioni per i segnali calcolati</li>
-          <li>Più registrazioni aperte insieme, con l'asse dei tempi sincronizzato</li>
-          <li>Finestre di analisi separate, ad esempio su due monitor</li>
-          <li>Esportazione CSV, immagine ad alta risoluzione e copia negli appunti</li>
-          <li>Importazione dei file di ibaAnalyzer</li>
-        </ul>
-        <ul data-en>
-          <li><strong>Acquisition and recording</strong>: S7-300, 400, 1200 and 1500</li>
-          <li>Generation of the blocks for 1 ms sampling in the PLC</li>
-          <li>Web dashboard on the plant network</li>
-          <li>Expression editor with the 94 functions for computed signals</li>
-          <li>Several recordings open at once, with a synchronised time axis</li>
-          <li>Separate analysis windows, for example on two monitors</li>
-          <li>CSV export, high-resolution image and copy to clipboard</li>
-          <li>Import of ibaAnalyzer files</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="note note-brand" style="margin-top:26px" data-r="up">
+    <div class="note">
       <b data-it>Se la licenza scade durante una registrazione.</b>
       <b data-en>If the licence expires during a recording.</b>
       <span data-it> La registrazione in corso <strong>non viene interrotta</strong> e il file resta completo; le funzioni PRO si disattivano quando la registrazione termina. La licenza può essere a tempo, senza scadenza o a ore di registrazione, e in caso di smarrimento può essere emessa di nuovo.</span>
@@ -908,115 +628,83 @@
   </div>
 </section>
 
-
-<!-- band -->
-<section class="band">
-  <img src="assets/img/art-workbench.webp" width="1672" height="941" loading="lazy" decoding="async" alt="A field laptop on a workbench showing live PLC signals.">
-  <div class="wrap band-in">
-    <p data-r="up">
-      <small><span data-it>In campo</span><span data-en>On site</span></small>
-      <span data-it>Servono un PC portatile e un cavo di rete.</span><span data-en>All you need is a laptop and a network cable.</span>
-    </p>
-  </div>
-</section>
-<!-- ══════════════════ DOWNLOAD ══════════════════════════════════════════ -->
+<!-- Download -->
 <section id="download">
   <div class="wrap">
-    <div class="dl" data-r="up">
-      <p class="kicker">Download</p>
-      <h2 data-it>Installazione</h2>
-      <h2 data-en>Installation</h2>
-      <p class="intro" style="margin-top:12px;margin-bottom:30px" data-it>
-        L'installazione contiene tutto il necessario: non serve installare altri componenti né preparare configurazioni. Se è aperta una versione precedente, chiudila prima di installare.
-      </p>
-      <p class="intro" style="margin-top:12px;margin-bottom:30px" data-en>
-        The installer contains everything needed: there are no other components to install and nothing to configure first. If an earlier version is open, close it before installing.
-      </p>
+    <h2 data-it>Installazione</h2>
+    <h2 data-en>Installation</h2>
+    <p class="sub" data-it>L'installazione contiene tutto il necessario: non serve installare altri componenti né preparare configurazioni. Se è aperta una versione precedente, chiudila prima di installare.</p>
+    <p class="sub" data-en>The installer contains everything needed: there are no other components to install and nothing to configure first. If an earlier version is open, close it before installing.</p>
 
-      <div class="steps" style="margin-bottom:34px">
-        <div class="step">
-          <span class="num">1</span>
-          <h3 data-it>Scarica</h3><h3 data-en>Download</h3>
-          <p data-it>Il file si scarica da GitHub. Se Windows SmartScreen mostra un avviso, scegli Ulteriori informazioni → Esegui comunque.</p>
-          <p data-en>The file is downloaded from GitHub. If Windows SmartScreen shows a warning, choose More info → Run anyway.</p>
-        </div>
-        <div class="step">
-          <span class="num">2</span>
-          <h3 data-it>Installa</h3><h3 data-en>Install</h3>
-          <p data-it>Installazione guidata per il tuo utente Windows. La dashboard web è facoltativa: se la selezioni, Windows chiede l'autorizzazione e poi il servizio si avvia da solo.</p>
-          <p data-en>Guided installation for your Windows user. The web dashboard is optional: if you select it, Windows asks for permission and the service then starts on its own.</p>
-        </div>
-        <div class="step">
-          <span class="num">3</span>
-          <h3 data-it>Collega</h3><h3 data-en>Connect</h3>
-          <p data-it>Inserisci l'indirizzo della CPU, trascina i canali nell'elenco e avvia REC. Il programma segnala eventuali problemi.</p>
-          <p data-en>Enter the CPU address, drag the channels into the list and press REC. The program reports any problems.</p>
-        </div>
-      </div>
+    <ol class="steps">
+      <li>
+        <h3 data-it>Scarica</h3><h3 data-en>Download</h3>
+        <p data-it>Il file si scarica da GitHub. Se Windows SmartScreen mostra un avviso, scegli Ulteriori informazioni → Esegui comunque.</p>
+        <p data-en>The file is downloaded from GitHub. If Windows SmartScreen shows a warning, choose More info → Run anyway.</p>
+      </li>
+      <li>
+        <h3 data-it>Installa</h3><h3 data-en>Install</h3>
+        <p data-it>Installazione guidata per il tuo utente Windows. La dashboard web è facoltativa: se la selezioni, Windows chiede l'autorizzazione e poi il servizio si avvia da solo.</p>
+        <p data-en>Guided installation for your Windows user. The web dashboard is optional: if you select it, Windows asks for permission and the service then starts on its own.</p>
+      </li>
+      <li>
+        <h3 data-it>Collega</h3><h3 data-en>Connect</h3>
+        <p data-it>Inserisci l'indirizzo della CPU, trascina i canali nell'elenco e avvia REC. Il programma segnala eventuali problemi.</p>
+        <p data-en>Enter the CPU address, drag the channels into the list and press REC. The program reports any problems.</p>
+      </li>
+    </ol>
 
-      <div class="cta" style="display:flex;flex-wrap:wrap;gap:13px">
-        <a class="btn btn-lg" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.2/PlcTraceViewer_Setup_v2.1.2.exe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
-          <span data-it>Scarica per Windows</span><span data-en>Download for Windows</span>
+    <div class="actions">
+      <a class="btn" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.2/PlcTraceViewer_Setup_v2.1.2.exe">
+        <span data-it>Scarica per Windows</span><span data-en>Download for Windows</span>
+      </a>
+      <a class="btn-2" href="quickstart.html"><span data-it>Guida rapida</span><span data-en>Quick start</span></a>
+      <a class="btn-2" href="datasheet.html"><span data-it>Scheda tecnica</span><span data-en>Datasheet</span></a>
+    </div>
+    <p class="file">
+      <b>PlcTraceViewer_Setup_v2.1.2.exe</b> ·
+      Windows 10 / 11 · 64 bit
+      <span data-it>· porta 102 verso la CPU · nessun account richiesto</span><span data-en>· port 102 to the CPU · no account required</span>
+    </p>
+
+    <div id="licenza" class="box">
+      <h3 data-it>Licenza PRO: come richiederla</h3><h3 data-en>PRO licence: how to request it</h3>
+      <ol data-it>
+        <li>Apri PlcTraceViewer → <em>? → Activate PRO version</em> e copia il <em>Machine Code</em>.</li>
+        <li>Invia la richiesta dal portale licenze con il codice e i tuoi dati. Ogni richiesta viene verificata personalmente; ne serve una per PC.</li>
+        <li>Quando la richiesta è approvata, scarica il file <em>.ptvlic</em> dal portale (<em>Request status</em>) e importalo nell'app con <em>Import licence file</em>.</li>
+      </ol>
+      <ol data-en>
+        <li>Open PlcTraceViewer → <em>? → Activate PRO version</em> and copy the <em>Machine Code</em>.</li>
+        <li>Send the request from the licence portal with the code and your details. Every request is checked personally; one per PC is needed.</li>
+        <li>When the request is approved, download the <em>.ptvlic</em> file from the portal (<em>Request status</em>) and import it in the app with <em>Import licence file</em>.</li>
+      </ol>
+      <div class="actions" style="margin-bottom:4px">
+        <a class="btn" href="https://forgepi.tail50ae29.ts.net:8443/" target="_blank" rel="noopener">
+          <span data-it>Richiedi la licenza</span><span data-en>Request a licence</span>
         </a>
-        <a class="btn-2 btn-lg" href="quickstart.html">
-          <span data-it>Guida rapida</span><span data-en>Quick start</span>
-        </a>
-        <a class="btn-2 btn-lg" href="datasheet.html">
-          <span data-it>Scheda tecnica</span><span data-en>Datasheet</span>
+        <a class="btn-2" href="https://forgepi.tail50ae29.ts.net:8443/Public/Check" target="_blank" rel="noopener">
+          <span data-it>Stato della richiesta</span><span data-en>Request status</span>
         </a>
       </div>
+      <p class="file">forgepi.tail50ae29.ts.net:8443</p>
+    </div>
 
-      <p class="file">
-        <b>PlcTraceViewer_Setup_v2.1.2.exe</b>
-        <span>Windows 10 / 11 · 64 bit</span>
-        <span data-it>· porta 102 verso la CPU</span><span data-en>· port 102 to the CPU</span>
-        <span data-it>· nessun account richiesto</span><span data-en>· no account required</span>
-      </p>
-
-      <div id="licenza" class="note" style="margin-top:24px">
-        <b data-it>Licenza PRO: come richiederla.</b><b data-en>PRO licence: how to request it.</b>
-        <p data-it style="margin:8px 0 0">
-          1. Apri PlcTraceViewer → <em>? → Activate PRO version</em> e copia il <em>Machine Code</em>.<br>
-          2. Invia la richiesta dal portale licenze con il codice e i tuoi dati. Ogni richiesta viene verificata personalmente; ne serve una per PC.<br>
-          3. Quando la richiesta è approvata, scarica il file <em>.ptvlic</em> dal portale (<em>Request status</em>) e importalo nell'app con <em>Import licence file</em>.
-        </p>
-        <p data-en style="margin:8px 0 0">
-          1. Open PlcTraceViewer → <em>? → Activate PRO version</em> and copy the <em>Machine Code</em>.<br>
-          2. Send the request from the licence portal with the code and your details. Every request is checked personally; one per PC is needed.<br>
-          3. When the request is approved, download the <em>.ptvlic</em> file from the portal (<em>Request status</em>) and import it in the app with <em>Import licence file</em>.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:13px;margin-top:14px">
-          <a class="btn" href="https://forgepi.tail50ae29.ts.net:8443/" target="_blank" rel="noopener">
-            <span data-it>Richiedi la licenza</span><span data-en>Request a licence</span>
-          </a>
-          <a class="btn-2" href="https://forgepi.tail50ae29.ts.net:8443/Public/Check" target="_blank" rel="noopener">
-            <span data-it>Stato della richiesta</span><span data-en>Request status</span>
-          </a>
-        </div>
-        <p class="file" style="margin-top:10px"><span>forgepi.tail50ae29.ts.net:8443</span></p>
-      </div>
-
-      <div class="note" style="margin-top:24px">
-        <b data-it>Subito dopo l'installazione.</b><b data-en>Right after installation.</b>
-        <span data-it> Il programma apre e analizza le registrazioni, un file alla volta, con grafici, marker e statistiche. Per <strong>collegarsi al PLC e registrare</strong> serve la licenza PRO (vedi <a href="#edizioni">le edizioni</a>). L'attivazione non richiede internet e la licenza è legata al PC.</span>
-        <span data-en> The program opens and analyses recordings, one file at a time, with charts, markers and statistics. <strong>Connecting to the PLC and recording</strong> need a PRO licence (see <a href="#edizioni">the editions</a>). Activation does not need internet and the licence is bound to the PC.</span>
-      </div>
+    <div class="note">
+      <b data-it>Subito dopo l'installazione.</b><b data-en>Right after installation.</b>
+      <span data-it> Il programma apre e analizza le registrazioni, un file alla volta, con grafici, marker e statistiche. Per <strong>collegarsi al PLC e registrare</strong> serve la licenza PRO (vedi <a href="#edizioni">le edizioni</a>). L'attivazione non richiede internet e la licenza è legata al PC.</span>
+      <span data-en> The program opens and analyses recordings, one file at a time, with charts, markers and statistics. <strong>Connecting to the PLC and recording</strong> need a PRO licence (see <a href="#edizioni">the editions</a>). Activation does not need internet and the licence is bound to the PC.</span>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ FAQ ═══════════════════════════════════════════════ -->
-<section id="faq" class="sec-alt">
+<!-- FAQ -->
+<section id="faq" class="alt">
   <div class="wrap">
-    <div class="head" data-r="up">
-      <p class="kicker">FAQ</p>
-      <h2 data-it>Domande frequenti</h2>
-      <h2 data-en>Frequently asked questions</h2>
-    </div>
-
-    <div class="faq" style="margin-top:30px" data-r="up">
-      <details id="faq-sola-lettura" open>
+    <h2 data-it>Domande frequenti</h2>
+    <h2 data-en>Frequently asked questions</h2>
+    <div class="faq" style="margin-top:18px">
+      <details id="faq-sola-lettura">
         <summary><span data-it>Interferisce con il PLC in produzione?</span><span data-en>Does it interfere with a PLC in production?</span></summary>
         <div class="a">
           <span data-it>No. Legge soltanto: non scrive variabili, non modifica il programma e non cambia lo stato della CPU. Il numero di richieste contemporanee è limitato e durante la registrazione viene mostrato quanto del collegamento viene usato; su una rete condivisa l'HMI ha la precedenza.</span>
@@ -1080,7 +768,7 @@
         </div>
       </details>
     </div>
-    <p style="margin-top:24px"><a class="btn-2" href="faq.html"><span data-it>Tutte le domande su licenze e procedure →</span><span data-en>All questions about licences and procedures →</span></a></p>
+    <p style="margin-top:18px"><a href="faq.html"><span data-it>Tutte le domande su licenze e procedure →</span><span data-en>All questions about licences and procedures →</span></a></p>
   </div>
 </section>
 
@@ -1088,20 +776,11 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
+    <div class="foot-cols">
       <div>
-        <a class="brand" href="#top" style="color:#fff;margin-bottom:14px">
-          <span class="mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h3l3-9 4 14 3-8h7"/></svg>
-          </span>
-          <span>PlcTraceViewer</span>
-        </a>
-        <p style="max-width:34ch;font-size:.88rem" data-it>
-          Registratore e analizzatore di segnali per PLC S7, per la messa in servizio e la ricerca guasti.
-        </p>
-        <p style="max-width:34ch;font-size:.88rem" data-en>
-          Signal recorder and analyser for S7 PLCs, for commissioning and fault finding.
-        </p>
+        <a class="brand" href="index.html" style="margin-bottom:10px"><img src="assets/img/ptv-mark-64.png" width="22" height="22" alt=""><span>PlcTraceViewer</span></a>
+        <p data-it>Registratore e analizzatore di segnali per PLC S7, per la messa in servizio e la ricerca guasti.</p>
+        <p data-en>Signal recorder and analyser for S7 PLCs, for commissioning and fault finding.</p>
       </div>
       <div>
         <h4 data-it>Prodotto</h4><h4 data-en>Product</h4>
@@ -1131,21 +810,21 @@
         </ul>
       </div>
     </div>
-    <div class="foot-bot">
-      <span>© <span data-year>2026</span> Leonardo Dogariu · PlcTraceViewer 2.1.2</span>
-      <span data-it>Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG. ibaAnalyzer è un marchio di iba AG.</span>
-      <span data-en>Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an independent product and is not affiliated with, sponsored or endorsed by Siemens AG. ibaAnalyzer is a trademark of iba AG.</span>
+    <div class="legal">
+      <p>© <span data-year>2026</span> Leonardo Dogariu · PlcTraceViewer 2.1.2</p>
+      <p data-it>Siemens, SIMATIC, S7, TIA Portal, STEP 7 e PLCSIM sono marchi di Siemens AG. PLC Trace Viewer è un prodotto indipendente e non è affiliato, sponsorizzato né approvato da Siemens AG. ibaAnalyzer è un marchio di iba AG.</p>
+      <p data-en>Siemens, SIMATIC, S7, TIA Portal, STEP 7 and PLCSIM are trademarks of Siemens AG. PLC Trace Viewer is an independent product and is not affiliated with, sponsored or endorsed by Siemens AG. ibaAnalyzer is a trademark of iba AG.</p>
     </div>
   </div>
 </footer>
 
 <dialog class="lb" id="lightbox">
-  <button class="x" type="button" aria-label="Chiudi / Close">ESC ✕</button>
+  <button class="x" type="button"><span data-it>Chiudi</span><span data-en>Close</span></button>
   <img alt="">
-  <p class="cap mono" style="color:#8d9aa8;font-size:.78rem;margin-top:10px"></p>
+  <p class="cap"></p>
 </dialog>
 
 <script src="assets/js/functions.js?v=20261008a"></script>
-<script src="assets/js/site.js?v=20261008a"></script>
+<script src="assets/js/site.js?v=20261009a"></script>
 </body>
 </html>
