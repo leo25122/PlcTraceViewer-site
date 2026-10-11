@@ -143,6 +143,104 @@
     $$('[data-lang-btn]').forEach(function (b) { b.addEventListener('click', close); });
   })();
 
+  /* ── expression editor: typed examples with their curve ───────────────── */
+  /// Four example expressions typed one after the other; for each one the preview draws
+  /// the input signal (grey) and the result (blue). It only runs while it is on screen.
+  (function () {
+    var box = $('#fx-code'), cv = $('#fx-plot'), lbl = $('#fx-label');
+    if (!box || !cv || !cv.getContext) return;
+    var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ctx = cv.getContext('2d');
+
+    function smooth(i, n) { return 0.5 + 0.33 * Math.sin(i / n * 7.4) + 0.08 * Math.sin(i / n * 21.5); }
+    function speed(i, n) { return 0.5 + 0.3 * Math.sin(i / n * 30) * (0.55 + 0.45 * Math.sin(i / n * 5.1)); }
+    function bit(i) { return ((i % 40) > 10 && (i % 40) < 34) ? 1 : 0; }
+    function current(i, n) { return 0.5 + 0.36 * Math.sin(i / 1.6) * (1 - Math.exp(-i / (n * 0.22))); }
+
+    var DEMOS = [
+      { code: 'DIFF(LPF(Pressure, 8))', it: 'derivata di una pressione filtrata a 8 Hz', en: 'derivative of a pressure filtered at 8 Hz',
+        raw: smooth, f: function (i, n) { return 0.5 + (smooth(i, n) - smooth(i - 3, n)) * 5.5; } },
+      { code: 'P2P(AxisSpeed, 0.5)', it: 'picco-picco su una finestra di 0,5 s', en: 'peak-to-peak over a 0.5 s window',
+        raw: speed, f: function (i, n) { return 0.2 + 0.57 * (0.55 + 0.45 * Math.sin(i / n * 5.1)); } },
+      { code: 'TON(I.PR_Line, 0.25)', it: 'ritardo all’inserzione di 250 ms', en: 'a 250 ms on-delay',
+        raw: function (i) { return bit(i) ? 0.62 : 0.2; }, f: function (i) { return (bit(i) && bit(i - 8)) ? 0.84 : 0.12; } },
+      { code: 'RMSW(Current, 1)', it: 'valore efficace su 1 secondo', en: 'RMS value over 1 second',
+        raw: current, f: function (i, n) { return 0.5 + 0.26 * (1 - Math.exp(-i / (n * 0.22))); } }
+    ];
+
+    var di = 0, shown = 0, t0 = 0, w = 0, h = 0, visible = false, timer = 0, raf = 0, lastK = 1;
+
+    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+    function paint(txt, caret) {
+      var out = '', re = /([A-Za-z_][\w.]*)(\()?|(\d+(?:\.\d+)?)|([^A-Za-z_\d]+)/g, m;
+      while ((m = re.exec(txt))) {
+        if (m[1] && m[2]) out += '<span class="f">' + esc(m[1]) + '</span>(';
+        else if (m[1]) out += '<span class="s">' + esc(m[1]) + '</span>';
+        else if (m[3]) out += '<span class="n">' + m[3] + '</span>';
+        else out += esc(m[4]);
+      }
+      box.innerHTML = out + (caret ? '<span class="cur"></span>' : '');
+    }
+    function label() {
+      var d = DEMOS[di];
+      if (lbl) lbl.innerHTML = '<span data-it>' + d.it + '</span><span data-en>' + d.en + '</span>';
+    }
+    function size() {
+      var dpr = Math.min(2, window.devicePixelRatio || 1), r = cv.getBoundingClientRect();
+      w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
+      cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function css(n, fb) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim() || fb; }
+    function draw(k) {
+      var d = DEMOS[di], n = 160, px = 16, py = 14, iw = w - px * 2, ih = h - py * 2;
+      lastK = k;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = '#e9edf2'; ctx.lineWidth = 1; ctx.beginPath();
+      for (var gy = 0; gy <= 4; gy++) { var y0 = Math.round(py + ih * gy / 4) + .5; ctx.moveTo(px, y0); ctx.lineTo(w - px, y0); }
+      for (var gx = 0; gx <= 8; gx++) { var x0 = Math.round(px + iw * gx / 8) + .5; ctx.moveTo(x0, py); ctx.lineTo(x0, h - py); }
+      ctx.stroke();
+      ctx.strokeStyle = '#a9b4c0'; ctx.lineWidth = 1.3; ctx.beginPath();
+      for (var i = 0; i <= n; i++) {
+        var y = py + ih - Math.max(0, Math.min(1, d.raw(i, n))) * ih;
+        if (i) ctx.lineTo(px + iw * i / n, y); else ctx.moveTo(px, y);
+      }
+      ctx.stroke();
+      ctx.strokeStyle = css('--azure', '#1e6fc7'); ctx.lineWidth = 2.2; ctx.lineJoin = 'round'; ctx.beginPath();
+      var lim = Math.round(n * k);
+      for (var j = 0; j <= lim; j++) {
+        var yy = py + ih - Math.max(0.02, Math.min(0.98, d.f(j, n))) * ih;
+        if (j) ctx.lineTo(px + iw * j / n, yy); else ctx.moveTo(px, yy);
+      }
+      ctx.stroke();
+    }
+    function grow() {
+      var k = Math.min(1, (performance.now() - t0) / 1300);
+      draw(k);
+      if (k < 1 && visible) raf = requestAnimationFrame(grow);
+    }
+    function step() {
+      if (!visible) return;
+      var d = DEMOS[di];
+      // a new expression: its description and its input signal appear first, the result once it is typed
+      if (shown === 0) { label(); draw(0); }
+      if (shown <= d.code.length) { paint(d.code.slice(0, shown), true); shown++; timer = setTimeout(step, 45); return; }
+      paint(d.code, true); t0 = performance.now(); grow();
+      timer = setTimeout(function () { di = (di + 1) % DEMOS.length; shown = 0; step(); }, 3400);
+    }
+
+    size(); paint(DEMOS[0].code, false); label(); draw(1);
+    window.addEventListener('resize', function () { size(); draw(lastK); });
+    if (REDUCED || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var was = visible;
+        visible = e.isIntersecting && !document.hidden;
+        if (visible && !was) { clearTimeout(timer); shown = 0; step(); }
+        if (!visible) { clearTimeout(timer); cancelAnimationFrame(raf); }
+      });
+    }, { threshold: 0.3 }).observe(cv);
+  })();
+
   /* ── function list ────────────────────────────────────────────────────── */
   (function () {
     var wall = $('#fnwall');

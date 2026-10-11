@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=20261011c">
+<link rel="stylesheet" href="assets/css/site.css?v=20261011d">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -480,16 +480,21 @@
         <h2><span data-it>Canali calcolati con formule</span><span data-en>Channels computed from formulas</span><span class="pro">PRO</span></h2>
       </div>
     </header>
-    <div class="split mid indent">
+    <div class="split wide-r indent" style="align-items:center">
       <div>
         <p style="font-size:1.12rem;color:var(--ink-2);margin:0" data-it>Derivate, integrali, filtri in Hz, statistiche su finestra mobile, fronti, temporizzazioni e analisi in frequenza. Le funzioni si possono combinare e applicare anche ad altri canali calcolati; l'editor mostra l'anteprima della curva mentre si scrive.</p>
         <p style="font-size:1.12rem;color:var(--ink-2);margin:0" data-en>Derivatives, integrals, filters in Hz, moving-window statistics, edges, timers and frequency analysis. Functions can be combined and applied to other computed channels too; the editor previews the curve as you type.</p>
       </div>
-      <div class="editor">
-        <div class="bar"><span data-it>Editor delle espressioni</span><span data-en>Expression editor</span></div>
-        <div class="code"><span class="f">DIFF</span>(<span class="f">LPF</span>(<span class="s">Pressure</span>, <span class="n">8</span>))</div>
-        <div class="res"><span data-it>derivata di una pressione filtrata a 8 Hz</span><span data-en>derivative of a pressure filtered at 8 Hz</span><span class="ok">✓ ok</span></div>
-      </div>
+      <figure>
+        <div class="win fx">
+          <div class="win-bar"><img src="assets/img/ptv-mark-64.png" alt=""><span data-it>Editor delle espressioni</span><span data-en>Expression editor</span><span class="c"><i></i><i></i><i></i></span></div>
+          <div class="fx-code" id="fx-code"><span class="f">DIFF</span>(<span class="f">LPF</span>(<span class="s">Pressure</span>, <span class="n">8</span>))</div>
+          <div class="fx-legend"><span class="raw" data-it>segnale di ingresso</span><span class="raw" data-en>input signal</span><span class="res" data-it>risultato</span><span class="res" data-en>result</span></div>
+          <canvas id="fx-plot" aria-hidden="true"></canvas>
+          <div class="fx-foot"><span id="fx-label"><span data-it>derivata di una pressione filtrata a 8 Hz</span><span data-en>derivative of a pressure filtered at 8 Hz</span></span><span class="ok">&#10003; ok</span></div>
+        </div>
+        <figcaption><span data-it>Esempi di espressioni con l'anteprima della curva (animazione dimostrativa).</span><span data-en>Example expressions with the curve preview (demonstration animation).</span></figcaption>
+      </figure>
     </div>
 
     <div class="indent" style="margin-top:64px">
@@ -884,6 +889,6 @@
 </dialog>
 
 <script src="assets/js/functions.js?v=20261008a"></script>
-<script src="assets/js/site.js?v=20261011b"></script>
+<script src="assets/js/site.js?v=20261011d"></script>
 </body>
 </html>

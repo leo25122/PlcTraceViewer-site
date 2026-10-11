@@ -542,3 +542,19 @@ button.pin:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px;
 /* a cropped control strip: shown at its own size, never stretched */
 .thumb-fit { width: fit-content; max-width: 100%; }
 .thumb-fit img { width: auto; max-width: 100%; }
+
+/* expression editor with live preview */
+.fx .fx-code { font: 1.12rem/1.5 var(--mono); padding: 16px 18px; min-height: 58px; color: var(--ink); border-bottom: 1px solid var(--line); white-space: pre-wrap; word-break: break-word; }
+.fx .fx-code .f { color: var(--azure); font-weight: 700; }
+.fx .fx-code .n { color: var(--amber); }
+.fx .fx-code .s { color: var(--petrol); }
+.fx .fx-code .cur { display: inline-block; width: 2px; height: 1.15em; background: var(--navy); vertical-align: -3px; margin-left: 1px; animation: fx-blink 1s steps(1) infinite; }
+@keyframes fx-blink { 50% { opacity: 0; } }
+.fx-legend { display: flex; gap: 18px; padding: 10px 18px 0; font: .78rem var(--mono); color: var(--ink-3); }
+.fx-legend span::before { content: ""; display: inline-block; width: 16px; height: 2px; vertical-align: 3px; margin-right: 7px; }
+.fx-legend .raw::before { background: #a9b4c0; }
+.fx-legend .res::before { background: var(--azure); height: 3px; }
+.fx canvas { display: block; width: 100%; height: 220px; }
+.fx-foot { display: flex; justify-content: space-between; gap: 12px; font-size: .9rem; color: var(--ink-2); padding: 11px 18px; border-top: 1px solid var(--line); background: var(--bg-2); }
+.fx-foot .ok { color: var(--ok); font-family: var(--mono); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .fx .fx-code .cur { animation: none; } }
