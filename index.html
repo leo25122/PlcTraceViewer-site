@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Semi+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=20261011a">
+<link rel="stylesheet" href="assets/css/site.css?v=20261011b">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -105,10 +105,10 @@
           <div style="position:relative" data-zoom="assets/img/analysis.webp">
             <img src="assets/img/analysis.webp" width="1516" height="908" decoding="async"
                  alt="PlcTraceViewer analysis window: signal list, global statistics, three signals on one time axis and the marker tools.">
-            <span class="pin" style="left:7%;top:11%">1</span>
-            <span class="pin" style="left:7%;top:33%">2</span>
-            <span class="pin" style="left:57%;top:47%">3</span>
-            <span class="pin" style="left:61.5%;top:2.6%">4</span>
+            <button type="button" class="pin" data-pin="1" style="left:7%;top:11%" aria-label="1">1</button>
+            <button type="button" class="pin" data-pin="2" style="left:7%;top:33%" aria-label="2">2</button>
+            <button type="button" class="pin" data-pin="3" style="left:57%;top:47%" aria-label="3">3</button>
+            <button type="button" class="pin" data-pin="4" style="left:61.5%;top:2.6%" aria-label="4">4</button>
           </div>
         </div>
       </figure>
@@ -128,10 +128,10 @@
       <div><dt data-it>Sistema e licenza</dt><dt data-en>System and licence</dt><dd>Windows 10 / 11<small data-it>attivazione senza internet</small><small data-en>activation without internet</small></dd></div>
     </dl>
     <ol class="legend">
-      <li><b>1</b><span data-it>Segnali del file, attivabili uno per uno.</span><span data-en>The signals in the file, switched on one by one.</span></li>
-      <li><b>2</b><span data-it>Statistiche per segnale: minimo, massimo, media, RMS, numero di campioni e periodo.</span><span data-en>Statistics per signal: minimum, maximum, mean, RMS, sample count and period.</span></li>
-      <li><b>3</b><span data-it>Tre segnali sullo stesso asse dei tempi, un campione ogni 10 ms.</span><span data-en>Three signals on one time axis, one sample every 10 ms.</span></li>
-      <li><b>4</b><span data-it>Marker verticali e orizzontali, zoom e copia del grafico.</span><span data-en>Vertical and horizontal markers, zoom and chart copy.</span></li>
+      <li data-n="1"><b>1</b><span data-it>Segnali del file, attivabili uno per uno.</span><span data-en>The signals in the file, switched on one by one.</span></li>
+      <li data-n="2"><b>2</b><span data-it>Statistiche per segnale: minimo, massimo, media, RMS, numero di campioni e periodo.</span><span data-en>Statistics per signal: minimum, maximum, mean, RMS, sample count and period.</span></li>
+      <li data-n="3"><b>3</b><span data-it>Tre segnali sullo stesso asse dei tempi, un campione ogni 10 ms.</span><span data-en>Three signals on one time axis, one sample every 10 ms.</span></li>
+      <li data-n="4"><b>4</b><span data-it>Marker verticali e orizzontali, zoom e copia del grafico.</span><span data-en>Vertical and horizontal markers, zoom and chart copy.</span></li>
     </ol>
   </div>
 </section>
@@ -884,6 +884,6 @@
 </dialog>
 
 <script src="assets/js/functions.js?v=20261008a"></script>
-<script src="assets/js/site.js?v=20261009b"></script>
+<script src="assets/js/site.js?v=20261011b"></script>
 </body>
 </html>

@@ -521,3 +521,20 @@ ul.checks.cols li { break-inside: avoid; }
 /* product line under the opening headline */
 .hero .tagline { font: 500 1.35rem/1.35 var(--head); color: #8cc1f5; margin: 18px 0 0; max-width: 36ch; }
 @media (max-width: 600px) { .hero .tagline { font-size: 1.15rem; } }
+
+/* call-outs are buttons: a note opens next to the number */
+button.pin { border: 0; padding: 0; cursor: pointer; z-index: 3; transition: transform .12s, background .12s; }
+button.pin:hover { transform: scale(1.12); }
+button.pin.on { background: var(--navy); transform: scale(1.12); }
+button.pin:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+.pin-tip {
+  position: absolute; z-index: 4; width: min(270px, 70%); margin: -14px 0 0 24px;
+  background: #fff; color: var(--ink); border: 1px solid var(--navy); border-left: 3px solid var(--azure);
+  padding: 10px 13px; font: 500 .9rem/1.45 var(--sans); box-shadow: 0 12px 28px -10px rgba(4,18,38,.45); cursor: default;
+}
+.pin-tip.to-left { transform: translateX(-100%); margin-left: -24px; border-left-width: 1px; border-right: 3px solid var(--azure); }
+.legend li[data-n] { cursor: pointer; padding: 4px 6px; margin: -4px -6px; border-radius: 2px; }
+.legend li[data-n]:hover { background: var(--bg-2); }
+.legend li.on { background: var(--azure-lt); }
+.legend li.on b { background: var(--navy); }
+@media (max-width: 600px) { .pin-tip { width: 62vw; font-size: .85rem; } }

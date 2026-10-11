@@ -80,7 +80,9 @@
     if (!dlg || !dlg.showModal) return;
     var img = $('img', dlg), cap = $('.cap', dlg);
     $$('[data-zoom]').forEach(function (el) {
-      el.addEventListener('click', function () {
+      el.addEventListener('click', function (e) {
+        // the numbered call-outs on a screenshot have their own job: explain, not zoom
+        if (e.target.closest('.pin, .pin-tip')) return;
         var src = el.getAttribute('data-zoom') || ($('img', el) && $('img', el).src);
         if (!src) return;
         img.src = src;
@@ -91,6 +93,54 @@
       });
     });
     dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target.classList.contains('x')) dlg.close(); });
+  })();
+
+  /* ── numbered call-outs ───────────────────────────────────────────────── */
+  /// A number on a screenshot opens a note with the matching line of the legend below
+  /// and marks that line; a line of the legend does the same for its number.
+  (function () {
+    var pins = $$('.pin[data-pin]');
+    if (!pins.length) return;
+    var tip = document.createElement('div');
+    tip.className = 'pin-tip'; tip.setAttribute('role', 'note'); tip.hidden = true;
+    var open = null;
+    function close() {
+      tip.hidden = true; open = null;
+      pins.forEach(function (p) { p.classList.remove('on'); p.setAttribute('aria-expanded', 'false'); });
+      $$('.legend li[data-n]').forEach(function (li) { li.classList.remove('on'); });
+    }
+    function show(n) {
+      var pin = $('.pin[data-pin="' + n + '"]'), li = $('.legend li[data-n="' + n + '"]');
+      if (!pin || !li) return;
+      if (open === n) { close(); return; }
+      close();
+      var lang = document.documentElement.lang === 'en' ? 'en' : 'it';
+      var txt = $('span[data-' + lang + ']', li) || $('span', li);
+      tip.textContent = txt ? txt.textContent : '';
+      pin.parentNode.appendChild(tip);
+      var left = parseFloat(pin.style.left) || 0, top = parseFloat(pin.style.top) || 0;
+      tip.classList.toggle('to-left', left > 55);
+      tip.style.left = pin.style.left; tip.style.top = pin.style.top;
+      tip.hidden = false; open = n;
+      pin.classList.add('on'); pin.setAttribute('aria-expanded', 'true');
+      li.classList.add('on');
+    }
+    pins.forEach(function (p) {
+      p.setAttribute('aria-expanded', 'false');
+      p.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); show(p.getAttribute('data-pin')); });
+    });
+    $$('.legend li[data-n]').forEach(function (li) {
+      li.addEventListener('click', function () {
+        var n = li.getAttribute('data-n');
+        show(n);
+        var pin = $('.pin[data-pin="' + n + '"]');
+        if (open === n && pin && pin.getBoundingClientRect().top < 70) pin.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      });
+    });
+    tip.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+    document.addEventListener('click', function (e) { if (open && !e.target.closest('.pin, .pin-tip, .legend li')) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    $$('[data-lang-btn]').forEach(function (b) { b.addEventListener('click', close); });
   })();
 
   /* ── function list ────────────────────────────────────────────────────── */
