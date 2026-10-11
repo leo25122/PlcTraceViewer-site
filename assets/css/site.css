@@ -517,3 +517,7 @@ ul.checks.cols li { break-inside: avoid; }
 .readout b span { display: inline; font: inherit; letter-spacing: inherit; text-transform: none; color: inherit; margin: 0; }
 .sec.dark .dl-card h3 { color: var(--navy); }
 .compare th.ed { width: 24%; }
+
+/* product line under the opening headline */
+.hero .tagline { font: 500 1.35rem/1.35 var(--head); color: #8cc1f5; margin: 18px 0 0; max-width: 36ch; }
+@media (max-width: 600px) { .hero .tagline { font-size: 1.15rem; } }
