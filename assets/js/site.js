@@ -151,7 +151,8 @@
   (function () {
     var box = $('#fx-code'), cv = $('#fx-plot'), lbl = $('#fx-label');
     if (!box || !cv || !cv.getContext) return;
-    var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // It runs even when Windows has its animation effects switched off: many plant PCs, virtual
+    // machines and remote sessions do, and the owner wants the preview to move (11/10/2026).
     var ctx = cv.getContext('2d');
 
     function smooth(i, n) { return 0.5 + 0.33 * Math.sin(i / n * 7.4) + 0.08 * Math.sin(i / n * 21.5); }
@@ -260,7 +261,7 @@
 
     size(); paint(DEMOS[0].code, false); label(); draw(1, 1);
     window.addEventListener('resize', function () { size(); draw(lastRaw, lastRes); });
-    if (REDUCED || !('IntersectionObserver' in window)) return;
+    if (!('IntersectionObserver' in window)) return;
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         var was = visible;
