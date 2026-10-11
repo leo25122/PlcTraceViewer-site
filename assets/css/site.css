@@ -538,3 +538,7 @@ button.pin:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px;
 .legend li.on { background: var(--azure-lt); }
 .legend li.on b { background: var(--navy); }
 @media (max-width: 600px) { .pin-tip { width: 62vw; font-size: .85rem; } }
+
+/* a cropped control strip: shown at its own size, never stretched */
+.thumb-fit { width: fit-content; max-width: 100%; }
+.thumb-fit img { width: auto; max-width: 100%; }
