@@ -144,8 +144,10 @@
   })();
 
   /* ── expression editor: typed examples with their curve ───────────────── */
-  /// Four example expressions typed one after the other; for each one the preview draws
-  /// the input signal (grey) and the result (blue). It only runs while it is on screen.
+  /// Four example expressions typed one after the other. Each time the expression changes the
+  /// preview starts empty: the input signal (grey) is drawn from left to right while the
+  /// expression is typed, as if it were being recorded, then the result (blue) is drawn over
+  /// it. A dot marks the point being drawn. It only runs while it is on screen.
   (function () {
     var box = $('#fx-code'), cv = $('#fx-plot'), lbl = $('#fx-label');
     if (!box || !cv || !cv.getContext) return;
@@ -168,7 +170,9 @@
         raw: current, f: function (i, n) { return 0.5 + 0.26 * (1 - Math.exp(-i / (n * 0.22))); } }
     ];
 
-    var di = 0, shown = 0, t0 = 0, w = 0, h = 0, visible = false, timer = 0, raf = 0, lastK = 1;
+    var TYPE_MS = 45, RES_MS = 1500, HOLD_MS = 2600;
+    var di = 0, shown = 0, w = 0, h = 0, visible = false, timer = 0, raf = 0;
+    var tStart = 0, rawMs = 1000, resStart = 0, lastRaw = 1, lastRes = 1;
 
     function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
     function paint(txt, caret) {
@@ -191,51 +195,77 @@
       cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     function css(n, fb) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim() || fb; }
-    function draw(k) {
+    function clamp(v) { return Math.max(0, Math.min(1, v)); }
+
+    /// One series up to fraction k of its length; returns the last point drawn.
+    function series(fn, k, n, px, py, iw, ih, lo, hi) {
+      var lim = Math.round(n * k), x = px, y = 0;
+      ctx.beginPath();
+      for (var i = 0; i <= lim; i++) {
+        x = px + iw * i / n;
+        y = py + ih - Math.max(lo, Math.min(hi, fn(i, n))) * ih;
+        if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+      }
+      ctx.stroke();
+      return { x: x, y: y };
+    }
+    function dot(p, color) {
+      ctx.fillStyle = color; ctx.beginPath(); ctx.arc(p.x, p.y, 3.6, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+    function draw(kRaw, kRes) {
       var d = DEMOS[di], n = 160, px = 16, py = 14, iw = w - px * 2, ih = h - py * 2;
-      lastK = k;
+      lastRaw = kRaw; lastRes = kRes;
       ctx.clearRect(0, 0, w, h);
       ctx.strokeStyle = '#e9edf2'; ctx.lineWidth = 1; ctx.beginPath();
       for (var gy = 0; gy <= 4; gy++) { var y0 = Math.round(py + ih * gy / 4) + .5; ctx.moveTo(px, y0); ctx.lineTo(w - px, y0); }
       for (var gx = 0; gx <= 8; gx++) { var x0 = Math.round(px + iw * gx / 8) + .5; ctx.moveTo(x0, py); ctx.lineTo(x0, h - py); }
       ctx.stroke();
-      ctx.strokeStyle = '#a9b4c0'; ctx.lineWidth = 1.3; ctx.beginPath();
-      for (var i = 0; i <= n; i++) {
-        var y = py + ih - Math.max(0, Math.min(1, d.raw(i, n))) * ih;
-        if (i) ctx.lineTo(px + iw * i / n, y); else ctx.moveTo(px, y);
+      ctx.lineJoin = 'round';
+      if (kRaw > 0) {
+        ctx.strokeStyle = '#a9b4c0'; ctx.lineWidth = 1.3;
+        var pr = series(d.raw, kRaw, n, px, py, iw, ih, 0, 1);
+        if (kRaw < 1) dot(pr, '#8795a5');
       }
-      ctx.stroke();
-      ctx.strokeStyle = css('--azure', '#1e6fc7'); ctx.lineWidth = 2.2; ctx.lineJoin = 'round'; ctx.beginPath();
-      var lim = Math.round(n * k);
-      for (var j = 0; j <= lim; j++) {
-        var yy = py + ih - Math.max(0.02, Math.min(0.98, d.f(j, n))) * ih;
-        if (j) ctx.lineTo(px + iw * j / n, yy); else ctx.moveTo(px, yy);
+      if (kRes > 0) {
+        var blue = css('--azure', '#1e6fc7');
+        ctx.strokeStyle = blue; ctx.lineWidth = 2.2;
+        var pb = series(d.f, kRes, n, px, py, iw, ih, 0.02, 0.98);
+        if (kRes < 1) dot(pb, blue);
       }
-      ctx.stroke();
     }
-    function grow() {
-      var k = Math.min(1, (performance.now() - t0) / 1300);
-      draw(k);
-      if (k < 1 && visible) raf = requestAnimationFrame(grow);
+    function loop() {
+      var now = performance.now();
+      var kRaw = clamp((now - tStart) / rawMs), kRes = clamp((now - resStart) / RES_MS);
+      draw(kRaw, kRes);
+      if (kRes < 1 && visible) raf = requestAnimationFrame(loop);
     }
-    function step() {
+    function start() {
+      // a new expression: empty preview, its description, the input signal starts being drawn
+      var d = DEMOS[di];
+      shown = 0; label();
+      tStart = performance.now();
+      rawMs = Math.max(1100, (d.code.length + 1) * TYPE_MS + 200);
+      resStart = tStart + rawMs + 120;
+      cancelAnimationFrame(raf); raf = requestAnimationFrame(loop);
+      type();
+    }
+    function type() {
       if (!visible) return;
       var d = DEMOS[di];
-      // a new expression: its description and its input signal appear first, the result once it is typed
-      if (shown === 0) { label(); draw(0); }
-      if (shown <= d.code.length) { paint(d.code.slice(0, shown), true); shown++; timer = setTimeout(step, 45); return; }
-      paint(d.code, true); t0 = performance.now(); grow();
-      timer = setTimeout(function () { di = (di + 1) % DEMOS.length; shown = 0; step(); }, 3400);
+      if (shown <= d.code.length) { paint(d.code.slice(0, shown), true); shown++; timer = setTimeout(type, TYPE_MS); return; }
+      var wait = Math.max(0, resStart + RES_MS - performance.now()) + HOLD_MS;
+      timer = setTimeout(function () { di = (di + 1) % DEMOS.length; start(); }, wait);
     }
 
-    size(); paint(DEMOS[0].code, false); label(); draw(1);
-    window.addEventListener('resize', function () { size(); draw(lastK); });
+    size(); paint(DEMOS[0].code, false); label(); draw(1, 1);
+    window.addEventListener('resize', function () { size(); draw(lastRaw, lastRes); });
     if (REDUCED || !('IntersectionObserver' in window)) return;
     new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         var was = visible;
         visible = e.isIntersecting && !document.hidden;
-        if (visible && !was) { clearTimeout(timer); shown = 0; step(); }
+        if (visible && !was) { clearTimeout(timer); start(); }
         if (!visible) { clearTimeout(timer); cancelAnimationFrame(raf); }
       });
     }, { threshold: 0.3 }).observe(cv);
