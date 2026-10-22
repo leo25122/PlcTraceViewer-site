@@ -27,7 +27,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.11</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.12</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="quickstart.html" class="here" data-it>Guida rapida</a><a href="quickstart.html" class="here" data-en>Quick start</a>
@@ -97,10 +97,10 @@
         <article class="doc-sec" id="installa">
           <h2 data-it>1. Installazione</h2><h2 data-en>1. Installation</h2>
           <p data-it>
-            Scarica <span class="mono">PlcTraceViewer_Setup_v2.1.11.exe</span> e avvialo. Se Windows SmartScreen segnala che l'editore non è riconosciuto, scegli <em>Ulteriori informazioni → Esegui comunque</em>: il file di installazione non è firmato con un certificato commerciale e si scarica dalla pagina delle release su GitHub.
+            Scarica <span class="mono">PlcTraceViewer_Setup_v2.1.12.exe</span> e avvialo. Se Windows SmartScreen segnala che l'editore non è riconosciuto, scegli <em>Ulteriori informazioni → Esegui comunque</em>: il file di installazione non è firmato con un certificato commerciale e si scarica dalla pagina delle release su GitHub.
           </p>
           <p data-en>
-            Download <span class="mono">PlcTraceViewer_Setup_v2.1.11.exe</span> and run it. If Windows SmartScreen reports that the publisher is not recognised, choose <em>More info → Run anyway</em>: the installer is not signed with a commercial certificate and is downloaded from the GitHub releases page.
+            Download <span class="mono">PlcTraceViewer_Setup_v2.1.12.exe</span> and run it. If Windows SmartScreen reports that the publisher is not recognised, choose <em>More info → Run anyway</em>: the installer is not signed with a commercial certificate and is downloaded from the GitHub releases page.
           </p>
           <p data-it>
             Il runtime è incluso nell'installazione. Se scegli di installare la dashboard web, il servizio viene registrato e avviato automaticamente. Per un aggiornamento, chiudi prima la versione precedente.
@@ -134,12 +134,12 @@
             Before pressing <em>Connect</em>, use <b>Test TCP</b> to check that port 102 is reachable. The <b>deep test</b> also sends an ISO-on-TCP connection request: it detects wrong rack and slot settings and tunnels that forward port 102 without an S7 CPU on the other side.
           </p>
           <figure class="shot" style="max-width:420px;margin-top:14px" data-zoom="assets/img/dialog-s7.webp">
-            <img src="assets/img/dialog-s7.webp" width="545" height="651" loading="lazy" decoding="async"
-                 alt="S7 connection settings: port, rack, slot, timeouts, attempts and the two connection tests.">
+            <img src="assets/img/dialog-s7.webp" width="544" height="711" loading="lazy" decoding="async"
+                 alt="S7 connection settings: port, rack, slot auto, timeouts, attempts, the 1 ms ring and the two connection tests.">
           </figure>
           <figcaption style="max-width:420px">
-            <span data-it>Slot 1 per S7-1500 e S7-1200, slot 2 per S7-300, slot 3 per S7-400. Rack 0 per tutte.</span>
-            <span data-en>Slot 1 for S7-1500 and S7-1200, slot 2 for S7-300, slot 3 for S7-400. Rack 0 for all.</span>
+            <span data-it>Slot &laquo;auto&raquo; (il valore iniziale): la CPU si riconosce da sola, S7-300 o S7-1500. Con un numero si usa sempre quello slot: 1 per S7-1500 e S7-1200, 2 per S7-300, 3 per S7-400. Rack 0 per tutte.</span>
+            <span data-en>Slot &ldquo;auto&rdquo; (the default): the CPU is recognised by itself, S7-300 or S7-1500. With a number that slot is always used: 1 for S7-1500 and S7-1200, 2 for S7-300, 3 for S7-400. Rack 0 for all.</span>
           </figcaption>
           <div class="note" style="margin-top:20px">
             <b data-it>Con VPN o collegamento remoto:</b><b data-en>With a VPN or a remote link:</b>
@@ -317,10 +317,10 @@
                  alt="In-app hint for opening the web dashboard.">
           </figure>
           <p data-it>
-            Il pulsante <b>Web</b> apre la pagina; il servizio è già attivo in background sulla porta 8085. Da qualsiasi PC della rete di impianto si vedono i valori correnti e si comanda la registrazione <b>dell'applicazione</b>, non una copia. La pagina non ha autenticazione: usala solo su una rete di impianto protetta.
+            Il pulsante <b>Web</b> apre la pagina; il servizio è già attivo in background sulla porta 8085. Da qualsiasi PC della rete di impianto si vedono i valori correnti e si comanda la registrazione <b>dell'applicazione</b>, non una copia; una registrazione protetta si ferma solo con la sua password. La pagina non ha autenticazione: usala solo su una rete di impianto protetta.
           </p>
           <p data-en>
-            The <b>Web</b> button opens the page; the service is already running in the background on port 8085. From any PC on the plant network you see the current values and control the recording <b>of the application</b>, not a copy. The page has no authentication: use it only on a protected plant network.
+            The <b>Web</b> button opens the page; the service is already running in the background on port 8085. From any PC on the plant network you see the current values and control the recording <b>of the application</b>, not a copy; a protected recording stops only with its password. The page has no authentication: use it only on a protected plant network.
           </p>
         </article>
 

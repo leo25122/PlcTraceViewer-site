@@ -56,7 +56,7 @@ JOBS = [
     ("analysis-summary",  S("161135"), (1694, 75,  1919,  800),  286),
 
     # ── dialogs and in-app help ────────────────────────────────────────────
-    ("dialog-s7",         S("161401"), None, 545),
+    ("dialog-s7",         os.path.join(SRC, "S7Settings 2026-10-21 uisnap 1920x1080 100.png"), None, 544),   # 2.1.12: slot "auto", 1 ms ring
     ("dialog-ring",       S("161346"), None, 624),
     ("tip-import-tags",   S("161318"), None, 589),
     ("tip-tia-project",   S("161323"), None, 668),

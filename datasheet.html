@@ -27,7 +27,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.11</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.12</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
@@ -67,7 +67,7 @@
 
     <table class="doc-meta">
       <tr><th data-it>Documento</th><th data-en>Document</th><td>DS-PTV-21</td></tr>
-      <tr><th data-it>Versione del programma</th><th data-en>Program version</th><td>2.1.11</td></tr>
+      <tr><th data-it>Versione del programma</th><th data-en>Program version</th><td>2.1.12</td></tr>
       <tr><th data-it>Piattaforma</th><th data-en>Platform</th><td>Windows 10 / 11, 64 bit</td></tr>
       <tr><th data-it>Controllori</th><th data-en>Controllers</th><td>S7-300 / 400 / 1200 / 1500</td></tr>
     </table>
@@ -153,8 +153,8 @@
             <tr><td data-it>Trasporto</td><td data-en>Transport</td><td>ISO-on-TCP<span data-it>, porta 102 (configurabile)</span><span data-en>, port 102 (configurable)</span></td></tr>
             <tr>
               <td data-it>Parametri</td><td data-en>Parameters</td>
-              <td data-it>famiglia CPU, rack, slot, porta, timeout di connessione e di operazione, numero di tentativi</td>
-              <td data-en>CPU family, rack, slot, port, connect and operation timeouts, number of attempts</td>
+              <td data-it>rack, slot (con &laquo;auto&raquo; la CPU si riconosce da sola: S7-300/400 o S7-1200/1500, dal suo codice d'ordine), porta, timeout di connessione e di operazione, numero di tentativi</td>
+              <td data-en>rack, slot (with &ldquo;auto&rdquo; the CPU is recognised by itself: S7-300/400 or S7-1200/1500, from its order number), port, connect and operation timeouts, number of attempts</td>
             </tr>
             <tr>
               <td data-it>Aree leggibili</td><td data-en>Readable areas</td>
@@ -335,6 +335,12 @@
             <tr><td data-it>Gestione dello spazio</td><td data-en>Space management</td>
               <td data-it>conservazione per durata o per spazio; i file più vecchi vengono compressi prima di essere eliminati; la registrazione in corso non viene mai toccata</td>
               <td data-en>retention by age or by space; the oldest files are compressed before being deleted; the recording in progress is never touched</td></tr>
+            <tr><td data-it>Protezione della registrazione</td><td data-en>Recording protection</td>
+              <td data-it>password facoltativa per fermare una registrazione (STOP, scollegamento, chiusura della finestra, Stop dalla dashboard, disconnessione di Windows); spenta finché non viene impostata; dimenticata, si toglie solo a registrazione ferma; tutto senza internet</td>
+              <td data-en>optional password to stop a recording (STOP, disconnect, closing the window, Stop on the dashboard, signing out of Windows); off until one is set; if forgotten, it can be removed only while nothing records; no internet needed</td></tr>
+            <tr><td data-it>Sospensione e sessione di Windows</td><td data-en>Sleep and the Windows session</td>
+              <td data-it>durante la registrazione il PC non va in sospensione da solo; blocco dello schermo e cambio utente non la fermano; al risveglio da una sospensione scelta a mano la lettura riprende da sola e il tempo trascorso resta un vuoto nel file</td>
+              <td data-en>while recording the PC does not go to sleep on its own; locking the screen or switching user does not stop it; after a sleep chosen by hand the reading resumes by itself and the time elapsed stays a gap in the file</td></tr>
             <tr><td data-it>Formati letti</td><td data-en>Formats read</td>
               <td class="mono">.drug · .drug.gz · .csv · .txt</td></tr>
           </table>
@@ -443,8 +449,8 @@
               <td data-it>HTTP sulla porta 8085 (configurabile)</td>
               <td data-en>HTTP on port 8085 (configurable)</td></tr>
             <tr><td data-it>Funzioni</td><td data-en>Functions</td>
-              <td data-it>valori in tempo reale, andamento recente, selezione dei segnali, avvio e arresto della registrazione, stato del disco</td>
-              <td data-en>live values, recent trend, signal selection, start and stop of the recording, disk status</td></tr>
+              <td data-it>valori in tempo reale, andamento recente, selezione dei segnali, avvio e arresto della registrazione (lo stop chiede la password se la registrazione è protetta), stato del disco</td>
+              <td data-en>live values, recent trend, signal selection, start and stop of the recording (stop asks for the password when the recording is protected), disk status</td></tr>
             <tr><td data-it>Autenticazione</td><td data-en>Authentication</td>
               <td data-it>nessuna: solo per reti di impianto protette</td>
               <td data-en>none: for protected plant networks only</td></tr>
@@ -453,8 +459,8 @@
           </table>
           <div class="note" style="margin-top:18px">
             <b data-it>Sicurezza.</b><b data-en>Security.</b>
-            <span data-it> La pagina non ha autenticazione: chiunque raggiunga la porta può vedere i valori e comandare la registrazione. Va usata su una rete di impianto protetta e non va esposta a internet.</span>
-            <span data-en> The page has no authentication: anyone who reaches the port can see the values and control the recording. Use it on a protected plant network and do not expose it to the internet.</span>
+            <span data-it> La pagina non ha autenticazione: chiunque raggiunga la porta può vedere i valori e avviare la registrazione; per fermare una registrazione protetta serve la sua password, che non viaggia sulla rete. Va usata su una rete di impianto protetta e non va esposta a internet.</span>
+            <span data-en> The page has no authentication: anyone who reaches the port can see the values and start the recording; stopping a protected recording needs its password, which does not travel over the network. Use it on a protected plant network and do not expose it to the internet.</span>
           </div>
         </article>
 

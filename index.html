@@ -28,7 +28,7 @@
   "name":"PlcTraceViewer",
   "applicationCategory":"EngineeringApplication",
   "operatingSystem":"Windows 10, Windows 11 (64-bit)",
-  "softwareVersion":"2.1.11",
+  "softwareVersion":"2.1.12",
   "author":{"@type":"Person","name":"Leonardo Dogariu"},
   "description":"Signal recorder and analyser for S7-300, 400, 1200 and 1500 PLCs: acquisition over PUT/GET, OPC UA and S7comm-Plus, recording with the real read time of every sample, analysis with markers, statistics and 94 functions for computed signals.",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free edition; PRO features enabled by a licence file, activated without internet"}
@@ -39,7 +39,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="30" height="30" alt=""><span>PlcTraceViewer</span><small>2.1.11</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="30" height="30" alt=""><span>PlcTraceViewer</span><small>2.1.12</small></a>
     <nav>
       <a href="#prodotto" data-it>Prodotto</a><a href="#prodotto" data-en>Product</a>
       <a href="#analisi" data-it>Analisi</a><a href="#analisi" data-en>Analysis</a>
@@ -119,7 +119,7 @@
 <section class="plate-sec">
   <div class="wrap">
     <dl class="plate">
-      <div class="id"><img src="assets/img/ptv-mark-64.png" alt=""><div><b>PlcTraceViewer</b><span><span data-it>versione</span><span data-en>version</span> 2.1.11</span></div></div>
+      <div class="id"><img src="assets/img/ptv-mark-64.png" alt=""><div><b>PlcTraceViewer</b><span><span data-it>versione</span><span data-en>version</span> 2.1.12</span></div></div>
       <div><dt>CPU</dt><dd>S7-300 · 400 · 1200 · 1500</dd></div>
       <div><dt data-it>Collegamento</dt><dt data-en>Connection</dt><dd>PUT/GET · OPC UA · S7comm-Plus</dd></div>
       <div><dt data-it>Progetti TIA</dt><dt data-en>TIA projects</dt><dd>V16 → V21</dd></div>
@@ -553,9 +553,9 @@
       <figure>
         <div class="win flat" style="max-width:440px">
           <div class="win-bar"><img src="assets/img/ptv-mark-64.png" alt=""><span data-it>Collegamento S7</span><span data-en>S7 connection</span><span class="c"><i></i><i></i><i></i></span></div>
-          <img src="assets/img/dialog-s7.webp" width="545" height="651" loading="lazy" decoding="async" data-zoom="assets/img/dialog-s7.webp" alt="S7 connection settings: TCP port, rack, slot, connect and operation timeouts, attempts, TCP test and deep test.">
+          <img src="assets/img/dialog-s7.webp" width="544" height="711" loading="lazy" decoding="async" data-zoom="assets/img/dialog-s7.webp" alt="S7 connection settings: TCP port, rack, slot auto, connect and operation timeouts, attempts, the 1 ms ring, TCP test and deep test.">
         </div>
-        <figcaption><span data-it>Parametri espliciti: il programma non prova a caso altre famiglie di CPU o altri slot.</span><span data-en>Explicit parameters: the program does not guess other CPU families or slots.</span></figcaption>
+        <figcaption><span data-it>Slot &laquo;auto&raquo;: S7-300 o S7-1500, la CPU si riconosce da sola. Un tempo scaduto non viene mai scambiato per uno slot sbagliato.</span><span data-en>Slot &ldquo;auto&rdquo;: S7-300 or S7-1500, the CPU is recognised by itself. A timeout is never taken for a wrong slot.</span></figcaption>
       </figure>
     </div>
   </div>
@@ -581,12 +581,12 @@
         <h3 id="web" style="margin-top:56px"><span data-it>Valori e registrazione dal browser</span><span data-en>Values and recording from a browser</span><span class="pro">PRO</span></h3>
         <p style="color:var(--ink-2)" data-it>Un servizio di Windows pubblica una pagina accessibile da qualsiasi PC della rete di impianto: valori in tempo reale, andamento recente, stato del disco, avvio e arresto della registrazione.</p>
         <p style="color:var(--ink-2)" data-en>A Windows service publishes a page that any PC on the plant network can open: live values, recent trend, disk status, start and stop of the recording.</p>
-        <p style="color:var(--ink-2)" data-it><strong>La registrazione avviata dalla pagina è la stessa dell'applicazione</strong>, non una copia separata: un solo registratore e un solo file.</p>
-        <p style="color:var(--ink-2)" data-en><strong>The recording started from the page is the application's own</strong>, not a separate copy: one recorder and one file.</p>
+        <p style="color:var(--ink-2)" data-it><strong>La registrazione avviata dalla pagina è la stessa dell'applicazione</strong>, non una copia separata: un solo registratore e un solo file. Se la registrazione è protetta da password, anche lo stop dalla pagina la chiede.</p>
+        <p style="color:var(--ink-2)" data-en><strong>The recording started from the page is the application's own</strong>, not a separate copy: one recorder and one file. When the recording is protected by a password, stopping it from the page asks for it too.</p>
         <div class="note warn">
           <b data-it>Solo su una rete di impianto protetta.</b><b data-en>Only on a protected plant network.</b>
-          <span data-it> La pagina non ha autenticazione: chiunque raggiunga la porta vede i valori e può avviare o fermare la registrazione. Non va esposta a internet.</span>
-          <span data-en> The page has no authentication: anyone who can reach the port sees the values and can start or stop the recording. It must not be exposed to the internet.</span>
+          <span data-it> La pagina non ha autenticazione: chiunque raggiunga la porta vede i valori e può avviare la registrazione, e fermarla se non è protetta da password. Non va esposta a internet.</span>
+          <span data-en> The page has no authentication: anyone who can reach the port sees the values and can start the recording, and stop it unless it is protected by a password. It must not be exposed to the internet.</span>
         </div>
         <figure style="max-width:440px">
           <div class="win flat"><img src="assets/img/tip-web.webp" width="440" height="94" loading="lazy" decoding="async" alt="In-app hint for the web dashboard button."></div>
@@ -708,15 +708,15 @@
         </li>
       </ol>
       <div class="dl-card">
-        <h3>PlcTraceViewer 2.1.11</h3>
+        <h3>PlcTraceViewer 2.1.12</h3>
         <p style="color:var(--ink-3);margin:0" data-it>Programma di installazione per Windows</p>
         <p style="color:var(--ink-3);margin:0" data-en>Windows installer</p>
         <dl class="meta">
-          <dt>File</dt><dd>PlcTraceViewer_Setup_v2.1.11.exe</dd>
-          <dt data-it>Dimensione</dt><dt data-en>Size</dt><dd><span data-it>90,2 MB</span><span data-en>90.2 MB</span></dd>
+          <dt>File</dt><dd>PlcTraceViewer_Setup_v2.1.12.exe</dd>
+          <dt data-it>Dimensione</dt><dt data-en>Size</dt><dd><span data-it>90,3 MB</span><span data-en>90.3 MB</span></dd>
           <dt data-it>Sistema</dt><dt data-en>System</dt><dd><span data-it>Windows 10 / 11, 64 bit · porta 102 verso la CPU</span><span data-en>Windows 10 / 11, 64-bit · port 102 to the CPU</span></dd>
         </dl>
-        <a class="btn" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.11/PlcTraceViewer_Setup_v2.1.11.exe">
+        <a class="btn" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.12/PlcTraceViewer_Setup_v2.1.12.exe">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>
           <span data-it>Scarica per Windows</span><span data-en>Download for Windows</span>
         </a>
