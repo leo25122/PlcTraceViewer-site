@@ -27,8 +27,8 @@
   "@type":"SoftwareApplication",
   "name":"PlcTraceViewer",
   "applicationCategory":"EngineeringApplication",
-  "operatingSystem":"Windows 10, Windows 11 (64-bit)",
-  "softwareVersion":"2.1.12",
+  "operatingSystem":"Windows 10, Windows 11 (64-bit); Windows 7 SP1 (32/64-bit, separate setup)",
+  "softwareVersion":"2.1.13",
   "author":{"@type":"Person","name":"Leonardo Dogariu"},
   "description":"Signal recorder and analyser for S7-300, 400, 1200 and 1500 PLCs: acquisition over PUT/GET, OPC UA and S7comm-Plus, recording with the real read time of every sample, analysis with markers, statistics and 94 functions for computed signals.",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free edition; PRO features enabled by a licence file, activated without internet"}
@@ -39,7 +39,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="30" height="30" alt=""><span>PlcTraceViewer</span><small>2.1.12</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="30" height="30" alt=""><span>PlcTraceViewer</span><small>2.1.13</small></a>
     <nav>
       <a href="#prodotto" data-it>Prodotto</a><a href="#prodotto" data-en>Product</a>
       <a href="#analisi" data-it>Analisi</a><a href="#analisi" data-en>Analysis</a>
@@ -119,7 +119,7 @@
 <section class="plate-sec">
   <div class="wrap">
     <dl class="plate">
-      <div class="id"><img src="assets/img/ptv-mark-64.png" alt=""><div><b>PlcTraceViewer</b><span><span data-it>versione</span><span data-en>version</span> 2.1.12</span></div></div>
+      <div class="id"><img src="assets/img/ptv-mark-64.png" alt=""><div><b>PlcTraceViewer</b><span><span data-it>versione</span><span data-en>version</span> 2.1.13</span></div></div>
       <div><dt>CPU</dt><dd>S7-300 · 400 · 1200 · 1500</dd></div>
       <div><dt data-it>Collegamento</dt><dt data-en>Connection</dt><dd>PUT/GET · OPC UA · S7comm-Plus</dd></div>
       <div><dt data-it>Progetti TIA</dt><dt data-en>TIA projects</dt><dd>V16 → V21</dd></div>
@@ -708,18 +708,22 @@
         </li>
       </ol>
       <div class="dl-card">
-        <h3>PlcTraceViewer 2.1.12</h3>
+        <h3>PlcTraceViewer 2.1.13</h3>
         <p style="color:var(--ink-3);margin:0" data-it>Programma di installazione per Windows</p>
         <p style="color:var(--ink-3);margin:0" data-en>Windows installer</p>
         <dl class="meta">
-          <dt>File</dt><dd>PlcTraceViewer_Setup_v2.1.12.exe</dd>
-          <dt data-it>Dimensione</dt><dt data-en>Size</dt><dd><span data-it>90,3 MB</span><span data-en>90.3 MB</span></dd>
+          <dt>File</dt><dd>PlcTraceViewer_Setup_v2.1.13.exe</dd>
+          <dt data-it>Dimensione</dt><dt data-en>Size</dt><dd><span data-it>86,2 MB</span><span data-en>86.2 MB</span></dd>
           <dt data-it>Sistema</dt><dt data-en>System</dt><dd><span data-it>Windows 10 / 11, 64 bit · porta 102 verso la CPU</span><span data-en>Windows 10 / 11, 64-bit · port 102 to the CPU</span></dd>
         </dl>
-        <a class="btn" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.12/PlcTraceViewer_Setup_v2.1.12.exe">
+        <a class="btn" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.13/PlcTraceViewer_Setup_v2.1.13.exe">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>
           <span data-it>Scarica per Windows</span><span data-en>Download for Windows</span>
         </a>
+        <p style="margin:12px 0 0;font-size:.92rem;text-align:center">
+          <a href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.13/PlcTraceViewer_Setup_v2.1.13_Windows7.exe"><span data-it>Per Windows 7 SP1 (32 e 64 bit)</span><span data-en>For Windows 7 SP1 (32 and 64-bit)</span></a> ·
+          <span data-it>137,1 MB, installa .NET Framework 4.8 se manca</span><span data-en>137.1 MB, installs .NET Framework 4.8 if missing</span>
+        </p>
         <p style="margin:14px 0 0;font-size:.92rem;text-align:center">
           <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a> ·
           <a href="datasheet.html" data-it>Scheda tecnica</a><a href="datasheet.html" data-en>Datasheet</a> ·
@@ -826,8 +830,8 @@
       <details>
         <summary><span data-it>Su che PC lo installo?</span><span data-en>What PC do I install it on?</span></summary>
         <div class="a">
-          <span data-it>Windows 10 o 11 a 64 bit, con accesso IP alla CPU sulla porta 102. L'installazione include il runtime necessario. Va bene anche un PC portatile.</span>
-          <span data-en>64-bit Windows 10 or 11 with IP access to the CPU on port 102. The installer includes the required runtime. A laptop is fine.</span>
+          <span data-it>Windows 10 o 11 a 64 bit, con accesso IP alla CPU sulla porta 102. L'installazione include il runtime necessario. Va bene anche un PC portatile. Per Windows 7 SP1, a 32 o 64 bit, c'è un setup a parte con le stesse funzioni.</span>
+          <span data-en>64-bit Windows 10 or 11 with IP access to the CPU on port 102. The installer includes the required runtime. A laptop is fine. For Windows 7 SP1, 32 or 64-bit, there is a separate setup with the same functions.</span>
         </div>
       </details>
     </div>
