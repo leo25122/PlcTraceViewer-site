@@ -235,8 +235,18 @@
             </tr>
             <tr>
               <td data-it>Continuità</td><td data-en>Continuity</td>
-              <td data-it>se il processo di acquisizione non si avvia o si chiude, la lettura continua all'interno dell'applicazione e l'evento viene scritto nel registro</td>
-              <td data-en>if the acquisition process does not start or closes, reading continues inside the application and the event is written to the log</td>
+              <td data-it>se il processo di acquisizione non si avvia o si chiude, la lettura continua all'interno dell'applicazione (una registrazione in corso prosegue in un file nuovo) e l'evento viene scritto nel registro</td>
+              <td data-en>if the acquisition process does not start or closes, reading continues inside the application (a recording in progress goes on in a new file) and the event is written to the log</td>
+            </tr>
+            <tr>
+              <td data-it>Registrazione indipendente dalla finestra</td><td data-en>Recording independent of the window</td>
+              <td data-it>la registrazione è scritta dal processo di acquisizione: chiudendo la finestra Live, o se l'applicazione si chiude o viene terminata, continua con i file interi; il pulsante Live e l'avvio dell'applicazione la ritrovano</td>
+              <td data-en>the recording is written by the acquisition process: closing the Live window, or the application closing or being killed, leaves it running with its files whole; the Live button and the application's start find it again</td>
+            </tr>
+            <tr>
+              <td data-it>Più registrazioni</td><td data-en>Several recordings</td>
+              <td data-it>fino a 12 sullo stesso PC; quelle sotto i 5 ms al massimo una per core del processore meno due; lo stesso buffer del PLC mai due volte; ore e tag della licenza contati per PC</td>
+              <td data-en>up to 12 on one PC; those under 5 ms at most one per processor core minus two; the same PLC buffer never twice; licence hours and tags counted per PC</td>
             </tr>
             <tr>
               <td data-it>Prova di laboratorio</td><td data-en>Lab test</td>
@@ -339,8 +349,8 @@
               <td data-it>password facoltativa per fermare una registrazione (STOP, scollegamento, chiusura della finestra, Stop dalla dashboard, disconnessione di Windows); spenta finché non viene impostata; dimenticata, si toglie solo a registrazione ferma; tutto senza internet</td>
               <td data-en>optional password to stop a recording (STOP, disconnect, closing the window, Stop on the dashboard, signing out of Windows); off until one is set; if forgotten, it can be removed only while nothing records; no internet needed</td></tr>
             <tr><td data-it>Sospensione e sessione di Windows</td><td data-en>Sleep and the Windows session</td>
-              <td data-it>durante la registrazione il PC non va in sospensione da solo; blocco dello schermo e cambio utente non la fermano; al risveglio da una sospensione scelta a mano la lettura riprende da sola e il tempo trascorso resta un vuoto nel file</td>
-              <td data-en>while recording the PC does not go to sleep on its own; locking the screen or switching user does not stop it; after a sleep chosen by hand the reading resumes by itself and the time elapsed stays a gap in the file</td></tr>
+              <td data-it>durante la registrazione il PC non va in sospensione da solo; blocco dello schermo e cambio utente non la fermano; al risveglio da una sospensione scelta a mano la lettura riprende da sola e il tempo trascorso resta un vuoto nel file; con il servizio registratore (opzione del setup, diritti di amministratore) la registrazione continua anche dopo la disconnessione da Windows e i file si chiudono interi allo spegnimento</td>
+              <td data-en>while recording the PC does not go to sleep on its own; locking the screen or switching user does not stop it; after a sleep chosen by hand the reading resumes by itself and the time elapsed stays a gap in the file; with the recorder service (a setup option, administrator rights) the recording also goes on after signing out of Windows, and the files are closed whole at shutdown</td></tr>
             <tr><td data-it>Formati letti</td><td data-en>Formats read</td>
               <td class="mono">.drug · .drug.gz · .csv · .txt</td></tr>
           </table>
@@ -371,8 +381,8 @@
           </p>
           <table class="spec">
             <tr><td data-it>Grafici</td><td data-en>Charts</td>
-              <td data-it>più segnali su un asse dei tempi comune, zoom e spostamento, scala automatica che mantiene le interruzioni</td>
-              <td data-en>several signals on a common time axis, zoom and pan, automatic scaling that keeps gaps visible</td></tr>
+              <td data-it>più segnali su un asse dei tempi comune, zoom e spostamento, scala automatica che mantiene le interruzioni; da lontano un buco più stretto di un pixel è attraversato dalla linea, una fermata resta interrotta</td>
+              <td data-en>several signals on a common time axis, zoom and pan, automatic scaling that keeps gaps visible; zoomed out, a gap narrower than a pixel is drawn through, a stop stays a break</td></tr>
             <tr><td data-it>Marker</td><td data-en>Markers</td>
               <td data-it>verticali e orizzontali, con differenza di tempo, differenza di valore e frequenza corrispondente</td>
               <td data-en>vertical and horizontal, with time difference, value difference and the matching frequency</td></tr>
@@ -541,6 +551,7 @@
             <li><b>Non è un sistema di archiviazione storica.</b> È uno strumento per la messa in servizio e l'analisi dei guasti.</li>
             <li><b>Nessun accesso remoto oltre la rete locale.</b> Nessun servizio cloud e nessuna sincronizzazione esterna.</li>
             <li><b>Interfaccia web senza autenticazione.</b> Da usare solo su una rete di impianto protetta.</li>
+            <li><b>Windows 7 a 32 bit.</b> I grafici si disegnano in circa il doppio del tempo e la memoria per i grafici Live arriva al massimo a 512 MB.</li>
           </ul>
           <ul data-en>
             <li><b>Read-only.</b> The program does not write to the controller: it does not force variables, change the program or change the CPU state.</li>
@@ -550,6 +561,7 @@
             <li><b>Not a historian.</b> It is a tool for commissioning and fault analysis.</li>
             <li><b>No remote access beyond the local network.</b> No cloud services and no external synchronisation.</li>
             <li><b>Web interface without authentication.</b> Use it only on a protected plant network.</li>
+            <li><b>32-bit Windows 7.</b> Charts take about twice as long to draw and the Live chart memory is at most 512 MB.</li>
           </ul>
         </article>
 
@@ -738,6 +750,11 @@
               <td data-it>Comportamento</td><td data-en>Behaviour</td>
               <td data-it>c'è sempre una sola lettura in corso, senza richieste accodate: il ritmo dipende dalla velocità di risposta del controllore. Dopo errori ripetuti il programma rallenta (da 20 ms a 2 s) per non sovraccaricare la CPU</td>
               <td data-en>there is always only one read in progress, with no queued requests: the rate depends on how fast the controller answers. After repeated errors the program slows down (from 20 ms to 2 s) so as not to overload the CPU</td>
+            </tr>
+            <tr>
+              <td data-it>Elenco dei blocchi</td><td data-en>Block list</td>
+              <td data-it>letto con fino a 18 domande per richiesta (PDU di 240 byte, S7-300); con una CPU che risponde in 90 ms, M/I/Q e DB1–999 in circa 10 s; l'intervallo di DB letto è configurabile</td>
+              <td data-en>read with up to 18 questions per request (240-byte PDU, S7-300); with a CPU answering in 90 ms, M/I/Q and DB1–999 in about 10 s; the DB range read is configurable</td>
             </tr>
             <tr>
               <td data-it>Disconnessione</td><td data-en>Disconnection</td>

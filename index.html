@@ -291,8 +291,8 @@
         <h2 data-it>Acquisizione separata dall'interfaccia</h2>
         <h2 data-en>Acquisition kept separate from the user interface</h2>
       </div>
-      <p class="sec-lead" data-it>Quando l'acquisizione gira nello stesso processo della finestra, basta scorrere un elenco o ridisegnare un grafico perché una lettura parta in ritardo. In PlcTraceViewer l'acquisizione gira in un processo separato ad alta priorità che non disegna nulla: legge il PLC e assegna a ogni campione l'istante in cui è arrivata la risposta.</p>
-      <p class="sec-lead" data-en>When acquisition runs in the same process as the window, scrolling a list or redrawing a chart is enough to delay a read. In PlcTraceViewer acquisition runs in a separate high-priority process that draws nothing: it reads the PLC and gives each sample the time at which the answer arrived.</p>
+      <p class="sec-lead" data-it>Quando l'acquisizione gira nello stesso processo della finestra, basta scorrere un elenco o ridisegnare un grafico perché una lettura parta in ritardo. In PlcTraceViewer l'acquisizione gira in un processo separato ad alta priorità che non disegna nulla: legge il PLC e assegna a ogni campione l'istante in cui è arrivata la risposta. È lui a scrivere la registrazione: chiudendo la finestra, o anche l'applicazione, la registrazione continua; con il servizio registratore anche senza nessuno collegato a Windows.</p>
+      <p class="sec-lead" data-en>When acquisition runs in the same process as the window, scrolling a list or redrawing a chart is enough to delay a read. In PlcTraceViewer acquisition runs in a separate high-priority process that draws nothing: it reads the PLC and gives each sample the time at which the answer arrived. It also writes the recording: closing the window, or even the application, leaves the recording running; with the recorder service, even with nobody signed in to Windows.</p>
     </header>
     <div class="split indent">
       <div>
