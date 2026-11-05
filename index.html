@@ -28,7 +28,7 @@
   "name":"PlcTraceViewer",
   "applicationCategory":"EngineeringApplication",
   "operatingSystem":"Windows 10, Windows 11 (64-bit); Windows 7 SP1 (32/64-bit, separate setup)",
-  "softwareVersion":"2.1.13",
+  "softwareVersion":"2.1.14",
   "author":{"@type":"Person","name":"Leonardo Dogariu"},
   "description":"Signal recorder and analyser for S7-300, 400, 1200 and 1500 PLCs: acquisition over PUT/GET, OPC UA and S7comm-Plus, recording with the real read time of every sample, analysis with markers, statistics and 94 functions for computed signals.",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free edition; PRO features enabled by a licence file, activated without internet"}
@@ -39,7 +39,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="30" height="30" alt=""><span>PlcTraceViewer</span><small>2.1.13</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="30" height="30" alt=""><span>PlcTraceViewer</span><small>2.1.14</small></a>
     <nav>
       <a href="#prodotto" data-it>Prodotto</a><a href="#prodotto" data-en>Product</a>
       <a href="#analisi" data-it>Analisi</a><a href="#analisi" data-en>Analysis</a>
@@ -119,7 +119,7 @@
 <section class="plate-sec">
   <div class="wrap">
     <dl class="plate">
-      <div class="id"><img src="assets/img/ptv-mark-64.png" alt=""><div><b>PlcTraceViewer</b><span><span data-it>versione</span><span data-en>version</span> 2.1.13</span></div></div>
+      <div class="id"><img src="assets/img/ptv-mark-64.png" alt=""><div><b>PlcTraceViewer</b><span><span data-it>versione</span><span data-en>version</span> 2.1.14</span></div></div>
       <div><dt>CPU</dt><dd>S7-300 · 400 · 1200 · 1500</dd></div>
       <div><dt data-it>Collegamento</dt><dt data-en>Connection</dt><dd>PUT/GET · OPC UA · S7comm-Plus</dd></div>
       <div><dt data-it>Progetti TIA</dt><dt data-en>TIA projects</dt><dd>V16 → V21</dd></div>
@@ -708,20 +708,20 @@
         </li>
       </ol>
       <div class="dl-card">
-        <h3>PlcTraceViewer 2.1.13</h3>
+        <h3>PlcTraceViewer 2.1.14</h3>
         <p style="color:var(--ink-3);margin:0" data-it>Programma di installazione per Windows</p>
         <p style="color:var(--ink-3);margin:0" data-en>Windows installer</p>
         <dl class="meta">
-          <dt>File</dt><dd>PlcTraceViewer_Setup_v2.1.13.exe</dd>
-          <dt data-it>Dimensione</dt><dt data-en>Size</dt><dd><span data-it>86,2 MB</span><span data-en>86.2 MB</span></dd>
+          <dt>File</dt><dd>PlcTraceViewer_Setup_v2.1.14.exe</dd>
+          <dt data-it>Dimensione</dt><dt data-en>Size</dt><dd><span data-it>86,3 MB</span><span data-en>86.3 MB</span></dd>
           <dt data-it>Sistema</dt><dt data-en>System</dt><dd><span data-it>Windows 10 / 11, 64 bit · porta 102 verso la CPU</span><span data-en>Windows 10 / 11, 64-bit · port 102 to the CPU</span></dd>
         </dl>
-        <a class="btn" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.13/PlcTraceViewer_Setup_v2.1.13.exe">
+        <a class="btn" href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.14/PlcTraceViewer_Setup_v2.1.14.exe">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>
           <span data-it>Scarica per Windows</span><span data-en>Download for Windows</span>
         </a>
         <p style="margin:12px 0 0;font-size:.92rem;text-align:center">
-          <a href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.13/PlcTraceViewer_Setup_v2.1.13_Windows7.exe"><span data-it>Per Windows 7 SP1 (32 e 64 bit)</span><span data-en>For Windows 7 SP1 (32 and 64-bit)</span></a> ·
+          <a href="https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.14/PlcTraceViewer_Setup_v2.1.14_Windows7.exe"><span data-it>Per Windows 7 SP1 (32 e 64 bit)</span><span data-en>For Windows 7 SP1 (32 and 64-bit)</span></a> ·
           <span data-it>137,1 MB, installa .NET Framework 4.8 se manca</span><span data-en>137.1 MB, installs .NET Framework 4.8 if missing</span>
         </p>
         <p style="margin:14px 0 0;font-size:.92rem;text-align:center">
@@ -816,15 +816,15 @@
       <details>
         <summary><span data-it>Che file produce e come si leggono?</span><span data-en>What files does it produce and how are they read?</span></summary>
         <div class="a">
-          <span data-it>Un formato binario proprietario (.drug), compresso automaticamente alla chiusura del file (.drug.gz) e organizzato in una cartella per giorno. Da qui si esportano in CSV i canali e gli intervalli necessari. Il programma legge anche file CSV e TXT di altri strumenti.</span>
-          <span data-en>A proprietary binary format (.drug), compressed automatically when the file is closed (.drug.gz) and organised in one folder per day. From there you export the channels and time spans you need as CSV. The program also reads CSV and TXT files from other tools.</span>
+          <span data-it>Un formato binario proprietario e cifrato (.drug), compatto già mentre registra e organizzato in una cartella per giorno. Da qui si esportano in CSV i canali e gli intervalli necessari. Il programma legge anche file CSV e TXT di altri strumenti.</span>
+          <span data-en>A proprietary, encrypted binary format (.drug), compact while it records and organised in one folder per day. From there you export the channels and time spans you need as CSV. The program also reads CSV and TXT files from other tools.</span>
         </div>
       </details>
       <details>
         <summary><span data-it>Posso lasciarlo registrare tutta la notte?</span><span data-en>Can I leave it recording all night?</span></summary>
         <div class="a">
-          <span data-it>Sì. I file ruotano per dimensione; i più vecchi vengono compressi e poi eliminati secondo il periodo di conservazione impostato, senza toccare la registrazione in corso. La scrittura è controllata: se si interrompe, viene segnalato.</span>
-          <span data-en>Yes. Files rotate by size; the oldest are compressed and then deleted according to the retention period you set, without touching the recording in progress. Writing is monitored: if it stops, this is reported.</span>
+          <span data-it>Sì. I file ruotano per dimensione; i più vecchi vengono eliminati secondo il periodo di conservazione impostato, senza toccare la registrazione in corso. Ogni riga resta anche sul PC finché non è nel file: se la scrittura si interrompe viene segnalato, e non si perdono righe.</span>
+          <span data-en>Yes. Files rotate by size; the oldest are deleted according to the retention period you set, without touching the recording in progress. Every row is also kept on the PC until it is in the file: if writing stops, this is reported and no rows are lost.</span>
         </div>
       </details>
       <details>

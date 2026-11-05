@@ -27,7 +27,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.13</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.14</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="quickstart.html" class="here" data-it>Guida rapida</a><a href="quickstart.html" class="here" data-en>Quick start</a>
@@ -97,10 +97,10 @@
         <article class="doc-sec" id="installa">
           <h2 data-it>1. Installazione</h2><h2 data-en>1. Installation</h2>
           <p data-it>
-            Scarica <span class="mono">PlcTraceViewer_Setup_v2.1.13.exe</span> e avvialo. Se Windows SmartScreen segnala che l'editore non è riconosciuto, scegli <em>Ulteriori informazioni → Esegui comunque</em>: il file di installazione non è firmato con un certificato commerciale e si scarica dalla pagina delle release su GitHub.
+            Scarica <span class="mono">PlcTraceViewer_Setup_v2.1.14.exe</span> e avvialo. Se Windows SmartScreen segnala che l'editore non è riconosciuto, scegli <em>Ulteriori informazioni → Esegui comunque</em>: il file di installazione non è firmato con un certificato commerciale e si scarica dalla pagina delle release su GitHub.
           </p>
           <p data-en>
-            Download <span class="mono">PlcTraceViewer_Setup_v2.1.13.exe</span> and run it. If Windows SmartScreen reports that the publisher is not recognised, choose <em>More info → Run anyway</em>: the installer is not signed with a commercial certificate and is downloaded from the GitHub releases page.
+            Download <span class="mono">PlcTraceViewer_Setup_v2.1.14.exe</span> and run it. If Windows SmartScreen reports that the publisher is not recognised, choose <em>More info → Run anyway</em>: the installer is not signed with a commercial certificate and is downloaded from the GitHub releases page.
           </p>
           <p data-it>
             Il runtime è incluso nell'installazione. Se scegli di installare la dashboard web, il servizio viene registrato e avviato automaticamente. Per un aggiornamento, chiudi prima la versione precedente.
@@ -270,10 +270,10 @@
           </figcaption>
 
           <p data-it>
-            I file sono raccolti in una cartella per giorno e ruotano alla dimensione impostata. I file più vecchi vengono compressi e poi eliminati secondo il periodo di conservazione; il file in scrittura non viene mai toccato. La registrazione può durare tutta la notte: la scrittura è controllata e un'interruzione viene segnalata subito nel registro.
+            I file sono raccolti in una cartella per giorno e ruotano alla dimensione impostata. I file più vecchi vengono eliminati secondo il periodo di conservazione; il file in scrittura non viene mai toccato. La registrazione può durare tutta la notte: ogni riga resta anche sul PC finché non è nel file, e un'interruzione della scrittura viene segnalata subito nel registro senza perdere righe.
           </p>
           <p data-en>
-            Files are collected in one folder per day and rotate at the size you set. The oldest files are compressed and then deleted according to the retention period; the file being written is never touched. A recording can run all night: writing is monitored and an interruption is reported immediately in the log.
+            Files are collected in one folder per day and rotate at the size you set. The oldest files are deleted according to the retention period; the file being written is never touched. A recording can run all night: every row is also kept on the PC until it is in the file, and an interruption of writing is reported immediately in the log without losing rows.
           </p>
         </article>
 
