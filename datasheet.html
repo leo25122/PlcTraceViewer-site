@@ -27,7 +27,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.14</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.15</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="quickstart.html" data-it>Guida rapida</a><a href="quickstart.html" data-en>Quick start</a>
@@ -67,7 +67,7 @@
 
     <table class="doc-meta">
       <tr><th data-it>Documento</th><th data-en>Document</th><td>DS-PTV-21</td></tr>
-      <tr><th data-it>Versione del programma</th><th data-en>Program version</th><td>2.1.14</td></tr>
+      <tr><th data-it>Versione del programma</th><th data-en>Program version</th><td>2.1.15</td></tr>
       <tr><th data-it>Piattaforma</th><th data-en>Platform</th><td><span data-it>Windows 10 / 11, 64 bit · Windows 7 SP1, 32 / 64 bit (setup a parte)</span><span data-en>Windows 10 / 11, 64-bit · Windows 7 SP1, 32 / 64-bit (separate setup)</span></td></tr>
       <tr><th data-it>Controllori</th><th data-en>Controllers</th><td>S7-300 / 400 / 1200 / 1500</td></tr>
     </table>
@@ -239,6 +239,11 @@
               <td data-en>if the acquisition process does not start or closes, reading continues inside the application (a recording in progress goes on in a new file) and the event is written to the log</td>
             </tr>
             <tr>
+              <td data-it>Autoriparazione</td><td data-en>Self-repair</td>
+              <td data-it>le letture si rimettono in piedi da sole: blocco tornato sulla CPU, connessione riaperta, CPU di nuovo in RUN, simbolo di un progetto più vecchio spostato nel suo blocco (quando il membro di quel nome e tipo è uno solo). Un canale che non legge dice il perché, e dopo la connessione una riga del registro riassume quanti canali leggono, quanti sono stati riparati e perché gli altri no</td>
+              <td data-en>the readings come back by themselves: a block back on the CPU, a connection opened again, the CPU in RUN again, a symbol of an older project moved inside its block (when only one member of that name and type is there). A channel that does not read says why, and after the connection one log line sums up how many channels read, how many were repaired and why the others do not</td>
+            </tr>
+            <tr>
               <td data-it>Registrazione indipendente dalla finestra</td><td data-en>Recording independent of the window</td>
               <td data-it>la registrazione è scritta dal processo di acquisizione: chiudendo la finestra Live, o se l'applicazione si chiude o viene terminata, continua con i file interi; il pulsante Live e l'avvio dell'applicazione la ritrovano</td>
               <td data-en>the recording is written by the acquisition process: closing the Live window, or the application closing or being killed, leaves it running with its files whole; the Live button and the application's start find it again</td>
@@ -393,11 +398,14 @@
               <td data-it>una scala per segnale, nel colore della traccia; lo stesso segnale aggiunto da più file (file di momenti diversi) è un segnale solo: una riga, un colore, una scala, con il tempo di tutti i file</td>
               <td data-en>one scale per signal, in the colour of its trace; the same signal added from several files (files of different times) is one signal: one row, one colour, one scale, over the time of all the files</td></tr>
             <tr><td data-it>Marker</td><td data-en>Markers</td>
-              <td data-it>verticali e orizzontali, con differenza di tempo, differenza di valore e frequenza corrispondente</td>
-              <td data-en>vertical and horizontal, with time difference, value difference and the matching frequency</td></tr>
+              <td data-it>verticali e orizzontali, con differenza di tempo, differenza di valore e frequenza corrispondente; l'analisi dei marker si ripiega o si mette a lato del grafico</td>
+              <td data-en>vertical and horizontal, with time difference, value difference and the matching frequency; the marker analysis folds or goes beside the chart</td></tr>
             <tr><td data-it>Annulla</td><td data-en>Undo</td>
               <td data-it>Ctrl+Z annulla l'ultima azione nei grafici e nelle finestre di dettaglio (zoom, spostamento, marker, segnali, colori), un passo alla volta</td>
               <td data-en>Ctrl+Z undoes the last action on the charts and in the detail windows (zoom, move, marker, signals, colours), one step at a time</td></tr>
+            <tr><td data-it>Visualizza come</td><td data-en>Display as</td>
+              <td data-it>ogni segnale, dal vivo o registrato, si può mostrare come un altro tipo PLC, come i formati di visualizzazione di TIA Portal: gli stessi bit (una WORD come INT, un REAL come DWORD), il valore convertito, esadecimale, binario, BCD, parola alta o bassa. Cambia solo la vista: lettura, file, formule ed esportazioni restano del tipo registrato</td>
+              <td data-en>any signal, live or recorded, can be shown as another PLC type, as the display formats of TIA Portal: the same bits (a WORD as INT, a REAL as DWORD), the value converted, hexadecimal, binary, BCD, high or low word. Only the view changes: the reading, the file, the formulas and the exports keep the recorded type</td></tr>
             <tr><td data-it>Statistiche</td><td data-en>Statistics</td>
               <td data-it>sul tratto selezionato e sull'intero segnale</td>
               <td data-en>over the selected span and over the whole signal</td></tr>
@@ -447,6 +455,9 @@
             <tr><td data-it>Editor</td><td data-en>Editor</td>
               <td data-it>anteprima della curva risultante mentre si scrive l'espressione</td>
               <td data-en>preview of the resulting curve while the expression is being written</td></tr>
+            <tr><td data-it>Formule in registrazione</td><td data-en>Formulas while recording</td>
+              <td data-it>un canale calcolato dagli altri a ogni lettura, mostrato e registrato come loro, anche se aggiunto durante la registrazione. A ogni riga la colonna registrata è esattamente il risultato della stessa formula nell'analisi; le funzioni che richiedono i campioni successivi restano nell'analisi</td>
+              <td data-en>a channel computed from the others at every read, shown and recorded like them, also when added during a recording. At every row the recorded column is exactly what the same formula gives in the analysis; functions that need later samples stay in the analysis</td></tr>
           </table>
           <p style="margin-top:16px">
             <a href="index.html#calcolati" class="btn-ghost" data-it>Elenco delle 94 funzioni →</a>
@@ -718,6 +729,11 @@
               <td data-it>Canali durante la registrazione</td><td data-en>Channels during recording</td>
               <td data-it>con DRG3 e DRG4 si possono aggiungere canali durante la registrazione: il nuovo canale parte dal momento dell'aggiunta e le righe precedenti restano vuote. I cambi di STRING e WSTRING vengono salvati come eventi di testo; rimozione, nuova aggiunta e rinomina seguono le stesse regole nei due formati</td>
               <td data-en>with DRG3 and DRG4, channels can be added during recording: the new channel starts when it is added and earlier rows stay empty. STRING and WSTRING changes are stored as text events; removal, re-adding and renaming follow the same rules in both formats</td>
+            </tr>
+            <tr>
+              <td data-it>Registrazione su trigger</td><td data-en>Recording on a trigger</td>
+              <td data-it>START REC arma il trigger: gli ultimi secondi di ogni canale restano in memoria e si scrivono file solo intorno a un evento, da 0 a 300 s prima e da 0 a 300 s dopo. Partenza su un canale BOOL (fronte di salita o discesa, cambio, livello), intero (anche soglie e valori) o REAL (soglie con isteresi); stop quando la condizione non è più vera, dopo un tempo, su un altro canale o a mano; Trigger now e cattura manuale. Un file per velocità per ogni cattura, con l'istante del trigger nel nome e i marker TRIGGER ed END nel file; le catture non si sovrappongono e si uniscono in una linea nell'analisi. Un valore mancante non fa mai scattare né fermare il trigger</td>
+              <td data-en>START REC arms the trigger: the last seconds of every channel stay in memory and files are written only around an event, 0 to 300 s before and 0 to 300 s after. Start on a BOOL (rising or falling edge, change, level), an integer (also thresholds and values) or a REAL (thresholds with hysteresis); stop when the condition is no longer true, after a time, on another channel or by hand; Trigger now and manual capture. One file per rate for each capture, named after the instant of the trigger, with TRIGGER and END markers inside; captures never overlap and join into one line in the analysis. A missing value never starts or stops a capture</td>
             </tr>
             <tr>
               <td data-it>Rotazione</td><td data-en>Rotation</td>

@@ -27,7 +27,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.14</small></a>
+    <a class="brand" href="index.html"><img src="assets/img/ptv-mark-64.png" width="26" height="26" alt=""><span>PlcTraceViewer</span><small>2.1.15</small></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="quickstart.html" class="here" data-it>Guida rapida</a><a href="quickstart.html" class="here" data-en>Quick start</a>
@@ -97,10 +97,10 @@
         <article class="doc-sec" id="installa">
           <h2 data-it>1. Installazione</h2><h2 data-en>1. Installation</h2>
           <p data-it>
-            Scarica <span class="mono">PlcTraceViewer_Setup_v2.1.14.exe</span> e avvialo. Se Windows SmartScreen segnala che l'editore non è riconosciuto, scegli <em>Ulteriori informazioni → Esegui comunque</em>: il file di installazione non è firmato con un certificato commerciale e si scarica dalla pagina delle release su GitHub.
+            Scarica <span class="mono">PlcTraceViewer_Setup_v2.1.15.exe</span> e avvialo. Se Windows SmartScreen segnala che l'editore non è riconosciuto, scegli <em>Ulteriori informazioni → Esegui comunque</em>: il file di installazione non è firmato con un certificato commerciale e si scarica dalla pagina delle release su GitHub.
           </p>
           <p data-en>
-            Download <span class="mono">PlcTraceViewer_Setup_v2.1.14.exe</span> and run it. If Windows SmartScreen reports that the publisher is not recognised, choose <em>More info → Run anyway</em>: the installer is not signed with a commercial certificate and is downloaded from the GitHub releases page.
+            Download <span class="mono">PlcTraceViewer_Setup_v2.1.15.exe</span> and run it. If Windows SmartScreen reports that the publisher is not recognised, choose <em>More info → Run anyway</em>: the installer is not signed with a commercial certificate and is downloaded from the GitHub releases page.
           </p>
           <p data-it>
             Il runtime è incluso nell'installazione. Se scegli di installare la dashboard web, il servizio viene registrato e avviato automaticamente. Per un aggiornamento, chiudi prima la versione precedente.
@@ -256,6 +256,18 @@
           <p data-en>
             The recording is written by a recorder process: if you close the Live window choose <b>Keep recording</b> and it goes on; the <b>Live</b> button finds it again.
           </p>
+          <p data-it>
+            Per scrivere solo intorno a un evento, prima di START REC imposta un trigger con il pulsante <b>Trigger</b>, l'ultimo della barra: il canale e la condizione che fanno partire una cattura, quando si ferma e quanti secondi tenere prima e dopo. START REC lo arma e il badge grigio <b>ARMED</b> lo dice; il REC rosso compare solo mentre una cattura viene scritta.
+          </p>
+          <p data-en>
+            To write only around an event, set a trigger with the <b>Trigger</b> button, last in the toolbar, before START REC: the channel and the condition that start a capture, when it stops and how many seconds to keep before and after. START REC arms it and the grey <b>ARMED</b> badge says so; the red REC shows only while a capture is written.
+          </p>
+          <p data-it>
+            Un canale può anche essere una formula sugli altri: tasto destro sui canali → <b>Add formula…</b>. Si calcola a ogni lettura, anche sull'anello da 1 ms, e si registra con gli altri, anche se aggiunto a registrazione avviata.
+          </p>
+          <p data-en>
+            A channel can also be a formula on the others: right-click the channels → <b>Add formula…</b>. It is computed at every read, on the 1 ms ring too, and recorded with the others, also when added during a recording.
+          </p>
           <figure class="shot" style="max-width:240px;margin:14px 0">
             <img src="assets/img/tip-folder.webp" width="207" height="45" loading="lazy" decoding="async"
                  alt="Output folder button.">
@@ -295,6 +307,12 @@
           <p data-en>
             Place two vertical markers (<b>M</b>) and one or more horizontal markers (<b>H</b>): the table below the chart calculates ΔT, the matching frequency and each signal's difference between the two markers. The table can be copied into a report.
           </p>
+          <p data-it>
+            Sugli schermi bassi la tabella si ripiega alla riga del titolo (<b>Fold</b>) o si mette a lato del grafico (<b>Beside</b>). Con il tasto destro → <b>Display as</b> ogni segnale, dal vivo o registrato, si guarda come un altro tipo — una WORD come INT o in esadecimale, un REAL nei suoi bit — senza cambiare la registrazione.
+          </p>
+          <p data-en>
+            On a low screen the table folds to its title line (<b>Fold</b>) or goes beside the chart (<b>Beside</b>). Right-click → <b>Display as</b> shows any signal, live or recorded, as another type — a WORD as INT or in hexadecimal, a REAL as its bits — without changing the recording.
+          </p>
           <figure class="shot" style="margin:16px 0" data-zoom="assets/img/analysis-markers.webp">
             <img src="assets/img/analysis-markers.webp" width="1400" height="176" loading="lazy" decoding="async"
                  alt="Marker analysis table with time difference, frequency and per-signal differences.">
@@ -327,6 +345,12 @@
           </p>
           <p data-en>
             The <b>Web</b> button opens the page; the service is already running in the background on port 8085. From any PC on the plant network you see the current values and control the recording <b>of the application</b>, not a copy; a protected recording stops only with its password. The page has no authentication: use it only on a protected plant network.
+          </p>
+          <p data-it>
+            Durante una registrazione su trigger la pagina mostra lo stesso badge della finestra Live (ARMED, CAPTURE n).
+          </p>
+          <p data-en>
+            During a recording on a trigger the page shows the same badge as the Live window (ARMED, CAPTURE n).
           </p>
         </article>
 
