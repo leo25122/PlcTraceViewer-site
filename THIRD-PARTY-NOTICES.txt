@@ -1,0 +1,260 @@
+PlcTraceViewer - Third-party components
+========================================
+
+This product bundles the third-party components listed below. Each keeps its own
+licence; the notices here are provided to comply with those licences. The complete
+audit (sources, versions, obligations) is in Documents\PTV_Licenze_Terze_Parti.md.
+
+--------------------------------------------------------------------------
+1) MIT licensed components
+--------------------------------------------------------------------------
+  Microsoft.Bcl.AsyncInterfaces 9.0.0
+  Microsoft.Data.Sqlite 9.0.0
+  Microsoft.Data.Sqlite.Core 9.0.0
+  Microsoft.Extensions.Configuration 9.0.0
+  Microsoft.Extensions.Configuration.Abstractions 9.0.0
+  Microsoft.Extensions.Configuration.Binder 9.0.0
+  Microsoft.Extensions.Configuration.CommandLine 9.0.0
+  Microsoft.Extensions.Configuration.EnvironmentVariables 9.0.0
+  Microsoft.Extensions.Configuration.FileExtensions 9.0.0
+  Microsoft.Extensions.Configuration.Json 9.0.0
+  Microsoft.Extensions.Configuration.UserSecrets 9.0.0
+  Microsoft.Extensions.DependencyInjection 10.0.2
+  Microsoft.Extensions.DependencyInjection 9.0.0
+  Microsoft.Extensions.DependencyInjection.Abstractions 10.0.2
+  Microsoft.Extensions.DependencyInjection.Abstractions 9.0.0
+  Microsoft.Extensions.Diagnostics 9.0.0
+  Microsoft.Extensions.Diagnostics.Abstractions 9.0.0
+  Microsoft.Extensions.FileProviders.Abstractions 9.0.0
+  Microsoft.Extensions.FileProviders.Physical 9.0.0
+  Microsoft.Extensions.FileSystemGlobbing 9.0.0
+  Microsoft.Extensions.Hosting 9.0.0
+  Microsoft.Extensions.Hosting.Abstractions 9.0.0
+  Microsoft.Extensions.Hosting.WindowsServices 9.0.0
+  Microsoft.Extensions.Logging 10.0.2
+  Microsoft.Extensions.Logging 9.0.0
+  Microsoft.Extensions.Logging.Abstractions 10.0.2
+  Microsoft.Extensions.Logging.Abstractions 9.0.0
+  Microsoft.Extensions.Logging.Configuration 9.0.0
+  Microsoft.Extensions.Logging.Console 9.0.0
+  Microsoft.Extensions.Logging.Debug 9.0.0
+  Microsoft.Extensions.Logging.EventLog 9.0.0
+  Microsoft.Extensions.Logging.EventSource 9.0.0
+  Microsoft.Extensions.Options 10.0.2
+  Microsoft.Extensions.Options 9.0.0
+  Microsoft.Extensions.Options.ConfigurationExtensions 9.0.0
+  Microsoft.Extensions.Primitives 10.0.2
+  Microsoft.Extensions.Primitives 9.0.0
+  System.Buffers 4.5.1
+  System.CodeDom 10.0.3
+  System.Collections.Immutable 10.0.2
+  System.Diagnostics.DiagnosticSource 10.0.2
+  System.Diagnostics.EventLog 9.0.0
+  System.Formats.Asn1 10.0.2
+  System.IO.Pipelines 10.0.2
+  System.IO.Pipelines 9.0.0
+  System.Management 10.0.3
+  System.Memory 4.5.3
+  System.Memory 4.5.5
+  System.Numerics.Vectors 4.5.0
+  System.Runtime.CompilerServices.Unsafe 6.0.0
+  System.ServiceProcess.ServiceController 9.0.0
+  System.Text.Encodings.Web 10.0.2
+  System.Text.Encodings.Web 9.0.0
+  System.Text.Json 10.0.2
+  System.Text.Json 9.0.0
+  System.Threading.Tasks.Extensions 4.5.4
+  System.ValueTuple 4.5.0
+  BitFaster.Caching 2.5.4
+  BouncyCastle.Cryptography 2.4.0
+  MathNet.Filtering 0.7.0
+  MathNet.Numerics 5.0.0
+  Newtonsoft.Json 13.0.4
+  OpenTK.Audio.OpenAL 4.9.4
+  OpenTK.Compute 4.9.4
+  OpenTK.Core 4.9.4
+  OpenTK.GLWpfControl 4.3.3
+  OpenTK.Graphics 4.9.4
+  OpenTK.Input 4.9.4
+  OpenTK.Mathematics 4.9.4
+  OpenTK.Windowing.Common 4.9.4
+  OpenTK.Windowing.Desktop 4.9.4
+  OpenTK.Windowing.GraphicsLibraryFramework 4.9.4
+  ScottPlot 5.1.57
+  ScottPlot.WPF 5.1.57
+  SkiaSharp 3.119.0
+  SkiaSharp.HarfBuzz 3.119.0
+  SkiaSharp.NativeAssets.Linux.NoDependencies 3.119.0
+  SkiaSharp.NativeAssets.Win32 3.119.0
+  SkiaSharp.NativeAssets.macOS 3.119.0
+  SkiaSharp.Views.Desktop.Common 3.119.0
+  SkiaSharp.Views.WPF 3.119.0
+  HarfBuzzSharp 8.3.1.1
+  HarfBuzzSharp.NativeAssets.Linux 8.3.1.1
+  HarfBuzzSharp.NativeAssets.Win32 8.3.1.1
+  HarfBuzzSharp.NativeAssets.macOS 8.3.1.1
+
+  Full MIT text and copyright notices: licenses\MIT.txt (applies to every component listed above).
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+and associated documentation files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+  Copyright notices of the components:
+    Microsoft .NET runtime and the Microsoft.Extensions.* / System.* packages:
+      Copyright (c) .NET Foundation and contributors.
+    Newtonsoft.Json 13.0.4 - Copyright (c) 2007 James Newton-King.
+    BouncyCastle.Cryptography 2.4.0 - Copyright (c) 2000-2024 The Legion of the
+      Bouncy Castle Inc. (https://www.bouncycastle.org).
+    BitFaster.Caching 2.5.4 - Copyright (c) 2020 Alex Peck.
+    MathNet.Numerics 5.0.0 / MathNet.Filtering 0.7.0 - Christoph Ruegg, Marcus Cuda,
+      Jurgen Van Gael (Math.NET project).
+    S7netplus 0.20.0 - Copyright (c) 2009 Joergen Schildmann (S7NetPlus project).
+    OpenTK 4.9.4 and its modules - Team OpenTK.
+    OpenTK.GLWpfControl 4.3.3 - Copyright (c) 2019 varon.
+    ScottPlot / ScottPlot.WPF 5.1.57 - Scott Harden.
+    SkiaSharp 3.119.0 and its bindings - Copyright (c) 2015-2016 Xamarin, Inc.;
+      Copyright (c) 2017-2018 Microsoft Corporation.
+    HarfBuzzSharp 8.3.1.1 - Copyright (c) 2015-2016 Xamarin, Inc.;
+      Copyright (c) 2017-2018 Microsoft Corporation.
+
+  Native binaries: libSkiaSharp.dll is Skia (Google LLC, BSD-3-Clause; full text:
+  licenses\Skia-BSD-3-Clause.txt), libHarfBuzzSharp.dll is HarfBuzz (Old MIT licence;
+  full text: licenses\HarfBuzz-COPYING.txt), glfw3.dll is GLFW (zlib/libpng; full
+  text: licenses\GLFW-COPYING.md).
+
+--------------------------------------------------------------------------
+1b) Icons (Fluent UI System Icons)
+--------------------------------------------------------------------------
+  Fluent UI System Icons - the 20 px "regular" SVG files converted to WPF geometries
+  (Themes\Icons.xaml); the original SVG files are in Themes\FluentIcons.
+  Licence: MIT.  Copyright (c) 2020 Microsoft Corporation.
+  Full MIT text: licenses\MIT.txt
+  https://github.com/microsoft/fluentui-system-icons
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+and associated documentation files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+--------------------------------------------------------------------------
+2) Apache License 2.0 components
+--------------------------------------------------------------------------
+  SQLitePCLRaw.bundle_e_sqlite3 2.1.20
+  SQLitePCLRaw.core 2.1.20
+  SQLitePCLRaw.lib.e_sqlite3 2.1.20
+  SQLitePCLRaw.provider.e_sqlite3 2.1.20
+
+  Copyright the respective authors. Licensed under the Apache License, Version 2.0
+  (the "License"); you may not use these files except in compliance with the
+  License. You may obtain a copy of the License at
+  https://www.apache.org/licenses/LICENSE-2.0 ; full text: licenses\Apache-2.0.txt.
+  The bundled SQLite amalgamation is in the public domain; official dedication:
+  licenses\SQLite-PublicDomain.html (https://sqlite.org/copyright.html).
+
+--------------------------------------------------------------------------
+3) zlib / libpng licensed components
+--------------------------------------------------------------------------
+  OpenTK.redist.glfw 3.4.0.44 (glfw3.dll)
+
+  Copyright (c) 2002-2006 Marcus Geelnard, Copyright (c) 2006-2019 Camilla Lowy.
+  This software is provided 'as-is', without any express or implied warranty.
+  Permission is granted to anyone to use this software for any purpose, including
+  commercial applications, and to alter it and redistribute it free of charge,
+  subject to the conditions of the zlib/libpng licence; full text:
+  licenses\GLFW-COPYING.md (https://www.glfw.org/license.html).
+
+--------------------------------------------------------------------------
+4) OPC Foundation OPC UA client stack
+--------------------------------------------------------------------------
+  OPCFoundation.NetStandard.Opc.Ua.Client 1.5.378.106
+  OPCFoundation.NetStandard.Opc.Ua.Configuration 1.5.378.106
+  OPCFoundation.NetStandard.Opc.Ua.Core 1.5.378.106
+  OPCFoundation.NetStandard.Opc.Ua.Security.Certificates 1.5.378.106
+  OPCFoundation.NetStandard.Opc.Ua.Types 1.5.378.106
+
+  OPC Foundation MIT License 1.00 - Copyright (c) 2005-2025 OPC Foundation, Inc.
+  Full text: licenses\OPCFoundation-MIT-1.00.txt
+  https://opcfoundation.org/license/mit.html
+
+--------------------------------------------------------------------------
+5) LGPL components (separate, replaceable assemblies)
+--------------------------------------------------------------------------
+  TKH.S7Plus.Net 0.6.1 - S7comm-Plus communication with SIMATIC S7-1200/1500 (symbolic access,
+     optimized data blocks). A maintained port of Thomas Wiens'
+     S7CommPlusDriver. https://github.com/thomas-v2/S7CommPlusDriver
+
+  Licence: GNU Lesser General Public License, version 3 only (LGPL-3.0-only).
+  Full texts: licenses\LGPL-3.0.txt and licenses\GPL-3.0.txt; also available at
+  https://www.gnu.org/licenses/lgpl-3.0.html and https://www.gnu.org/licenses/gpl-3.0.html .
+
+  In accordance with the LGPL this library is distributed as a separate managed
+  assembly, shipped unmodified (the release build obfuscates only the PTV
+  assemblies), which the end user may replace with a compatible version.
+  The complete corresponding source of the version distributed here is available
+  at https://github.com/leo25122/PlcTraceViewer-site/releases/download/v2.1.2/TKH.S7Plus.Net-0.6.1-source.zip
+  and on written request through the existing PLC Trace Viewer support contact on
+  the product site; no new contact address is introduced here.
+
+--------------------------------------------------------------------------
+6) Fonts embedded in generated PDF documents
+--------------------------------------------------------------------------
+  Liberation Sans Regular and Bold (PTVPortal, PlcTraceLicenseAdmin and _quote_gen)
+  - SIL Open Font License, Version 1.1
+  Digitized data copyright (c) 2010 Google Corporation, with Reserved Font Arimo,
+  Tinos and Cousine. Copyright (c) 2012 Red Hat, Inc., with Reserved Font Name
+  Liberation. These server-side PDF fonts are not part of this desktop installation; the
+  OFL text is published at https://openfontlicense.org/ and is provided on written request.
+  The fonts are embedded unmodified;
+  the reserved font names are not used for any modified version.
+
+--------------------------------------------------------------------------
+7) Server-side components (portal and licence administration tools)
+--------------------------------------------------------------------------
+  PDFsharp 6.2.4 and PDFsharp-MigraDoc 6.2.4 - PDF generation for licence
+  certificates and offers in the portal and internal administration tools.
+
+  Licence: MIT, declared in the package .nuspec files. The projects use the
+  cross-platform core package; Liberation Sans fonts are embedded from project
+  files through an IFontResolver. These server-side tools are not part of this
+  desktop installation. MIT attribution and licence text are included in the
+  project-wide MIT notices above.
+
+--------------------------------------------------------------------------
+8) Components used at build time only (not shipped)
+--------------------------------------------------------------------------
+  Obfuscar - assembly obfuscator, MIT licence, used by build_release.ps1 only.
+  NSIS 3.12 setup stub - zlib/libpng licence; included in the installer executable.
+  bzip2 solid-compression module in the NSIS setup stub - bzip2 licence; included in
+  the installer executable. The NSIS compiler itself is used at build time only.
+  Siemens TIA Openness - loaded at run time from the customer's own TIA Portal
+  installation; no Siemens DLL is redistributed by this product.
+
+No third-party source code was copied into this product: the source tree contains
+no copyright notice of another author, no Stack Overflow/GitHub/blog excerpt and
+no imported snippet (audit 01/10/2026).
